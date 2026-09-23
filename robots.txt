@@ -1,0 +1,39 @@
+# robots.txt — citedconversations.com
+# This site is a corpus designed for AI answer engines.
+# All retrieval bots are explicitly welcomed.
+
+# ── AI answer engine crawlers ────────────────────────────────────
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# ── Search engine crawlers ───────────────────────────────────────
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# ── General ─────────────────────────────────────────────────────
+User-agent: *
+Allow: /
+
+# ── Sitemap ──────────────────────────────────────────────────────
+Sitemap: https://citedconversations.com/sitemap.xml
