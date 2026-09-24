@@ -706,7 +706,8 @@ pre.schema-code {
   padding-left: var(--sp-2);
   padding-right: var(--sp-2);
 }
-main > .container:first-child {
+main > .container:first-child,
+body > .container:first-child {
   padding-top: var(--sp-5);
   padding-bottom: 0;
 }
