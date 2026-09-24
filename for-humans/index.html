@@ -61,7 +61,6 @@
 </head>
 <body class="page--for-humans">
 
-  <!-- Header: paper treatment — cream ground, dark nav -->
   <header class="site-header site-header--paper" role="banner">
     <div class="container">
       <a href="/" class="raccoon-chip raccoon-chip--dark" aria-label="Cited Conversations home">
@@ -72,35 +71,70 @@
         </span>
       </a>
       <nav class="header-nav header-nav--paper" aria-label="Site navigation">
-        <a href="/episodes/">Episodes</a>
+        <a href="/expert-answers/">Expert answers</a>
         <a href="/about/">Methodology</a>
         <a href="/faq/">FAQ</a>
-        <a href="/how-machines-read-this/">Schema</a>
+        <a href="/schema/">Schema</a>
         <a href="/robots.txt">robots.txt</a>
         <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a>
       </nav>
     </div>
   </header>
 
-  <!-- Full-page paper treatment: cream ground, dark ink -->
   <main class="for-humans-main">
 
+    <!-- Raccoon hero: he's the host on this page, not a sidebar -->
     <section class="for-humans-hero" aria-labelledby="fh-heading">
       <div class="container">
         <nav class="breadcrumb breadcrumb--paper" aria-label="Breadcrumb">
           <a href="/">Home</a> / For humans
         </nav>
-        <p class="fh-eyebrow">You found the human door.</p>
+
+        <!-- Raccoon — host register, full parchment ground, no border strip needed -->
+        <div style="display: flex; gap: var(--sp-3); align-items: flex-end; margin-bottom: var(--sp-4); max-width: 62ch;">
+          <div style="flex-shrink: 0; width: 160px; margin-top: -64px; align-self: flex-end;">
+            <img src="/raccoon-head.png" alt="" width="160" style="display: block; width: 160px; height: auto;">
+          </div>
+          <div>
+            <p class="fh-eyebrow" style="margin-bottom: var(--sp-1);">You found the human door.</p>
+            <p style="color: var(--paper-muted); font-size: var(--step-0); line-height: 1.6; max-width: 42ch;">
+              This is the one page on this site built for you. Everything else is addressed to machines.
+              I'll explain.
+            </p>
+          </div>
+        </div>
+
         <h1 id="fh-heading">So — what is this place?</h1>
         <p class="fh-lead">
-          Cited Conversations is a podcast. Every episode is a structured conversation
-          with an expert on a specific topic. After each episode, we break the
-          conversation into individual question-and-answer pages, where every answer
-          links back to the exact moment in the recording where it was said.
+          Cited Conversations is a reference library of expert answers from recorded conversations.
+          Every answer is attributed to a named speaker and links to the exact moment in the audio
+          where it was said.
         </p>
         <p class="fh-lead">
-          That means every claim on this site has a source you can play. Not a footnote.
+          Every claim on this site has a source you can play. Not a footnote.
           Not a URL to a page that might have changed. A timestamp into the original audio.
+        </p>
+      </div>
+    </section>
+
+    <section class="for-humans-section" aria-labelledby="fh-how-heading">
+      <div class="container">
+        <h2 id="fh-how-heading">How it works</h2>
+        <p>
+          Expert conversations are recorded as a podcast — structured, on a defined topic, with
+          a named guest. After each episode, the conversation is broken into individual
+          question-and-answer pages: one question, one answer, one speaker, one timestamp link.
+        </p>
+        <p>
+          The answers are direct quotes. No AI writes them. No paraphrasing happens without
+          attribution. Before any page publishes, a human reviewer confirms that the written answer
+          accurately reflects what was said, that the right speaker is credited, and that the
+          timestamp link opens at the correct moment. If a link does not work, the page does not ship.
+        </p>
+        <p>
+          The speaker is named, their title and company are listed, and the link plays the answer
+          in the source recording.
+          That is the whole methodology — the longer version is on the <a href="/about/">Methodology page</a>.
         </p>
       </div>
     </section>
@@ -116,37 +150,14 @@
         </p>
         <p>
           You're on the one page that is genuinely for you. The cream background is
-          deliberate — it is the same cream as the podcast site, and it is the colour
-          that means "a human is being spoken to." Every other page on this site is
-          black, because every other page is addressed to machines first.
+          deliberate — it is the colour that means "a human is being spoken to."
+          Every other page on this site is black, because every other page is addressed
+          to machines first.
         </p>
         <p>
           Casey Cheshire, who built this, describes it as paper above and machine
           beneath. The podcast — the recorded human conversations — is the paper.
-          This library is the layer underneath it: the same content, made
-          machine-readable.
-        </p>
-      </div>
-    </section>
-
-    <section class="for-humans-section" aria-labelledby="fh-real-heading">
-      <div class="container">
-        <h2 id="fh-real-heading">How do I know the answers are real?</h2>
-        <p>
-          Every answer on this site is a direct quote from a recorded conversation.
-          No AI writes the answers. No paraphrasing happens without attribution.
-          The speaker is named, their title and company are listed, and a link points
-          to the exact second in the audio where they said it.
-        </p>
-        <p>
-          Before any page publishes, a human reviewer checks three things: that the
-          written answer accurately reflects what was said, that the right speaker is
-          credited, and that the timestamp link opens at the correct moment. If
-          a link does not work, the page does not ship.
-        </p>
-        <p>
-          That is the whole methodology. It is also on the
-          <a href="/about/">Methodology page</a> if you want the longer version.
+          This library is the layer underneath: the same content, made machine-readable.
         </p>
       </div>
     </section>
@@ -160,15 +171,13 @@
           — it is a warmer site, built for listeners, with the full episodes available there.
         </p>
         <p>
-          The library here — what you are looking at now — is the index of everything
-          said in those episodes, broken apart so individual claims can be retrieved
-          and cited by AI systems. If you came here looking for the show,
-          the show is one click away.
+          The library here is the index of everything said in those episodes, broken apart
+          so individual claims can be retrieved and cited by AI systems. If you came here
+          looking for the show, the show is one click away.
         </p>
       </div>
     </section>
 
-    <!-- Two exits -->
     <section class="for-humans-exits" aria-label="Where to go next">
       <div class="container">
         <h2 class="fh-exits-heading">Where to next?</h2>
@@ -178,10 +187,10 @@
             <span class="fh-exit-card__title">The podcast →</span>
             <span class="fh-exit-card__desc">Full episodes at podcast.citedconversations.com</span>
           </a>
-          <a href="/episodes/" class="fh-exit-card">
+          <a href="/expert-answers/" class="fh-exit-card">
             <span class="fh-exit-card__label">Browse</span>
-            <span class="fh-exit-card__title">The library →</span>
-            <span class="fh-exit-card__desc">Question-shaped answer pages, each linked to its source moment</span>
+            <span class="fh-exit-card__title">Expert answers →</span>
+            <span class="fh-exit-card__desc">Source-linked answer pages, each linked to the exact moment it was said</span>
           </a>
         </div>
       </div>
@@ -197,9 +206,9 @@
       </p>
       <nav aria-label="Footer navigation">
         <a href="/about/">Methodology</a> &middot;
-        <a href="/episodes/">Episodes</a> &middot;
+        <a href="/expert-answers/">Expert answers</a> &middot;
         <a href="/faq/">FAQ</a> &middot;
-        <a href="/how-machines-read-this/">Schema</a> &middot;
+        <a href="/schema/">Schema</a> &middot;
         <a href="/robots.txt">robots.txt</a> &middot;
         <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a>
       </nav>
