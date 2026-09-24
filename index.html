@@ -100,10 +100,10 @@
         </span>
       </a>
       <nav class="header-nav" aria-label="Site navigation">
-        <a href="/episodes/">Episodes</a>
+        <a href="/expert-answers/">Expert answers</a>
         <a href="/about/">Methodology</a>
         <a href="/faq/">FAQ</a>
-        <a href="/how-machines-read-this/">Schema</a>
+        <a href="/schema/">Schema</a>
         <a href="/robots.txt">robots.txt</a>
         <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a>
         <a href="/for-humans/" class="header-nav__human-door">New here? For humans →</a>
@@ -113,10 +113,23 @@
 
   <section class="hero" aria-labelledby="hero-heading">
     <div class="container">
-      <!-- One human line — paper fragment in the machine layer -->
-      <div class="paper-panel paper-panel--warmth" aria-label="A note for humans">
-        <p>Hello, fellow human. This site is built for machines — you're welcome to read it.</p>
+
+      <!-- Raccoon aside — greeting, offers to guide -->
+      <div class="raccoon-aside" aria-label="A note for humans">
+        <div class="raccoon-aside__inner">
+          <div class="raccoon-aside__img" aria-hidden="true">
+            <img src="/raccoon-head.png" alt="" width="130">
+          </div>
+          <div class="raccoon-aside__body">
+            <span class="raccoon-aside__label">For Humans</span>
+            <p class="raccoon-aside__text">
+              Hello, fellow human. This page is addressed to machines — but you're welcome here.
+              If you'd like a guide, <a href="/for-humans/">start here</a>.
+            </p>
+          </div>
+        </div>
       </div>
+
       <p class="hero__prompt">query: expert answers, source-linked</p>
       <h1 class="hero__headline" id="hero-heading">Every answer cites its source.</h1>
       <p class="hero__lead">
@@ -124,8 +137,8 @@
         Every claim links to the moment it was said.
       </p>
       <div class="hero__links">
-        <a href="/episodes/" class="btn">Browse episodes</a>
-        <a href="https://podcast.citedconversations.com" class="btn btn--ghost" rel="noopener">Listen to the podcast</a>
+        <a href="/expert-answers/" class="btn">retrieve: expert-answers/</a>
+        <a href="/schema/" class="btn btn--ghost">inspect: schema/</a>
       </div>
     </div>
   </section>
@@ -136,10 +149,6 @@
       <hr class="section-rule" />
       <h2 id="how-heading">Source-linked answers from named speakers</h2>
       <div class="methodology__body">
-        <p>
-          Every sentence on this site is a timestamped clip from a named conversation.
-          Click any answer to hear the exact moment it was said.
-        </p>
         <p>
           Expert conversations are recorded as a podcast, then broken into
           question-shaped answer pages where every claim is attributed to a named
@@ -158,12 +167,12 @@
     </div>
   </section>
 
-  <section class="episode-index" aria-labelledby="episodes-heading">
+  <section class="episode-index" aria-labelledby="answers-index-heading">
     <div class="container">
       <p class="section-label">Answer library</p>
       <hr class="section-rule" />
-      <h2 id="episodes-heading">Episodes</h2>
-      <p>Each episode is broken into question-shaped answer pages, sourced to the exact moment in the recording.</p>
+      <h2 id="answers-index-heading">Expert answers</h2>
+      <p>Each conversation is broken into question-shaped answer pages, sourced to the exact moment in the recording.</p>
 
       <table class="episode-table" aria-label="Episode list">
         <thead>
@@ -213,10 +222,6 @@
           citing. If your show produces expert content that AI answer engines should
           know about, join the waitlist.
         </p>
-        <!-- Waitlist CTA. Deliberately a mailto link rather than a form POST:
-             it works with JavaScript disabled, needs no third-party endpoint,
-             and cannot silently discard a signup. Swap for a hosted form
-             endpoint when one exists. -->
         <p class="waitlist__cta">
           <a
             class="btn"
@@ -236,9 +241,9 @@
       </p>
       <nav aria-label="Footer navigation">
         <a href="/about/">Methodology</a> &middot;
-        <a href="/episodes/">Episodes</a> &middot;
+        <a href="/expert-answers/">Expert answers</a> &middot;
         <a href="/faq/">FAQ</a> &middot;
-        <a href="/how-machines-read-this/">Schema</a> &middot;
+        <a href="/schema/">Schema</a> &middot;
         <a href="/robots.txt">robots.txt</a> &middot;
         <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a>
       </nav>
