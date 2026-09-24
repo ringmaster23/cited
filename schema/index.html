@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y9K5VS79MD"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -14,7 +13,7 @@
   </script>
 
   <title>Schema — Cited Conversations</title>
-  <meta name="description" content="Structured data declaration for Cited Conversations: schema types in use, citation field specification, Person nodes, DataCatalog, and crawler access.">
+  <meta name="description" content="Structured data declaration for Cited Conversations: schema types in use, citation field specification, Clip and Quotation nodes, Person nodes, DataCatalog, and crawler access.">
   <link rel="canonical" href="https://citedconversations.com/schema/">
 
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -23,14 +22,14 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://citedconversations.com/schema/">
   <meta property="og:title" content="Schema — Cited Conversations">
-  <meta property="og:description" content="Structured data declaration for Cited Conversations: schema types in use, citation field specification, Person nodes, DataCatalog, and crawler access.">
+  <meta property="og:description" content="Structured data declaration for Cited Conversations: schema types in use, Clip and Quotation nodes, DataCatalog, and crawler access.">
   <meta property="og:image" content="https://citedconversations.com/og-image.png">
   <meta property="og:site_name" content="Cited Conversations">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://citedconversations.com/schema/">
   <meta name="twitter:title" content="Schema — Cited Conversations">
-  <meta name="twitter:description" content="Structured data declaration for Cited Conversations: schema types in use, citation field specification, Person nodes, DataCatalog, and crawler access.">
+  <meta name="twitter:description" content="Structured data declaration for Cited Conversations: schema types in use, Clip and Quotation nodes, DataCatalog, and crawler access.">
   <meta name="twitter:image" content="https://citedconversations.com/og-image.png">
 
   <link rel="stylesheet" href="/styles.css">
@@ -44,7 +43,7 @@
         "@id": "https://citedconversations.com/schema/#webpage",
         "url": "https://citedconversations.com/schema/",
         "name": "Schema — Cited Conversations",
-        "description": "Structured data declaration for Cited Conversations: schema types in use, citation field specification, Person nodes, DataCatalog, and crawler access.",
+        "description": "Structured data declaration for Cited Conversations: schema types in use, citation field specification, Clip and Quotation nodes, Person nodes, DataCatalog, and crawler access.",
         "isPartOf": { "@id": "https://citedconversations.com/#website" },
         "about": { "@id": "https://citedconversations.com/#datacatalog" },
         "breadcrumb": { "@id": "https://citedconversations.com/schema/#breadcrumb" },
@@ -74,7 +73,7 @@
         </span>
       </a>
       <nav class="header-nav" aria-label="Site navigation">
-        <a href="/episodes/">Episodes</a>
+        <a href="/answers/">Answers</a>
         <a href="/about/">Methodology</a>
         <a href="/faq/">FAQ</a>
         <a href="/schema/" aria-current="page">Schema</a>
@@ -87,9 +86,8 @@
 
   <main>
 
-    <!-- Human aside — explains the page to a human visitor, no image, no redirect -->
     <div class="container">
-      <div class="human-aside" aria-label="A note for humans">
+      <aside class="human-aside" aria-label="A note for humans">
         <div class="human-aside__row">
           <span class="human-aside__label">For Humans</span>
           <p class="human-aside__text">
@@ -98,10 +96,9 @@
             but readable by machines. This page is the declaration itself.
           </p>
         </div>
-      </div>
+      </aside>
     </div>
 
-    <!-- ── Hero: machine register ── -->
     <section class="machines-hero">
       <div class="container">
         <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -115,14 +112,14 @@
       </div>
     </section>
 
-    <!-- ── Schema types table ── -->
+    <!-- ── Schema types: live today ── -->
     <section class="machines-section">
       <div class="container">
-        <h2 class="section-label">Schema types in use</h2>
+        <h2 class="section-label">Schema types in use today</h2>
         <hr class="section-rule">
         <div class="machines-body">
           <h3>What is declared and where</h3>
-          <p>Only types that are live on published pages are listed. Nothing planned or aspirational.</p>
+          <p>Only types live on published pages are listed here. Answer pages publish September 30, 2026 — their types are documented separately below.</p>
         </div>
 
         <table class="type-table" style="margin-top: var(--sp-4);">
@@ -151,37 +148,22 @@
             </tr>
             <tr>
               <td class="tt-type">Person</td>
-              <td>Each named speaker: name, title, employer, and <code>sameAs</code> linking to their LinkedIn profile and company URL. One node per speaker per episode page.</td>
-              <td class="tt-page">Homepage, episode pages</td>
+              <td>Each named speaker: name, title, employer, and <code>sameAs</code> links to their LinkedIn profile and company URL. One stable <code>@id</code> per speaker, intended to match the future <code>/speakers/{name}/</code> page.</td>
+              <td class="tt-page">Homepage (site founders); answer and episode pages from Sep 30</td>
             </tr>
             <tr>
               <td class="tt-type">FAQPage</td>
-              <td>The episode answer page as a structured set of question-and-answer pairs. Each pair is a <code>Question</code> with an <code>acceptedAnswer</code> carrying the speaker attribution and citation timestamp URL.</td>
-              <td class="tt-page">Episode answer pages</td>
-            </tr>
-            <tr>
-              <td class="tt-type">PodcastEpisode</td>
-              <td>The source recording: episode number, title, publish date, and a reference to the AudioObject and the PodcastSeries.</td>
-              <td class="tt-page">Episode answer pages</td>
-            </tr>
-            <tr>
-              <td class="tt-type">AudioObject</td>
-              <td>The audio file: content URL, embed URL, encoding format, duration, and upload date. Linked from PodcastEpisode via <code>associatedMedia</code>.</td>
-              <td class="tt-page">Episode answer pages</td>
-            </tr>
-            <tr>
-              <td class="tt-type">Quotation</td>
-              <td>One node per Q&amp;A pair: the answer text attributed to the speaker, with a <code>citation</code> value pointing to the exact timestamp URL in the source recording. This is the claim-level evidence unit.</td>
-              <td class="tt-page">Episode answer pages</td>
+              <td>A page where the site itself wrote both the questions and the answers. Used only on <code>/faq/</code>, where every Q&amp;A is site voice, not a speaker quote from a recording.</td>
+              <td class="tt-page"><a href="/faq/">/faq/</a></td>
             </tr>
             <tr>
               <td class="tt-type">WebPage / CollectionPage</td>
-              <td>Page-level identity: URL, name, description, parent site reference, and breadcrumb. CollectionPage on the episode index; WebPage elsewhere.</td>
+              <td>Page-level identity: URL, name, description, parent site reference, and breadcrumb. CollectionPage on index pages; WebPage elsewhere.</td>
               <td class="tt-page">All pages</td>
             </tr>
             <tr>
               <td class="tt-type">BreadcrumbList</td>
-              <td>Page position in the site hierarchy. Three levels on episode answer pages: Home → Episodes → episode title.</td>
+              <td>Page position in the site hierarchy. Two or three levels depending on depth.</td>
               <td class="tt-page">All pages except homepage</td>
             </tr>
           </tbody>
@@ -189,45 +171,96 @@
       </div>
     </section>
 
-    <!-- ── Citation field ── -->
+    <!-- ── Schema types: answer and episode pages (Sep 30) ── -->
     <section class="machines-section">
       <div class="container">
-        <h2 class="section-label">The citation field</h2>
+        <h2 class="section-label">Answer and episode page types — publishing Sep 30, 2026</h2>
+        <hr class="section-rule">
+        <div class="machines-body">
+          <p>These types appear on answer pages at <code>/answers/{question-slug}/</code> and episode pages at <code>/episodes/{show}/{episode}/</code>. Nothing published yet — listed here so crawlers and validators know what to expect on launch day.</p>
+        </div>
+
+        <table class="type-table" style="margin-top: var(--sp-4);">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Declares</th>
+              <th class="tt-page">Pages</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tt-type">PodcastEpisode</td>
+              <td>The source recording: episode number, title, publish date, duration, audio URL, and a reference to the PodcastSeries.</td>
+              <td class="tt-page">Answer pages, episode pages</td>
+            </tr>
+            <tr>
+              <td class="tt-type">PodcastSeries</td>
+              <td>The show: name and URL. Linked from each PodcastEpisode via <code>partOfSeries</code>.</td>
+              <td class="tt-page">Answer pages, episode pages</td>
+            </tr>
+            <tr>
+              <td class="tt-type">Clip</td>
+              <td>A timed segment of the recording: <code>startOffset</code> in seconds, <code>endOffset</code> in seconds, <code>url</code> pointing to the timestamped playable moment, and <code>partOfEpisode</code> linking to the PodcastEpisode node. One Clip per answer.</td>
+              <td class="tt-page">Answer pages, episode pages</td>
+            </tr>
+            <tr>
+              <td class="tt-type">Quotation</td>
+              <td>The speaker's exact words: <code>text</code>, <code>spokenByCharacter</code> referencing the Person node, <code>creator</code> (same Person), <code>isPartOf</code> linking to the PodcastEpisode. One Quotation per answer, paired with its Clip.</td>
+              <td class="tt-page">Answer pages, episode pages</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── Citation field / Clip + Quotation ── -->
+    <section class="machines-section">
+      <div class="container">
+        <h2 class="section-label">The citation: Clip and Quotation</h2>
         <hr class="section-rule">
         <div class="machines-body">
 
-          <h3>What it is</h3>
-          <p>Every <code>Quotation</code> node and every <code>acceptedAnswer</code> inside a <code>FAQPage</code> carries a <code>citation</code> field. Its value is a URL that opens the source podcast episode at the exact second the speaker said the answer being cited.</p>
-          <p>The URL format uses a query parameter, not a fragment, because the Transistor player responds to query parameters:</p>
+          <h3>How an answer is cited</h3>
+          <p>Every answer on this site originates from a specific moment in a recorded conversation. That moment is identified by two nodes that travel together: a <code>Clip</code> marking the segment of the recording by start and end time, and a <code>Quotation</code> carrying the speaker's exact words.</p>
+
+          <h3>The timestamped URL</h3>
+          <p>The <code>Clip</code>'s <code>url</code> points to the source podcast episode at the exact second the answer begins. The URL format uses a query parameter, not a fragment, because the Transistor player responds to query parameters:</p>
 
           <pre class="schema-code" style="margin-top: var(--sp-3);">https://podcast.citedconversations.com/<span class="t-str">&lt;episode-slug&gt;</span>?t=<span class="t-num">&lt;seconds&gt;</span>
 
 <span class="t-punct">// example: answer begins at 6 minutes 23 seconds</span>
 https://podcast.citedconversations.com/ep1-aeo-practice?t=<span class="t-num">383</span></pre>
 
-          <h3>Why it matters</h3>
-          <p>A citation that resolves to a playable moment converts a claim from asserted to verifiable. An AI answer engine reading this page can report not only what was said and who said it, but where in a primary source the claim originates. That is a different class of evidence from uncited text.</p>
-          <p>No page ships without a tested, working citation URL for every claim. If a link does not seek to the correct moment, the page does not publish.</p>
+          <h3>Why Clip and Quotation, not FAQPage</h3>
+          <p>Google's structured data guidelines accept <code>FAQPage</code> only where the site owner wrote both the questions and the answers. The answers on this site are spoken by guests in a recording — they are clips of source audio, not site-authored content. <code>Clip</code> + <code>Quotation</code> is the correct description. <code>FAQPage</code> is used on <code>/faq/</code> only, where every answer is site voice.</p>
 
-          <h3>The complete Quotation node</h3>
-          <p>Below is the structured data for a single claim, as it appears in the <code>&lt;script type="application/ld+json"&gt;</code> block on an episode answer page.</p>
+          <h3>The paired Clip and Quotation nodes</h3>
+          <p>Below is the structured data for a single answer, as it will appear in the <code>&lt;script type="application/ld+json"&gt;</code> block on an answer page.</p>
 
           <pre class="schema-code" style="margin-top: var(--sp-3);"><span class="t-punct">{</span>
+  <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-str">"Clip"</span><span class="t-punct">,</span>
+  <span class="t-key">"@id"</span><span class="t-punct">:</span> <span class="t-url">"https://citedconversations.com/answers/&lt;slug&gt;/#clip"</span><span class="t-punct">,</span>
+  <span class="t-key">"name"</span><span class="t-punct">:</span> <span class="t-str">"&lt;the question as asked&gt;"</span><span class="t-punct">,</span>
+  <span class="t-key">"startOffset"</span><span class="t-punct">:</span> <span class="t-num">&lt;seconds&gt;</span><span class="t-punct">,</span>
+  <span class="t-key">"endOffset"</span><span class="t-punct">:</span> <span class="t-num">&lt;seconds&gt;</span><span class="t-punct">,</span>
+  <span class="t-key">"url"</span><span class="t-punct">:</span> <span class="t-url">"https://podcast.citedconversations.com/&lt;episode-slug&gt;?t=&lt;seconds&gt;"</span><span class="t-punct">,</span>
+  <span class="t-key">"partOfEpisode"</span><span class="t-punct">:</span> <span class="t-punct">{ </span><span class="t-key">"@id"</span><span class="t-punct">:</span> <span class="t-str">"https://citedconversations.com/episodes/&lt;show&gt;/&lt;episode&gt;/#episode"</span> <span class="t-punct">}</span>
+<span class="t-punct">}</span><span class="t-punct">,</span>
+<span class="t-punct">{</span>
   <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-str">"Quotation"</span><span class="t-punct">,</span>
-  <span class="t-key">"@id"</span><span class="t-punct">:</span> <span class="t-url">"https://citedconversations.com/episodes/&lt;slug&gt;/#quotation-1"</span><span class="t-punct">,</span>
-  <span class="t-key">"text"</span><span class="t-punct">:</span> <span class="t-str">"&lt;the speaker's actual words&gt;"</span><span class="t-punct">,</span>
-  <span class="t-key">"spokenByCharacter"</span><span class="t-punct">:</span> <span class="t-punct">{ </span><span class="t-key">"@id"</span><span class="t-punct">:</span> <span class="t-str">"...#speaker-&lt;id&gt;"</span><span class="t-punct">},</span>
-  <span class="t-key">"creator"</span><span class="t-punct">:</span> <span class="t-punct">{ </span><span class="t-key">"@id"</span><span class="t-punct">:</span> <span class="t-str">"...#speaker-&lt;id&gt;"</span><span class="t-punct">},</span>
-  <span class="t-key">"dateCreated"</span><span class="t-punct">:</span> <span class="t-str">"2026-09-30"</span><span class="t-punct">,</span>
-  <span class="t-key">"isPartOf"</span><span class="t-punct">:</span> <span class="t-punct">{ </span><span class="t-key">"@id"</span><span class="t-punct">:</span> <span class="t-str">"...#episode"</span><span class="t-punct">},</span>
-  <span class="t-key">"citation"</span><span class="t-punct">:</span> <span class="t-url">"https://podcast.citedconversations.com/&lt;episode-slug&gt;?t=&lt;seconds&gt;"</span>
+  <span class="t-key">"@id"</span><span class="t-punct">:</span> <span class="t-url">"https://citedconversations.com/answers/&lt;slug&gt;/#quotation"</span><span class="t-punct">,</span>
+  <span class="t-key">"text"</span><span class="t-punct">:</span> <span class="t-str">"&lt;the speaker's exact words&gt;"</span><span class="t-punct">,</span>
+  <span class="t-key">"spokenByCharacter"</span><span class="t-punct">:</span> <span class="t-punct">{ </span><span class="t-key">"@id"</span><span class="t-punct">:</span> <span class="t-str">"https://citedconversations.com/speakers/&lt;name&gt;/#speaker"</span> <span class="t-punct">},</span>
+  <span class="t-key">"creator"</span><span class="t-punct">:</span> <span class="t-punct">{ </span><span class="t-key">"@id"</span><span class="t-punct">:</span> <span class="t-str">"https://citedconversations.com/speakers/&lt;name&gt;/#speaker"</span> <span class="t-punct">},</span>
+  <span class="t-key">"isPartOf"</span><span class="t-punct">:</span> <span class="t-punct">{ </span><span class="t-key">"@id"</span><span class="t-punct">:</span> <span class="t-str">"https://citedconversations.com/episodes/&lt;show&gt;/&lt;episode&gt;/#episode"</span> <span class="t-punct">}</span>
 <span class="t-punct">}</span></pre>
 
         </div>
       </div>
     </section>
 
-    <!-- ── Speaker attribution / Person nodes ── -->
+    <!-- ── Speaker attribution ── -->
     <section class="machines-section">
       <div class="container">
         <h2 class="section-label">Speaker attribution</h2>
@@ -235,11 +268,11 @@ https://podcast.citedconversations.com/ep1-aeo-practice?t=<span class="t-num">38
         <div class="machines-body">
 
           <h3>Person nodes</h3>
-          <p>Every named speaker on a page gets a Person node with a stable <code>@id</code>. The node carries their name, job title, employer (as an Organization), and <code>sameAs</code> links to their LinkedIn profile and company URL. These let crawlers resolve the speaker to a known public identity rather than treating the name as a bare string.</p>
+          <p>Every named speaker gets a <code>Person</code> node with a stable <code>@id</code> scoped to the future <code>/speakers/{name}/</code> URL. The node carries their name, job title, employer (as an Organization), and <code>sameAs</code> links. These let crawlers resolve the speaker to a known public identity.</p>
 
           <pre class="schema-code" style="margin-top: var(--sp-3);"><span class="t-punct">{</span>
   <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-str">"Person"</span><span class="t-punct">,</span>
-  <span class="t-key">"@id"</span><span class="t-punct">:</span> <span class="t-url">"https://citedconversations.com/episodes/&lt;slug&gt;/#speaker-casey-cheshire"</span><span class="t-punct">,</span>
+  <span class="t-key">"@id"</span><span class="t-punct">:</span> <span class="t-url">"https://citedconversations.com/speakers/casey-cheshire/#speaker"</span><span class="t-punct">,</span>
   <span class="t-key">"name"</span><span class="t-punct">:</span> <span class="t-name">"Casey Cheshire"</span><span class="t-punct">,</span>
   <span class="t-key">"jobTitle"</span><span class="t-punct">:</span> <span class="t-str">"Founder &amp; CEO"</span><span class="t-punct">,</span>
   <span class="t-key">"worksFor"</span><span class="t-punct">:</span> <span class="t-punct">{</span>
@@ -266,22 +299,20 @@ https://podcast.citedconversations.com/ep1-aeo-practice?t=<span class="t-num">38
         <h2 class="section-label">The DataCatalog node</h2>
         <hr class="section-rule">
         <div class="machines-body">
-          <p>The homepage declares a DataCatalog node identifying the site as a curated, freely accessible collection. Its publisher is the Organization node. The WebSite node references it via <code>about</code>.</p>
+          <p>The homepage declares a <code>DataCatalog</code> node identifying the site as a curated, freely accessible collection. Its publisher is the Organization node. The WebSite node references it via <code>about</code>.</p>
 
           <pre class="schema-code" style="margin-top: var(--sp-3);"><span class="t-punct">{</span>
   <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-str">"DataCatalog"</span><span class="t-punct">,</span>
   <span class="t-key">"@id"</span><span class="t-punct">:</span> <span class="t-url">"https://citedconversations.com/#datacatalog"</span><span class="t-punct">,</span>
   <span class="t-key">"name"</span><span class="t-punct">:</span> <span class="t-name">"Cited Conversations"</span><span class="t-punct">,</span>
-  <span class="t-key">"description"</span><span class="t-punct">:</span> <span class="t-str">"A reference library of expert answers from recorded human
-  conversations. Every claim is attributed to a named speaker
-  and links to the exact moment it was said."</span><span class="t-punct">,</span>
+  <span class="t-key">"description"</span><span class="t-punct">:</span> <span class="t-str">"A reference library of expert answers from recorded human conversations. Every claim is attributed to a named speaker and links to the exact moment it was said."</span><span class="t-punct">,</span>
   <span class="t-key">"url"</span><span class="t-punct">:</span> <span class="t-url">"https://citedconversations.com/"</span><span class="t-punct">,</span>
   <span class="t-key">"inLanguage"</span><span class="t-punct">:</span> <span class="t-str">"en-US"</span><span class="t-punct">,</span>
   <span class="t-key">"isAccessibleForFree"</span><span class="t-punct">:</span> <span class="t-num">true</span><span class="t-punct">,</span>
   <span class="t-key">"publisher"</span><span class="t-punct">:</span> <span class="t-punct">{ </span><span class="t-key">"@id"</span><span class="t-punct">:</span> <span class="t-str">"https://citedconversations.com/#organization"</span><span class="t-punct">}</span>
 <span class="t-punct">}</span></pre>
 
-          <p style="margin-top: var(--sp-3);"><code>isAccessibleForFree: true</code> reflects that the answer pages are publicly readable without a login, paywall, or registration. No dataset size, record count, or publication date is claimed — there is one episode recorded and not yet published.</p>
+          <p style="margin-top: var(--sp-3);"><code>isAccessibleForFree: true</code> reflects that the answer pages are publicly readable without a login, paywall, or registration.</p>
         </div>
       </div>
     </section>
@@ -313,10 +344,10 @@ https://podcast.citedconversations.com/ep1-aeo-practice?t=<span class="t-num">38
 <span class="t-key">Allow:</span> <span class="t-url">/</span></pre>
 
           <h3>sitemap.xml</h3>
-          <p>A sitemap at <a href="/sitemap.xml">/sitemap.xml</a> lists all published pages. Episode answer pages are added to the sitemap before each page is committed. The sitemap URL is declared in robots.txt.</p>
+          <p>A sitemap at <a href="/sitemap.xml">/sitemap.xml</a> lists all published pages. Answer and episode pages are added before each publishes.</p>
 
           <h3>JavaScript dependency</h3>
-          <p>No content on this site requires JavaScript to render. The structured data is in <code>&lt;script type="application/ld+json"&gt;</code> tags in each page's <code>&lt;head&gt;</code>. The syntax-highlighted JSON-LD visible on episode pages is server-side HTML with CSS classes — no client-side highlighting library.</p>
+          <p>No content on this site requires JavaScript to render. The structured data is in <code>&lt;script type="application/ld+json"&gt;</code> tags in each page's <code>&lt;head&gt;</code>. The syntax-highlighted JSON-LD visible on this page is server-side HTML with CSS classes — no client-side highlighting library.</p>
 
         </div>
       </div>
@@ -332,7 +363,7 @@ https://podcast.citedconversations.com/ep1-aeo-practice?t=<span class="t-num">38
       </p>
       <nav aria-label="Footer navigation">
         <a href="/about/">Methodology</a> &middot;
-        <a href="/episodes/">Episodes</a> &middot;
+        <a href="/answers/">Answers</a> &middot;
         <a href="/faq/">FAQ</a> &middot;
         <a href="/schema/">Schema</a> &middot;
         <a href="/robots.txt">robots.txt</a> &middot;
