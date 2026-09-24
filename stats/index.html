@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Crawler Stats — Cited Conversations</title>
+  <meta name="description" content="AI crawler activity on Cited Conversations since launch." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Match site font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Chart.js — only CDN dependency -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+  <link rel="stylesheet" href="/styles.css" />
+
+  <style>
+    /* ── Stats-page-specific styles ── */
+
+    /* Demo banner */
+    .demo-banner {
+      background: var(--red);
+      color: #fff;
+      text-align: center;
+      padding: 0.55rem var(--sp-3);
+      font-size: var(--step--1);
+      font-weight: 600;
+      font-family: var(--font-mono);
+      letter-spacing: 0.04em;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+    .demo-banner span { opacity: 0.85; font-weight: 400; margin-left: 0.75rem; }
+
+    /* Page header */
+    .stats-header {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding-block: var(--sp-5) var(--sp-4);
+    }
+    .stats-eyebrow {
+      font-size: var(--step--1);
+      font-weight: 600;
+      color: var(--red);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: var(--sp-1);
+    }
+    .stats-title {
+      font-size: var(--step-3);
+      color: var(--text);
+      font-weight: 700;
+      margin-bottom: var(--sp-2);
+      max-width: 32ch;
+    }
+    .stats-meta {
+      font-size: var(--step--1);
+      color: var(--text-muted);
+      max-width: none;
+    }
+    .stats-meta strong { color: var(--text-dim); font-weight: 600; }
+    .stats-meta .sep { margin-inline: 0.6rem; opacity: 0.3; }
+
+    /* Stat cards row */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-block: var(--sp-4);
+    }
+    .kpi-card {
+      background: var(--bg);
+      padding: var(--sp-3);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .kpi-label {
+      font-size: var(--step--1);
+      color: var(--text-muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .kpi-value {
+      font-size: var(--step-3);
+      font-weight: 700;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.1;
+    }
+    .kpi-value--red { color: var(--red); }
+    .kpi-sub {
+      font-size: var(--step--1);
+      color: var(--text-muted);
+    }
+
+    /* Zero-state */
+    .zero-state {
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--text-muted);
+      padding: var(--sp-3) var(--sp-4);
+      margin-block: var(--sp-4);
+      max-width: 56ch;
+    }
+    .zero-state p {
+      color: var(--text-muted);
+      font-size: var(--step--1);
+      max-width: none;
+    }
+    .zero-state strong { color: var(--text-dim); }
+
+    /* Section containers */
+    .stats-section {
+      padding-block: var(--sp-4);
+      border-bottom: 1px solid var(--border);
+    }
+    .stats-section:last-child { border-bottom: none; }
+    .stats-section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--sp-3);
+      margin-bottom: var(--sp-3);
+      flex-wrap: wrap;
+    }
+    .stats-section-title {
+      font-size: var(--step-1);
+      font-weight: 600;
+      color: var(--text);
+      border-left: 2px solid var(--red);
+      padding-left: var(--sp-2);
+    }
+    .stats-section-note {
+      font-size: var(--step--1);
+      color: var(--text-muted);
+    }
+
+    /* Chart wrapper */
+    .chart-wrap {
+      position: relative;
+      height: 280px;
+      margin-bottom: var(--sp-2);
+    }
+    @media (min-width: 640px) {
+      .chart-wrap { height: 320px; }
+    }
+
+    /* Bot breakdown table */
+    .bot-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--step--1);
+      margin-top: var(--sp-2);
+    }
+    .bot-table th {
+      text-align: left;
+      color: var(--text-muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: var(--sp-1) var(--sp-2);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .bot-table th.num { text-align: right; }
+    .bot-table td {
+      padding: var(--sp-1) var(--sp-2);
+      border-bottom: 1px solid var(--border-dim);
+      vertical-align: middle;
+      color: var(--text-dim);
+      font-variant-numeric: tabular-nums;
+    }
+    .bot-table td.num { text-align: right; }
+    .bot-table tr:hover td { background: var(--bg-raised); }
+    .bot-table .bot-name { color: var(--text); font-weight: 600; }
+    .bot-table .bot-op { color: var(--text-muted); font-size: 0.85em; }
+
+    /* Bar fill cell */
+    .bar-cell {
+      width: 140px;
+      padding: var(--sp-1) var(--sp-2) var(--sp-1) 0 !important;
+    }
+    .bar-fill {
+      height: 6px;
+      background: var(--red);
+      border-radius: 1px;
+      opacity: 0.7;
+      min-width: 2px;
+    }
+
+    /* Top pages table */
+    .pages-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--step--1);
+      margin-top: var(--sp-2);
+    }
+    .pages-table th {
+      text-align: left;
+      color: var(--text-muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: var(--sp-1) var(--sp-2);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .pages-table th.num { text-align: right; }
+    .pages-table td {
+      padding: var(--sp-1) var(--sp-2);
+      border-bottom: 1px solid var(--border-dim);
+      color: var(--text-dim);
+      font-variant-numeric: tabular-nums;
+    }
+    .pages-table td.num { text-align: right; }
+    .pages-table tr:hover td { background: var(--bg-raised); }
+    .pages-table .path-cell {
+      color: var(--text);
+      font-family: var(--font-mono);
+      word-break: break-all;
+    }
+    .pages-table .path-cell a {
+      color: var(--text);
+      text-decoration: none;
+    }
+    .pages-table .path-cell a:hover { color: var(--red); text-decoration: underline; }
+
+    /* Traffic mix (secondary section) */
+    .mix-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-3);
+      margin-top: var(--sp-2);
+    }
+    @media (min-width: 768px) {
+      .mix-grid { grid-template-columns: 2fr 1fr; }
+    }
+    .mix-chart-wrap {
+      position: relative;
+      height: 220px;
+    }
+    .mix-legend {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--sp-2);
+    }
+    .mix-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: var(--step--1);
+      color: var(--text-dim);
+    }
+    .mix-swatch {
+      width: 10px; height: 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .mix-legend-item strong {
+      font-size: var(--step-1);
+      color: var(--text);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      display: block;
+      line-height: 1;
+    }
+
+    /* Updated timestamp */
+    .updated-note {
+      font-size: var(--step--1);
+      color: var(--text-muted);
+      margin-top: var(--sp-4);
+      padding-top: var(--sp-3);
+      border-top: 1px solid var(--border-dim);
+    }
+
+    /* Loading / error state */
+    .loading-msg {
+      color: var(--text-muted);
+      font-size: var(--step-0);
+      padding-block: var(--sp-4);
+    }
+    .error-msg {
+      color: var(--red);
+      font-size: var(--step--1);
+      padding-block: var(--sp-2);
+    }
+
+    /* sr-only utility (fallback if not in styles.css) */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0;
+      margin: -1px; overflow: hidden; clip: rect(0,0,0,0);
+      white-space: nowrap; border: 0;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 480px) {
+      .kpi-grid { grid-template-columns: 1fr 1fr; }
+      .bar-cell { display: none; }
+      .mix-grid { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      .demo-banner { position: static; }
+      .site-header { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Demo banner (shown only in ?demo=1 mode) -->
+  <div class="demo-banner" id="demo-banner" style="display:none" role="status" aria-live="polite">
+    ⚠ Sample data — not live traffic <span>Add ?demo=1 to any URL to preview. Remove it to see real data.</span>
+  </div>
+
+  <!-- Site header — matches site shell; unlisted from nav -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="/" class="raccoon-chip" aria-label="Cited Conversations home">
+        <span class="raccoon-chip__name">Cited<span>Conversations</span></span>
+      </a>
+      <!-- Intentionally no nav links — this page is unlisted -->
+    </div>
+  </header>
+
+  <!-- Page header -->
+  <section class="stats-header">
+    <div class="container">
+      <p class="stats-eyebrow">Internal dashboard</p>
+      <h1 class="stats-title">AI Crawler Activity</h1>
+      <p class="stats-meta" id="stats-meta">
+        Loading…
+      </p>
+    </div>
+  </section>
+
+  <!-- Main content -->
+  <main id="main" class="container">
+
+    <!-- KPI row -->
+    <div class="kpi-grid" id="kpi-grid" role="region" aria-label="Summary statistics">
+      <div class="kpi-card">
+        <span class="kpi-label">Total AI requests</span>
+        <span class="kpi-value kpi-value--red" id="kpi-total">—</span>
+        <span class="kpi-sub">since launch</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">Days since launch</span>
+        <span class="kpi-value" id="kpi-days">—</span>
+        <span class="kpi-sub" id="kpi-launch-date">—</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">Distinct crawlers</span>
+        <span class="kpi-value" id="kpi-bots">—</span>
+        <span class="kpi-sub">named AI agents</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">Pages crawled</span>
+        <span class="kpi-value" id="kpi-pages">—</span>
+        <span class="kpi-sub">distinct URLs</span>
+      </div>
+    </div>
+
+    <!-- Zero state (shown when no data yet) -->
+    <div class="zero-state" id="zero-state" style="display:none">
+      <p><strong>No crawler activity recorded yet.</strong> The tracker started at launch (Sep 30, 2026). Check back after a few days — AI crawlers typically index a new site within one to two weeks of launch.</p>
+    </div>
+
+    <!-- 1. Requests by day -->
+    <section class="stats-section" aria-labelledby="chart-daily-title">
+      <div class="stats-section-header">
+        <h2 class="stats-section-title" id="chart-daily-title">Requests by day</h2>
+        <span class="stats-section-note">Stacked by crawler — each bar = one calendar day</span>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="chart-daily" role="img" aria-label="Stacked bar chart of AI crawler requests per day since launch"></canvas>
+      </div>
+      <p class="sr-only" id="chart-daily-summary"></p>
+    </section>
+
+    <!-- 2. Bot breakdown -->
+    <section class="stats-section" aria-labelledby="bot-breakdown-title">
+      <div class="stats-section-header">
+        <h2 class="stats-section-title" id="bot-breakdown-title">Breakdown by crawler</h2>
+        <span class="stats-section-note">All time since launch</span>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="bot-table" aria-label="AI crawler request totals">
+          <thead>
+            <tr>
+              <th>Crawler</th>
+              <th>Operator</th>
+              <th class="num">Requests</th>
+              <th class="num">Distinct URLs</th>
+              <th class="bar-cell"></th>
+            </tr>
+          </thead>
+          <tbody id="bot-table-body">
+            <tr><td colspan="5" class="loading-msg">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 3. Top crawled pages -->
+    <section class="stats-section" aria-labelledby="pages-title">
+      <div class="stats-section-header">
+        <h2 class="stats-section-title" id="pages-title">Top crawled pages</h2>
+        <span class="stats-section-note">By total AI request count</span>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="pages-table" aria-label="Top pages crawled by AI bots">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Path</th>
+              <th class="num">Requests</th>
+              <th class="num">Crawlers</th>
+            </tr>
+          </thead>
+          <tbody id="pages-table-body">
+            <tr><td colspan="4" class="loading-msg">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 4. Traffic mix (secondary) -->
+    <section class="stats-section" id="mix-section" aria-labelledby="mix-title" style="display:none">
+      <div class="stats-section-header">
+        <h2 class="stats-section-title" id="mix-title">Traffic-type mix</h2>
+        <span class="stats-section-note">Verified bot · Automated · Human — Cloudflare classification</span>
+      </div>
+      <div class="mix-grid">
+        <div class="mix-chart-wrap">
+          <canvas id="chart-mix" role="img" aria-label="Stacked area chart of traffic type mix over time"></canvas>
+        </div>
+        <div class="mix-legend" id="mix-legend" aria-label="Traffic mix totals">
+          <!-- filled by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Updated timestamp -->
+    <p class="updated-note" id="updated-note">Data last updated: —</p>
+
+  </main>
+
+  <!-- Site footer — minimal, unlisted -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <span class="footer-byline">Cited Conversations · Internal stats · Not indexed</span>
+    </div>
+  </footer>
+
+  <script>
+  // ─── Configuration ──────────────────────────────────────────────────────────
+  const IS_DEMO = new URLSearchParams(location.search).get('demo') === '1';
+  const DATA_URL = IS_DEMO ? '/data/bot-traffic-demo.json' : '/data/bot-traffic.json';
+
+  // Palette — matches site's red plus brand-safe series colors
+  const PALETTE = {
+    'GPTBot':            '#A7011F',
+    'OAI-SearchBot':     '#c8021f',
+    'ChatGPT-User':      '#e05050',
+    'ClaudeBot':         '#1f2937',
+    'Claude-SearchBot':  '#374151',
+    'Claude-User':       '#4b5563',
+    'PerplexityBot':     '#6b7280',
+    'Googlebot':         '#9ca3af',
+    'Google-Extended':   '#d1d5db',
+    'Bingbot':           '#6b4f2a',
+    'Applebot':          '#4a3f35',
+    'Amazonbot':         '#2d4a3e',
+    'Meta-ExternalAgent':'#3b3060',
+    'Bytespider':        '#5a3060',
+  };
+  const FALLBACK_COLORS = ['#A7011F','#1f2937','#6b7280','#c8021f','#374151','#9ca3af','#6b4f2a','#4a3f35'];
+  function botColor(name, idx) {
+    return PALETTE[name] || FALLBACK_COLORS[idx % FALLBACK_COLORS.length];
+  }
+
+  // ─── Formatters ─────────────────────────────────────────────────────────────
+  const fmtNum  = n => new Intl.NumberFormat('en-US').format(n);
+  const fmtDate = s => new Date(s + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  const fmtDT   = s => new Date(s).toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
+
+  function daysBetween(a, b) {
+    return Math.max(0, Math.floor((new Date(b) - new Date(a)) / 86400000));
+  }
+  function today() {
+    return new Date().toISOString().slice(0, 10);
+  }
+
+  // ─── Chart.js global defaults ────────────────────────────────────────────────
+  Chart.defaults.font.family = "'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace";
+  Chart.defaults.font.size = 11;
+  Chart.defaults.color = 'rgba(239,234,227,0.45)';
+  Chart.defaults.borderColor = 'rgba(239,234,227,0.07)';
+  Chart.defaults.plugins.legend.position = 'bottom';
+  Chart.defaults.plugins.legend.labels.usePointStyle = true;
+  Chart.defaults.plugins.legend.labels.boxWidth = 8;
+  Chart.defaults.plugins.legend.labels.padding = 14;
+  Chart.defaults.plugins.tooltip.backgroundColor = '#1a1a1a';
+  Chart.defaults.plugins.tooltip.borderColor = 'rgba(239,234,227,0.12)';
+  Chart.defaults.plugins.tooltip.borderWidth = 1;
+  Chart.defaults.plugins.tooltip.padding = 10;
+  Chart.defaults.plugins.tooltip.cornerRadius = 2;
+  Chart.defaults.animation.duration = 350;
+  Chart.defaults.maintainAspectRatio = false;
+
+  const SCALE_OPTS = {
+    x: {
+      stacked: true,
+      grid: { display: false },
+      border: { display: false },
+      ticks: { padding: 6, maxTicksLimit: 14 }
+    },
+    y: {
+      stacked: true,
+      grid: { color: 'rgba(239,234,227,0.06)', drawTicks: false },
+      border: { display: false },
+      beginAtZero: true,
+      ticks: { padding: 8, precision: 0, callback: v => fmtNum(v) }
+    }
+  };
+
+  // ─── Main data load ──────────────────────────────────────────────────────────
+  async function main() {
+    // Show demo banner
+    if (IS_DEMO) {
+      document.getElementById('demo-banner').style.display = 'block';
+    }
+
+    let data;
+    try {
+      const resp = await fetch(DATA_URL, { cache: 'no-cache' });
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      data = await resp.json();
+    } catch (err) {
+      document.getElementById('kpi-grid').innerHTML =
+        `<div class="kpi-card"><p class="error-msg">Could not load data: ${err.message}</p></div>`;
+      document.getElementById('bot-table-body').innerHTML =
+        `<tr><td colspan="5" class="error-msg">—</td></tr>`;
+      document.getElementById('pages-table-body').innerHTML =
+        `<tr><td colspan="4" class="error-msg">—</td></tr>`;
+      return;
+    }
+
+    const { updated_at, launch_date, daily = [], traffic_mix = [] } = data;
+    const dayCount = daysBetween(launch_date, today());
+
+    // ── Aggregate ──────────────────────────────────────────────────────────────
+
+    // All dates from launch to today
+    function dateRange(from, to) {
+      const dates = [];
+      let cur = new Date(from + 'T00:00:00');
+      const end = new Date(to + 'T00:00:00');
+      while (cur <= end) {
+        dates.push(cur.toISOString().slice(0, 10));
+        cur.setDate(cur.getDate() + 1);
+      }
+      return dates;
+    }
+    const allDates = dateRange(launch_date, today());
+
+    // Bot totals
+    const botMap = {}; // name → { operator, requests, paths: Set }
+    const pathMap = {}; // path → { requests, bots: Set }
+
+    for (const row of daily) {
+      if (!botMap[row.bot_name]) {
+        botMap[row.bot_name] = { operator: row.operator || '—', requests: 0, paths: new Set() };
+      }
+      botMap[row.bot_name].requests += row.request_count;
+      if (row.distinct_paths_crawled) botMap[row.bot_name].paths.add('tracked');
+      // Aggregate distinct_paths_crawled as a simple sum per bot
+      botMap[row.bot_name]._pathCount = (botMap[row.bot_name]._pathCount || 0) + (row.distinct_paths_crawled || 0);
+
+      // Top paths
+      for (const p of (row.top_paths || [])) {
+        if (!pathMap[p]) pathMap[p] = { requests: 0, bots: new Set() };
+        pathMap[p].requests += row.request_count;
+        pathMap[p].bots.add(row.bot_name);
+      }
+    }
+
+    const totalRequests = Object.values(botMap).reduce((s, b) => s + b.requests, 0);
+    const totalBots = Object.keys(botMap).length;
+    const totalPages = Object.keys(pathMap).length;
+
+    // ── KPI cards ─────────────────────────────────────────────────────────────
+    document.getElementById('kpi-total').textContent = fmtNum(totalRequests);
+    document.getElementById('kpi-days').textContent  = fmtNum(dayCount);
+    document.getElementById('kpi-bots').textContent  = fmtNum(totalBots);
+    document.getElementById('kpi-pages').textContent = fmtNum(totalPages);
+    document.getElementById('kpi-launch-date').textContent = 'since ' + fmtDate(launch_date);
+
+    // Meta line
+    document.getElementById('stats-meta').innerHTML =
+      `<strong>Since launch</strong><span class="sep">·</span>` +
+      (IS_DEMO ? '<strong style="color:var(--red)">Sample data</strong><span class="sep">·</span>' : '') +
+      `Tracking: GPTBot, ClaudeBot, PerplexityBot, Googlebot, and more`;
+
+    // Zero state
+    if (daily.length === 0) {
+      document.getElementById('zero-state').style.display = 'block';
+    }
+
+    // ── Chart 1: Daily stacked bar ─────────────────────────────────────────────
+    const botNames = Object.keys(botMap);
+    const dailyByBotDate = {}; // bot → date → count
+    for (const row of daily) {
+      if (!dailyByBotDate[row.bot_name]) dailyByBotDate[row.bot_name] = {};
+      dailyByBotDate[row.bot_name][row.date] = (dailyByBotDate[row.bot_name][row.date] || 0) + row.request_count;
+    }
+
+    const barDatasets = botNames.map((bot, i) => ({
+      label: bot,
+      data: allDates.map(d => dailyByBotDate[bot]?.[d] || 0),
+      backgroundColor: botColor(bot, i),
+      borderRadius: 1,
+      borderWidth: 0,
+      maxBarThickness: 36,
+    }));
+
+    // Summary for screen readers
+    const totalByDate = allDates.map(d =>
+      botNames.reduce((s, b) => s + (dailyByBotDate[b]?.[d] || 0), 0)
+    );
+    const peakIdx = totalByDate.indexOf(Math.max(...totalByDate));
+    document.getElementById('chart-daily-summary').textContent =
+      daily.length === 0
+        ? 'No crawler activity recorded yet since launch.'
+        : `Peak day: ${fmtDate(allDates[peakIdx])} with ${fmtNum(totalByDate[peakIdx])} requests. Total: ${fmtNum(totalRequests)} across ${allDates.length} days.`;
+
+    new Chart(document.getElementById('chart-daily'), {
+      type: 'bar',
+      data: {
+        labels: allDates.map(fmtDate),
+        datasets: barDatasets,
+      },
+      options: {
+        responsive: true,
+        scales: SCALE_OPTS,
+        plugins: {
+          title: { display: false },
+          legend: {
+            display: botNames.length > 0,
+            labels: { color: 'rgba(239,234,227,0.5)', padding: 14 }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ` ${ctx.dataset.label}: ${fmtNum(ctx.raw)}`
+            }
+          }
+        }
+      }
+    });
+
+    // ── Table 1: Bot breakdown ─────────────────────────────────────────────────
+    const sortedBots = Object.entries(botMap).sort((a, b) => b[1].requests - a[1].requests);
+    const maxBotReqs = sortedBots[0]?.[1].requests || 1;
+    const tbody1 = document.getElementById('bot-table-body');
+    if (sortedBots.length === 0) {
+      tbody1.innerHTML = `<tr><td colspan="5" style="color:var(--text-muted);padding:var(--sp-2)">No crawler activity yet.</td></tr>`;
+    } else {
+      tbody1.innerHTML = sortedBots.map(([name, b], i) => `
+        <tr>
+          <td class="bot-name">${esc(name)}</td>
+          <td class="bot-op">${esc(b.operator)}</td>
+          <td class="num">${fmtNum(b.requests)}</td>
+          <td class="num">${fmtNum(b._pathCount || 0)}</td>
+          <td class="bar-cell">
+            <div class="bar-fill" style="width:${Math.max(2, Math.round((b.requests / maxBotReqs) * 120))}px;background:${botColor(name,i)}"></div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // ── Table 2: Top pages ─────────────────────────────────────────────────────
+    const sortedPages = Object.entries(pathMap)
+      .sort((a, b) => b[1].requests - a[1].requests)
+      .slice(0, 20);
+    const tbody2 = document.getElementById('pages-table-body');
+    if (sortedPages.length === 0) {
+      tbody2.innerHTML = `<tr><td colspan="4" style="color:var(--text-muted);padding:var(--sp-2)">No page data yet.</td></tr>`;
+    } else {
+      tbody2.innerHTML = sortedPages.map(([path, info], i) => `
+        <tr>
+          <td style="color:var(--text-muted);font-variant-numeric:tabular-nums">${i + 1}</td>
+          <td class="path-cell"><a href="${esc(path)}" target="_blank" rel="noopener">${esc(path)}</a></td>
+          <td class="num">${fmtNum(info.requests)}</td>
+          <td class="num">${info.bots.size}</td>
+        </tr>
+      `).join('');
+    }
+
+    // ── Traffic mix (secondary) ────────────────────────────────────────────────
+    if (traffic_mix.length > 0) {
+      document.getElementById('mix-section').style.display = 'block';
+
+      const mixDates = [...new Set(traffic_mix.map(r => r.date))].sort();
+      const totV = traffic_mix.reduce((s, r) => s + (r.verified_bot || 0), 0);
+      const totA = traffic_mix.reduce((s, r) => s + (r.automated || 0), 0);
+      const totH = traffic_mix.reduce((s, r) => s + (r.human || 0), 0);
+      const totAll = totV + totA + totH || 1;
+
+      new Chart(document.getElementById('chart-mix'), {
+        type: 'line',
+        data: {
+          labels: mixDates.map(fmtDate),
+          datasets: [
+            {
+              label: 'Verified bot',
+              data: mixDates.map(d => {
+                const row = traffic_mix.find(r => r.date === d);
+                return row?.verified_bot || 0;
+              }),
+              borderColor: '#A7011F',
+              backgroundColor: 'rgba(167,1,31,0.12)',
+              borderWidth: 2,
+              tension: 0.3,
+              pointRadius: 0,
+              pointHoverRadius: 4,
+              fill: 'origin',
+            },
+            {
+              label: 'Automated',
+              data: mixDates.map(d => {
+                const row = traffic_mix.find(r => r.date === d);
+                return row?.automated || 0;
+              }),
+              borderColor: '#6b7280',
+              backgroundColor: 'rgba(107,114,128,0.08)',
+              borderWidth: 2,
+              tension: 0.3,
+              pointRadius: 0,
+              pointHoverRadius: 4,
+              fill: 'origin',
+            },
+            {
+              label: 'Human',
+              data: mixDates.map(d => {
+                const row = traffic_mix.find(r => r.date === d);
+                return row?.human || 0;
+              }),
+              borderColor: '#EFEAE3',
+              backgroundColor: 'rgba(239,234,227,0.05)',
+              borderWidth: 1,
+              tension: 0.3,
+              pointRadius: 0,
+              pointHoverRadius: 4,
+              fill: 'origin',
+            },
+          ]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            x: { grid: { display: false }, border: { display: false }, ticks: { padding: 6, maxTicksLimit: 10 } },
+            y: { grid: { color: 'rgba(239,234,227,0.06)', drawTicks: false }, border: { display: false }, beginAtZero: true, ticks: { padding: 8, precision: 0, callback: v => fmtNum(v) } }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${fmtNum(ctx.raw)}` } }
+          }
+        }
+      });
+
+      // Legend
+      const legendItems = [
+        { label: 'Verified bot', total: totV, pct: Math.round((totV/totAll)*100), color: '#A7011F' },
+        { label: 'Automated',    total: totA, pct: Math.round((totA/totAll)*100), color: '#6b7280' },
+        { label: 'Human',        total: totH, pct: Math.round((totH/totAll)*100), color: '#EFEAE3' },
+      ];
+      document.getElementById('mix-legend').innerHTML = legendItems.map(item => `
+        <div class="mix-legend-item">
+          <div class="mix-swatch" style="background:${item.color}"></div>
+          <div>
+            <strong>${fmtNum(item.total)}</strong>
+            ${esc(item.label)} (${item.pct}%)
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ── Updated timestamp ──────────────────────────────────────────────────────
+    document.getElementById('updated-note').textContent =
+      `Data last updated: ${updated_at ? fmtDT(updated_at) : '—'} · Updates weekly · Source: Cloudflare Log Explorer`;
+  }
+
+  function esc(str) {
+    return String(str ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  main();
+  </script>
+
+</body>
+</html>
