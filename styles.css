@@ -695,6 +695,12 @@ pre.schema-code {
   background: var(--paper-bg);
   border-bottom: 1px solid var(--paper-border);
   padding-block: var(--sp-2);
+  margin-top: var(--sp-5);
+}
+/* Homepage: callout is inside .hero which already provides section padding.
+   Suppress the component margin there to avoid double gap. */
+.hero .human-aside {
+  margin-top: 0;
 }
 .human-aside__row {
   display: flex;
@@ -704,10 +710,6 @@ pre.schema-code {
   border-left: 4px solid var(--paper-red);
   padding-left: var(--sp-2);
   padding-right: var(--sp-2);
-}
-main > .container:first-child {
-  padding-top: var(--sp-5);
-  padding-bottom: 0;
 }
 .human-aside__label {
   font-family: var(--font-mono);
