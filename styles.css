@@ -684,3 +684,95 @@ pre.schema-code {
   .raccoon-chip { background: #eee; }
   .fh-exit-card { border: 1px solid #ccc; }
 }
+
+
+/* ════════════════════════════════════════════════════════════════
+   RACCOON TRANSLATOR — reusable human-aside component
+   Parchment ground, brick-red accent, machine-register context.
+   Use .raccoon-aside on any machine-layer page where a human
+   might land confused. He appears once per page, never twice.
+   ════════════════════════════════════════════════════════════════ */
+.raccoon-aside {
+  background: var(--paper-bg);
+  border-bottom: 1px solid var(--paper-border);
+  padding-block: var(--sp-2) var(--sp-3);
+  overflow: visible;
+}
+.raccoon-aside__inner {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: flex-end;
+  max-width: 68ch;
+}
+.raccoon-aside__img {
+  flex-shrink: 0;
+  width: 130px;
+  /* Pull the head up so it crests the parchment's top edge */
+  margin-top: -52px;
+  align-self: flex-end;
+}
+.raccoon-aside__img img {
+  display: block;
+  width: 130px;
+  height: auto;
+}
+.raccoon-aside__body {
+  border-left: 2px solid var(--paper-red);
+  padding-left: var(--sp-2);
+  padding-block: var(--sp-1);
+}
+.raccoon-aside__label {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--paper-red);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.4rem;
+}
+.raccoon-aside__text {
+  color: var(--paper-muted);
+  font-size: var(--step--1);
+  line-height: 1.55;
+  max-width: 48ch;
+  margin: 0;
+}
+.raccoon-aside__text strong {
+  color: var(--paper-ink);
+  font-weight: 600;
+}
+.raccoon-aside__text a {
+  color: var(--paper-red);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.raccoon-aside__text a:hover {
+  color: var(--red-bright);
+}
+@media (max-width: 480px) {
+  .raccoon-aside__img {
+    width: 88px;
+    margin-top: -36px;
+  }
+  .raccoon-aside__img img {
+    width: 88px;
+  }
+}
+
+/* Homepage warmth panel — updated to use raccoon-aside pattern.
+   .paper-panel--warmth is kept for backward compat but now defers
+   to raccoon-aside for layout; solo use is no longer recommended. */
+.paper-panel--warmth {
+  background: var(--paper-bg);
+  border: none;
+  border-left: 2px solid var(--red);
+  padding: 0.35rem var(--sp-2);
+  margin-bottom: var(--sp-3);
+}
+.paper-panel--warmth p {
+  color: var(--paper-ink);
+  font-size: var(--step--1);
+  font-style: italic;
+  max-width: none;
+}
