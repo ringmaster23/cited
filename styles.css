@@ -695,15 +695,15 @@ pre.schema-code {
 .human-aside {
   background: var(--paper-bg);
   border-bottom: 1px solid var(--paper-border);
-  border-left: 4px solid var(--paper-red);
   padding-block: var(--sp-2);
-  padding-inline: var(--sp-3);
 }
-.human-aside .container {
+.human-aside__row {
   display: flex;
   align-items: baseline;
   gap: var(--sp-2);
   flex-wrap: wrap;
+  border-left: 4px solid var(--paper-red);
+  padding-left: var(--sp-2);
 }
 .human-aside__label {
   font-family: var(--font-mono);
