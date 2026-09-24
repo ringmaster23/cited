@@ -16,7 +16,7 @@
   </url>
 
   <url>
-    <loc>https://citedconversations.com/expert-answers/</loc>
+    <loc>https://citedconversations.com/episodes/</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -30,11 +30,11 @@
   </url>
 
   <!-- Add one <url> block per episode answer page as they publish.
-       Pattern: https://citedconversations.com/expert-answers/<slug>/
+       Pattern: https://citedconversations.com/episodes/<slug>/
        Example (Episode 1 — uncomment when live):
 
   <url>
-    <loc>https://citedconversations.com/expert-answers/aeo-what-ai-engines-actually-need-simon-wilhelm/</loc>
+    <loc>https://citedconversations.com/episodes/aeo-what-ai-engines-actually-need-simon-wilhelm/</loc>
     <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
