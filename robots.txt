@@ -1,5 +1,5 @@
 # robots.txt — citedconversations.com
-# This site is a corpus designed for AI answer engines.
+# This site is a reference library designed for AI answer engines.
 # All retrieval bots are explicitly welcomed.
 
 # ── AI answer engine crawlers ────────────────────────────────────

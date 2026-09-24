@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y9K5VS79MD"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -16,14 +15,10 @@
   <title>Episodes — Cited Conversations</title>
   <meta name="description" content="All Cited Conversations episodes. Each episode is broken into question-shaped answer pages where every claim links to the exact moment it was said." />
 
-  <!-- Canonical -->
   <link rel="canonical" href="https://citedconversations.com/episodes/" />
-
-  <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="apple-touch-icon" href="/favicon-256.png" />
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://citedconversations.com/episodes/" />
   <meta property="og:title" content="Episodes — Cited Conversations" />
@@ -31,16 +26,13 @@
   <meta property="og:image" content="https://citedconversations.com/og-image.png" />
   <meta property="og:site_name" content="Cited Conversations" />
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Episodes — Cited Conversations" />
   <meta name="twitter:description" content="All Cited Conversations episodes, broken into source-linked answer pages." />
   <meta name="twitter:image" content="https://citedconversations.com/og-image.png" />
 
-  <!-- Stylesheet -->
   <link rel="stylesheet" href="/styles.css" />
 
-  <!-- Schema.org — CollectionPage + BreadcrumbList -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -51,30 +43,16 @@
         "url": "https://citedconversations.com/episodes/",
         "name": "Episodes — Cited Conversations",
         "description": "All episodes of Cited Conversations, each broken into question-shaped answer pages with source-linked claims.",
-        "isPartOf": {
-          "@id": "https://citedconversations.com/#website"
-        },
-        "breadcrumb": {
-          "@id": "https://citedconversations.com/episodes/#breadcrumb"
-        },
+        "isPartOf": { "@id": "https://citedconversations.com/#website" },
+        "breadcrumb": { "@id": "https://citedconversations.com/episodes/#breadcrumb" },
         "inLanguage": "en-US"
       },
       {
         "@type": "BreadcrumbList",
         "@id": "https://citedconversations.com/episodes/#breadcrumb",
         "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://citedconversations.com/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Episodes",
-            "item": "https://citedconversations.com/episodes/"
-          }
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://citedconversations.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Episodes", "item": "https://citedconversations.com/episodes/" }
         ]
       }
     ]
@@ -83,65 +61,62 @@
 </head>
 <body>
 
-  <!-- ── Site header ──────────────────────────────────────────── -->
   <header class="site-header" role="banner">
     <div class="container">
-      <a href="/" class="site-logo" aria-label="Cited Conversations home">
+      <a href="/" class="raccoon-chip" aria-label="Cited Conversations home">
+        <img src="/favicon-32x32.png" alt="" width="22" height="22" />
         <span>
-          <span class="site-logo__cited">Cited</span><span class="site-logo__conversations"> Conversations</span>
-          <span class="site-logo__byline">by Ringmaster</span>
+          <span class="raccoon-chip__name"><span>Cited</span> Conversations</span>
+          <span class="raccoon-chip__byline">by Ringmaster</span>
         </span>
       </a>
       <nav class="header-nav" aria-label="Site navigation">
         <a href="/episodes/" aria-current="page">Episodes</a>
         <a href="/about/">Methodology</a>
+        <a href="/how-machines-read-this/">For machines</a>
         <a href="https://podcast.citedconversations.com" rel="noopener">Listen</a>
       </nav>
     </div>
   </header>
 
-  <!-- ── Hero ─────────────────────────────────────────────────── -->
   <section class="episode-index-hero" aria-labelledby="episodes-heading">
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="/">Home</a> / Episodes
       </nav>
-      <p class="section-label">Answer corpus</p>
+      <p class="section-label">Answer library</p>
       <hr class="section-rule" />
       <h1 id="episodes-heading">Episodes</h1>
-      <p style="font-size: var(--step-1); max-width: 52ch; line-height: 1.5; margin-top: var(--sp-3);">
+      <p style="font-size: var(--step-1); max-width: 52ch; line-height: 1.5; margin-top: var(--sp-3); color: var(--text-dim);">
         Each episode is broken into question-shaped answer pages.
         Every claim links to the exact moment it was said.
       </p>
     </div>
   </section>
 
-  <!-- ── Episode list ──────────────────────────────────────────── -->
-  <section class="episode-list" aria-labelledby="episode-list-heading">
+  <section class="episode-index" aria-labelledby="episode-list-heading">
     <div class="container">
       <h2 id="episode-list-heading" class="sr-only">All episodes</h2>
 
-      <div class="episode-grid" role="list">
-
-        <article class="episode-card" role="listitem">
-          <p class="episode-card__number">Episode 1</p>
-          <h3 class="episode-card__title">AEO in Practice: What AI Answer Engines Actually Need</h3>
-          <p class="episode-card__meta">Recorded Sep 24, 2026 &middot; Publishing Sep 30, 2026</p>
-          <div class="episode-card__guests">
-            <p class="episode-card__guest">
-              <strong>Simon Wilhelm</strong> &middot; Co-founder, SCAILE<br />
-              <strong>Casey Cheshire</strong> &middot; Founder &amp; CEO, Ringmaster
-            </p>
-          </div>
-          <!-- When answer pages are live, add:
-          <a href="/episodes/aeo-what-ai-engines-actually-need-simon-wilhelm/" class="btn btn--ghost" style="margin-top:var(--sp-2);">Read answers →</a>
-          -->
-          <p class="episode-card__meta" style="margin-top: var(--sp-2);">Answer pages publish Sep 30</p>
-        </article>
-
-        <!-- Add additional episode cards here as episodes publish -->
-
-      </div>
+      <table class="episode-table" aria-label="All episodes">
+        <thead>
+          <tr>
+            <th scope="col">EP</th>
+            <th scope="col">Title</th>
+            <th scope="col">Guests</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ep-num">001</td>
+            <td class="ep-title">AEO in Practice: What AI Answer Engines Actually Need</td>
+            <td class="ep-guests">Simon Wilhelm &middot; Co-founder, SCAILE<br />Casey Cheshire &middot; Founder &amp; CEO, Ringmaster</td>
+            <td class="ep-status">Publishes Sep 30, 2026</td>
+          </tr>
+          <!-- Add additional episode rows here as episodes publish -->
+        </tbody>
+      </table>
 
       <div class="coming-soon-note">
         <p>
@@ -152,16 +127,16 @@
     </div>
   </section>
 
-  <!-- ── Footer ────────────────────────────────────────────────── -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <p>
-        <strong style="color: rgba(255,255,255,0.85);">Cited Conversations</strong> &middot;
-        A <a href="https://ringmaster.com" rel="noopener">Ringmaster</a> corpus
+        <strong style="color: var(--text-dim);">Cited Conversations</strong> &middot;
+        A <a href="https://ringmaster.com" rel="noopener">Ringmaster</a> reference library
       </p>
       <nav aria-label="Footer navigation">
         <a href="/about/">Methodology</a> &middot;
         <a href="/episodes/">Episodes</a> &middot;
+        <a href="/how-machines-read-this/">For machines</a> &middot;
         <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a>
       </nav>
       <p class="footer-byline">Every claim links to its source. Every speaker is named.</p>

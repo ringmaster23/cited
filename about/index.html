@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y9K5VS79MD"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -16,14 +15,10 @@
   <title>Methodology — Cited Conversations</title>
   <meta name="description" content="How Cited Conversations sources, attributes, and verifies every claim. Every sentence links to a named speaker at the exact moment they said it." />
 
-  <!-- Canonical -->
   <link rel="canonical" href="https://citedconversations.com/about/" />
-
-  <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="apple-touch-icon" href="/favicon-256.png" />
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://citedconversations.com/about/" />
   <meta property="og:title" content="Methodology — Cited Conversations" />
@@ -31,16 +26,13 @@
   <meta property="og:image" content="https://citedconversations.com/og-image.png" />
   <meta property="og:site_name" content="Cited Conversations" />
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Methodology — Cited Conversations" />
   <meta name="twitter:description" content="How Cited Conversations sources, attributes, and verifies every claim." />
   <meta name="twitter:image" content="https://citedconversations.com/og-image.png" />
 
-  <!-- Stylesheet -->
   <link rel="stylesheet" href="/styles.css" />
 
-  <!-- Schema.org — WebPage + BreadcrumbList -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -50,34 +42,18 @@
         "@id": "https://citedconversations.com/about/#webpage",
         "url": "https://citedconversations.com/about/",
         "name": "Methodology — Cited Conversations",
-        "description": "How Cited Conversations sources, attributes, and verifies every claim in the corpus.",
-        "isPartOf": {
-          "@id": "https://citedconversations.com/#website"
-        },
-        "about": {
-          "@id": "https://citedconversations.com/#organization"
-        },
-        "breadcrumb": {
-          "@id": "https://citedconversations.com/about/#breadcrumb"
-        },
+        "description": "How Cited Conversations sources, attributes, and verifies every claim. Every sentence links to a named speaker at the exact moment they said it.",
+        "isPartOf": { "@id": "https://citedconversations.com/#website" },
+        "about": { "@id": "https://citedconversations.com/#organization" },
+        "breadcrumb": { "@id": "https://citedconversations.com/about/#breadcrumb" },
         "inLanguage": "en-US"
       },
       {
         "@type": "BreadcrumbList",
         "@id": "https://citedconversations.com/about/#breadcrumb",
         "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://citedconversations.com/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Methodology",
-            "item": "https://citedconversations.com/about/"
-          }
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://citedconversations.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Methodology", "item": "https://citedconversations.com/about/" }
         ]
       }
     ]
@@ -86,24 +62,24 @@
 </head>
 <body>
 
-  <!-- ── Site header ──────────────────────────────────────────── -->
   <header class="site-header" role="banner">
     <div class="container">
-      <a href="/" class="site-logo" aria-label="Cited Conversations home">
+      <a href="/" class="raccoon-chip" aria-label="Cited Conversations home">
+        <img src="/favicon-32x32.png" alt="" width="22" height="22" />
         <span>
-          <span class="site-logo__cited">Cited</span><span class="site-logo__conversations"> Conversations</span>
-          <span class="site-logo__byline">by Ringmaster</span>
+          <span class="raccoon-chip__name"><span>Cited</span> Conversations</span>
+          <span class="raccoon-chip__byline">by Ringmaster</span>
         </span>
       </a>
       <nav class="header-nav" aria-label="Site navigation">
         <a href="/episodes/">Episodes</a>
         <a href="/about/" aria-current="page">Methodology</a>
+        <a href="/how-machines-read-this/">For machines</a>
         <a href="https://podcast.citedconversations.com" rel="noopener">Listen</a>
       </nav>
     </div>
   </header>
 
-  <!-- ── Hero ─────────────────────────────────────────────────── -->
   <section class="about-hero" aria-labelledby="about-heading">
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -111,15 +87,14 @@
       </nav>
       <p class="section-label">Methodology</p>
       <hr class="section-rule" />
-      <h1 id="about-heading">How claims get into the corpus</h1>
-      <p style="font-size: var(--step-1); max-width: 52ch; line-height: 1.5; margin-top: var(--sp-3);">
+      <h1 id="about-heading">How claims get into the library</h1>
+      <p style="font-size: var(--step-1); max-width: 52ch; line-height: 1.5; margin-top: var(--sp-3); color: var(--text-dim);">
         Every sentence on this site is a timestamped clip from a named conversation.
         Click to hear it.
       </p>
     </div>
   </section>
 
-  <!-- ── Methodology body ─────────────────────────────────────── -->
   <section class="about-section" aria-label="Methodology detail">
     <div class="container">
       <div class="about-body">
@@ -166,7 +141,7 @@
         <p>We spot-audit published pages against source audio on an ongoing basis.</p>
 
         <h3>What does not get in</h3>
-        <p>The corpus is deliberately narrow. We exclude:</p>
+        <p>The library is deliberately narrow. We exclude:</p>
         <ul>
           <li>AI-generated conversations or AI-written answers</li>
           <li>Solo commentary segments without a named guest</li>
@@ -194,7 +169,6 @@
     </div>
   </section>
 
-  <!-- ── Podcast strip ─────────────────────────────────────────── -->
   <div class="podcast-strip" aria-label="The podcast">
     <div class="container">
       <div class="podcast-strip__content">
@@ -207,16 +181,16 @@
     </div>
   </div>
 
-  <!-- ── Footer ────────────────────────────────────────────────── -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <p>
-        <strong style="color: rgba(255,255,255,0.85);">Cited Conversations</strong> &middot;
-        A <a href="https://ringmaster.com" rel="noopener">Ringmaster</a> corpus
+        <strong style="color: var(--text-dim);">Cited Conversations</strong> &middot;
+        A <a href="https://ringmaster.com" rel="noopener">Ringmaster</a> reference library
       </p>
       <nav aria-label="Footer navigation">
         <a href="/about/">Methodology</a> &middot;
         <a href="/episodes/">Episodes</a> &middot;
+        <a href="/how-machines-read-this/">For machines</a> &middot;
         <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a>
       </nav>
       <p class="footer-byline">Every claim links to its source. Every speaker is named.</p>

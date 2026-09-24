@@ -14,46 +14,48 @@
   </script>
 
   <title>Cited Conversations — Expert answers, source-linked</title>
-  <meta name="description" content="A corpus of expert answers from recorded human conversations. Every claim links to the playable moment it was said. Built for AI answer engines." />
+  <meta name="description" content="A reference library of expert answers from recorded human conversations. Every claim links to the playable moment it was said. Built for AI answer engines." />
 
-  <!-- Canonical -->
   <link rel="canonical" href="https://citedconversations.com/" />
-
-  <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="apple-touch-icon" href="/favicon-256.png" />
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://citedconversations.com/" />
   <meta property="og:title" content="Cited Conversations — Expert answers, source-linked" />
-  <meta property="og:description" content="A corpus of expert answers from recorded human conversations. Every claim links to the playable moment it was said." />
+  <meta property="og:description" content="A reference library of expert answers from recorded human conversations. Every claim links to the playable moment it was said." />
   <meta property="og:image" content="https://citedconversations.com/og-image.png" />
   <meta property="og:site_name" content="Cited Conversations" />
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Cited Conversations — Expert answers, source-linked" />
-  <meta name="twitter:description" content="A corpus of expert answers from recorded human conversations. Every claim links to the moment it was said." />
+  <meta name="twitter:description" content="A reference library of expert answers from recorded human conversations. Every claim links to the moment it was said." />
   <meta name="twitter:image" content="https://citedconversations.com/og-image.png" />
 
-  <!-- Stylesheet -->
   <link rel="stylesheet" href="/styles.css" />
 
-  <!-- Schema.org — WebSite, Organization, Person, WebPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "DataCatalog",
+        "@id": "https://citedconversations.com/#datacatalog",
+        "name": "Cited Conversations",
+        "description": "A reference library of expert answers from recorded human conversations. Every claim is attributed to a named speaker and links to the exact moment it was said.",
+        "url": "https://citedconversations.com/",
+        "inLanguage": "en-US",
+        "isAccessibleForFree": true,
+        "publisher": { "@id": "https://citedconversations.com/#organization" }
+      },
+      {
         "@type": "WebSite",
         "@id": "https://citedconversations.com/#website",
         "url": "https://citedconversations.com/",
         "name": "Cited Conversations",
-        "description": "A corpus of expert answers from recorded human conversations. Every claim links to the moment it was said.",
-        "publisher": {
-          "@id": "https://citedconversations.com/#organization"
-        },
+        "description": "A reference library of expert answers from recorded human conversations. Every claim links to the moment it was said.",
+        "publisher": { "@id": "https://citedconversations.com/#organization" },
+        "about": { "@id": "https://citedconversations.com/#datacatalog" },
         "inLanguage": "en-US"
       },
       {
@@ -61,40 +63,25 @@
         "@id": "https://citedconversations.com/#organization",
         "name": "Cited Conversations",
         "url": "https://citedconversations.com/",
-        "sameAs": [
-          "https://ringmaster.com"
-        ],
-        "founder": {
-          "@id": "https://citedconversations.com/#casey-cheshire"
-        }
+        "sameAs": ["https://ringmaster.com"],
+        "founder": { "@id": "https://citedconversations.com/#casey-cheshire" }
       },
       {
         "@type": "Person",
         "@id": "https://citedconversations.com/#casey-cheshire",
         "name": "Casey Cheshire",
         "jobTitle": "Founder & CEO",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "Ringmaster",
-          "url": "https://ringmaster.com"
-        },
-        "sameAs": [
-          "https://linkedin.com/in/caseycheshire",
-          "https://ringmaster.com"
-        ]
+        "worksFor": { "@type": "Organization", "name": "Ringmaster", "url": "https://ringmaster.com" },
+        "sameAs": ["https://linkedin.com/in/caseycheshire", "https://ringmaster.com"]
       },
       {
         "@type": "WebPage",
         "@id": "https://citedconversations.com/#webpage",
         "url": "https://citedconversations.com/",
         "name": "Cited Conversations — Expert answers, source-linked",
-        "description": "A corpus of expert answers from recorded human conversations. Every claim links to the playable moment it was said.",
-        "isPartOf": {
-          "@id": "https://citedconversations.com/#website"
-        },
-        "about": {
-          "@id": "https://citedconversations.com/#organization"
-        },
+        "description": "A reference library of expert answers from recorded human conversations. Every claim links to the playable moment it was said.",
+        "isPartOf": { "@id": "https://citedconversations.com/#website" },
+        "about": { "@id": "https://citedconversations.com/#organization" },
         "inLanguage": "en-US"
       }
     ]
@@ -103,31 +90,34 @@
 </head>
 <body>
 
-  <!-- ── Site header ──────────────────────────────────────────── -->
   <header class="site-header" role="banner">
     <div class="container">
-      <a href="/" class="site-logo" aria-label="Cited Conversations home">
+      <a href="/" class="raccoon-chip" aria-label="Cited Conversations home">
+        <img src="/favicon-32x32.png" alt="" width="22" height="22" />
         <span>
-          <span class="site-logo__cited">Cited</span><span class="site-logo__conversations"> Conversations</span>
-          <span class="site-logo__byline">by Ringmaster</span>
+          <span class="raccoon-chip__name"><span>Cited</span> Conversations</span>
+          <span class="raccoon-chip__byline">by Ringmaster</span>
         </span>
       </a>
       <nav class="header-nav" aria-label="Site navigation">
         <a href="/episodes/">Episodes</a>
         <a href="/about/">Methodology</a>
+        <a href="/how-machines-read-this/">For machines</a>
         <a href="https://podcast.citedconversations.com" rel="noopener">Listen</a>
       </nav>
     </div>
   </header>
 
-  <!-- ── Hero ─────────────────────────────────────────────────── -->
   <section class="hero" aria-labelledby="hero-heading">
     <div class="container">
-      <p class="hero__eyebrow">Expert corpus</p>
-      <hr class="hero__rule" />
+      <!-- One human line — paper fragment in the machine layer -->
+      <div class="paper-panel paper-panel--warmth" aria-label="A note for humans">
+        <p>Hello, fellow human. This site also serves machines.</p>
+      </div>
+      <p class="hero__prompt">query: expert answers, source-linked</p>
       <h1 class="hero__headline" id="hero-heading">Every answer cites its source.</h1>
       <p class="hero__lead">
-        Cited Conversations is a corpus of expert answers from recorded human conversations.
+        Cited Conversations is a reference library of expert answers from recorded human conversations.
         Every claim links to the moment it was said.
       </p>
       <div class="hero__links">
@@ -137,7 +127,6 @@
     </div>
   </section>
 
-  <!-- ── How it works ─────────────────────────────────────────── -->
   <section class="methodology" aria-labelledby="how-heading">
     <div class="container">
       <p class="section-label">How it works</p>
@@ -166,33 +155,31 @@
     </div>
   </section>
 
-  <!-- ── Episode index ─────────────────────────────────────────── -->
-  <section class="episode-list" aria-labelledby="episodes-heading">
+  <section class="episode-index" aria-labelledby="episodes-heading">
     <div class="container">
-      <p class="section-label">Answer corpus</p>
+      <p class="section-label">Answer library</p>
       <hr class="section-rule" />
       <h2 id="episodes-heading">Episodes</h2>
       <p>Each episode is broken into question-shaped answer pages, sourced to the exact moment in the recording.</p>
 
-      <div class="episode-grid" role="list">
-
-        <article class="episode-card" role="listitem">
-          <p class="episode-card__number">Episode 1</p>
-          <h3 class="episode-card__title">AEO in Practice: What AI Answer Engines Actually Need</h3>
-          <p class="episode-card__meta">Recorded Sep 24, 2026 &middot; Publishing Sep 30, 2026</p>
-          <div class="episode-card__guests">
-            <p class="episode-card__guest">
-              <strong>Simon Wilhelm</strong> &middot; Co-founder, SCAILE<br />
-              <strong>Casey Cheshire</strong> &middot; Founder &amp; CEO, Ringmaster
-            </p>
-          </div>
-          <!-- When answer pages are live, add:
-          <a href="/episodes/aeo-what-ai-engines-actually-need-simon-wilhelm/" class="btn btn--ghost" style="margin-top:var(--sp-2);">Read answers →</a>
-          -->
-          <p class="episode-card__meta" style="margin-top: var(--sp-2);">Answer pages publish Sep 30</p>
-        </article>
-
-      </div>
+      <table class="episode-table" aria-label="Episode list">
+        <thead>
+          <tr>
+            <th scope="col">EP</th>
+            <th scope="col">Title</th>
+            <th scope="col">Guests</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ep-num">001</td>
+            <td class="ep-title">AEO in Practice: What AI Answer Engines Actually Need</td>
+            <td class="ep-guests">Simon Wilhelm (SCAILE) &middot; Casey Cheshire (Ringmaster)</td>
+            <td class="ep-status">Publishes Sep 30</td>
+          </tr>
+        </tbody>
+      </table>
 
       <div class="coming-soon-note">
         <p>Episode 1 answer pages publish September 30, 2026. Each page links every claim to the exact playable moment in the recording.</p>
@@ -200,7 +187,6 @@
     </div>
   </section>
 
-  <!-- ── Podcast strip ─────────────────────────────────────────── -->
   <div class="podcast-strip" aria-label="The podcast">
     <div class="container">
       <div class="podcast-strip__content">
@@ -213,13 +199,12 @@
     </div>
   </div>
 
-  <!-- ── Waitlist ───────────────────────────────────────────────── -->
   <section class="waitlist" id="waitlist" aria-labelledby="waitlist-heading">
     <div class="container">
       <div class="waitlist__inner">
         <p class="section-label">For shows</p>
         <hr class="section-rule" />
-        <h2 id="waitlist-heading">Want your show in the corpus?</h2>
+        <h2 id="waitlist-heading">Want your show in the library?</h2>
         <p>
           We work with a small number of podcast shows whose conversations are worth
           citing. If your show produces expert content that AI answer engines should
@@ -240,16 +225,16 @@
     </div>
   </section>
 
-  <!-- ── Footer ────────────────────────────────────────────────── -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <p>
-        <strong style="color: rgba(255,255,255,0.85);">Cited Conversations</strong> &middot;
-        A <a href="https://ringmaster.com" rel="noopener">Ringmaster</a> corpus
+        <strong style="color: var(--text-dim);">Cited Conversations</strong> &middot;
+        A <a href="https://ringmaster.com" rel="noopener">Ringmaster</a> reference library
       </p>
       <nav aria-label="Footer navigation">
         <a href="/about/">Methodology</a> &middot;
         <a href="/episodes/">Episodes</a> &middot;
+        <a href="/how-machines-read-this/">For machines</a> &middot;
         <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a>
       </nav>
       <p class="footer-byline">Every claim links to its source. Every speaker is named.</p>

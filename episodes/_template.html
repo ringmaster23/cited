@@ -5,35 +5,43 @@
   File:    /episodes/<slug>/index.html
   Pattern: https://citedconversations.com/episodes/<slug>/
 
-  Instructions for generating Episode 1 answer pages:
-  ─────────────────────────────────────────────────────────────────
+  ── INSTRUCTIONS FOR GENERATING EPISODE PAGES ───────────────────
   1. Copy this file to /episodes/<slug>/index.html
   2. Replace every {{ PLACEHOLDER }} with real values from the transcript
-  3. Timestamp links use Transistor's deep-link format. VERIFIED Sep 23, 2026
-     by loading a live Transistor-hosted episode and watching the player seek:
-     the start time is a QUERY PARAMETER named t, valued in whole seconds.
-     NOT a URL fragment (#t=) — that form does not move the player.
-       https://podcast.citedconversations.com/<episode-slug>?t=<seconds>
-     Example for 13:43 into the episode: ?t=823
-     Every {{ TRANSISTOR_TIMESTAMP_URL_Qn }} value must use this form, and each
-     one must be loaded and confirmed to seek before the page ships.
-  4. Add the new page to sitemap.xml before committing
-  5. Casey reviews attribution before commit
-  6. No claim page ships without a working, clickable timestamp link
+  3. Add the new URL to sitemap.xml before committing
+  4. Casey reviews attribution and timestamp links before commit
+  5. No claim page ships without a working, clickable timestamp link
 
-  Quality gates (brief, non-negotiable):
-  ─────────────────────────────────────────────────────────────────
-  ✓ Every answer has a working timestamp link
-  ✓ Full schema: FAQPage + PodcastEpisode + Person (sameAs) + Quotation + AudioObject
-  ✓ Human has reviewed speaker attribution
+  ── TRANSISTOR TIMESTAMP FORMAT (CORRECTED) ─────────────────────
+  Use a QUERY PARAMETER, not a URL fragment. The fragment form (#t=) does not work.
+
+    CORRECT:   https://podcast.citedconversations.com/<episode-slug>?t=<seconds>
+    INCORRECT: https://podcast.citedconversations.com/<episode-slug>#t=<seconds>
+
+  Examples:  1m 23s → ?t=83   |   6m 00s → ?t=360   |   13m 43s → ?t=823
+
+  MANDATORY CHECK: open every timestamp link in a browser before committing.
+
+  ── QUALITY GATES ───────────────────────────────────────────────
+  ✓ Every answer has a working timestamp link (tested in a browser)
+  ✓ Full schema: FAQPage + PodcastEpisode + AudioObject + Person (sameAs)
+      + Organization + Quotation (one per Q&A) + BreadcrumbList
+  ✓ Human has reviewed speaker attribution before commit
   ✓ Page renders fully with JavaScript disabled
+  ✓ sitemap.xml updated before commit
+
+  ── VISIBLE JSON-LD NOTE ────────────────────────────────────────
+  The <details> block near the page foot renders the structured data
+  as syntax-highlighted HTML for human inspection. Keep it in sync
+  with the <script type="application/ld+json"> in <head>.
+  The machine reads the <script>. The human reads the <details>.
+  Never replace one with the other.
 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y9K5VS79MD"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -45,69 +53,53 @@
   <title>{{ PAGE_TITLE }} — Cited Conversations</title>
   <meta name="description" content="{{ PAGE_DESCRIPTION }}" />
 
-  <!-- Canonical -->
   <link rel="canonical" href="https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="apple-touch-icon" href="/favicon-256.png" />
 
-  <!-- Open Graph -->
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/" />
   <meta property="og:title" content="{{ PAGE_TITLE }} — Cited Conversations" />
   <meta property="og:description" content="{{ PAGE_DESCRIPTION }}" />
+  <meta property="og:image" content="https://citedconversations.com/og-image.png" />
   <meta property="og:site_name" content="Cited Conversations" />
 
-  <!-- Stylesheet -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ PAGE_TITLE }} — Cited Conversations" />
+  <meta name="twitter:description" content="{{ PAGE_DESCRIPTION }}" />
+  <meta name="twitter:image" content="https://citedconversations.com/og-image.png" />
+
   <link rel="stylesheet" href="/styles.css" />
 
   <!-- ══════════════════════════════════════════════════════════════
-       Schema.org structured data
-       Required types (all must be present before page ships):
-         • FAQPage          — the Q&A pairs
-         • PodcastEpisode   — episode metadata
-         • AudioObject      — the Transistor audio source
-         • Person           — each speaker with sameAs
-         • Organization     — each speaker's employer
-         • Quotation        — each attributed claim
-         • BreadcrumbList   — page position in site hierarchy
+       Schema.org structured data — machine-readable layer
+       Keep this in sync with the visible JSON-LD block at page foot.
        ══════════════════════════════════════════════════════════════ -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
-
-      /* ── FAQPage ──────────────────────────────────────────────── */
       {
         "@type": "FAQPage",
         "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#faqpage",
         "url": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/",
         "name": "{{ PAGE_TITLE }}",
         "description": "{{ PAGE_DESCRIPTION }}",
-        "isPartOf": {
-          "@id": "https://citedconversations.com/#website"
-        },
-        "breadcrumb": {
-          "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#breadcrumb"
-        },
+        "isPartOf": { "@id": "https://citedconversations.com/#website" },
+        "breadcrumb": { "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#breadcrumb" },
         "mainEntity": [
-          /* ── Q&A pair 1 ─────────────────────────────────────── */
           {
             "@type": "Question",
             "name": "{{ QUESTION_1 }}",
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "{{ ANSWER_1_TEXT }}",
-              "author": {
-                "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-{{ SPEAKER_1_ID }}"
-              },
-              "citation": {
-                "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#quotation-1"
-              }
+              "author": { "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-{{ SPEAKER_1_ID }}" },
+              "citation": "{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}"
             }
           }
-          /* Add additional Question objects here for each Q&A pair */
         ]
       },
-
-      /* ── PodcastEpisode ───────────────────────────────────────── */
       {
         "@type": "PodcastEpisode",
         "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#episode",
@@ -121,20 +113,12 @@
           "name": "Cited Conversations",
           "url": "https://podcast.citedconversations.com"
         },
-        "associatedMedia": {
-          "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#audio"
-        },
+        "associatedMedia": { "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#audio" },
         "actor": [
-          {
-            "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-casey-cheshire"
-          },
-          {
-            "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-{{ GUEST_SPEAKER_ID }}"
-          }
+          { "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-casey-cheshire" },
+          { "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-{{ GUEST_SPEAKER_ID }}" }
         ]
       },
-
-      /* ── AudioObject ─────────────────────────────────────────── */
       {
         "@type": "AudioObject",
         "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#audio",
@@ -146,124 +130,66 @@
         "duration": "{{ ISO_8601_DURATION }}",
         "uploadDate": "{{ DATE_PUBLISHED_ISO }}"
       },
-
-      /* ── Person: Casey Cheshire ──────────────────────────────── */
       {
         "@type": "Person",
         "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-casey-cheshire",
         "name": "Casey Cheshire",
         "jobTitle": "Founder & CEO",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "Ringmaster",
-          "url": "https://ringmaster.com"
-        },
-        "sameAs": [
-          "https://linkedin.com/in/caseycheshire",
-          "https://ringmaster.com"
-        ]
+        "worksFor": { "@type": "Organization", "name": "Ringmaster", "url": "https://ringmaster.com" },
+        "sameAs": ["https://linkedin.com/in/caseycheshire", "https://ringmaster.com"]
       },
-
-      /* ── Person: Simon Wilhelm (Episode 1 guest) ─────────────── */
-      /* Remove or replace for other episodes */
       {
         "@type": "Person",
-        "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-simon-wilhelm",
-        "name": "Simon Wilhelm",
-        "jobTitle": "Co-founder",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "SCAILE",
-          "url": "https://scaile.co"
-        },
-        "sameAs": [
-          "https://scaile.co"
-        ]
+        "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-{{ GUEST_SPEAKER_ID }}",
+        "name": "{{ GUEST_SPEAKER_NAME }}",
+        "jobTitle": "{{ GUEST_SPEAKER_TITLE }}",
+        "worksFor": { "@type": "Organization", "name": "{{ GUEST_SPEAKER_COMPANY }}", "url": "{{ GUEST_SPEAKER_COMPANY_URL }}" },
+        "sameAs": ["{{ GUEST_SPEAKER_LINKEDIN }}", "{{ GUEST_SPEAKER_COMPANY_URL }}"]
       },
-
-      /* ── Organization: Ringmaster ────────────────────────────── */
-      {
-        "@type": "Organization",
-        "@id": "https://citedconversations.com/#org-ringmaster",
-        "name": "Ringmaster",
-        "url": "https://ringmaster.com"
-      },
-
-      /* ── Organization: SCAILE ────────────────────────────────── */
-      {
-        "@type": "Organization",
-        "@id": "https://citedconversations.com/#org-scaile",
-        "name": "SCAILE",
-        "url": "https://scaile.co"
-      },
-
-      /* ── Quotation 1 (one per Q&A pair — duplicate for each) ── */
       {
         "@type": "Quotation",
         "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#quotation-1",
         "text": "{{ ANSWER_1_TEXT }}",
-        "spokenByCharacter": {
-          "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-{{ SPEAKER_1_ID }}"
-        },
-        "creator": {
-          "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-{{ SPEAKER_1_ID }}"
-        },
+        "spokenByCharacter": { "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-{{ SPEAKER_1_ID }}" },
+        "creator": { "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-{{ SPEAKER_1_ID }}" },
         "dateCreated": "{{ DATE_PUBLISHED_ISO }}",
-        "isPartOf": {
-          "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#episode"
-        },
+        "isPartOf": { "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#episode" },
         "citation": "{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}"
       },
-      /* Add additional Quotation objects here for Q2, Q3, etc. */
-
-      /* ── BreadcrumbList ──────────────────────────────────────── */
       {
         "@type": "BreadcrumbList",
         "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#breadcrumb",
         "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://citedconversations.com/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Episodes",
-            "item": "https://citedconversations.com/episodes/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "{{ EPISODE_TITLE }}",
-            "item": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/"
-          }
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://citedconversations.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Episodes", "item": "https://citedconversations.com/episodes/" },
+          { "@type": "ListItem", "position": 3, "name": "{{ EPISODE_TITLE }}", "item": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/" }
         ]
       }
-
     ]
   }
   </script>
 </head>
 <body>
 
-  <!-- ── Site header ──────────────────────────────────────────── -->
   <header class="site-header" role="banner">
     <div class="container">
-      <a href="/" class="site-logo" aria-label="Cited Conversations home">
-        Cited Conversations
-        <span>by Ringmaster</span>
+      <a href="/" class="raccoon-chip" aria-label="Cited Conversations home">
+        <img src="/favicon-32x32.png" alt="" width="22" height="22" />
+        <span>
+          <span class="raccoon-chip__name"><span>Cited</span> Conversations</span>
+          <span class="raccoon-chip__byline">by Ringmaster</span>
+        </span>
       </a>
       <nav class="header-nav" aria-label="Site navigation">
         <a href="/episodes/" aria-current="true">Episodes</a>
         <a href="/about/">Methodology</a>
+        <a href="/how-machines-read-this/">For machines</a>
         <a href="https://podcast.citedconversations.com" rel="noopener">Listen</a>
       </nav>
     </div>
   </header>
 
-  <!-- ── Episode hero ─────────────────────────────────────────── -->
+  <!-- ── Episode hero — machine layer ─────────────────────────── -->
   <section class="episode-hero" aria-labelledby="episode-title">
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -273,11 +199,12 @@
       <p class="episode-hero__number">Episode {{ EPISODE_NUMBER }}</p>
       <h1 class="episode-hero__title" id="episode-title">{{ EPISODE_TITLE }}</h1>
 
-      <p style="max-width: 60ch; color: var(--body); margin-top: var(--sp-2);">{{ EPISODE_DESCRIPTION }}</p>
+      <p style="max-width: 60ch; color: var(--text-dim); margin-top: var(--sp-2); font-size: var(--step-0);">
+        {{ EPISODE_DESCRIPTION }}
+      </p>
 
-      <div class="episode-hero__guests" aria-label="Episode guests">
+      <div class="episode-hero__guests" aria-label="Episode speakers">
 
-        <!-- Guest: Casey Cheshire — include on every episode -->
         <div class="guest-card">
           <p class="guest-card__name">Casey Cheshire</p>
           <p class="guest-card__role">Founder &amp; CEO, Ringmaster</p>
@@ -287,7 +214,6 @@
           </div>
         </div>
 
-        <!-- Guest: {{ GUEST_SPEAKER_NAME }} — replace per episode -->
         <div class="guest-card">
           <p class="guest-card__name">{{ GUEST_SPEAKER_NAME }}</p>
           <p class="guest-card__role">{{ GUEST_SPEAKER_TITLE }}, {{ GUEST_SPEAKER_COMPANY }}</p>
@@ -299,100 +225,172 @@
 
       </div>
 
-      <p style="margin-top: var(--sp-3); font-size: var(--step--1); color: var(--muted);">
-        Published {{ DATE_PUBLISHED_HUMAN }} ·
+      <p style="margin-top: var(--sp-3); font-size: var(--step--1); color: var(--text-muted);">
+        Published {{ DATE_PUBLISHED_HUMAN }} &middot;
         <a href="https://podcast.citedconversations.com/{{ TRANSISTOR_EPISODE_SLUG }}" rel="noopener">
-          Listen to the full episode ↗
+          Listen to the full episode &nearr;
         </a>
       </p>
     </div>
   </section>
 
   <!-- ── Q&A answers ───────────────────────────────────────────── -->
+  <!--
+    TIMESTAMP LINKS — use ?t=<seconds> (query parameter, not fragment).
+    Test every link in a browser before committing.
+  -->
   <section class="qa-section" aria-labelledby="qa-heading">
     <div class="container">
-      <p class="section-label">Source-linked answers</p>
-      <hr class="section-rule" />
       <h2 id="qa-heading" class="sr-only">Questions and answers from this episode</h2>
 
       <div class="qa-list">
 
         <!-- ── Q&A Item 1 ─────────────────────────────────────── -->
-        <!-- Duplicate this <article> block for each Q&A pair     -->
+        <!--
+          Structure: machine scaffolding (question, ID, citation) holds
+          a paper panel (the human speech). Only the actual words a person
+          said aloud go inside .qa-item__paper.
+        -->
         <article class="qa-item" id="q1">
+          <p class="qa-item__id">{{ EPISODE_SLUG }}#q1</p>
           <h3 class="qa-item__question">{{ QUESTION_1 }}</h3>
-          <p class="qa-item__answer">{{ ANSWER_1_TEXT }}</p>
+          <!-- Paper panel: the answer is human speech — cream on black -->
+          <div class="qa-item__paper">
+            <p class="qa-item__answer">{{ ANSWER_1_TEXT }}</p>
+          </div>
           <div class="qa-item__citation">
             <span class="citation-speaker">
-              <strong>{{ SPEAKER_1_NAME }}</strong> ·
+              <strong>{{ SPEAKER_1_NAME }}</strong> &middot;
               {{ SPEAKER_1_TITLE }}, {{ SPEAKER_1_COMPANY }}
             </span>
             <a
               class="citation-link"
               href="{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}"
               rel="noopener"
-              aria-label="Listen: {{ SPEAKER_1_NAME }} answers at {{ TIMESTAMP_DISPLAY_Q1 }}"
+              aria-label="Listen: {{ SPEAKER_1_NAME }} at {{ TIMESTAMP_DISPLAY_Q1 }}"
             >
-              ▶ {{ TIMESTAMP_DISPLAY_Q1 }}
+              &#9654; {{ TIMESTAMP_DISPLAY_Q1 }}
             </a>
           </div>
         </article>
 
         <!-- ── Q&A Item 2 ─────────────────────────────────────── -->
         <article class="qa-item" id="q2">
+          <p class="qa-item__id">{{ EPISODE_SLUG }}#q2</p>
           <h3 class="qa-item__question">{{ QUESTION_2 }}</h3>
-          <p class="qa-item__answer">{{ ANSWER_2_TEXT }}</p>
+          <div class="qa-item__paper">
+            <p class="qa-item__answer">{{ ANSWER_2_TEXT }}</p>
+          </div>
           <div class="qa-item__citation">
             <span class="citation-speaker">
-              <strong>{{ SPEAKER_2_NAME }}</strong> ·
+              <strong>{{ SPEAKER_2_NAME }}</strong> &middot;
               {{ SPEAKER_2_TITLE }}, {{ SPEAKER_2_COMPANY }}
             </span>
             <a
               class="citation-link"
               href="{{ TRANSISTOR_TIMESTAMP_URL_Q2 }}"
               rel="noopener"
-              aria-label="Listen: {{ SPEAKER_2_NAME }} answers at {{ TIMESTAMP_DISPLAY_Q2 }}"
+              aria-label="Listen: {{ SPEAKER_2_NAME }} at {{ TIMESTAMP_DISPLAY_Q2 }}"
             >
-              ▶ {{ TIMESTAMP_DISPLAY_Q2 }}
+              &#9654; {{ TIMESTAMP_DISPLAY_Q2 }}
             </a>
           </div>
         </article>
 
-        <!-- Add additional <article class="qa-item"> blocks here -->
-        <!-- Target: enough Q&A pairs to cover the episode's main topics -->
+        <!-- Continue with additional <article class="qa-item"> blocks as needed -->
 
       </div>
     </div>
   </section>
 
-  <!-- ── Podcast strip ─────────────────────────────────────────── -->
-  <div class="podcast-strip" aria-label="Podcast">
+  <!-- ── Visible JSON-LD block ─────────────────────────────────── -->
+  <!--
+    This is the machine-readable layer made visible for human inspection.
+    It mirrors the <script type="application/ld+json"> in <head> exactly.
+    Keep both in sync. The machine reads the <script>; this is for humans
+    (and curious machines) who read the page source or scroll to the foot.
+  -->
+  <section class="schema-reveal" aria-label="Structured data for this page">
     <div class="container">
-      <div class="podcast-strip__content">
-        <p class="podcast-strip__label">Full episode</p>
-        <p class="podcast-strip__text">Hear the complete conversation on the Cited Conversations podcast.</p>
-      </div>
+      <details>
+        <summary class="schema-reveal__label">
+          Structured data — what machines read on this page
+        </summary>
+        <div class="schema-reveal__body">
+          <p>
+            The JSON-LD below is the machine-readable version of this page.
+            The same block is in a <code>&lt;script type="application/ld+json"&gt;</code>
+            tag in the page head for crawlers. This copy is for human inspection.
+          </p>
+          <pre class="schema-code" aria-label="JSON-LD structured data"><span class="t-punct">{</span>
+  <span class="t-key">"@context"</span><span class="t-punct">:</span> <span class="t-str">"https://schema.org"</span><span class="t-punct">,</span>
+  <span class="t-key">"@graph"</span><span class="t-punct">: [</span>
+    <span class="t-punct">{</span>
+      <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-type">"FAQPage"</span><span class="t-punct">,</span>
+      <span class="t-key">"name"</span><span class="t-punct">:</span> <span class="t-str">"{{ PAGE_TITLE }}"</span><span class="t-punct">,</span>
+      <span class="t-key">"mainEntity"</span><span class="t-punct">: [</span>
+        <span class="t-punct">{</span>
+          <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-type">"Question"</span><span class="t-punct">,</span>
+          <span class="t-key">"name"</span><span class="t-punct">:</span> <span class="t-str">"{{ QUESTION_1 }}"</span><span class="t-punct">,</span>
+          <span class="t-key">"acceptedAnswer"</span><span class="t-punct">: {</span>
+            <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-type">"Answer"</span><span class="t-punct">,</span>
+            <span class="t-key">"text"</span><span class="t-punct">:</span> <span class="t-str">"{{ ANSWER_1_TEXT }}"</span><span class="t-punct">,</span>
+            <span class="t-key">"author"</span><span class="t-punct">:</span> <span class="t-str">"{{ SPEAKER_1_NAME }}"</span><span class="t-punct">,</span>
+            <span class="t-key">"citation"</span><span class="t-punct">:</span> <span class="t-url">"{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}"</span>
+          <span class="t-punct">}</span>
+        <span class="t-punct">}</span>
+      <span class="t-punct">]</span>
+    <span class="t-punct">},</span>
+    <span class="t-punct">{</span>
+      <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-type">"Quotation"</span><span class="t-punct">,</span>
+      <span class="t-key">"text"</span><span class="t-punct">:</span> <span class="t-str">"{{ ANSWER_1_TEXT }}"</span><span class="t-punct">,</span>
+      <span class="t-key">"spokenByCharacter"</span><span class="t-punct">:</span> <span class="t-name">"{{ SPEAKER_1_NAME }}"</span><span class="t-punct">,</span>
+      <span class="t-key">"citation"</span><span class="t-punct">:</span> <span class="t-url">"{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}"</span>
+    <span class="t-punct">},</span>
+    <span class="t-punct">{</span>
+      <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-type">"PodcastEpisode"</span><span class="t-punct">,</span>
+      <span class="t-key">"name"</span><span class="t-punct">:</span> <span class="t-str">"{{ EPISODE_TITLE }}"</span><span class="t-punct">,</span>
+      <span class="t-key">"episodeNumber"</span><span class="t-punct">:</span> <span class="t-num">{{ EPISODE_NUMBER }}</span><span class="t-punct">,</span>
+      <span class="t-key">"datePublished"</span><span class="t-punct">:</span> <span class="t-str">"{{ DATE_PUBLISHED_ISO }}"</span>
+    <span class="t-punct">},</span>
+    <span class="t-punct">{</span>
+      <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-type">"Person"</span><span class="t-punct">,</span>
+      <span class="t-key">"name"</span><span class="t-punct">:</span> <span class="t-name">"{{ GUEST_SPEAKER_NAME }}"</span><span class="t-punct">,</span>
+      <span class="t-key">"jobTitle"</span><span class="t-punct">:</span> <span class="t-str">"{{ GUEST_SPEAKER_TITLE }}"</span><span class="t-punct">,</span>
+      <span class="t-key">"sameAs"</span><span class="t-punct">:</span> <span class="t-url">"{{ GUEST_SPEAKER_LINKEDIN }}"</span>
+    <span class="t-punct">}</span>
+  <span class="t-punct">]</span>
+<span class="t-punct">}</span></pre>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ── Episode footer ────────────────────────────────────────── -->
+  <div class="episode-footer-strip" aria-label="Full episode">
+    <div class="container">
+      <p class="episode-footer-strip__label">Full episode</p>
       <a
+        class="episode-footer-strip__link"
         href="https://podcast.citedconversations.com/{{ TRANSISTOR_EPISODE_SLUG }}"
-        class="btn"
         rel="noopener"
-        aria-label="Listen to Episode {{ EPISODE_NUMBER }} on the Cited Conversations podcast"
+        aria-label="Listen to Episode {{ EPISODE_NUMBER }} in full"
       >
-        Listen to Episode {{ EPISODE_NUMBER }}
+        Listen to Episode {{ EPISODE_NUMBER }}: {{ EPISODE_TITLE }} &nearr;
       </a>
     </div>
   </div>
 
-  <!-- ── Footer ────────────────────────────────────────────────── -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <p>
-        <strong style="color: rgba(255,255,255,0.85);">Cited Conversations</strong> ·
-        A <a href="https://ringmaster.com" rel="noopener">Ringmaster</a> corpus
+        <strong style="color: var(--text-dim);">Cited Conversations</strong> &middot;
+        A <a href="https://ringmaster.com" rel="noopener">Ringmaster</a> reference library
       </p>
       <nav aria-label="Footer navigation">
-        <a href="/about/">Methodology</a> ·
-        <a href="/episodes/">Episodes</a> ·
+        <a href="/about/">Methodology</a> &middot;
+        <a href="/episodes/">Episodes</a> &middot;
+        <a href="/how-machines-read-this/">For machines</a> &middot;
         <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a>
       </nav>
       <p class="footer-byline">Every claim links to its source. Every speaker is named.</p>
