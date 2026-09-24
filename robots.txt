@@ -1,37 +1,95 @@
 # robots.txt — citedconversations.com
-# This site is a reference library designed for AI answer engines.
-# All retrieval bots are explicitly welcomed.
+# This site is a reference library built to be retrieved and cited by AI answer engines.
+# Every known AI crawler, retriever, and search indexer is explicitly welcomed.
+# Groups are named for documentation and future-proofing: if a Disallow is ever
+# added under User-agent: *, these named groups keep the AI agents unrestricted.
 
-# ── AI answer engine crawlers ────────────────────────────────────
+# ── OpenAI ───────────────────────────────────────────────────────
+# GPTBot = training corpus | OAI-SearchBot = ChatGPT search index
+# ChatGPT-User = live fetch when a user asks ChatGPT about a URL
 User-agent: GPTBot
 Allow: /
 
 User-agent: OAI-SearchBot
 Allow: /
 
-User-agent: PerplexityBot
+User-agent: ChatGPT-User
 Allow: /
 
+# ── Anthropic ────────────────────────────────────────────────────
+# ClaudeBot = training | Claude-SearchBot = search index
+# Claude-User = live fetch on behalf of a Claude user
 User-agent: ClaudeBot
 Allow: /
 
-User-agent: Claude-Web
+User-agent: Claude-SearchBot
 Allow: /
 
-# ── Search engine crawlers ───────────────────────────────────────
+User-agent: Claude-User
+Allow: /
+
+# ── Perplexity ───────────────────────────────────────────────────
+# PerplexityBot = index | Perplexity-User = live fetch for an answer
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# ── Google ───────────────────────────────────────────────────────
+# Googlebot governs AI Overviews and AI Mode citation.
+# Google-Extended is a separate opt-in for Gemini training / grounding.
 User-agent: Googlebot
 Allow: /
 
 User-agent: Googlebot-Image
 Allow: /
 
+User-agent: Google-Extended
+Allow: /
+
+# ── Microsoft / Bing ─────────────────────────────────────────────
+# Bingbot powers Copilot retrieval.
 User-agent: Bingbot
 Allow: /
 
+# ── Apple ────────────────────────────────────────────────────────
+# Applebot = Siri / Spotlight | Applebot-Extended = Apple Intelligence training
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# ── Other AI models and retrievers ───────────────────────────────
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# ── Open training corpora ────────────────────────────────────────
+# CCBot feeds Common Crawl, an input to many open and commercial models.
+User-agent: CCBot
+Allow: /
+
+# ── Conventional search ──────────────────────────────────────────
 User-agent: DuckDuckBot
 Allow: /
 
-# ── General ─────────────────────────────────────────────────────
+# ── General ──────────────────────────────────────────────────────
 User-agent: *
 Allow: /
 
