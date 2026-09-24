@@ -687,77 +687,54 @@ pre.schema-code {
 
 
 /* ════════════════════════════════════════════════════════════════
-   RACCOON TRANSLATOR — reusable human-aside component
-   Parchment ground, brick-red accent, machine-register context.
-   Use .raccoon-aside on any machine-layer page where a human
-   might land confused. He appears once per page, never twice.
+   HUMAN ASIDE — slim parchment callout, machine-register context
+   No image. Text fills the full width of the box.
+   Use .human-aside on machine-layer pages where a human might
+   land confused. One per page, never more.
    ════════════════════════════════════════════════════════════════ */
-.raccoon-aside {
+.human-aside {
   background: var(--paper-bg);
   border-bottom: 1px solid var(--paper-border);
-  padding-block: var(--sp-2) var(--sp-3);
-  overflow: visible;
+  border-left: 4px solid var(--paper-red);
+  padding-block: var(--sp-2);
+  padding-inline: var(--sp-3);
 }
-.raccoon-aside__inner {
+.human-aside .container {
   display: flex;
-  gap: var(--sp-3);
-  align-items: flex-end;
-  max-width: 68ch;
+  align-items: baseline;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
 }
-.raccoon-aside__img {
-  flex-shrink: 0;
-  width: 130px;
-  /* Pull the head up so it crests the parchment's top edge */
-  margin-top: -52px;
-  align-self: flex-end;
-}
-.raccoon-aside__img img {
-  display: block;
-  width: 130px;
-  height: auto;
-}
-.raccoon-aside__body {
-  border-left: 2px solid var(--paper-red);
-  padding-left: var(--sp-2);
-  padding-block: var(--sp-1);
-}
-.raccoon-aside__label {
-  display: inline-block;
+.human-aside__label {
   font-family: var(--font-mono);
   font-size: var(--step--1);
   font-weight: 600;
   color: var(--paper-red);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  margin-bottom: 0.4rem;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
-.raccoon-aside__text {
+.human-aside__text {
   color: var(--paper-muted);
   font-size: var(--step--1);
   line-height: 1.55;
-  max-width: 48ch;
   margin: 0;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: none;
 }
-.raccoon-aside__text strong {
+.human-aside__text strong {
   color: var(--paper-ink);
   font-weight: 600;
 }
-.raccoon-aside__text a {
+.human-aside__text a {
   color: var(--paper-red);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-.raccoon-aside__text a:hover {
+.human-aside__text a:hover {
   color: var(--red-bright);
-}
-@media (max-width: 480px) {
-  .raccoon-aside__img {
-    width: 88px;
-    margin-top: -36px;
-  }
-  .raccoon-aside__img img {
-    width: 88px;
-  }
 }
 
 /* Homepage warmth panel — updated to use raccoon-aside pattern.
