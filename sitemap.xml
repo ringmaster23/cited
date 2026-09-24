@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-          http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Homepage -->
   <url>
     <loc>https://citedconversations.com/</loc>
     <lastmod>2026-09-24</lastmod>
@@ -12,7 +8,6 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- Methodology / About -->
   <url>
     <loc>https://citedconversations.com/about/</loc>
     <lastmod>2026-09-24</lastmod>
@@ -20,29 +15,26 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Episode index -->
   <url>
-    <loc>https://citedconversations.com/episodes/</loc>
+    <loc>https://citedconversations.com/expert-answers/</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- How machines read this -->
   <url>
-    <loc>https://citedconversations.com/how-machines-read-this/</loc>
+    <loc>https://citedconversations.com/schema/</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- ── Episode pages ──────────────────────────────────────────
-       Add one <url> block per episode as they publish.
-       Pattern: https://citedconversations.com/episodes/<slug>/
+  <!-- Add one <url> block per episode answer page as they publish.
+       Pattern: https://citedconversations.com/expert-answers/<slug>/
        Example (Episode 1 — uncomment when live):
 
   <url>
-    <loc>https://citedconversations.com/episodes/aeo-what-ai-engines-actually-need-simon-wilhelm/</loc>
+    <loc>https://citedconversations.com/expert-answers/aeo-what-ai-engines-actually-need-simon-wilhelm/</loc>
     <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
