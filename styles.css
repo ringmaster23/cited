@@ -49,9 +49,6 @@
   --sp-4: 2rem; --sp-5: 3rem; --sp-6: 4rem;
 
   --radius: 2px;
-  /* --measure is now used only where intentional narrow measure is wanted
-     (e.g. code blocks, specific call-out boxes). Prose sections use full width. */
-  --measure: 72ch;
   --content-width: 80rem;
 }
 
@@ -91,8 +88,7 @@ h2 { font-size: var(--step-3); }
 h3 { font-size: var(--step-2); }
 h4 { font-size: var(--step-1); font-weight: 500; }
 
-/* Prose paragraphs: no global max-width cap — sections control their own measure.
-   This prevents text from being locked in a narrow left column on wide screens. */
+/* No global max-width on paragraphs — sections own their own measure */
 p { color: var(--text-dim); }
 p + p { margin-top: var(--sp-2); }
 body.page--for-humans p { color: var(--paper-muted); }
@@ -123,7 +119,7 @@ section { padding-block: var(--sp-5); }
 }
 
 /* ════════════════════════════════════════════════════════════════
-   SITE HEADER — machine layer default
+   SITE HEADER
    ════════════════════════════════════════════════════════════════ */
 .site-header {
   background: var(--bg);
@@ -133,7 +129,6 @@ section { padding-block: var(--sp-5); }
   top: 0;
   z-index: 100;
 }
-/* Paper variant — for for-humans page */
 .site-header--paper {
   background: var(--paper-bg);
   border-bottom: 1px solid var(--paper-border);
@@ -146,7 +141,6 @@ section { padding-block: var(--sp-5); }
   flex-wrap: wrap;
 }
 
-/* Raccoon chip — cream ground mark in machine layer */
 .raccoon-chip {
   display: inline-flex;
   align-items: center;
@@ -173,7 +167,6 @@ section { padding-block: var(--sp-5); }
   font-weight: 400;
   color: rgba(10,10,10,0.45);
 }
-/* On-paper variant (for-humans header) — invert the chip to dark */
 .raccoon-chip--dark {
   background: rgba(10,10,10,0.08);
   border: 1px solid var(--paper-border);
@@ -181,7 +174,6 @@ section { padding-block: var(--sp-5); }
 .raccoon-chip__name--dark { color: var(--paper-ink); }
 .raccoon-chip__byline--dark { color: var(--paper-muted); }
 
-/* Nav — machine layer */
 .header-nav {
   display: flex;
   gap: var(--sp-3);
@@ -198,7 +190,6 @@ section { padding-block: var(--sp-5); }
 .header-nav a:hover { color: var(--text); }
 .header-nav a[aria-current] { color: var(--red); }
 
-/* Human door link — paper chip set apart from machine nav items */
 .header-nav__human-door {
   display: inline-block;
   background: var(--paper-bg);
@@ -218,10 +209,7 @@ section { padding-block: var(--sp-5); }
   color: var(--red) !important;
 }
 
-/* Nav on paper page — dark text */
-.header-nav--paper a {
-  color: var(--paper-muted);
-}
+.header-nav--paper a { color: var(--paper-muted); }
 .header-nav--paper a:hover { color: var(--paper-ink); }
 .header-nav--paper a[aria-current] { color: var(--red); }
 
@@ -240,21 +228,19 @@ section { padding-block: var(--sp-5); }
   flex-direction: column;
   gap: var(--sp-1);
 }
-/* Machine-layer footer links */
 .site-footer a { color: var(--text-dim); text-decoration: none; }
 .site-footer a:hover { color: var(--text); }
 .footer-byline { color: var(--text-muted); font-size: 0.85em; margin-top: var(--sp-1); }
 .footer-byline a { color: var(--text-muted); font-size: inherit; }
 .footer-byline a:hover { color: var(--text); }
 
-/* Paper footer variant — must come AFTER .site-footer rules to override */
+/* Paper footer — must come AFTER generic .site-footer rules to win specificity */
 .site-footer--paper {
   background: var(--paper-bg);
   border-top: 1px solid var(--paper-border);
   color: var(--paper-muted);
 }
 .site-footer--paper strong { color: var(--paper-ink); }
-/* Paper footer nav links: explicit color to override .site-footer a */
 .site-footer--paper a,
 .site-footer--paper nav a { color: var(--paper-ink); text-decoration: none; }
 .site-footer--paper a:hover,
@@ -286,17 +272,12 @@ section { padding-block: var(--sp-5); }
   border: 1px solid var(--border);
 }
 .btn--ghost:hover { border-color: var(--text-dim); color: var(--text); }
-
-/* Ghost on paper */
 .btn--ghost-paper {
   background: transparent;
   color: var(--paper-muted);
   border: 1px solid var(--paper-border);
 }
-.btn--ghost-paper:hover {
-  border-color: var(--paper-ink);
-  color: var(--paper-ink);
-}
+.btn--ghost-paper:hover { border-color: var(--paper-ink); color: var(--paper-ink); }
 
 /* ════════════════════════════════════════════════════════════════
    SECTION FURNITURE
@@ -327,8 +308,7 @@ section { padding-block: var(--sp-5); }
 .breadcrumb--paper a:hover { color: var(--red); }
 
 /* ════════════════════════════════════════════════════════════════
-   ANSWER BLOCK — machine register, FAQ page answers
-   Dark substrate, red left border. Text fills the block.
+   ANSWER BLOCK
    ════════════════════════════════════════════════════════════════ */
 .qa-item__paper {
   background: var(--bg-raised);
@@ -346,7 +326,6 @@ section { padding-block: var(--sp-5); }
 .qa-item__answer a { color: var(--red); }
 .qa-item__answer a:hover { color: var(--red-bright); }
 
-/* Warmth note on homepage */
 .paper-panel--warmth {
   display: inline-block;
   background: var(--paper-bg);
@@ -363,11 +342,10 @@ section { padding-block: var(--sp-5); }
 }
 
 /* ════════════════════════════════════════════════════════════════
-   FOR-HUMANS PAGE — full paper treatment
+   FOR-HUMANS PAGE
    ════════════════════════════════════════════════════════════════ */
 .for-humans-main { background: var(--paper-bg); }
 
-/* ── Hero ── */
 .for-humans-hero {
   background: var(--paper-bg);
   border-bottom: 1px solid var(--paper-border);
@@ -380,21 +358,20 @@ section { padding-block: var(--sp-5); }
   text-transform: uppercase;
   letter-spacing: 0.12em;
   margin-bottom: var(--sp-2);
-  max-width: none;
 }
 .for-humans-hero h1 {
   font-size: var(--step-4);
   color: var(--paper-ink);
   margin-bottom: var(--sp-3);
+  /* No max-width — fill the container */
 }
+/* Lead paragraph: no ch cap, fills container */
 .fh-lead {
   font-size: var(--step-1);
   color: var(--paper-muted);
   line-height: 1.6;
   margin-bottom: var(--sp-3);
-  max-width: 64ch;
 }
-/* Hero CTA row */
 .fh-hero-links {
   display: flex;
   gap: var(--sp-2);
@@ -403,7 +380,7 @@ section { padding-block: var(--sp-5); }
   margin-bottom: var(--sp-4);
 }
 
-/* Raccoon intro row inside hero */
+/* Raccoon intro row */
 .fh-raccoon-row {
   display: flex;
   gap: var(--sp-3);
@@ -416,12 +393,9 @@ section { padding-block: var(--sp-5); }
   margin-top: -48px;
   align-self: flex-end;
 }
-.fh-raccoon-row__img img {
-  display: block;
-  width: 120px;
-  height: auto;
-}
+.fh-raccoon-row__img img { display: block; width: 120px; height: auto; }
 
+/* Body sections: no max-width on paragraphs */
 .for-humans-section {
   background: var(--paper-bg);
   border-bottom: 1px solid var(--paper-border);
@@ -432,13 +406,12 @@ section { padding-block: var(--sp-5); }
   color: var(--paper-ink);
   margin-bottom: var(--sp-3);
 }
-/* Paragraphs in for-humans sections use wider measure */
 .for-humans-section p {
   color: var(--paper-muted);
-  max-width: 72ch;
+  /* No max-width — fills container */
 }
 
-/* Waitlist section — paper palette */
+/* Waitlist section */
 .fh-waitlist {
   background: var(--paper-bg);
   border-bottom: 1px solid var(--paper-border);
@@ -449,10 +422,7 @@ section { padding-block: var(--sp-5); }
   color: var(--paper-ink);
   margin-bottom: var(--sp-2);
 }
-.fh-waitlist p {
-  color: var(--paper-muted);
-  max-width: 64ch;
-}
+.fh-waitlist p { color: var(--paper-muted); }
 .fh-waitlist__embed-slot {
   margin-top: var(--sp-4);
   background: rgba(10,10,10,0.04);
@@ -479,11 +449,7 @@ section { padding-block: var(--sp-5); }
   color: var(--paper-ink);
   margin-bottom: var(--sp-3);
 }
-.fh-exit-links {
-  display: flex;
-  gap: var(--sp-3);
-  flex-wrap: wrap;
-}
+.fh-exit-links { display: flex; gap: var(--sp-3); flex-wrap: wrap; }
 .fh-exit-card {
   display: flex;
   flex-direction: column;
@@ -538,21 +504,18 @@ section { padding-block: var(--sp-5); }
   color: var(--text);
   margin-bottom: var(--sp-3);
   font-weight: 700;
-  /* No max-width cap — let it fill the container */
+  /* No max-width */
 }
+/* Lead: no ch cap — fills the container */
 .hero__lead {
   font-size: var(--step-1);
   color: var(--text-dim);
   line-height: 1.55;
   margin-bottom: var(--sp-4);
-  max-width: 64ch;
 }
 .hero__links { display: flex; gap: var(--sp-2); flex-wrap: wrap; align-items: center; }
 
-/* ── Methodology section ── */
 .methodology { background: var(--bg); border-bottom: 1px solid var(--border); }
-/* Body prose: no max-width — use full container */
-.methodology__body { }
 .methodology__list {
   list-style: none; padding: 0;
   margin-top: var(--sp-3);
@@ -595,13 +558,14 @@ section { padding-block: var(--sp-5); }
 }
 .coming-soon-note p { color: var(--text-muted); max-width: none; }
 
+/* Waitlist section (homepage — for shows) */
 .waitlist {
   background: var(--bg-raised);
   border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
 }
-.waitlist__inner { max-width: 44rem; }
+/* Remove inner container cap — let it fill the container like everything else */
 .waitlist__cta { margin-top: var(--sp-3); }
-.waitlist__note { font-size: var(--step--1); color: var(--text-muted); margin-top: var(--sp-2); max-width: none; }
+.waitlist__note { font-size: var(--step--1); color: var(--text-muted); margin-top: var(--sp-2); }
 
 .podcast-strip {
   background: var(--bg); border-top: 1px solid var(--border); padding-block: var(--sp-4);
@@ -653,7 +617,7 @@ section { padding-block: var(--sp-5); }
 }
 .citation-link:hover { background: var(--red); color: #fff; }
 
-/* ── Visible JSON-LD block ───────────────────────────────────── */
+/* ── Schema / JSON-LD block ─────────────────────────────────── */
 .schema-reveal {
   background: var(--bg); border-top: 1px solid var(--border); padding-block: var(--sp-4);
 }
@@ -672,6 +636,7 @@ section { padding-block: var(--sp-5); }
 .schema-reveal details[open] > summary::before { transform: rotate(90deg); }
 .schema-reveal__label { color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
 .schema-reveal__body { margin-top: var(--sp-3); overflow-x: auto; }
+/* Schema description text — intentionally limited for code context */
 .schema-reveal p { font-size: var(--step--1); color: var(--text-muted); margin-bottom: var(--sp-2); max-width: 60ch; }
 
 pre.schema-code {
@@ -704,14 +669,14 @@ pre.schema-code {
 .episode-footer-strip__link:hover { color: var(--text); }
 
 /* ════════════════════════════════════════════════════════════════
-   ABOUT / EPISODE INDEX / MACHINES / FAQ pages
-   Body prose uses full container width — no max-width cap on text.
+   ABOUT / METHODOLOGY / FAQ / SCHEMA / MACHINES pages
    ════════════════════════════════════════════════════════════════ */
 .about-hero, .episode-index-hero, .machines-hero {
   background: var(--bg); border-bottom: 1px solid var(--border); padding-block: var(--sp-5);
 }
-.about-section, .machines-section { background: var(--bg); border-bottom: 1px solid var(--border); padding-block: var(--sp-5); }
-/* Removed max-width: var(--measure) from about-body / machines-body */
+.about-section, .machines-section {
+  background: var(--bg); border-bottom: 1px solid var(--border); padding-block: var(--sp-5);
+}
 .about-body h3, .machines-body h3 {
   font-size: var(--step-1); color: var(--red); font-weight: 600;
   margin-top: var(--sp-5); margin-bottom: var(--sp-2);
@@ -771,10 +736,7 @@ pre.schema-code {
 }
 
 /* ════════════════════════════════════════════════════════════════
-   HUMAN ASIDE — slim parchment callout, machine-register context
-   No image. Text fills the full width of the box.
-   Use .human-aside on machine-layer pages where a human might
-   land confused. One per page, never more.
+   HUMAN ASIDE
    ════════════════════════════════════════════════════════════════ */
 .human-aside {
   background: var(--paper-bg);
@@ -782,11 +744,7 @@ pre.schema-code {
   padding-block: var(--sp-2);
   margin-top: var(--sp-5);
 }
-/* Homepage: callout is inside .hero which already provides section padding.
-   Suppress the component margin there to avoid double gap. */
-.hero .human-aside {
-  margin-top: 0;
-}
+.hero .human-aside { margin-top: 0; }
 .human-aside__row {
   display: flex;
   align-items: baseline;
@@ -815,20 +773,14 @@ pre.schema-code {
   min-width: 0;
   max-width: none;
 }
-.human-aside__text strong {
-  color: var(--paper-ink);
-  font-weight: 600;
-}
+.human-aside__text strong { color: var(--paper-ink); font-weight: 600; }
 .human-aside__text a {
   color: var(--paper-red);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-.human-aside__text a:hover {
-  color: var(--red-bright);
-}
+.human-aside__text a:hover { color: var(--red-bright); }
 
-/* Homepage warmth panel — kept for backward compat */
 .paper-panel--warmth {
   background: var(--paper-bg);
   border: none;
