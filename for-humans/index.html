@@ -83,21 +83,20 @@
 
   <main class="for-humans-main">
 
-    <!-- ── Hero: mirrors homepage structure, paper palette ── -->
     <section class="for-humans-hero" aria-labelledby="fh-heading">
       <div class="container">
         <nav class="breadcrumb breadcrumb--paper" aria-label="Breadcrumb">
           <a href="/">Home</a> / For humans
         </nav>
 
-        <!-- Raccoon guide -->
+        <!-- Raccoon guide — inline style removed so text fills its flex column -->
         <div class="fh-raccoon-row">
           <div class="fh-raccoon-row__img">
             <img src="/raccoon-head.png" alt="" width="120" style="display: block; width: 120px; height: auto;">
           </div>
-          <div>
+          <div style="flex: 1 1 0; min-width: 0;">
             <p class="fh-eyebrow" style="margin-bottom: var(--sp-1);">You found the human door.</p>
-            <p style="color: var(--paper-muted); font-size: var(--step-0); line-height: 1.6; max-width: 38ch;">
+            <p style="color: var(--paper-muted); font-size: var(--step-0); line-height: 1.6;">
               This is the one page on this site built for you. Everything else is addressed to machines.
               I'll explain.
             </p>
