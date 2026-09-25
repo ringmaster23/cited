@@ -49,6 +49,8 @@
   --sp-4: 2rem; --sp-5: 3rem; --sp-6: 4rem;
 
   --radius: 2px;
+  /* --measure is now used only where intentional narrow measure is wanted
+     (e.g. code blocks, specific call-out boxes). Prose sections use full width. */
   --measure: 72ch;
   --content-width: 80rem;
 }
@@ -89,7 +91,9 @@ h2 { font-size: var(--step-3); }
 h3 { font-size: var(--step-2); }
 h4 { font-size: var(--step-1); font-weight: 500; }
 
-p { max-width: var(--measure); color: var(--text-dim); }
+/* Prose paragraphs: no global max-width cap — sections control their own measure.
+   This prevents text from being locked in a narrow left column on wide screens. */
+p { color: var(--text-dim); }
 p + p { margin-top: var(--sp-2); }
 body.page--for-humans p { color: var(--paper-muted); }
 
@@ -363,7 +367,7 @@ section { padding-block: var(--sp-5); }
    ════════════════════════════════════════════════════════════════ */
 .for-humans-main { background: var(--paper-bg); }
 
-/* ── Hero: mimics homepage hero with paper colour palette ── */
+/* ── Hero ── */
 .for-humans-hero {
   background: var(--paper-bg);
   border-bottom: 1px solid var(--paper-border);
@@ -382,14 +386,13 @@ section { padding-block: var(--sp-5); }
   font-size: var(--step-4);
   color: var(--paper-ink);
   margin-bottom: var(--sp-3);
-  max-width: 22ch;
 }
 .fh-lead {
   font-size: var(--step-1);
   color: var(--paper-muted);
-  max-width: 56ch;
   line-height: 1.6;
   margin-bottom: var(--sp-3);
+  max-width: 64ch;
 }
 /* Hero CTA row */
 .fh-hero-links {
@@ -406,7 +409,6 @@ section { padding-block: var(--sp-5); }
   gap: var(--sp-3);
   align-items: flex-end;
   margin-bottom: var(--sp-4);
-  max-width: 62ch;
 }
 .fh-raccoon-row__img {
   flex-shrink: 0;
@@ -430,9 +432,10 @@ section { padding-block: var(--sp-5); }
   color: var(--paper-ink);
   margin-bottom: var(--sp-3);
 }
+/* Paragraphs in for-humans sections use wider measure */
 .for-humans-section p {
   color: var(--paper-muted);
-  max-width: 56ch;
+  max-width: 72ch;
 }
 
 /* Waitlist section — paper palette */
@@ -441,9 +444,6 @@ section { padding-block: var(--sp-5); }
   border-bottom: 1px solid var(--paper-border);
   padding-block: var(--sp-5);
 }
-.fh-waitlist__inner {
-  max-width: 44rem;
-}
 .fh-waitlist h2 {
   font-size: var(--step-2);
   color: var(--paper-ink);
@@ -451,7 +451,7 @@ section { padding-block: var(--sp-5); }
 }
 .fh-waitlist p {
   color: var(--paper-muted);
-  max-width: 56ch;
+  max-width: 64ch;
 }
 .fh-waitlist__embed-slot {
   margin-top: var(--sp-4);
@@ -460,23 +460,13 @@ section { padding-block: var(--sp-5); }
   border-radius: var(--radius);
   padding: var(--sp-4);
   text-align: center;
-}
-.fh-waitlist__embed-slot .embed-placeholder-text {
-  font-size: var(--step--1);
-  color: var(--paper-muted);
-  font-style: italic;
-  margin: 0;
-  max-width: none;
+  max-width: 44rem;
 }
 .fh-waitlist__coming-soon {
   display: inline-block;
-  margin-top: var(--sp-3);
-  font-size: var(--step--1);
+  font-size: var(--step-0);
   color: var(--paper-muted);
-  background: rgba(10,10,10,0.05);
-  border: 1px solid var(--paper-border);
-  border-radius: var(--radius);
-  padding: var(--sp-1) var(--sp-2);
+  font-style: italic;
 }
 
 /* Exit cards */
@@ -505,7 +495,7 @@ section { padding-block: var(--sp-5); }
   border-radius: var(--radius);
   text-decoration: none;
   flex: 1 1 220px;
-  max-width: 280px;
+  max-width: 300px;
   transition: border-color 0.12s ease;
 }
 .fh-exit-card:hover { border-top-color: var(--red-bright); }
@@ -547,54 +537,22 @@ section { padding-block: var(--sp-5); }
   font-size: var(--step-4);
   color: var(--text);
   margin-bottom: var(--sp-3);
-  max-width: 28ch;
   font-weight: 700;
+  /* No max-width cap — let it fill the container */
 }
 .hero__lead {
   font-size: var(--step-1);
   color: var(--text-dim);
-  max-width: 56ch;
   line-height: 1.55;
   margin-bottom: var(--sp-4);
+  max-width: 64ch;
 }
 .hero__links { display: flex; gap: var(--sp-2); flex-wrap: wrap; align-items: center; }
 
-/* ── Wide desktop hero: two-column grid ── */
-@media (min-width: 900px) {
-  .hero .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-    column-gap: var(--sp-6);
-    align-items: start;
-  }
-  /* human-aside spans full width above the two-col content */
-  .hero .container > .human-aside {
-    grid-column: 1 / -1;
-  }
-  .hero__prompt {
-    grid-column: 1 / -1;
-  }
-  .hero__headline {
-    grid-column: 1 / 2;
-    max-width: none;
-  }
-  .hero__lead {
-    grid-column: 2 / 3;
-    grid-row: 2;
-    max-width: none;
-    margin-top: 0;
-    align-self: start;
-    padding-top: 0.4em;
-  }
-  .hero__links {
-    grid-column: 1 / 2;
-    grid-row: 3;
-  }
-}
-
+/* ── Methodology section ── */
 .methodology { background: var(--bg); border-bottom: 1px solid var(--border); }
-.methodology__body { max-width: var(--measure); }
+/* Body prose: no max-width — use full container */
+.methodology__body { }
 .methodology__list {
   list-style: none; padding: 0;
   margin-top: var(--sp-3);
@@ -602,7 +560,7 @@ section { padding-block: var(--sp-5); }
 }
 .methodology__list li {
   padding-left: 1.5rem; position: relative;
-  max-width: var(--measure); font-size: var(--step-0); color: var(--text-dim);
+  font-size: var(--step-0); color: var(--text-dim);
 }
 .methodology__list li::before { content: '—'; position: absolute; left: 0; color: var(--red); }
 
@@ -624,7 +582,7 @@ section { padding-block: var(--sp-5); }
 }
 .episode-table tr:hover td { background: var(--bg-raised); }
 .episode-table .ep-num { color: var(--text-muted); font-size: 0.85em; white-space: nowrap; }
-.episode-table .ep-title { color: var(--text); font-weight: 600; max-width: 40ch; }
+.episode-table .ep-title { color: var(--text); font-weight: 600; }
 .episode-table .ep-guests { color: var(--text-dim); }
 .episode-table .ep-status { color: var(--text-muted); white-space: nowrap; }
 .episode-table .ep-status.live { color: var(--red); font-weight: 600; }
@@ -633,7 +591,7 @@ section { padding-block: var(--sp-5); }
   background: var(--bg-raised);
   border: 1px solid var(--border); border-left: 2px solid var(--text-muted);
   padding: var(--sp-2) var(--sp-3);
-  margin-top: var(--sp-3); font-size: var(--step--1); max-width: 56ch;
+  margin-top: var(--sp-3); font-size: var(--step--1);
 }
 .coming-soon-note p { color: var(--text-muted); max-width: none; }
 
@@ -663,7 +621,7 @@ section { padding-block: var(--sp-5); }
   font-size: var(--step--1); font-weight: 600; color: var(--red);
   text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--sp-1);
 }
-.episode-hero__title { color: var(--text); margin-bottom: var(--sp-2); max-width: 32ch; }
+.episode-hero__title { color: var(--text); margin-bottom: var(--sp-2); }
 .episode-hero__guests {
   display: flex; flex-wrap: wrap; gap: var(--sp-4);
   margin-top: var(--sp-3); padding-top: var(--sp-3); border-top: 1px solid var(--border);
@@ -682,7 +640,7 @@ section { padding-block: var(--sp-5); }
 .qa-item__question {
   font-family: var(--font-mono); font-size: var(--step-2);
   font-weight: 600; color: var(--text);
-  margin-bottom: var(--sp-2); line-height: 1.25; max-width: 56ch;
+  margin-bottom: var(--sp-2); line-height: 1.25;
 }
 .qa-item__citation { display: flex; align-items: center; gap: var(--sp-2); flex-wrap: wrap; }
 .citation-speaker { font-size: var(--step--1); color: var(--text-muted); }
@@ -747,12 +705,13 @@ pre.schema-code {
 
 /* ════════════════════════════════════════════════════════════════
    ABOUT / EPISODE INDEX / MACHINES / FAQ pages
+   Body prose uses full container width — no max-width cap on text.
    ════════════════════════════════════════════════════════════════ */
 .about-hero, .episode-index-hero, .machines-hero {
   background: var(--bg); border-bottom: 1px solid var(--border); padding-block: var(--sp-5);
 }
 .about-section, .machines-section { background: var(--bg); border-bottom: 1px solid var(--border); padding-block: var(--sp-5); }
-.about-body, .machines-body { max-width: var(--measure); }
+/* Removed max-width: var(--measure) from about-body / machines-body */
 .about-body h3, .machines-body h3 {
   font-size: var(--step-1); color: var(--red); font-weight: 600;
   margin-top: var(--sp-5); margin-bottom: var(--sp-2);
@@ -762,7 +721,7 @@ pre.schema-code {
 .about-body ul, .about-body ol,
 .machines-body ul, .machines-body ol {
   margin-top: var(--sp-2); padding-left: var(--sp-3);
-  max-width: var(--measure); display: flex; flex-direction: column; gap: 0.35rem;
+  display: flex; flex-direction: column; gap: 0.35rem;
 }
 .about-body li, .machines-body li { color: var(--text-dim); }
 .about-body p, .machines-body p { color: var(--text-dim); }
@@ -788,69 +747,6 @@ pre.schema-code {
 @media (min-width: 640px) {
   .podcast-strip .container { flex-direction: row; align-items: center; justify-content: space-between; gap: var(--sp-4); }
   .podcast-strip .btn { margin-top: 0; }
-}
-
-/* For-humans wide desktop: hero and sections use more horizontal space */
-@media (min-width: 900px) {
-  .for-humans-hero .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: var(--sp-6);
-    align-items: start;
-  }
-  /* breadcrumb spans full width */
-  .for-humans-hero .container > .breadcrumb {
-    grid-column: 1 / -1;
-  }
-  /* raccoon row stays left */
-  .fh-raccoon-row {
-    grid-column: 1 / 2;
-    max-width: none;
-  }
-  /* h1 left col */
-  .for-humans-hero h1 {
-    grid-column: 1 / 2;
-    max-width: none;
-  }
-  /* lead right col */
-  .fh-lead {
-    grid-column: 2 / 3;
-    grid-row: 2;
-    max-width: none;
-    padding-top: 0.3em;
-  }
-  /* CTA buttons left col below h1 */
-  .fh-hero-links {
-    grid-column: 1 / 2;
-  }
-
-  /* Body sections: widen content to use full container */
-  .for-humans-section .container,
-  .fh-waitlist .container,
-  .for-humans-exits .container {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    column-gap: var(--sp-6);
-    align-items: start;
-  }
-  .for-humans-section h2,
-  .fh-waitlist h2,
-  .fh-exits-heading {
-    grid-column: 1 / -1;
-  }
-  .for-humans-section p,
-  .fh-waitlist p {
-    max-width: none;
-  }
-  /* exit links span full width */
-  .fh-exit-links {
-    grid-column: 1 / -1;
-  }
-  /* waitlist embed span full width */
-  .fh-waitlist__inner {
-    grid-column: 1 / -1;
-    max-width: none;
-  }
 }
 
 /* ── Reduced motion ─────────────────────────────────────────────── */
@@ -932,9 +828,7 @@ pre.schema-code {
   color: var(--red-bright);
 }
 
-/* Homepage warmth panel — updated to use raccoon-aside pattern.
-   .paper-panel--warmth is kept for backward compat but now defers
-   to raccoon-aside for layout; solo use is no longer recommended. */
+/* Homepage warmth panel — kept for backward compat */
 .paper-panel--warmth {
   background: var(--paper-bg);
   border: none;
