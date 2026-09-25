@@ -83,36 +83,41 @@
 
   <main class="for-humans-main">
 
+    <!-- ── Hero: mirrors homepage structure, paper palette ── -->
     <section class="for-humans-hero" aria-labelledby="fh-heading">
       <div class="container">
         <nav class="breadcrumb breadcrumb--paper" aria-label="Breadcrumb">
           <a href="/">Home</a> / For humans
         </nav>
 
-        <!-- Raccoon as host — largest placement, his home ground -->
-        <div style="display: flex; gap: var(--sp-3); align-items: flex-end; margin-bottom: var(--sp-4); max-width: 62ch;">
-          <div style="flex-shrink: 0; width: 160px; margin-top: -64px; align-self: flex-end;">
-            <img src="/raccoon-head.png" alt="" width="160" style="display: block; width: 160px; height: auto;">
+        <!-- Raccoon guide — large placement, his home ground -->
+        <div class="fh-raccoon-row">
+          <div class="fh-raccoon-row__img">
+            <img src="/raccoon-head.png" alt="" width="120" style="display: block; width: 120px; height: auto;">
           </div>
           <div>
             <p class="fh-eyebrow" style="margin-bottom: var(--sp-1);">You found the human door.</p>
-            <p style="color: var(--paper-muted); font-size: var(--step-0); line-height: 1.6; max-width: 42ch;">
+            <p style="color: var(--paper-muted); font-size: var(--step-0); line-height: 1.6; max-width: 38ch;">
               This is the one page on this site built for you. Everything else is addressed to machines.
               I'll explain.
             </p>
           </div>
         </div>
 
-        <h1 id="fh-heading">So — what is this place?</h1>
+        <h1 id="fh-heading">Every answer cites its source.</h1>
+
         <p class="fh-lead">
-          Cited Conversations is a reference library of expert answers from recorded conversations.
-          Every answer is attributed to a named speaker and links to the exact moment in the audio
-          where it was said.
+          Cited Conversations is a reference library of expert answers from recorded human conversations.
+          Every claim links to the moment it was said — not a footnote, not a URL that might have changed.
+          A timestamp into the original audio.
         </p>
-        <p class="fh-lead">
-          Every claim on this site has a source you can play. Not a footnote.
-          Not a URL to a page that might have changed. A timestamp into the original audio.
-        </p>
+
+        <div class="fh-hero-links">
+          <a href="#waitlist" class="btn">Join the waitlist</a>
+          <a href="https://podcast.citedconversations.com" class="btn btn--ghost-paper" rel="noopener">Listen to the podcast</a>
+          <a href="/about/" class="btn btn--ghost-paper">Inspect the methodology</a>
+        </div>
+
       </div>
     </section>
 
@@ -177,19 +182,47 @@
       </div>
     </section>
 
+    <!-- ── Get in the loop: waitlist / email sign-up ── -->
+    <section class="fh-waitlist" id="waitlist" aria-labelledby="fh-waitlist-heading">
+      <div class="container">
+        <div class="fh-waitlist__inner">
+          <h2 id="fh-waitlist-heading">Get in the loop</h2>
+          <p>
+            New episodes, new answer pages, and occasional notes on how AI answer engines
+            actually work — straight to your inbox, no noise.
+          </p>
+
+          <!-- EMAIL SIGN-UP EMBED SLOT
+               Sign-up provider TBD (Substack or similar).
+               Replace the block below with the embed code once chosen.
+               Until then, the placeholder is shown. -->
+          <div class="fh-waitlist__embed-slot" aria-label="Email sign-up coming soon">
+            <p class="embed-placeholder-text">Sign-up opens with launch &middot; Sep 30</p>
+            <span class="fh-waitlist__coming-soon">Form embed goes here — Substack or equivalent</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <section class="for-humans-exits" aria-label="Where to go next">
       <div class="container">
         <h2 class="fh-exits-heading">Where to next?</h2>
         <div class="fh-exit-links">
           <a href="https://podcast.citedconversations.com" class="fh-exit-card" rel="noopener">
             <span class="fh-exit-card__label">Listen</span>
-            <span class="fh-exit-card__title">The podcast →</span>
+            <span class="fh-exit-card__title">The podcast &#8594;</span>
             <span class="fh-exit-card__desc">Full episodes at podcast.citedconversations.com</span>
           </a>
           <a href="/answers/" class="fh-exit-card">
             <span class="fh-exit-card__label">Browse</span>
-            <span class="fh-exit-card__title">The library →</span>
+            <span class="fh-exit-card__title">The library &#8594;</span>
             <span class="fh-exit-card__desc">Source-linked answer pages, each linked to the exact moment it was said</span>
+          </a>
+          <a href="/about/" class="fh-exit-card">
+            <span class="fh-exit-card__label">Read</span>
+            <span class="fh-exit-card__title">The methodology &#8594;</span>
+            <span class="fh-exit-card__desc">How answers are sourced, reviewed, and published</span>
           </a>
         </div>
       </div>
