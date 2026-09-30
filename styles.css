@@ -810,6 +810,18 @@ button:focus-visible { outline: 1px solid var(--red); outline-offset: 3px; }
 /* Schema page */
 .schema-hero { padding-block: var(--space-5) var(--space-4); background: #ffffff; }
 .schema-section { padding-block: var(--space-4) var(--space-7); background: #ffffff; }
+
+/* How machines read this page */
+.machines-hero { padding-block: var(--space-5) var(--space-4); background: #ffffff; }
+.machines-section { padding-block: var(--space-4); background: #ffffff; border-top: 1px solid var(--border); }
+.machines-section + .machines-section { border-top: 1px solid var(--border); }
+.machines-body h3 { font-size: var(--step-1); margin-top: var(--space-5); margin-bottom: var(--space-2); }
+.machines-body h3:first-child { margin-top: 0; }
+.machines-body p { margin-bottom: var(--space-2); }
+
+/* Answers page */
+.answers-hero { padding-block: var(--space-5) var(--space-4); background: #ffffff; }
+.answers-section { padding-block: var(--space-4) var(--space-7); background: #ffffff; }
 .schema-block { margin-bottom: var(--space-5); }
 .schema-block h3 { font-size: var(--step-1); margin-bottom: var(--space-2); }
 .schema-block p { margin-bottom: var(--space-2); }
