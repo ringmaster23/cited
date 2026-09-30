@@ -236,8 +236,9 @@
         <h3 id="waitlist">Get in the loop</h3>
         <p>
           New episodes, new answer pages, and occasional notes on how AI answer engines
-          actually work &#8212; straight to your inbox. Follow along on X too:
-          <a href="https://x.com/citedconv" rel="noopener">@citedconv</a>.
+          actually work &#8212; straight to your inbox. Also on
+          <a href="https://citedconversations.substack.com/" rel="noopener">Substack</a> and
+          <a href="https://x.com/citedconv" rel="noopener">X (@citedconv)</a>.
         </p>
 
         <div class="waitlist-form-wrap">
@@ -261,6 +262,7 @@
           <li><strong>Listen</strong> &#8212; <a href="https://podcast.citedconversations.com" rel="noopener">The podcast &#8594;</a> Full episodes at podcast.citedconversations.com</li>
           <li><strong>Browse</strong> &#8212; <a href="/answers/">The library &#8594;</a> Source-linked answer pages, each linked to the exact moment it was said</li>
           <li><strong>Read</strong> &#8212; <a href="/about/">The methodology &#8594;</a> How answers are sourced, reviewed, and published</li>
+          <li><strong>Subscribe</strong> &#8212; <a href="https://citedconversations.substack.com/" rel="noopener">Substack &#8594;</a> In-depth notes on AI answer engines and how to get cited</li>
           <li><strong>Follow</strong> &#8212; <a href="https://x.com/citedconv" rel="noopener">@citedconv &#8594;</a> Updates on new episodes and answer pages on X</li>
         </ul>
 
@@ -282,6 +284,7 @@
         <a href="/schema/">Schema</a><span class="footer-sep">&middot;</span>
         <a href="/robots.txt">robots.txt</a><span class="footer-sep">&middot;</span>
         <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a><span class="footer-sep">&middot;</span>
+        <a href="https://citedconversations.substack.com/" rel="noopener">Substack</a><span class="footer-sep">&middot;</span>
         <a href="https://x.com/citedconv" rel="noopener">@citedconv</a>
       </nav>
       <p class="footer-tagline">Every claim links to its source. Every speaker is named. &middot; <a href="/for-humans/">For humans &#8594;</a></p>
@@ -314,7 +317,6 @@
       msgEl.textContent   = '';
       msgEl.className     = 'waitlist-msg';
 
-      /* MailerLite embedded form submission endpoint — no API key needed */
       var payload = new FormData();
       payload.append('fields[email]', email);
       payload.append('ml-submit', '1');
@@ -329,7 +331,6 @@
         }
       )
       .then(function () {
-        /* no-cors means opaque response; treat fire-and-forget as success */
         showSuccess();
       })
       .catch(function () {
