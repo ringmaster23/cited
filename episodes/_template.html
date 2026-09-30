@@ -1,373 +1,124 @@
-<!doctype html>
-<!--
-  EPISODE ANSWER PAGE TEMPLATE
-  ████████████████████████████████████████████████████████████████████
-  File:    /episodes/<slug>/index.html
-  Pattern: https://citedconversations.com/episodes/<slug>/
+{
+  "statusCode": 200,
+  "body": "<!doctype html>\n<!--\n  EPISODE ANSWER PAGE TEMPLATE\n  ████████████████████████████████████████████████████████████████████\n  File:    /episodes/<slug>/index.html\n  Pattern: https://citedconversations.com/episodes/<slug>/\n\n  ── INSTRUCTIONS FOR GENERATING EPISODE PAGES ────────────────────────\n  1. Copy this file to /episodes/<slug>/index.html\n  2. Replace every {{ PLACEHOLDER }} with real values from the transcript\n  3. Add the new URL to sitemap.xml before committing\n  4. Casey reviews attribution and timestamp links before commit\n  5. No claim page ships without a working, clickable timestamp link\n\n  ── TRANSISTOR TIMESTAMP FORMAT (CORRECTED) ──────────────────────────\n  Use a QUERY PARAMETER, not a URL fragment. The fragment form (#t=) does not work.\n\n    CORRECT:   https://podcast.citedconversations.com/episodes/<episode-slug>?t=<seconds>\n    INCORRECT: https://podcast.citedconversations.com/episodes/<episode-slug>#t=<seconds>\n\n  Examples:  1m 23s → ?t=83   |   6m 00s → ?t=360   |   13m 43s → ?t=823\n\n  MANDATORY CHECK: open every timestamp link in a browser before committing.\n\n  ── QUALITY GATES ─────────────────────────────────────────────────────\n  ✓ Every answer has a working timestamp link (tested in a browser)\n  ✓ Full schema: FAQPage + PodcastEpisode + AudioObject + Person (sameAs)\n      + Organization + Quotation (one per Q&A) + BreadcrumbList\n  ✓ Human has reviewed speaker attribution before commit\n  ✓ Page renders fully with JavaScript disabled\n  ✓ sitemap.xml updated before commit\n\n  ── VISIBLE JSON-LD NOTE ──────────────────────────────────────────────\n  The <details> block near the page foot renders the structured data\n  as syntax-highlighted HTML for human inspection. Keep it in sync\n  with the <script type=\"application/ld+json\"> in <head>.\n  The machine reads the <script>. The human reads the <details>.\n  Never replace one with the other.\n-->\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n\n  <script async src=\"https://www.googletagmanager.com/gtag/js?id=G-Y9K5VS79MD\"></script>\n  <script>\n    window.dataLayer = window.dataLayer || [];\n    function gtag(){dataLayer.push(arguments);}\n    gtag('js', new Date());\n    gtag('config', 'G-Y9K5VS79MD');\n  </script>\n\n  <title>{{ PAGE_TITLE }} &#8212; Cited Conversations</title>\n  <meta name=\"description\" content=\"{{ PAGE_DESCRIPTION }}\" />\n\n  <link rel=\"canonical\" href=\"https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/\" />\n  <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/favicon-32x32.png\" />\n  <link rel=\"apple-touch-icon\" href=\"/favicon-256.png\" />\n\n  <meta property=\"og:type\" content=\"article\" />\n  <meta property=\"og:url\" content=\"https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/\" />\n  <meta property=\"og:title\" content=\"{{ PAGE_TITLE }} &#8212; Cited Conversations\" />\n  <meta property=\"og:description\" content=\"{{ PAGE_DESCRIPTION }}\" />\n  <meta property=\"og:image\" content=\"https://citedconversations.com/og-image.png\" />\n  <meta property=\"og:site_name\" content=\"Cited Conversations\" />\n\n  <meta name=\"twitter:card\" content=\"summary_large_image\" />\n  <meta name=\"twitter:title\" content=\"{{ PAGE_TITLE }} &#8212; Cited Conversations\" />\n  <meta name=\"twitter:description\" content=\"{{ PAGE_DESCRIPTION }}\" />\n  <meta name=\"twitter:image\" content=\"https://citedconversations.com/og-image.png\" />\n\n  <link rel=\"stylesheet\" href=\"/styles.css\" />\n\n  <!-- ████████████████████████████████████████████████████████████████\n       Schema.org structured data — machine-readable layer\n       Keep this in sync with the visible JSON-LD block at page foot.\n       ████████████████████████████████████████████████████████████████ -->\n  <script type=\"application/ld+json\">\n  {\n    \"@context\": \"https://schema.org\",\n    \"@graph\": [\n      {\n        \"@type\": \"WebPage\",\n        \"@id\": \"https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#faqpage\",\n        \"url\": \"https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/\",\n        \"name\": \"{{ PAGE_TITLE }}\",\n        \"description\": \"{{ PAGE_DESCRIPTION }}\",\n        \"isPartOf\": { \"@id\": \"https://citedconversations.com/#website\" },\n        \"breadcrumb\": { \"@id\": \"https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#breadcrumb\" },\n        \"mainEntity\": [\n          {\n            \"@type\": \"Question\",\n            \"name\": \"{{ QUESTION_1 }}\",\n            \"acceptedAnswer\": {\n              \"@type\": \"Answer\",\n              \"text\": \"{{ ANSWER_1_TEXT }}\",\n              \"author\": { \"@id\": \"https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-{{ SPEAKER_1_ID }}\" },\n              \"citation\": \"{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}\"\n            }\n          }\n        ]\n      },\n      {\n        \"@type\": \"PodcastEpisode\",\n        \"@id\": \"https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#episode\",\n        \"name\": \"{{ EPISODE_TITLE }}\",\n        \"episodeNumber\": {{ EPISODE_NUMBER }},\n        \"description\": \"{{ EPISODE_DESCRIPTION }}\",\n        \"datePublished\": \"{{ DATE_PUBLISHED_ISO }}\",\n        \"url\": \"https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/\",\n        \"partOfSeries\": {\n          \"@type\": \"PodcastSeries\",\n          \"name\": \"Cited Conversations\",\n          \"url\": \"https://podcast.citedconversations.com\"\n        },\n        \"associatedMedia\": { \"@id\": \"https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#audio\" },\n        \"actor\": [\n          { \"@id\": \"https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-casey-cheshire\" },\n          { \"@id\": \"https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-{{ GUEST_SPEAKER_ID }}\" }\n        ]\n      },\n      {\n        \"@type\": \"AudioObject\",\n        \"@id\": \"https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#audio\",\n        \"name\": \"{{ EPISODE_TITLE }}\",\n        \"description\": \"{{ EPISODE_DESCRIPTION }}\",\n        \"contentUrl\": \"{{ TRANSISTOR_AUDIO_URL }}\",\n        \"embedUrl\": \"https://share.transistor.fm/e/{{ TRANSISTOR_EPISODE_ID }}\",\n        \"encodingFormat\": \"audio/mpeg\",\n        \"duration\": \"{{ ISO_8601_DURATION }}\",\n        \"uploadDate\": \"{{ DATE_PUBLISHED_ISO }}\"\n      },\n      {\n        \"@type\": \"Person\",\n        \"@id\": \"https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-casey-cheshire\",\n        \"name\": \"Casey Cheshire\",\n        \"jobTitle\": \"Founder & CEO\",\n        \"worksFor\": { \"@type\": \"Organization\", \"name\": \"Ringmaster\", \"url\": \"https://ringmaster.com\" },\n        \"sameAs\": [\"https://linkedin.com/in/caseycheshire\", \"https://ringmaster.com\"]\n      },\n      {\n        \"@type\": \"Person\",\n        \"@id\": \"https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-{{ GUEST_SPEAKER_ID }}\",\n        \"name\": \"{{ GUEST_SPEAKER_NAME }}\",\n        \"jobTitle\": \"{{ GUEST_SPEAKER_TITLE }}\",\n        \"worksFor\": { \"@type\": \"Organization\", \"name\": \"{{ GUEST_SPEAKER_COMPANY }}\", \"url\": \"{{ GUEST_SPEAKER_COMPANY_URL }}\" },\n        \"sameAs\": [\"{{ GUEST_SPEAKER_LINKEDIN }}\", \"{{ GUEST_SPEAKER_COMPANY_URL }}\"]\n      },\n      {\n        \"@type\": \"Quotation\",\n        \"@id\": \"https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#quotation-1\",\n        \"text\": \"{{ ANSWER_1_TEXT }}\",\n        \"spokenByCharacter\": { \"@id\": \"https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-{{ SPEAKER_1_ID }}\" },\n        \"creator\": { \"@id\": \"https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-{{ SPEAKER_1_ID }}\" },\n        \"dateCreated\": \"{{ DATE_PUBLISHED_ISO }}\",\n        \"isPartOf\": { \"@id\": \"https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#episode\" },\n        \"citation\": \"{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}\"\n      },\n      {\n        \"@type\": \"BreadcrumbList\",\n        \"@id\": \"https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#breadcrumb\",\n        \"itemListElement\": [\n          { \"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://citedconversations.com/\" },\n          { \"@type\": \"ListItem\", \"position\": 2, \"name\": \"Answers\", \"item\": \"https://citedconversations.com/answers/\" },\n          { \"@type\": \"ListItem\", \"position\": 3, \"name\": \"{{ EPISODE_TITLE }}\", \"item\": \"https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/\" }\n        ]\n      }\n    ]\n  }\n  </script>\n
+  <!-- Answer-page density overrides — scoped to this document only.
+       styles.css is NOT modified; all shared-class overrides live here. -->
+  <style>
+    /* === Hero === */
+    /* episode-hero: styles.css padding-block: var(--space-5) var(--space-4) = 2.5rem 2rem */
+    .episode-hero { padding-block: 0.5rem 0.3rem; }
 
-  ── INSTRUCTIONS FOR GENERATING EPISODE PAGES ────────────────────────
-  1. Copy this file to /episodes/<slug>/index.html
-  2. Replace every {{ PLACEHOLDER }} with real values from the transcript
-  3. Add the new URL to sitemap.xml before committing
-  4. Casey reviews attribution and timestamp links before commit
-  5. No claim page ships without a working, clickable timestamp link
-
-  ── TRANSISTOR TIMESTAMP FORMAT (CORRECTED) ──────────────────────────
-  Use a QUERY PARAMETER, not a URL fragment. The fragment form (#t=) does not work.
-
-    CORRECT:   https://podcast.citedconversations.com/episodes/<episode-slug>?t=<seconds>
-    INCORRECT: https://podcast.citedconversations.com/episodes/<episode-slug>#t=<seconds>
-
-  Examples:  1m 23s → ?t=83   |   6m 00s → ?t=360   |   13m 43s → ?t=823
-
-  MANDATORY CHECK: open every timestamp link in a browser before committing.
-
-  ── QUALITY GATES ─────────────────────────────────────────────────────
-  ✓ Every answer has a working timestamp link (tested in a browser)
-  ✓ Full schema: FAQPage + PodcastEpisode + AudioObject + Person (sameAs)
-      + Organization + Quotation (one per Q&A) + BreadcrumbList
-  ✓ Human has reviewed speaker attribution before commit
-  ✓ Page renders fully with JavaScript disabled
-  ✓ sitemap.xml updated before commit
-
-  ── VISIBLE JSON-LD NOTE ──────────────────────────────────────────────
-  The <details> block near the page foot renders the structured data
-  as syntax-highlighted HTML for human inspection. Keep it in sync
-  with the <script type="application/ld+json"> in <head>.
-  The machine reads the <script>. The human reads the <details>.
-  Never replace one with the other.
--->
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y9K5VS79MD"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-Y9K5VS79MD');
-  </script>
-
-  <title>{{ PAGE_TITLE }} &#8212; Cited Conversations</title>
-  <meta name="description" content="{{ PAGE_DESCRIPTION }}" />
-
-  <link rel="canonical" href="https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="apple-touch-icon" href="/favicon-256.png" />
-
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/" />
-  <meta property="og:title" content="{{ PAGE_TITLE }} &#8212; Cited Conversations" />
-  <meta property="og:description" content="{{ PAGE_DESCRIPTION }}" />
-  <meta property="og:image" content="https://citedconversations.com/og-image.png" />
-  <meta property="og:site_name" content="Cited Conversations" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{{ PAGE_TITLE }} &#8212; Cited Conversations" />
-  <meta name="twitter:description" content="{{ PAGE_DESCRIPTION }}" />
-  <meta name="twitter:image" content="https://citedconversations.com/og-image.png" />
-
-  <link rel="stylesheet" href="/styles.css" />
-
-  <!-- ████████████████████████████████████████████████████████████████
-       Schema.org structured data — machine-readable layer
-       Keep this in sync with the visible JSON-LD block at page foot.
-       ████████████████████████████████████████████████████████████████ -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebPage",
-        "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#faqpage",
-        "url": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/",
-        "name": "{{ PAGE_TITLE }}",
-        "description": "{{ PAGE_DESCRIPTION }}",
-        "isPartOf": { "@id": "https://citedconversations.com/#website" },
-        "breadcrumb": { "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#breadcrumb" },
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "{{ QUESTION_1 }}",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "{{ ANSWER_1_TEXT }}",
-              "author": { "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-{{ SPEAKER_1_ID }}" },
-              "citation": "{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}"
-            }
-          }
-        ]
-      },
-      {
-        "@type": "PodcastEpisode",
-        "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#episode",
-        "name": "{{ EPISODE_TITLE }}",
-        "episodeNumber": {{ EPISODE_NUMBER }},
-        "description": "{{ EPISODE_DESCRIPTION }}",
-        "datePublished": "{{ DATE_PUBLISHED_ISO }}",
-        "url": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/",
-        "partOfSeries": {
-          "@type": "PodcastSeries",
-          "name": "Cited Conversations",
-          "url": "https://podcast.citedconversations.com"
-        },
-        "associatedMedia": { "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#audio" },
-        "actor": [
-          { "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-casey-cheshire" },
-          { "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-{{ GUEST_SPEAKER_ID }}" }
-        ]
-      },
-      {
-        "@type": "AudioObject",
-        "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#audio",
-        "name": "{{ EPISODE_TITLE }}",
-        "description": "{{ EPISODE_DESCRIPTION }}",
-        "contentUrl": "{{ TRANSISTOR_AUDIO_URL }}",
-        "embedUrl": "https://share.transistor.fm/e/{{ TRANSISTOR_EPISODE_ID }}",
-        "encodingFormat": "audio/mpeg",
-        "duration": "{{ ISO_8601_DURATION }}",
-        "uploadDate": "{{ DATE_PUBLISHED_ISO }}"
-      },
-      {
-        "@type": "Person",
-        "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-casey-cheshire",
-        "name": "Casey Cheshire",
-        "jobTitle": "Founder & CEO",
-        "worksFor": { "@type": "Organization", "name": "Ringmaster", "url": "https://ringmaster.com" },
-        "sameAs": ["https://linkedin.com/in/caseycheshire", "https://ringmaster.com"]
-      },
-      {
-        "@type": "Person",
-        "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-{{ GUEST_SPEAKER_ID }}",
-        "name": "{{ GUEST_SPEAKER_NAME }}",
-        "jobTitle": "{{ GUEST_SPEAKER_TITLE }}",
-        "worksFor": { "@type": "Organization", "name": "{{ GUEST_SPEAKER_COMPANY }}", "url": "{{ GUEST_SPEAKER_COMPANY_URL }}" },
-        "sameAs": ["{{ GUEST_SPEAKER_LINKEDIN }}", "{{ GUEST_SPEAKER_COMPANY_URL }}"]
-      },
-      {
-        "@type": "Quotation",
-        "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#quotation-1",
-        "text": "{{ ANSWER_1_TEXT }}",
-        "spokenByCharacter": { "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-{{ SPEAKER_1_ID }}" },
-        "creator": { "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-{{ SPEAKER_1_ID }}" },
-        "dateCreated": "{{ DATE_PUBLISHED_ISO }}",
-        "isPartOf": { "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#episode" },
-        "citation": "{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}"
-      },
-      {
-        "@type": "BreadcrumbList",
-        "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#breadcrumb",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://citedconversations.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Answers", "item": "https://citedconversations.com/answers/" },
-          { "@type": "ListItem", "position": 3, "name": "{{ EPISODE_TITLE }}", "item": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/" }
-        ]
-      }
-    ]
-  }
-  </script>
-</head>
-<body>
-
-  <nav class="site-nav" aria-label="Site navigation">
-    <div class="container nav-inner">
-      <a href="/" class="nav-logo" aria-label="Cited Conversations home">
-        <span class="nav-wordmark-name"><span class="wm-cited">Cited</span><span class="wm-conversations"> Conversations</span></span>
-        <span class="nav-wordmark-sub">by Ringmaster</span>
-      </a>
-      <ul class="nav-links" role="list">
-        <li><a href="/answers/">Answers</a></li>
-        <li><a href="/about/">Methodology</a></li>
-        <li><a href="/faq/">FAQ</a></li>
-        <li><a href="/schema/">Schema</a></li>
-        <li><a href="/robots.txt">robots.txt</a></li>
-        <li><a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a></li>
-      </ul>
-      <div class="nav-actions">
-        <a href="/for-humans/" class="nav-btn">New here? For humans &#8594;</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ── Episode hero ── -->
-  <section class="episode-hero" aria-labelledby="episode-title">
-    <div class="container">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="/">Home</a> / <a href="/answers/">Answers</a> / {{ EPISODE_TITLE }}
-      </nav>
-
-      <h1 id="episode-title">{{ EPISODE_TITLE }}</h1>
-
-      <p style="color: var(--muted); margin-top: var(--space-2); font-size: var(--step-0);">
-        {{ EPISODE_DESCRIPTION }}
-      </p>
-
-      <div class="episode-hero__guests" aria-label="Episode speakers" style="display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-4);">
-
-        <div style="padding: var(--space-2) var(--space-3); background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg);">
-          <p style="font-weight: 600; color: var(--ink);">Casey Cheshire</p>
-          <p style="font-size: var(--step--1); color: var(--muted);">Founder &amp; CEO, Ringmaster</p>
-          <div style="display: flex; gap: var(--space-2); margin-top: 0.5rem; font-size: var(--step--1);">
-            <a href="https://linkedin.com/in/caseycheshire" rel="noopener">LinkedIn</a>
-            <a href="https://ringmaster.com" rel="noopener">Ringmaster</a>
-          </div>
-        </div>
-
-        <div style="padding: var(--space-2) var(--space-3); background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg);">
-          <p style="font-weight: 600; color: var(--ink);">{{ GUEST_SPEAKER_NAME }}</p>
-          <p style="font-size: var(--step--1); color: var(--muted);">{{ GUEST_SPEAKER_TITLE }}, {{ GUEST_SPEAKER_COMPANY }}</p>
-          <div style="display: flex; gap: var(--space-2); margin-top: 0.5rem; font-size: var(--step--1);">
-            <a href="{{ GUEST_SPEAKER_LINKEDIN }}" rel="noopener">LinkedIn</a>
-            <a href="{{ GUEST_SPEAKER_COMPANY_URL }}" rel="noopener">{{ GUEST_SPEAKER_COMPANY }}</a>
-          </div>
-        </div>
-
-      </div>
-
-      <p style="margin-top: var(--space-3); font-size: var(--step--1); color: var(--muted);">
-        Published {{ DATE_PUBLISHED_HUMAN }} &middot;
-        <a href="https://podcast.citedconversations.com/episodes/{{ TRANSISTOR_EPISODE_SLUG }}" rel="noopener">
-          Listen to the full episode &#8599;
-        </a>
-      </p>
-    </div>
-  </section>
-
-  <!-- ── Q&A answers ──
-    TIMESTAMP LINKS — use ?t=<seconds> (query parameter, not fragment).
-    Test every link in a browser before committing.
-  -->
-  <section class="episode-body" aria-labelledby="qa-heading">
-    <div class="container">
-      <h2 id="qa-heading" class="sr-only">Questions and answers from this episode</h2>
-
-      <div style="display: flex; flex-direction: column; gap: var(--space-5);">
-
-        <!-- Q&A Item 1 -->
-        <article id="q1">
-          <p style="font-family: var(--font-mono); font-size: var(--step--1); color: var(--subtle); margin-bottom: 0.5rem;">{{ EPISODE_SLUG }}#q1</p>
-          <h3 style="font-size: var(--step-1); margin-bottom: var(--space-2);">{{ QUESTION_1 }}</h3>
-          <!-- Answer panel — human speech -->
-          <div style="background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-3); margin-bottom: var(--space-2);">
-            <p>{{ ANSWER_1_TEXT }}</p>
-          </div>
-          <div style="display: flex; align-items: center; gap: 0.6rem; font-size: var(--step--1); color: var(--muted);">
-            <span><strong style="color: var(--ink);">{{ SPEAKER_1_NAME }}</strong> &middot; {{ SPEAKER_1_TITLE }}, {{ SPEAKER_1_COMPANY }}</span>
-            <span style="color: var(--subtle);">&middot;</span>
-            <a href="{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}" class="citation-ts" rel="noopener" aria-label="Listen to this answer in the episode">&#9654; {{ TIMESTAMP_DISPLAY_Q1 }}</a>
-          </div>
-        </article>
-
-        <!-- Q&A Item 2 -->
-        <article id="q2">
-          <p style="font-family: var(--font-mono); font-size: var(--step--1); color: var(--subtle); margin-bottom: 0.5rem;">{{ EPISODE_SLUG }}#q2</p>
-          <h3 style="font-size: var(--step-1); margin-bottom: var(--space-2);">{{ QUESTION_2 }}</h3>
-          <div style="background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-3); margin-bottom: var(--space-2);">
-            <p>{{ ANSWER_2_TEXT }}</p>
-          </div>
-          <div style="display: flex; align-items: center; gap: 0.6rem; font-size: var(--step--1); color: var(--muted);">
-            <span><strong style="color: var(--ink);">{{ SPEAKER_2_NAME }}</strong> &middot; {{ SPEAKER_2_TITLE }}, {{ SPEAKER_2_COMPANY }}</span>
-            <span style="color: var(--subtle);">&middot;</span>
-            <a href="{{ TRANSISTOR_TIMESTAMP_URL_Q2 }}" class="citation-ts" rel="noopener" aria-label="Listen to this answer in the episode">&#9654; {{ TIMESTAMP_DISPLAY_Q2 }}</a>
-          </div>
-        </article>
-
-        <!-- Add additional Q&A blocks as needed -->
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Visible JSON-LD for human inspection — keep in sync with <head> <script> block exactly.
-       The machine reads the <script>. This <details> is for humans (and curious machines).
-       Never replace one with the other.
-  -->
-  <section style="padding-block: var(--space-4) var(--space-6); background: #ffffff; border-top: 1px solid var(--border);">
-    <div class="container">
-      <details>
-        <summary style="font-size: var(--step--1); font-weight: 600; color: var(--muted); cursor: pointer; margin-bottom: var(--space-2);">Structured data &#8212; what machines read on this page</summary>
-        <p style="font-size: var(--step--1); color: var(--muted); margin-bottom: var(--space-2);">
-          The JSON-LD below is the machine-readable version of this page.
-          The same block is in a <code>&lt;script type="application/ld+json"&gt;</code>
-          tag in the page head for crawlers. This copy is for human inspection.
-        </p>
-        <pre style="font-size: 0.72rem;"><code>{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "name": "{{ PAGE_TITLE }}",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "{{ QUESTION_1 }}",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "{{ ANSWER_1_TEXT }}",
-            "author": "{{ SPEAKER_1_NAME }}",
-            "citation": "{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}"
-          }
-        }
-      ]
-    },
-    {
-      "@type": "Quotation",
-      "text": "{{ ANSWER_1_TEXT }}",
-      "spokenByCharacter": "{{ SPEAKER_1_NAME }}",
-      "citation": "{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}"
-    },
-    {
-      "@type": "PodcastEpisode",
-      "name": "{{ EPISODE_TITLE }}",
-      "episodeNumber": {{ EPISODE_NUMBER }},
-      "datePublished": "{{ DATE_PUBLISHED_ISO }}"
-    },
-    {
-      "@type": "Person",
-      "name": "{{ GUEST_SPEAKER_NAME }}",
-      "jobTitle": "{{ GUEST_SPEAKER_TITLE }}",
-      "sameAs": "{{ GUEST_SPEAKER_LINKEDIN }}"
+    /* h1: styles.css font-size: var(--step-4) = clamp(2.4rem...4rem) */
+    .episode-hero h1 {
+      font-size: var(--step-1);
+      margin-bottom: 0;
+      line-height: 1.2;
     }
-  ]
-}</code></pre>
-      </details>
-    </div>
-  </section>
 
-  <!-- Full episode link -->
-  <section style="padding-block: var(--space-3) var(--space-4); background: #ffffff; border-top: 1px solid var(--border);">
-    <div class="container">
-      <p class="section-label">Full episode</p>
-      <p>
-        <a href="https://podcast.citedconversations.com/episodes/{{ TRANSISTOR_EPISODE_SLUG }}" rel="noopener" style="font-weight: 600;">
-          Listen to Episode {{ EPISODE_NUMBER }}: {{ EPISODE_TITLE }} &#8599;
-        </a>
-      </p>
-    </div>
-  </section>
+    /* breadcrumb: styles.css margin-bottom: var(--space-2) = 1rem */
+    .episode-hero .breadcrumb { margin-bottom: 0.2rem; }
 
-  <footer class="site-footer" role="contentinfo">
-    <div class="container">
-      <div class="footer-top">
-        <span class="footer-brand-name"><span style="color:#0A0A0A">Cited</span><span style="color:#A7011F"> Conversations</span></span>
-        <span class="footer-brand-sep">&middot;</span>
-        <span class="footer-byline">A <a href="https://ringmaster.com" rel="noopener">Ringmaster</a> reference library</span>
-      </div>
-      <nav class="footer-nav-row" aria-label="Footer navigation">
-        <a href="/about/">Methodology</a><span class="footer-sep">&middot;</span>
-        <a href="/answers/">Answers</a><span class="footer-sep">&middot;</span>
-        <a href="/episodes/">Episodes</a><span class="footer-sep">&middot;</span>
-        <a href="/faq/">FAQ</a><span class="footer-sep">&middot;</span>
-        <a href="/schema/">Schema</a><span class="footer-sep">&middot;</span>
-        <a href="/robots.txt">robots.txt</a><span class="footer-sep">&middot;</span>
-        <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a><span class="footer-sep">&middot;</span>
-        <a href="https://x.com/citedconv" rel="noopener">@citedconv</a>
-      </nav>
-      <p class="footer-tagline">Every claim links to its source. Every speaker is named.</p>
-    </div>
-  </footer>
+    /* Intro paragraph and published line — inline margin-top values overridden */
+    .episode-hero p { margin-top: 0.2rem !important; }
 
-</body>
-</html>
+    /* === Speakers / provenance section === */
+    /* Inline padding-block: var(--space-4) = 2rem */
+    #provenance { padding-block: 0.4rem !important; }
+    #provenance .section-label { margin-bottom: 0.1rem; }
+    #provenance > .container > p { margin-bottom: 0.25rem !important; }
+    /* Speaker card row gap */
+    #provenance .container > div { gap: var(--space-1) !important; }
+    /* Speaker card padding */
+    #provenance .container > div > div {
+      padding: 0.35rem 0.6rem !important;
+      min-width: 0 !important;
+    }
+    /* Speaker card sub-paragraph margins */
+    #provenance .container > div > div p { margin-bottom: 0.15rem !important; }
+    /* Quote inset border-left */
+    #provenance .container > div > div p[style*="border-left"] {
+      padding-left: 0.4rem !important;
+      margin-bottom: 0.1rem !important;
+    }
+
+    /* === Q&A body === */
+    /* episode-body: styles.css padding-block: var(--space-4) var(--space-7) = 2rem 4rem */
+    .episode-body { padding-block: 0.4rem 0.6rem; }
+
+    /* qa-list gap: styles.css var(--space-4) = 2rem */
+    .qa-list { gap: 0; }
+
+    /* qa-item padding: styles.css var(--space-3) = 1.5rem */
+    .qa-item { padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    .qa-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    /* Remove explicit <hr> between Q&As */
+    .qa-list hr { display: none; }
+
+    /* Template column flex div (uses gap: var(--space-5) instead of .qa-list) */
+    .episode-body .container > div[style*="flex-direction: column"] { gap: 0 !important; }
+    .episode-body .container > div[style*="flex-direction: column"] > article {
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .episode-body .container > div[style*="flex-direction: column"] > article:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    /* Q ID slug line margin */
+    .qa-item > p:first-child,
+    .episode-body article > p:first-child { margin-bottom: 0.15rem; }
+
+    /* Question h3: var(--step-1) → var(--step-0); margin-bottom: var(--space-2) → 0.25rem */
+    .qa-item h3,
+    .episode-body article h3 { font-size: var(--step-0); margin-bottom: 0.25rem !important; }
+
+    /* Answer box: flatten card */
+    .qa-item__paper {
+      background: none;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      margin-bottom: 0.2rem;
+    }
+    /* Template inline answer div */
+    .episode-body article > div[style*="background: var(--surface-card)"] {
+      background: none !important;
+      border: none !important;
+      border-radius: 0 !important;
+      padding: 0 !important;
+      margin-bottom: 0.2rem !important;
+    }
+
+    /* Citation bar: strip box */
+    .citation {
+      background: none;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      margin-bottom: 0;
+      gap: 0.4rem;
+    }
+    /* Template inline citation div */
+    .episode-body article > div[style*="display: flex"][style*="align-items: center"] {
+      background: none !important;
+      border: none !important;
+      padding: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    /* === Bottom sections (Structured data, Full episode, Other conversations) ===
+       All use inline padding-block; override all sections after .episode-body.    */
+    .episode-body ~ section { padding-block: 0.4rem 0.5rem !important; }
+
+    /* === Footer === */
+    .site-footer { padding-block: var(--space-2); }
+    .footer-top { margin-bottom: 0.25rem; }
+    .footer-nav-row { margin-bottom: 0.25rem; }
+  </style>
+</head>\n<body>\n\n  <nav class=\"site-nav\" aria-label=\"Site navigation\">\n    <div class=\"container nav-inner\">\n      <a href=\"/\" class=\"nav-logo\" aria-label=\"Cited Conversations home\">\n        <span class=\"nav-wordmark-name\"><span class=\"wm-cited\">Cited</span><span class=\"wm-conversations\"> Conversations</span></span>\n        <span class=\"nav-wordmark-sub\">by Ringmaster</span>\n      </a>\n      <ul class=\"nav-links\" role=\"list\">\n        <li><a href=\"/answers/\">Answers</a></li>\n        <li><a href=\"/about/\">Methodology</a></li>\n        <li><a href=\"/faq/\">FAQ</a></li>\n        <li><a href=\"/schema/\">Schema</a></li>\n        <li><a href=\"/robots.txt\">robots.txt</a></li>\n        <li><a href=\"https://podcast.citedconversations.com\" rel=\"noopener\">Podcast</a></li>\n      </ul>\n      <div class=\"nav-actions\">\n        <a href=\"/for-humans/\" class=\"nav-btn\">New here? For humans &#8594;</a>\n      </div>\n    </div>\n  </nav>\n\n  <!-- ── Episode hero ── -->\n  <section class=\"episode-hero\" aria-labelledby=\"episode-title\">\n    <div class=\"container\">\n      <nav class=\"breadcrumb\" aria-label=\"Breadcrumb\">\n        <a href=\"/\">Home</a> / <a href=\"/answers/\">Answers</a> / {{ EPISODE_TITLE }}\n      </nav>\n\n      <h1 id=\"episode-title\">{{ EPISODE_TITLE }}</h1>\n\n      <p style=\"color: var(--muted); margin-top: var(--space-2); font-size: var(--step-0);\">\n        {{ EPISODE_DESCRIPTION }}\n      </p>\n\n      <div class=\"episode-hero__guests\" aria-label=\"Episode speakers\" style=\"display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-4);\">\n\n        <div style=\"padding: var(--space-2) var(--space-3); background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg);\">\n          <p style=\"font-weight: 600; color: var(--ink);\">Casey Cheshire</p>\n          <p style=\"font-size: var(--step--1); color: var(--muted);\">Founder &amp; CEO, Ringmaster</p>\n          <div style=\"display: flex; gap: var(--space-2); margin-top: 0.5rem; font-size: var(--step--1);\">\n            <a href=\"https://linkedin.com/in/caseycheshire\" rel=\"noopener\">LinkedIn</a>\n            <a href=\"https://ringmaster.com\" rel=\"noopener\">Ringmaster</a>\n          </div>\n        </div>\n\n        <div style=\"padding: var(--space-2) var(--space-3); background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg);\">\n          <p style=\"font-weight: 600; color: var(--ink);\">{{ GUEST_SPEAKER_NAME }}</p>\n          <p style=\"font-size: var(--step--1); color: var(--muted);\">{{ GUEST_SPEAKER_TITLE }}, {{ GUEST_SPEAKER_COMPANY }}</p>\n          <div style=\"display: flex; gap: var(--space-2); margin-top: 0.5rem; font-size: var(--step--1);\">\n            <a href=\"{{ GUEST_SPEAKER_LINKEDIN }}\" rel=\"noopener\">LinkedIn</a>\n            <a href=\"{{ GUEST_SPEAKER_COMPANY_URL }}\" rel=\"noopener\">{{ GUEST_SPEAKER_COMPANY }}</a>\n          </div>\n        </div>\n\n      </div>\n\n      <p style=\"margin-top: var(--space-3); font-size: var(--step--1); color: var(--muted);\">\n        Published {{ DATE_PUBLISHED_HUMAN }} &middot;\n        <a href=\"https://podcast.citedconversations.com/episodes/{{ TRANSISTOR_EPISODE_SLUG }}\" rel=\"noopener\">\n          Listen to the full episode &#8599;\n        </a>\n      </p>\n    </div>\n  </section>\n\n  <!-- ── Q&A answers ──\n    TIMESTAMP LINKS — use ?t=<seconds> (query parameter, not fragment).\n    Test every link in a browser before committing.\n  -->\n  <section class=\"episode-body\" aria-labelledby=\"qa-heading\">\n    <div class=\"container\">\n      <h2 id=\"qa-heading\" class=\"sr-only\">Questions and answers from this episode</h2>\n\n      <div style=\"display: flex; flex-direction: column; gap: var(--space-5);\">\n\n        <!-- Q&A Item 1 -->\n        <article id=\"q1\">\n          <p style=\"font-family: var(--font-mono); font-size: var(--step--1); color: var(--subtle); margin-bottom: 0.5rem;\">{{ EPISODE_SLUG }}#q1</p>\n          <h3 style=\"font-size: var(--step-1); margin-bottom: var(--space-2);\">{{ QUESTION_1 }}</h3>\n          <!-- Answer panel — human speech -->\n          <div style=\"background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-3); margin-bottom: var(--space-2);\">\n            <p>{{ ANSWER_1_TEXT }}</p>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 0.6rem; font-size: var(--step--1); color: var(--muted);\">\n            <span><strong style=\"color: var(--ink);\">{{ SPEAKER_1_NAME }}</strong> &middot; {{ SPEAKER_1_TITLE }}, {{ SPEAKER_1_COMPANY }}</span>\n            <span style=\"color: var(--subtle);\">&middot;</span>\n            <a href=\"{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}\" class=\"citation-ts\" rel=\"noopener\" aria-label=\"Listen to this answer in the episode\">&#9654; {{ TIMESTAMP_DISPLAY_Q1 }}</a>\n          </div>\n        </article>\n\n        <!-- Q&A Item 2 -->\n        <article id=\"q2\">\n          <p style=\"font-family: var(--font-mono); font-size: var(--step--1); color: var(--subtle); margin-bottom: 0.5rem;\">{{ EPISODE_SLUG }}#q2</p>\n          <h3 style=\"font-size: var(--step-1); margin-bottom: var(--space-2);\">{{ QUESTION_2 }}</h3>\n          <div style=\"background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-3); margin-bottom: var(--space-2);\">\n            <p>{{ ANSWER_2_TEXT }}</p>\n          </div>\n          <div style=\"display: flex; align-items: center; gap: 0.6rem; font-size: var(--step--1); color: var(--muted);\">\n            <span><strong style=\"color: var(--ink);\">{{ SPEAKER_2_NAME }}</strong> &middot; {{ SPEAKER_2_TITLE }}, {{ SPEAKER_2_COMPANY }}</span>\n            <span style=\"color: var(--subtle);\">&middot;</span>\n            <a href=\"{{ TRANSISTOR_TIMESTAMP_URL_Q2 }}\" class=\"citation-ts\" rel=\"noopener\" aria-label=\"Listen to this answer in the episode\">&#9654; {{ TIMESTAMP_DISPLAY_Q2 }}</a>\n          </div>\n        </article>\n\n        <!-- Add additional Q&A blocks as needed -->\n\n      </div>\n    </div>\n  </section>\n\n  <!-- Visible JSON-LD for human inspection — keep in sync with <head> <script> block exactly.\n       The machine reads the <script>. This <details> is for humans (and curious machines).\n       Never replace one with the other.\n  -->\n  <section style=\"padding-block: var(--space-4) var(--space-6); background: #ffffff; border-top: 1px solid var(--border);\">\n    <div class=\"container\">\n      <details>\n        <summary style=\"font-size: var(--step--1); font-weight: 600; color: var(--muted); cursor: pointer; margin-bottom: var(--space-2);\">Structured data &#8212; what machines read on this page</summary>\n        <p style=\"font-size: var(--step--1); color: var(--muted); margin-bottom: var(--space-2);\">\n          The JSON-LD below is the machine-readable version of this page.\n          The same block is in a <code>&lt;script type=\"application/ld+json\"&gt;</code>\n          tag in the page head for crawlers. This copy is for human inspection.\n        </p>\n        <pre style=\"font-size: 0.72rem;\"><code>{\n  \"@context\": \"https://schema.org\",\n  \"@graph\": [\n    {\n      \"@type\": \"WebPage\",\n      \"name\": \"{{ PAGE_TITLE }}\",\n      \"mainEntity\": [\n        {\n          \"@type\": \"Question\",\n          \"name\": \"{{ QUESTION_1 }}\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"{{ ANSWER_1_TEXT }}\",\n            \"author\": \"{{ SPEAKER_1_NAME }}\",\n            \"citation\": \"{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}\"\n          }\n        }\n      ]\n    },\n    {\n      \"@type\": \"Quotation\",\n      \"text\": \"{{ ANSWER_1_TEXT }}\",\n      \"spokenByCharacter\": \"{{ SPEAKER_1_NAME }}\",\n      \"citation\": \"{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}\"\n    },\n    {\n      \"@type\": \"PodcastEpisode\",\n      \"name\": \"{{ EPISODE_TITLE }}\",\n      \"episodeNumber\": {{ EPISODE_NUMBER }},\n      \"datePublished\": \"{{ DATE_PUBLISHED_ISO }}\"\n    },\n    {\n      \"@type\": \"Person\",\n      \"name\": \"{{ GUEST_SPEAKER_NAME }}\",\n      \"jobTitle\": \"{{ GUEST_SPEAKER_TITLE }}\",\n      \"sameAs\": \"{{ GUEST_SPEAKER_LINKEDIN }}\"\n    }\n  ]\n}</code></pre>\n      </details>\n    </div>\n  </section>\n\n  <!-- Full episode link -->\n  <section style=\"padding-block: var(--space-3) var(--space-4); background: #ffffff; border-top: 1px solid var(--border);\">\n    <div class=\"container\">\n      <p class=\"section-label\">Full episode</p>\n      <p>\n        <a href=\"https://podcast.citedconversations.com/episodes/{{ TRANSISTOR_EPISODE_SLUG }}\" rel=\"noopener\" style=\"font-weight: 600;\">\n          Listen to Episode {{ EPISODE_NUMBER }}: {{ EPISODE_TITLE }} &#8599;\n        </a>\n      </p>\n    </div>\n  </section>\n\n  <footer class=\"site-footer\" role=\"contentinfo\">\n    <div class=\"container\">\n      <div class=\"footer-top\">\n        <span class=\"footer-brand-name\"><span style=\"color:#0A0A0A\">Cited</span><span style=\"color:#A7011F\"> Conversations</span></span>\n        <span class=\"footer-brand-sep\">&middot;</span>\n        <span class=\"footer-byline\">A <a href=\"https://ringmaster.com\" rel=\"noopener\">Ringmaster</a> reference library</span>\n      </div>\n      <nav class=\"footer-nav-row\" aria-label=\"Footer navigation\">\n        <a href=\"/about/\">Methodology</a><span class=\"footer-sep\">&middot;</span>\n        <a href=\"/answers/\">Answers</a><span class=\"footer-sep\">&middot;</span>\n        <a href=\"/episodes/\">Episodes</a><span class=\"footer-sep\">&middot;</span>\n        <a href=\"/faq/\">FAQ</a><span class=\"footer-sep\">&middot;</span>\n        <a href=\"/schema/\">Schema</a><span class=\"footer-sep\">&middot;</span>\n        <a href=\"/robots.txt\">robots.txt</a><span class=\"footer-sep\">&middot;</span>\n        <a href=\"https://podcast.citedconversations.com\" rel=\"noopener\">Podcast</a><span class=\"footer-sep\">&middot;</span>\n        <a href=\"https://x.com/citedconv\" rel=\"noopener\">@citedconv</a>\n      </nav>\n      <p class=\"footer-tagline\">Every claim links to its source. Every speaker is named.</p>\n    </div>\n  </footer>\n\n</body>\n</html>\n",
+  "finalUrl": "https://raw.githubusercontent.com/ringmaster23/cited/main/episodes/_template.html",
+  "redirected": false,
+  "redirectChain": []
+}
