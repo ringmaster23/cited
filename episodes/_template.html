@@ -1,18 +1,18 @@
 <!doctype html>
 <!--
   EPISODE ANSWER PAGE TEMPLATE
-  ════════════════════════════════════════════════════════════════════
+  ████████████████████████████████████████████████████████████████████
   File:    /episodes/<slug>/index.html
   Pattern: https://citedconversations.com/episodes/<slug>/
 
-  ── INSTRUCTIONS FOR GENERATING EPISODE PAGES ───────────────────
+  ── INSTRUCTIONS FOR GENERATING EPISODE PAGES ────────────────────────
   1. Copy this file to /episodes/<slug>/index.html
   2. Replace every {{ PLACEHOLDER }} with real values from the transcript
   3. Add the new URL to sitemap.xml before committing
   4. Casey reviews attribution and timestamp links before commit
   5. No claim page ships without a working, clickable timestamp link
 
-  ── TRANSISTOR TIMESTAMP FORMAT (CORRECTED) ─────────────────────
+  ── TRANSISTOR TIMESTAMP FORMAT (CORRECTED) ──────────────────────────
   Use a QUERY PARAMETER, not a URL fragment. The fragment form (#t=) does not work.
 
     CORRECT:   https://podcast.citedconversations.com/<episode-slug>?t=<seconds>
@@ -22,7 +22,7 @@
 
   MANDATORY CHECK: open every timestamp link in a browser before committing.
 
-  ── QUALITY GATES ───────────────────────────────────────────────
+  ── QUALITY GATES ─────────────────────────────────────────────────────
   ✓ Every answer has a working timestamp link (tested in a browser)
   ✓ Full schema: FAQPage + PodcastEpisode + AudioObject + Person (sameAs)
       + Organization + Quotation (one per Q&A) + BreadcrumbList
@@ -30,7 +30,7 @@
   ✓ Page renders fully with JavaScript disabled
   ✓ sitemap.xml updated before commit
 
-  ── VISIBLE JSON-LD NOTE ────────────────────────────────────────
+  ── VISIBLE JSON-LD NOTE ──────────────────────────────────────────────
   The <details> block near the page foot renders the structured data
   as syntax-highlighted HTML for human inspection. Keep it in sync
   with the <script type="application/ld+json"> in <head>.
@@ -50,7 +50,7 @@
     gtag('config', 'G-Y9K5VS79MD');
   </script>
 
-  <title>{{ PAGE_TITLE }} — Cited Conversations</title>
+  <title>{{ PAGE_TITLE }} &#8212; Cited Conversations</title>
   <meta name="description" content="{{ PAGE_DESCRIPTION }}" />
 
   <link rel="canonical" href="https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/" />
@@ -59,22 +59,22 @@
 
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/" />
-  <meta property="og:title" content="{{ PAGE_TITLE }} — Cited Conversations" />
+  <meta property="og:title" content="{{ PAGE_TITLE }} &#8212; Cited Conversations" />
   <meta property="og:description" content="{{ PAGE_DESCRIPTION }}" />
   <meta property="og:image" content="https://citedconversations.com/og-image.png" />
   <meta property="og:site_name" content="Cited Conversations" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{{ PAGE_TITLE }} — Cited Conversations" />
+  <meta name="twitter:title" content="{{ PAGE_TITLE }} &#8212; Cited Conversations" />
   <meta name="twitter:description" content="{{ PAGE_DESCRIPTION }}" />
   <meta name="twitter:image" content="https://citedconversations.com/og-image.png" />
 
   <link rel="stylesheet" href="/styles.css" />
 
-  <!-- ══════════════════════════════════════════════════════════════
+  <!-- ████████████████████████████████████████████████████████████████
        Schema.org structured data — machine-readable layer
        Keep this in sync with the visible JSON-LD block at page foot.
-       ══════════════════════════════════════════════════════════════ -->
+       ████████████████████████████████████████████████████████████████ -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -171,235 +171,201 @@
 </head>
 <body>
 
-  <header class="site-header" role="banner">
-    <div class="container">
-      <a href="/" class="raccoon-chip" aria-label="Cited Conversations home">
-        <img src="/favicon-32x32.png" alt="" width="22" height="22" />
-        <span>
-          <span class="raccoon-chip__name"><span>Cited</span> Conversations</span>
-          <span class="raccoon-chip__byline">by Ringmaster</span>
-        </span>
+  <nav class="site-nav" aria-label="Site navigation">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo" aria-label="Cited Conversations home">
+        <span class="nav-wordmark-name"><span class="wm-cited">Cited</span><span class="wm-conversations"> Conversations</span></span>
+        <span class="nav-wordmark-sub">by Ringmaster</span>
       </a>
-      <nav class="header-nav" aria-label="Site navigation">
-        <a href="/episodes/" aria-current="true">Episodes</a>
-        <a href="/about/">Methodology</a>
-        <a href="/faq/">FAQ</a>
-        <a href="/how-machines-read-this/">Schema</a>
-        <a href="/robots.txt">robots.txt</a>
-        <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a>
-        <a href="/for-humans/" class="header-nav__human-door">New here? For humans →</a>
-      </nav>
+      <ul class="nav-links" role="list">
+        <li><a href="/answers/">Answers</a></li>
+        <li><a href="/about/">Methodology</a></li>
+        <li><a href="/faq/">FAQ</a></li>
+        <li><a href="/schema/">Schema</a></li>
+        <li><a href="/robots.txt">robots.txt</a></li>
+        <li><a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="/for-humans/" class="nav-btn">New here? For humans &#8594;</a>
+      </div>
     </div>
-  </header>
+  </nav>
 
-  <!-- ── Episode hero — machine layer ─────────────────────────── -->
+  <!-- ── Episode hero ── -->
   <section class="episode-hero" aria-labelledby="episode-title">
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="/">Home</a> / <a href="/episodes/">Episodes</a> / Episode {{ EPISODE_NUMBER }}
       </nav>
 
-      <p class="episode-hero__number">Episode {{ EPISODE_NUMBER }}</p>
-      <h1 class="episode-hero__title" id="episode-title">{{ EPISODE_TITLE }}</h1>
+      <p class="section-label">Episode {{ EPISODE_NUMBER }}</p>
+      <h1 id="episode-title">{{ EPISODE_TITLE }}</h1>
 
-      <p style="max-width: 60ch; color: var(--text-dim); margin-top: var(--sp-2); font-size: var(--step-0);">
+      <p style="color: var(--muted); margin-top: var(--space-2); font-size: var(--step-0);">
         {{ EPISODE_DESCRIPTION }}
       </p>
 
-      <div class="episode-hero__guests" aria-label="Episode speakers">
+      <div class="episode-hero__guests" aria-label="Episode speakers" style="display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-4);">
 
-        <div class="guest-card">
-          <p class="guest-card__name">Casey Cheshire</p>
-          <p class="guest-card__role">Founder &amp; CEO, Ringmaster</p>
-          <div class="guest-card__links">
-            <a href="https://linkedin.com/in/caseycheshire" rel="noopener" aria-label="Casey Cheshire on LinkedIn">LinkedIn</a>
+        <div style="padding: var(--space-2) var(--space-3); background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg);">
+          <p style="font-weight: 600; color: var(--ink);">Casey Cheshire</p>
+          <p style="font-size: var(--step--1); color: var(--muted);">Founder &amp; CEO, Ringmaster</p>
+          <div style="display: flex; gap: var(--space-2); margin-top: 0.5rem; font-size: var(--step--1);">
+            <a href="https://linkedin.com/in/caseycheshire" rel="noopener">LinkedIn</a>
             <a href="https://ringmaster.com" rel="noopener">Ringmaster</a>
           </div>
         </div>
 
-        <div class="guest-card">
-          <p class="guest-card__name">{{ GUEST_SPEAKER_NAME }}</p>
-          <p class="guest-card__role">{{ GUEST_SPEAKER_TITLE }}, {{ GUEST_SPEAKER_COMPANY }}</p>
-          <div class="guest-card__links">
-            <a href="{{ GUEST_SPEAKER_LINKEDIN }}" rel="noopener" aria-label="{{ GUEST_SPEAKER_NAME }} on LinkedIn">LinkedIn</a>
+        <div style="padding: var(--space-2) var(--space-3); background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg);">
+          <p style="font-weight: 600; color: var(--ink);">{{ GUEST_SPEAKER_NAME }}</p>
+          <p style="font-size: var(--step--1); color: var(--muted);">{{ GUEST_SPEAKER_TITLE }}, {{ GUEST_SPEAKER_COMPANY }}</p>
+          <div style="display: flex; gap: var(--space-2); margin-top: 0.5rem; font-size: var(--step--1);">
+            <a href="{{ GUEST_SPEAKER_LINKEDIN }}" rel="noopener">LinkedIn</a>
             <a href="{{ GUEST_SPEAKER_COMPANY_URL }}" rel="noopener">{{ GUEST_SPEAKER_COMPANY }}</a>
           </div>
         </div>
 
       </div>
 
-      <p style="margin-top: var(--sp-3); font-size: var(--step--1); color: var(--text-muted);">
+      <p style="margin-top: var(--space-3); font-size: var(--step--1); color: var(--muted);">
         Published {{ DATE_PUBLISHED_HUMAN }} &middot;
         <a href="https://podcast.citedconversations.com/{{ TRANSISTOR_EPISODE_SLUG }}" rel="noopener">
-          Listen to the full episode &nearr;
+          Listen to the full episode &#8599;
         </a>
       </p>
     </div>
   </section>
 
-  <!-- ── Q&A answers ───────────────────────────────────────────── -->
-  <!--
+  <!-- ── Q&A answers ──
     TIMESTAMP LINKS — use ?t=<seconds> (query parameter, not fragment).
     Test every link in a browser before committing.
   -->
-  <section class="qa-section" aria-labelledby="qa-heading">
+  <section class="episode-body" aria-labelledby="qa-heading">
     <div class="container">
       <h2 id="qa-heading" class="sr-only">Questions and answers from this episode</h2>
 
-      <div class="qa-list">
+      <div style="display: flex; flex-direction: column; gap: var(--space-5);">
 
-        <!-- ── Q&A Item 1 ─────────────────────────────────────── -->
-        <!--
-          Structure: machine scaffolding (question, ID, citation) holds
-          a paper panel (the human speech). Only the actual words a person
-          said aloud go inside .qa-item__paper.
-        -->
-        <article class="qa-item" id="q1">
-          <p class="qa-item__id">{{ EPISODE_SLUG }}#q1</p>
-          <h3 class="qa-item__question">{{ QUESTION_1 }}</h3>
-          <!-- Paper panel: the answer is human speech — cream on black -->
-          <div class="qa-item__paper">
-            <p class="qa-item__answer">{{ ANSWER_1_TEXT }}</p>
+        <!-- Q&A Item 1 -->
+        <article id="q1">
+          <p style="font-family: var(--font-mono); font-size: var(--step--1); color: var(--subtle); margin-bottom: 0.5rem;">{{ EPISODE_SLUG }}#q1</p>
+          <h3 style="font-size: var(--step-1); margin-bottom: var(--space-2);">{{ QUESTION_1 }}</h3>
+          <!-- Answer panel — human speech -->
+          <div style="background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-3); margin-bottom: var(--space-2);">
+            <p>{{ ANSWER_1_TEXT }}</p>
           </div>
-          <div class="qa-item__citation">
-            <span class="citation-speaker">
-              <strong>{{ SPEAKER_1_NAME }}</strong> &middot;
-              {{ SPEAKER_1_TITLE }}, {{ SPEAKER_1_COMPANY }}
-            </span>
-            <a
-              class="citation-link"
-              href="{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}"
-              rel="noopener"
-              aria-label="Listen: {{ SPEAKER_1_NAME }} at {{ TIMESTAMP_DISPLAY_Q1 }}"
-            >
-              &#9654; {{ TIMESTAMP_DISPLAY_Q1 }}
-            </a>
+          <div style="display: flex; align-items: center; gap: 0.6rem; font-size: var(--step--1); color: var(--muted);">
+            <span><strong style="color: var(--ink);">{{ SPEAKER_1_NAME }}</strong> &middot; {{ SPEAKER_1_TITLE }}, {{ SPEAKER_1_COMPANY }}</span>
+            <span style="color: var(--subtle);">&middot;</span>
+            <a href="{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}" class="citation-ts" rel="noopener" aria-label="Listen to this answer in the episode">&#9654; {{ TIMESTAMP_DISPLAY_Q1 }}</a>
           </div>
         </article>
 
-        <!-- ── Q&A Item 2 ─────────────────────────────────────── -->
-        <article class="qa-item" id="q2">
-          <p class="qa-item__id">{{ EPISODE_SLUG }}#q2</p>
-          <h3 class="qa-item__question">{{ QUESTION_2 }}</h3>
-          <div class="qa-item__paper">
-            <p class="qa-item__answer">{{ ANSWER_2_TEXT }}</p>
+        <!-- Q&A Item 2 -->
+        <article id="q2">
+          <p style="font-family: var(--font-mono); font-size: var(--step--1); color: var(--subtle); margin-bottom: 0.5rem;">{{ EPISODE_SLUG }}#q2</p>
+          <h3 style="font-size: var(--step-1); margin-bottom: var(--space-2);">{{ QUESTION_2 }}</h3>
+          <div style="background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-3); margin-bottom: var(--space-2);">
+            <p>{{ ANSWER_2_TEXT }}</p>
           </div>
-          <div class="qa-item__citation">
-            <span class="citation-speaker">
-              <strong>{{ SPEAKER_2_NAME }}</strong> &middot;
-              {{ SPEAKER_2_TITLE }}, {{ SPEAKER_2_COMPANY }}
-            </span>
-            <a
-              class="citation-link"
-              href="{{ TRANSISTOR_TIMESTAMP_URL_Q2 }}"
-              rel="noopener"
-              aria-label="Listen: {{ SPEAKER_2_NAME }} at {{ TIMESTAMP_DISPLAY_Q2 }}"
-            >
-              &#9654; {{ TIMESTAMP_DISPLAY_Q2 }}
-            </a>
+          <div style="display: flex; align-items: center; gap: 0.6rem; font-size: var(--step--1); color: var(--muted);">
+            <span><strong style="color: var(--ink);">{{ SPEAKER_2_NAME }}</strong> &middot; {{ SPEAKER_2_TITLE }}, {{ SPEAKER_2_COMPANY }}</span>
+            <span style="color: var(--subtle);">&middot;</span>
+            <a href="{{ TRANSISTOR_TIMESTAMP_URL_Q2 }}" class="citation-ts" rel="noopener" aria-label="Listen to this answer in the episode">&#9654; {{ TIMESTAMP_DISPLAY_Q2 }}</a>
           </div>
         </article>
 
-        <!-- Continue with additional <article class="qa-item"> blocks as needed -->
+        <!-- Add additional Q&A blocks as needed -->
 
       </div>
     </div>
   </section>
 
-  <!-- ── Visible JSON-LD block ─────────────────────────────────── -->
-  <!--
-    This is the machine-readable layer made visible for human inspection.
-    It mirrors the <script type="application/ld+json"> in <head> exactly.
-    Keep both in sync. The machine reads the <script>; this is for humans
-    (and curious machines) who read the page source or scroll to the foot.
+  <!-- Visible JSON-LD for human inspection — keep in sync with <head> <script> block exactly.
+       The machine reads the <script>. This <details> is for humans (and curious machines).
+       Never replace one with the other.
   -->
-  <section class="schema-reveal" aria-label="Structured data for this page">
+  <section style="padding-block: var(--space-4) var(--space-6); background: #ffffff; border-top: 1px solid var(--border);">
     <div class="container">
       <details>
-        <summary class="schema-reveal__label">
-          Structured data — what machines read on this page
-        </summary>
-        <div class="schema-reveal__body">
-          <p>
-            The JSON-LD below is the machine-readable version of this page.
-            The same block is in a <code>&lt;script type="application/ld+json"&gt;</code>
-            tag in the page head for crawlers. This copy is for human inspection.
-          </p>
-          <pre class="schema-code" aria-label="JSON-LD structured data"><span class="t-punct">{</span>
-  <span class="t-key">"@context"</span><span class="t-punct">:</span> <span class="t-str">"https://schema.org"</span><span class="t-punct">,</span>
-  <span class="t-key">"@graph"</span><span class="t-punct">: [</span>
-    <span class="t-punct">{</span>
-      <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-type">"FAQPage"</span><span class="t-punct">,</span>
-      <span class="t-key">"name"</span><span class="t-punct">:</span> <span class="t-str">"{{ PAGE_TITLE }}"</span><span class="t-punct">,</span>
-      <span class="t-key">"mainEntity"</span><span class="t-punct">: [</span>
-        <span class="t-punct">{</span>
-          <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-type">"Question"</span><span class="t-punct">,</span>
-          <span class="t-key">"name"</span><span class="t-punct">:</span> <span class="t-str">"{{ QUESTION_1 }}"</span><span class="t-punct">,</span>
-          <span class="t-key">"acceptedAnswer"</span><span class="t-punct">: {</span>
-            <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-type">"Answer"</span><span class="t-punct">,</span>
-            <span class="t-key">"text"</span><span class="t-punct">:</span> <span class="t-str">"{{ ANSWER_1_TEXT }}"</span><span class="t-punct">,</span>
-            <span class="t-key">"author"</span><span class="t-punct">:</span> <span class="t-str">"{{ SPEAKER_1_NAME }}"</span><span class="t-punct">,</span>
-            <span class="t-key">"citation"</span><span class="t-punct">:</span> <span class="t-url">"{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}"</span>
-          <span class="t-punct">}</span>
-        <span class="t-punct">}</span>
-      <span class="t-punct">]</span>
-    <span class="t-punct">},</span>
-    <span class="t-punct">{</span>
-      <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-type">"Quotation"</span><span class="t-punct">,</span>
-      <span class="t-key">"text"</span><span class="t-punct">:</span> <span class="t-str">"{{ ANSWER_1_TEXT }}"</span><span class="t-punct">,</span>
-      <span class="t-key">"spokenByCharacter"</span><span class="t-punct">:</span> <span class="t-name">"{{ SPEAKER_1_NAME }}"</span><span class="t-punct">,</span>
-      <span class="t-key">"citation"</span><span class="t-punct">:</span> <span class="t-url">"{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}"</span>
-    <span class="t-punct">},</span>
-    <span class="t-punct">{</span>
-      <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-type">"PodcastEpisode"</span><span class="t-punct">,</span>
-      <span class="t-key">"name"</span><span class="t-punct">:</span> <span class="t-str">"{{ EPISODE_TITLE }}"</span><span class="t-punct">,</span>
-      <span class="t-key">"episodeNumber"</span><span class="t-punct">:</span> <span class="t-num">{{ EPISODE_NUMBER }}</span><span class="t-punct">,</span>
-      <span class="t-key">"datePublished"</span><span class="t-punct">:</span> <span class="t-str">"{{ DATE_PUBLISHED_ISO }}"</span>
-    <span class="t-punct">},</span>
-    <span class="t-punct">{</span>
-      <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-type">"Person"</span><span class="t-punct">,</span>
-      <span class="t-key">"name"</span><span class="t-punct">:</span> <span class="t-name">"{{ GUEST_SPEAKER_NAME }}"</span><span class="t-punct">,</span>
-      <span class="t-key">"jobTitle"</span><span class="t-punct">:</span> <span class="t-str">"{{ GUEST_SPEAKER_TITLE }}"</span><span class="t-punct">,</span>
-      <span class="t-key">"sameAs"</span><span class="t-punct">:</span> <span class="t-url">"{{ GUEST_SPEAKER_LINKEDIN }}"</span>
-    <span class="t-punct">}</span>
-  <span class="t-punct">]</span>
-<span class="t-punct">}</span></pre>
-        </div>
+        <summary style="font-size: var(--step--1); font-weight: 600; color: var(--muted); cursor: pointer; margin-bottom: var(--space-2);">Structured data &#8212; what machines read on this page</summary>
+        <p style="font-size: var(--step--1); color: var(--muted); margin-bottom: var(--space-2);">
+          The JSON-LD below is the machine-readable version of this page.
+          The same block is in a <code>&lt;script type="application/ld+json"&gt;</code>
+          tag in the page head for crawlers. This copy is for human inspection.
+        </p>
+        <pre style="font-size: 0.72rem;"><code>{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "FAQPage",
+      "name": "{{ PAGE_TITLE }}",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "{{ QUESTION_1 }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ ANSWER_1_TEXT }}",
+            "author": "{{ SPEAKER_1_NAME }}",
+            "citation": "{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Quotation",
+      "text": "{{ ANSWER_1_TEXT }}",
+      "spokenByCharacter": "{{ SPEAKER_1_NAME }}",
+      "citation": "{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}"
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "{{ EPISODE_TITLE }}",
+      "episodeNumber": {{ EPISODE_NUMBER }},
+      "datePublished": "{{ DATE_PUBLISHED_ISO }}"
+    },
+    {
+      "@type": "Person",
+      "name": "{{ GUEST_SPEAKER_NAME }}",
+      "jobTitle": "{{ GUEST_SPEAKER_TITLE }}",
+      "sameAs": "{{ GUEST_SPEAKER_LINKEDIN }}"
+    }
+  ]
+}</code></pre>
       </details>
     </div>
   </section>
 
-  <!-- ── Episode footer ────────────────────────────────────────── -->
-  <div class="episode-footer-strip" aria-label="Full episode">
+  <!-- Full episode link -->
+  <section style="padding-block: var(--space-3) var(--space-4); background: #ffffff; border-top: 1px solid var(--border);">
     <div class="container">
-      <p class="episode-footer-strip__label">Full episode</p>
-      <a
-        class="episode-footer-strip__link"
-        href="https://podcast.citedconversations.com/{{ TRANSISTOR_EPISODE_SLUG }}"
-        rel="noopener"
-        aria-label="Listen to Episode {{ EPISODE_NUMBER }} in full"
-      >
-        Listen to Episode {{ EPISODE_NUMBER }}: {{ EPISODE_TITLE }} &nearr;
-      </a>
+      <p class="section-label">Full episode</p>
+      <p>
+        <a href="https://podcast.citedconversations.com/{{ TRANSISTOR_EPISODE_SLUG }}" rel="noopener" style="font-weight: 600;">
+          Listen to Episode {{ EPISODE_NUMBER }}: {{ EPISODE_TITLE }} &#8599;
+        </a>
+      </p>
     </div>
-  </div>
+  </section>
 
   <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <p>
-        <strong style="color: var(--text-dim);">Cited Conversations</strong> &middot;
-        A <a href="https://ringmaster.com" rel="noopener">Ringmaster</a> reference library
-      </p>
-      <nav aria-label="Footer navigation">
-        <a href="/about/">Methodology</a> &middot;
-        <a href="/episodes/">Episodes</a> &middot;
-        <a href="/faq/">FAQ</a> &middot;
-        <a href="/how-machines-read-this/">Schema</a> &middot;
-        <a href="/robots.txt">robots.txt</a> &middot;
-        <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a> &middot;
+      <div class="footer-top">
+        <span class="footer-brand-name"><span style="color:#0A0A0A">Cited</span><span style="color:#A7011F"> Conversations</span></span>
+        <span class="footer-brand-sep">&middot;</span>
+        <span class="footer-byline">A <a href="https://ringmaster.com" rel="noopener">Ringmaster</a> reference library</span>
+      </div>
+      <nav class="footer-nav-row" aria-label="Footer navigation">
+        <a href="/about/">Methodology</a><span class="footer-sep">&middot;</span>
+        <a href="/answers/">Answers</a><span class="footer-sep">&middot;</span>
+        <a href="/faq/">FAQ</a><span class="footer-sep">&middot;</span>
+        <a href="/schema/">Schema</a><span class="footer-sep">&middot;</span>
+        <a href="/robots.txt">robots.txt</a><span class="footer-sep">&middot;</span>
+        <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a><span class="footer-sep">&middot;</span>
         <a href="https://x.com/citedconv" rel="noopener">@citedconv</a>
       </nav>
-      <p class="footer-byline">Every claim links to its source. Every speaker is named. &middot; <a href="/for-humans/">For humans →</a></p>
+      <p class="footer-tagline">Every claim links to its source. Every speaker is named. &middot; <a href="/for-humans/">For humans &#8594;</a></p>
     </div>
   </footer>
 
