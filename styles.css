@@ -570,6 +570,8 @@ button:focus-visible { outline: 1px solid var(--red); outline-offset: 3px; }
   background: #27ae60;
   display: inline-block;
 }
+.badge-dot--amber { background: #e67e22; }
+/* Green = published with verified transcript | Amber = transcript verification pending */
 
 .table-note {
   padding: var(--space-2) var(--space-3);
