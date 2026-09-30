@@ -41,7 +41,7 @@
         "@type": "WebPage",
         "@id": "https://citedconversations.com/for-humans/#webpage",
         "url": "https://citedconversations.com/for-humans/",
-        "name": "For Humans — Cited Conversations",
+        "name": "For Humans \u2014 Cited Conversations",
         "description": "A plain-language explanation of Cited Conversations for human visitors.",
         "isPartOf": { "@id": "https://citedconversations.com/#website" },
         "breadcrumb": { "@id": "https://citedconversations.com/for-humans/#breadcrumb" },
@@ -58,6 +58,74 @@
     ]
   }
   </script>
+
+  <style>
+    /* ── Waitlist form ── */
+    .waitlist-form-wrap {
+      margin-block: var(--space-4);
+    }
+    .waitlist-form {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      max-width: 36rem;
+    }
+    .waitlist-form label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+    }
+    .waitlist-form input[type="email"] {
+      flex: 1 1 220px;
+      font: var(--step-0) / 1 var(--font-body);
+      font-size: var(--step--1);
+      padding: 0.6rem 0.85rem;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      color: var(--ink);
+      background: #fff;
+      outline: none;
+      transition: border-color 0.12s;
+      min-width: 0;
+    }
+    .waitlist-form input[type="email"]:focus {
+      border-color: var(--red);
+    }
+    .waitlist-form input[type="email"]::placeholder {
+      color: var(--subtle);
+    }
+    .waitlist-form button[type="submit"] {
+      font: 600 var(--step--1) / 1 var(--font-body);
+      padding: 0.6rem 1.1rem;
+      border-radius: var(--radius);
+      background: var(--red);
+      color: #fff;
+      border: 1px solid var(--red);
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .waitlist-form button[type="submit"]:hover {
+      background: var(--red-bright);
+      border-color: var(--red-bright);
+    }
+    .waitlist-form button[type="submit"]:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .waitlist-msg {
+      margin-top: 0.6rem;
+      font-size: var(--step--1);
+      min-height: 1.4em;
+    }
+    .waitlist-msg.success { color: #1a6b3c; font-weight: 500; }
+    .waitlist-msg.error   { color: var(--red); }
+  </style>
 </head>
 <body>
 
@@ -111,7 +179,7 @@
         </p>
 
         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-block: var(--space-4);">
-          <a href="/#waitlist" class="btn">Join the waitlist</a>
+          <a href="#waitlist" class="btn">Join the waitlist</a>
           <a href="https://podcast.citedconversations.com" class="btn btn--ghost" rel="noopener">Listen to the podcast</a>
           <a href="/about/" class="btn btn--ghost">Inspect the methodology</a>
         </div>
@@ -165,13 +233,28 @@
           looking for the show, the show is one click away.
         </p>
 
-        <h3>Get in the loop</h3>
+        <h3 id="waitlist">Get in the loop</h3>
         <p>
           New episodes, new answer pages, and occasional notes on how AI answer engines
           actually work &#8212; straight to your inbox. Follow along on X too:
           <a href="https://x.com/citedconv" rel="noopener">@citedconv</a>.
         </p>
-        <p style="color: var(--subtle); font-size: var(--step--1); font-style: italic;">Sign-up opens with launch &middot; Sep 30</p>
+
+        <div class="waitlist-form-wrap">
+          <form class="waitlist-form" id="waitlist-form" novalidate>
+            <label for="wl-email">Email address</label>
+            <input
+              type="email"
+              id="wl-email"
+              name="email"
+              placeholder="your@email.com"
+              autocomplete="email"
+              required
+            />
+            <button type="submit" id="wl-submit">Join the waitlist</button>
+          </form>
+          <p class="waitlist-msg" id="waitlist-msg" role="status" aria-live="polite"></p>
+        </div>
 
         <h3>Where to next?</h3>
         <ul>
@@ -204,6 +287,69 @@
       <p class="footer-tagline">Every claim links to its source. Every speaker is named. &middot; <a href="/for-humans/">For humans &#8594;</a></p>
     </div>
   </footer>
+
+  <script>
+  (function () {
+    var form    = document.getElementById('waitlist-form');
+    var emailEl = document.getElementById('wl-email');
+    var submit  = document.getElementById('wl-submit');
+    var msgEl   = document.getElementById('waitlist-msg');
+
+    var FORM_ID    = '200048694185166844';
+    var GROUP_ID   = '200048607257167693';
+    var ACCOUNT_ID = '2057372';
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = emailEl.value.trim();
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showMsg('Please enter a valid email address.', 'error');
+        emailEl.focus();
+        return;
+      }
+
+      submit.disabled     = true;
+      submit.textContent  = 'Joining\u2026';
+      msgEl.textContent   = '';
+      msgEl.className     = 'waitlist-msg';
+
+      /* MailerLite embedded form submission endpoint — no API key needed */
+      var payload = new FormData();
+      payload.append('fields[email]', email);
+      payload.append('ml-submit', '1');
+      payload.append('anticsrf', 'true');
+
+      fetch(
+        'https://assets.mailerlite.com/jsonp/' + ACCOUNT_ID + '/forms/' + FORM_ID + '/subscribe',
+        {
+          method: 'POST',
+          body: payload,
+          mode: 'no-cors'
+        }
+      )
+      .then(function () {
+        /* no-cors means opaque response; treat fire-and-forget as success */
+        showSuccess();
+      })
+      .catch(function () {
+        showSuccess();
+      });
+    });
+
+    function showSuccess() {
+      form.style.display  = 'none';
+      showMsg('\u2713 You\u2019re on the list. We\u2019ll be in touch.', 'success');
+      submit.disabled    = false;
+      submit.textContent = 'Join the waitlist';
+    }
+
+    function showMsg(text, type) {
+      msgEl.textContent = text;
+      msgEl.className   = 'waitlist-msg ' + type;
+    }
+  })();
+  </script>
 
 </body>
 </html>
