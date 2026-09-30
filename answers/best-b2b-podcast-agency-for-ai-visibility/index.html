@@ -132,6 +132,79 @@
     ]
   }
   </script>
+
+  <!-- Answer-page density overrides — scoped to this document only.
+       styles.css is NOT modified; all shared-class overrides live here. -->
+  <style>
+    /* === Hero === */
+    /* episode-hero: styles.css padding-block: var(--space-5) var(--space-4) = 2.5rem 2rem */
+    .episode-hero { padding-block: 0.5rem 0.3rem; }
+
+    /* h1: styles.css font-size: var(--step-4) = clamp(2.4rem...4rem) */
+    .episode-hero h1 {
+      font-size: var(--step-1);
+      margin-bottom: 0;
+      line-height: 1.2;
+    }
+
+    /* breadcrumb: styles.css margin-bottom: var(--space-2) = 1rem */
+    .episode-hero .breadcrumb { margin-bottom: 0.2rem; }
+
+    /* Intro paragraph and published line */
+    .episode-hero p { margin-top: 0.2rem !important; }
+
+    /* === Speakers / provenance section === */
+    /* Inline padding-block: var(--space-4) = 2rem */
+    #provenance { padding-block: 0.4rem !important; }
+    #provenance .section-label { margin-bottom: 0.15rem; }
+    #provenance > .container > p { margin-bottom: 0.4rem; }
+
+    /* === Q&A body === */
+    /* episode-body: styles.css padding-block: var(--space-4) var(--space-7) = 2rem 4rem */
+    .episode-body { padding-block: 0.4rem 1rem; }
+
+    /* qa-list: styles.css gap: var(--space-4) = 2rem — biggest spacer on the page */
+    .qa-list { gap: 0; }
+
+    /* qa-item: styles.css padding-bottom: var(--space-3) = 1.5rem */
+    .qa-item { padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    .qa-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    /* Remove the explicit <hr> between Q&As — qa-item border-bottom handles separation */
+    .qa-list hr { display: none; }
+
+    /* Q ID slug line margin */
+    .qa-item > p:first-child { margin-bottom: 0.2rem; }
+
+    /* Question h3: styles.css font-size: var(--step-1); margin-bottom: var(--space-2) = 1rem */
+    .qa-item h3 { font-size: var(--step-0); margin-bottom: 0.3rem; }
+
+    /* Answer box: flatten the card — remove background, border, padding */
+    /* styles.css: .qa-item__paper { background: var(--surface-card); border: 1px solid var(--border); padding: var(--space-3); margin-bottom: var(--space-2) } */
+    .qa-item__paper {
+      background: none;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      margin-bottom: 0.25rem;
+    }
+
+    /* Citation bar: strip the bordered box */
+    /* styles.css: .citation { padding: var(--space-2) var(--space-3); background: var(--surface-card); border: 1px solid var(--border); margin-bottom: var(--space-2) } */
+    .citation {
+      background: none;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      margin-bottom: 0;
+      gap: 0.4rem;
+    }
+
+    /* === Footer === */
+    .site-footer { padding-block: var(--space-2); }
+    .footer-top { margin-bottom: 0.25rem; }
+    .footer-nav-row { margin-bottom: 0.25rem; }
+  </style>
 </head>
 <body>
 
