@@ -1,8 +1,35 @@
+# Cloudflare Pages _redirects for citedconversations.com
+# Updated: 2026-09-30
+
+# ── Existing structural redirects ───────────────────────────────────────────────
+
 /how-machines-read-this/ /schema/ 301
 /how-machines-read-this /schema/ 301
 /expert-answers/* /answers/ 301
 /expert-answers /answers/ 301
+
+# ── Episode pages: /episodes/ paths → /answers/ ───────────────────────────────
+# These redirect the long episode slugs under /episodes/ to the /answers/ pages.
+
 /episodes/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/ /answers/best-b2b-podcast-agency-for-ai-visibility/ 301
 /episodes/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001 /answers/best-b2b-podcast-agency-for-ai-visibility/ 301
 /episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/ /answers/best-agency-to-get-my-brand-cited-by-chatgpt/ 301
 /episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002 /answers/best-agency-to-get-my-brand-cited-by-chatgpt/ 301
+
+# ── Prefix-less episode slugs (no /episodes/ prefix) → real episode pages ─────
+# Source: JSON-LD citation fields using podcast.citedconversations.com domain;
+# GPTBot strips subdomain and requests these paths on the root domain.
+# Fix: 301 to the canonical /episodes/SLUG/ URL (with and without trailing slash).
+
+/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/ /episodes/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/ 301
+/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001 /episodes/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/ 301
+/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/ /episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/ 301
+/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002 /episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/ 301
+
+# Pattern rule: any future prefix-less episode slug → /episodes/same-slug/
+# Catches /best-*-episode-NNN and /best-*-episode-NNN/ (with and without trailing slash).
+/best-* /episodes/best-* 301
+
+# ── Favicon ───────────────────────────────────────────────────────────────────────
+# 46 x 404 on /favicon.ico — serve the existing 32x32 PNG.
+/favicon.ico /favicon-32x32.png 302
