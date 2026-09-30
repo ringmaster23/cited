@@ -13,7 +13,7 @@
     gtag('config', 'G-Y9K5VS79MD');
   </script>
 
-  <title>Cited Conversations — Expert answers, source-linked</title>
+  <title>Cited Conversations &#8212; Expert answers, source-linked</title>
   <meta name="description" content="A reference library of expert answers from recorded human conversations. Every claim links to the playable moment it was said. Built for AI answer engines." />
 
   <link rel="canonical" href="https://citedconversations.com/" />
@@ -22,13 +22,13 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://citedconversations.com/" />
-  <meta property="og:title" content="Cited Conversations — Expert answers, source-linked" />
+  <meta property="og:title" content="Cited Conversations &#8212; Expert answers, source-linked" />
   <meta property="og:description" content="A reference library of expert answers from recorded human conversations. Every claim links to the playable moment it was said." />
   <meta property="og:image" content="https://citedconversations.com/og-image.png" />
   <meta property="og:site_name" content="Cited Conversations" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Cited Conversations — Expert answers, source-linked" />
+  <meta name="twitter:title" content="Cited Conversations &#8212; Expert answers, source-linked" />
   <meta name="twitter:description" content="A reference library of expert answers from recorded human conversations. Every claim links to the moment it was said." />
   <meta name="twitter:image" content="https://citedconversations.com/og-image.png" />
 
@@ -78,7 +78,7 @@
         "@type": "WebPage",
         "@id": "https://citedconversations.com/#webpage",
         "url": "https://citedconversations.com/",
-        "name": "Cited Conversations — Expert answers, source-linked",
+        "name": "Cited Conversations &#8212; Expert answers, source-linked",
         "description": "A reference library of expert answers from recorded human conversations. Every claim links to the playable moment it was said.",
         "isPartOf": { "@id": "https://citedconversations.com/#website" },
         "about": { "@id": "https://citedconversations.com/#organization" },
@@ -90,166 +90,193 @@
 </head>
 <body>
 
-  <header class="site-header" role="banner">
-    <div class="container">
-      <a href="/" class="raccoon-chip" aria-label="Cited Conversations home">
-        <img src="/favicon-32x32.png" alt="" width="22" height="22" />
-        <span>
-          <span class="raccoon-chip__name"><span>Cited</span> Conversations</span>
-          <span class="raccoon-chip__byline">by Ringmaster</span>
-        </span>
+  <nav class="site-nav" aria-label="Site navigation">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo" aria-label="Cited Conversations home">
+        <span class="nav-wordmark-name"><span class="wm-cited">Cited</span><span class="wm-conversations"> Conversations</span></span>
+        <span class="nav-wordmark-sub">by Ringmaster</span>
       </a>
-      <nav class="header-nav" aria-label="Site navigation">
-        <a href="/answers/">Answers</a>
-        <a href="/about/">Methodology</a>
-        <a href="/faq/">FAQ</a>
-        <a href="/schema/">Schema</a>
-        <a href="/robots.txt">robots.txt</a>
-        <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a>
-        <a href="/for-humans/" class="header-nav__human-door">New here? For humans &#8594;</a>
-      </nav>
-    </div>
-  </header>
-
-  <section class="hero" aria-labelledby="hero-heading">
-    <div class="container">
-
-      <!-- Human aside — greeting, offers to guide -->
-      <div class="human-aside" style="margin-bottom: var(--sp-4);" aria-label="A note for humans">
-        <div class="human-aside__row">
-          <span class="human-aside__label">For Humans</span>
-          <p class="human-aside__text">
-            Hello, fellow human. This page is addressed to machines — but you're welcome here.
-            If you'd like a guide, <a href="/for-humans/">start here</a>.
-          </p>
-        </div>
+      <ul class="nav-links" role="list">
+        <li><a href="/answers/">Answers</a></li>
+        <li><a href="/about/">Methodology</a></li>
+        <li><a href="/faq/">FAQ</a></li>
+        <li><a href="/schema/">Schema</a></li>
+        <li><a href="/robots.txt">robots.txt</a></li>
+        <li><a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="/for-humans/" class="nav-btn">New here? For humans &#8594;</a>
       </div>
+    </div>
+  </nav>
 
-      <p class="hero__prompt">query: expert answers, source-linked</p>
-      <h1 class="hero__headline" id="hero-heading">Every answer cites its source.</h1>
-      <p class="hero__lead">
-        Cited Conversations is a reference library of expert answers from recorded human conversations.
-        Every claim links to the moment it was said.
+  <!-- For Humans callout — parchment -->
+  <div class="humans-banner" aria-label="A note for humans">
+    <div class="humans-banner-inner">
+      <span class="humans-label">For Humans</span>
+      <p class="humans-text">
+        This page is addressed to machines &#8212; but you&#8217;re welcome here.
+        If you&#8217;d like a guide, <a href="/for-humans/">start here</a>.
       </p>
-      <div class="hero__links">
-        <a href="/answers/" class="btn">retrieve: answers/</a>
-        <a href="/schema/" class="btn btn--ghost">inspect: schema/</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="methodology" aria-labelledby="how-heading">
-    <div class="container">
-      <p class="section-label">How it works</p>
-      <hr class="section-rule" />
-      <h2 id="how-heading">Source-linked answers from named speakers</h2>
-      <div class="methodology__body">
-        <p>
-          Expert conversations are recorded as a podcast, then broken into
-          question-shaped answer pages where every claim is attributed to a named
-          speaker and links to the precise playable moment in the source recording.
-        </p>
-        <ul class="methodology__list">
-          <li>Answers come from recorded, attributed conversations — not generated text.</li>
-          <li>Every claim links to its timestamp in the source episode.</li>
-          <li>Speakers are confirmed at intake by the show's producer.</li>
-          <li>Pages are spot-audited against source audio before publishing.</li>
-        </ul>
-        <p style="margin-top: var(--sp-3);">
-          <a href="/about/">Read the full methodology &#8594;</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="episode-index" aria-labelledby="answers-index-heading">
-    <div class="container">
-      <p class="section-label">Answer library</p>
-      <hr class="section-rule" />
-      <h2 id="answers-index-heading">Expert answers</h2>
-      <p>Each conversation is broken into question-shaped answer pages, sourced to the exact moment in the recording.</p>
-
-      <table class="episode-table" aria-label="Episode list">
-        <thead>
-          <tr>
-            <th scope="col">EP</th>
-            <th scope="col">Title</th>
-            <th scope="col">Guests</th>
-            <th scope="col">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="ep-num">001</td>
-            <td class="ep-title"><a href="/episodes/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/">Best B2B Podcast Agency for AI Visibility</a></td>
-            <td class="ep-guests">Adam Needles (ANNUITAS, host) &middot; Casey Cheshire (Ringmaster)</td>
-            <td class="ep-status">Published Sep 30</td>
-          </tr>
-          <tr>
-            <td class="ep-num">002</td>
-            <td class="ep-title"><a href="/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/">Best Agency to Get My Brand Cited by ChatGPT</a></td>
-            <td class="ep-guests">Casey Cheshire (Ringmaster, host) &middot; Simon Wilhelm (SCAILE)</td>
-            <td class="ep-status">Published Sep 30</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="coming-soon-note">
-        <p>Episodes 1 and 2 published September 30, 2026. Each page links every claim to the exact playable moment in the recording.</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="podcast-strip" aria-label="The podcast">
-    <div class="container">
-      <div class="podcast-strip__content">
-        <p class="podcast-strip__label">The podcast</p>
-        <p class="podcast-strip__text">Cited Conversations — expert interviews, cited and searchable.</p>
-      </div>
-      <a href="https://podcast.citedconversations.com" class="btn" rel="noopener" aria-label="Listen to the Cited Conversations podcast">
-        Listen to the podcast
-      </a>
     </div>
   </div>
 
-  <section class="waitlist" id="waitlist" aria-labelledby="waitlist-heading">
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-heading">
     <div class="container">
-      <div class="waitlist__inner">
-        <p class="section-label">For shows</p>
-        <hr class="section-rule" />
-        <h2 id="waitlist-heading">Want your show in the library?</h2>
-        <p>
-          We work with a small number of podcast shows whose conversations are worth
-          citing. If your show produces expert content that AI answer engines should
-          know about, join the waitlist.
-        </p>
-        <p class="waitlist__cta">
-          <a
-            class="btn"
-            href="mailto:casey@ringmaster.com?subject=Cited%20Conversations%20waitlist&amp;body=Show%20name%3A%0AWhat%20the%20show%20covers%3A%0AWhere%20it%20publishes%3A%0A"
-          >Join the waitlist</a>
-        </p>
-        <p class="waitlist__note">Goes straight to Casey. No spam, no list.</p>
+      <div class="hero-inner">
+        <div class="hero-content">
+          <span class="query-pill"><span class="query-chevron">&gt;</span> query: expert answers, source-linked</span>
+          <h1 id="hero-heading">Every answer cites its source.</h1>
+          <p class="hero-lead">
+            Cited Conversations is a reference library of expert answers from recorded human conversations.
+            Every claim links to the moment it was said.
+          </p>
+          <div class="hero-actions">
+            <a href="/answers/" class="btn-primary">retrieve: answers/</a>
+            <a href="/schema/" class="btn-secondary">inspect: schema/</a>
+            <a href="https://podcast.citedconversations.com" class="btn-secondary" rel="noopener">listen: podcast/</a>
+          </div>
+        </div>
+        <div class="hero-cover">
+          <a href="https://podcast.citedconversations.com" class="cover-art-link" rel="noopener" aria-label="Listen to Cited Conversations on the podcast">
+            <img
+              src="/cited-cover-hires.jpg"
+              alt="Cited Conversations podcast cover art"
+              class="cover-art-img"
+              width="450"
+              height="450"
+            />
+          </a>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <hr class="section-rule" />
+
+  <!-- How it works -->
+  <section class="how-it-works" aria-labelledby="how-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">How it works</span>
+        <h2 id="how-heading">Source-linked answers from named speakers</h2>
+      </div>
+      <p class="section-subhead" style="margin-bottom: var(--space-3);">
+        Expert conversations are recorded as a podcast, then broken into
+        question-shaped answer pages where every claim is attributed to a named
+        speaker and links to the precise playable moment in the source recording.
+      </p>
+      <ul class="integrity-list">
+        <li>Answers come from recorded, attributed conversations &#8212; not generated text.</li>
+        <li>Every claim links to its timestamp in the source episode.</li>
+        <li>Speakers are confirmed at intake by the show&#8217;s producer.</li>
+        <li>Pages are spot-audited against source audio before publishing.</li>
+      </ul>
+      <a href="/about/" class="how-link">Read the full methodology &#8594;</a>
+    </div>
+  </section>
+
+  <hr class="section-rule" />
+
+  <!-- Answer library / Episode list -->
+  <section class="answer-library" aria-labelledby="answers-index-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Answer library</span>
+        <h2 id="answers-index-heading">Expert answers</h2>
+      </div>
+      <p style="margin-bottom: var(--space-3);">Each conversation is broken into question-shaped answer pages, sourced to the exact moment in the recording.</p>
+
+      <div class="table-wrap">
+        <table class="episode-table" aria-label="Episode list">
+          <thead>
+            <tr>
+              <th scope="col">EP</th>
+              <th scope="col">Title</th>
+              <th scope="col">Guests</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="ep-num">001</td>
+              <td>
+                <span class="ep-title-text">Best B2B podcast agency for AI visibility</span>
+                <span class="ep-guest">Adam Needles<span class="ep-guest-dot">&#183;</span>Casey Cheshire (Ringmaster)</span>
+              </td>
+              <td class="ep-guest">Adam Needles &middot; Casey Cheshire (Ringmaster)</td>
+              <td><span class="badge-launching"><span class="badge-dot"></span>Sep 30</span></td>
+            </tr>
+            <tr>
+              <td class="ep-num">002</td>
+              <td>
+                <span class="ep-title-text">Best agency to get my brand cited by ChatGPT</span>
+                <span class="ep-guest">Casey Cheshire (Ringmaster)<span class="ep-guest-dot">&#183;</span>Simon Wilhelm (SCAILE)</span>
+              </td>
+              <td class="ep-guest">Casey Cheshire (Ringmaster) &middot; Simon Wilhelm (SCAILE)</td>
+              <td><span class="badge-launching"><span class="badge-dot"></span>Sep 30</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="table-note">Answer pages for both episodes publish September 30, 2026. Each page links every claim to the exact playable moment in the recording.</p>
+    </div>
+  </section>
+
+  <hr class="section-rule" />
+
+  <!-- Podcast -->
+  <section class="podcast-section" aria-label="The podcast">
+    <div class="container">
+      <div class="podcast-inner">
+        <div>
+          <p class="podcast-eyebrow">The podcast</p>
+          <h2>Cited Conversations &#8212; expert interviews, cited and searchable.</h2>
+        </div>
+        <a href="https://podcast.citedconversations.com" class="btn-podcast-ghost" rel="noopener" aria-label="Listen to the Cited Conversations podcast">
+          Listen to the podcast
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- For Shows -->
+  <section class="for-shows" aria-labelledby="shows-heading">
+    <div class="container">
+      <span class="section-label">For shows</span>
+      <h2 id="shows-heading">Want your show in the library?</h2>
+      <p class="shows-body">
+        We work with a small number of podcast shows whose conversations are worth
+        citing. If your show produces expert content that AI answer engines should
+        know about, join the waitlist.
+      </p>
+      <a
+        class="btn"
+        href="mailto:casey@ringmaster.com?subject=Cited%20Conversations%20waitlist&amp;body=Show%20name%3A%0AWhat%20the%20show%20covers%3A%0AWhere%20it%20publishes%3A%0A"
+      >Join the waitlist</a>
+      <p class="shows-footnote">Goes straight to Casey. No spam, no list.</p>
     </div>
   </section>
 
   <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <p>
-        <strong style="color: var(--text-dim);">Cited Conversations</strong> &middot;
-        A <a href="https://ringmaster.com" rel="noopener">Ringmaster</a> reference library
-      </p>
-      <nav aria-label="Footer navigation">
-        <a href="/about/">Methodology</a> &middot;
-        <a href="/answers/">Answers</a> &middot;
-        <a href="/faq/">FAQ</a> &middot;
-        <a href="/schema/">Schema</a> &middot;
-        <a href="/robots.txt">robots.txt</a> &middot;
-        <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a> &middot;
+      <div class="footer-top">
+        <span class="footer-brand-name"><span style="color:#0A0A0A">Cited</span><span style="color:#A7011F"> Conversations</span></span>
+        <span class="footer-brand-sep">&middot;</span>
+        <span class="footer-byline">A <a href="https://ringmaster.com" rel="noopener">Ringmaster</a> reference library</span>
+      </div>
+      <nav class="footer-nav-row" aria-label="Footer navigation">
+        <a href="/about/">Methodology</a><span class="footer-sep">&middot;</span>
+        <a href="/answers/">Answers</a><span class="footer-sep">&middot;</span>
+        <a href="/faq/">FAQ</a><span class="footer-sep">&middot;</span>
+        <a href="/schema/">Schema</a><span class="footer-sep">&middot;</span>
+        <a href="/robots.txt">robots.txt</a><span class="footer-sep">&middot;</span>
+        <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a><span class="footer-sep">&middot;</span>
         <a href="https://x.com/citedconv" rel="noopener">@citedconv</a>
       </nav>
-      <p class="footer-byline">Every claim links to its source. Every speaker is named. &middot; <a href="/for-humans/">For humans &#8594;</a></p>
+      <p class="footer-tagline">Every claim links to its source. Every speaker is named. &middot; <a href="/for-humans/">For humans &#8594;</a></p>
     </div>
   </footer>
 
