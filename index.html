@@ -189,64 +189,39 @@
           <h2>Expert answers</h2>
           <p class="section-subhead">Each conversation is broken into question-shaped answer pages, sourced to the exact moment in the recording.</p>
         </header>
-        <div class="table-wrap">
-          <table class="episode-table" aria-label="Episode listing">
-            <thead>
-              <tr>
-                <th scope="col">EP</th>
-                <th scope="col">Title</th>
-                <th scope="col">Guests</th>
-                <th scope="col">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="ep-num">001</td>
-                <td>
-                  <a href="/episodes/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/" class="ep-title-text">Best B2B Podcast Agency for AI Visibility</a>
-                </td>
-                <td>
-                  <span class="ep-guest">Adam Needles</span>
-                  <span class="ep-guest-dot" aria-hidden="true">&middot;</span>
-                  <span class="ep-guest">CEO, ANNUITAS (host)</span>
-                  <span class="ep-guest-dot" aria-hidden="true">&middot;</span>
-                  <span class="ep-guest">Casey Cheshire</span>
-                  <span class="ep-guest-dot" aria-hidden="true">&middot;</span>
-                  <span class="ep-guest">Founder &amp; CEO, Ringmaster</span>
-                </td>
-                <td style="text-align:right;">
-                  <span class="badge-launching">
-                    <span class="badge-dot" style="background:var(--red)" aria-hidden="true"></span>
-                    Published Sep 30
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td class="ep-num">002</td>
-                <td>
-                  <a href="/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/" class="ep-title-text">Best Agency to Get My Brand Cited by ChatGPT</a>
-                </td>
-                <td>
-                  <span class="ep-guest">Casey Cheshire</span>
-                  <span class="ep-guest-dot" aria-hidden="true">&middot;</span>
-                  <span class="ep-guest">Founder &amp; CEO, Ringmaster (host)</span>
-                  <span class="ep-guest-dot" aria-hidden="true">&middot;</span>
-                  <span class="ep-guest">Simon Wilhelm</span>
-                  <span class="ep-guest-dot" aria-hidden="true">&middot;</span>
-                  <span class="ep-guest">Co-Founder &amp; CEO, SCAILE</span>
-                </td>
-                <td style="text-align:right;">
-                  <span class="badge-launching">
-                    <span class="badge-dot" style="background:var(--red)" aria-hidden="true"></span>
-                    Published Sep 30
-                  </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <!-- Conversation rows (links to /answers/) -->
+        <div class="conversation-row" style="display: grid; grid-template-columns: 1.5rem 1fr auto; gap: var(--space-2) var(--space-3); align-items: start; padding: var(--space-3) 0; border-bottom: 1px solid var(--border);">
+          <div style="padding-top: 0.35em;">
+            <span style="display: inline-block; width: 0.625rem; height: 0.625rem; border-radius: 50%; background: #16a34a;" title="Verified transcript" aria-label="Verified transcript"></span>
+          </div>
+          <div>
+            <a href="/answers/best-b2b-podcast-agency-for-ai-visibility/" style="font-size: var(--step-1); font-weight: 700; color: var(--ink); text-decoration: none; display: block; margin-bottom: var(--space-1);">
+              Best B2B Podcast Agency for AI Visibility
+            </a>
+            <p style="font-size: var(--step--1); color: var(--muted); margin: 0;">Adam Needles &middot; Casey Cheshire</p>
+          </div>
+          <div>
+            <span style="font-size: var(--step--1); background: var(--surface-alt); border: 1px solid var(--border); border-radius: 999px; padding: 0.2em 0.7em; color: var(--muted); white-space: nowrap;">11 more answers</span>
+          </div>
         </div>
-        <p class="table-note">
-          Episodes 1 and 2 published September 30, 2026. Each page links every claim to the exact playable moment in the recording.
+
+        <div class="conversation-row" style="display: grid; grid-template-columns: 1.5rem 1fr auto; gap: var(--space-2) var(--space-3); align-items: start; padding: var(--space-3) 0; border-bottom: 1px solid var(--border);">
+          <div style="padding-top: 0.35em;">
+            <span style="display: inline-block; width: 0.625rem; height: 0.625rem; border-radius: 50%; background: #d97706;" title="Pending verification" aria-label="Pending verification"></span>
+          </div>
+          <div>
+            <a href="/answers/best-agency-to-get-my-brand-cited-by-chatgpt/" style="font-size: var(--step-1); font-weight: 700; color: var(--ink); text-decoration: none; display: block; margin-bottom: var(--space-1);">
+              Best Agency to Get My Brand Cited by ChatGPT
+            </a>
+            <p style="font-size: var(--step--1); color: var(--muted); margin: 0;">Casey Cheshire &middot; Simon Wilhelm</p>
+          </div>
+          <div>
+            <span style="font-size: var(--step--1); background: var(--surface-alt); border: 1px solid var(--border); border-radius: 999px; padding: 0.2em 0.7em; color: var(--muted); white-space: nowrap;">12 more answers</span>
+          </div>
+        </div>
+
+        <p class="table-note" style="margin-top: var(--space-3);">
+          <a href="/answers/" style="color: var(--muted);">Browse the full answers library &#8594;</a>
         </p>
       </div>
     </section>

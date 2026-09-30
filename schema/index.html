@@ -163,11 +163,15 @@
       </div>
 
       <div class="schema-block">
-        <h2>Answer and episode page types &#8212; publishing Sep 30, 2026</h2>
-        <p style="margin-bottom: var(--space-3);">These types appear on answer pages at <code>/answers/{question-slug}/</code> and episode pages at <code>/episodes/{show}/{episode}/</code>. Nothing published yet &#8212; listed here so crawlers and validators know what to expect on launch day.</p>
+        <h2>Conversation page types &#8212; the unit of the library</h2>
+        <p style="margin-bottom: var(--space-3);">A conversation, not a single answer, is this library&#8217;s addressable unit. Each recorded conversation publishes at <code>/answers/{lead-question-slug}/</code>, titled with its lead question &#8212; the question the whole conversation was designed to answer. Every other question raised in that conversation is a supporting answer, anchored within the same page and individually citable at the passage level (its own Clip&nbsp;+&nbsp;Quotation schema node) without being addressable at its own URL.</p>
+
+        <p style="margin-bottom: var(--space-3);">A supporting answer is promoted to its own page only once three or more separate conversations, across different shows, converge on close variants of the same underlying question &#8212; at that point it becomes a genuine cross-show comparison worth a dedicated address. Below that bar, it stays a supporting section, still fully structured and still fully citable by Clip&nbsp;+&nbsp;Quotation, just filed under its parent conversation.</p>
+
+        <p style="margin-bottom: var(--space-3);">This library does not use <code>FAQPage</code> for conversation pages. <code>FAQPage</code> is reserved for <code>/faq/</code>, where the site itself wrote both the question and the answer. A conversation page&#8217;s content is an attributed quotation from a named person in a recording &#8212; the correct schema is <code>PodcastEpisode</code>, <code>Clip</code>, and <code>Quotation</code>, never <code>FAQPage</code>.</p>
 
         <div class="table-wrap">
-          <table class="episode-table" aria-label="Answer and episode page schema types">
+          <table class="episode-table" aria-label="Conversation page schema types">
             <thead>
               <tr>
                 <th scope="col">Type</th>
@@ -177,24 +181,29 @@
             </thead>
             <tbody>
               <tr>
-                <td><code>PodcastEpisode</code></td>
-                <td>The source recording: episode number, title, publish date, duration, audio URL, and a reference to the PodcastSeries.</td>
-                <td>Answer pages, episode pages</td>
+                <td><code>PodcastEpisode</code> / <code>PodcastSeries</code></td>
+                <td>The source recording and show, as provenance for the conversation.</td>
+                <td>Conversation pages</td>
               </tr>
               <tr>
-                <td><code>PodcastSeries</code></td>
-                <td>The show: name and URL. Linked from each PodcastEpisode via <code>partOfSeries</code>.</td>
-                <td>Answer pages, episode pages</td>
+                <td><code>Clip</code> + <code>Quotation</code></td>
+                <td>One pair per supporting answer: the timestamped moment plus the speaker&#8217;s exact words. <code>relatedLink</code> cross-links sibling answers on the same underlying question across conversations.</td>
+                <td>Conversation pages</td>
               </tr>
               <tr>
-                <td><code>Clip</code></td>
-                <td>A timed segment of the recording: <code>startOffset</code> in seconds, <code>endOffset</code> in seconds, <code>url</code> pointing to the timestamped playable moment, and <code>partOfEpisode</code> linking to the PodcastEpisode node. One Clip per answer.</td>
-                <td>Answer pages, episode pages</td>
+                <td><code>Person</code></td>
+                <td>Each named speaker, stable <code>@id</code> resolving to <code>/speakers/{name}/</code>.</td>
+                <td>Conversation pages; full profile on <code>/speakers/{name}/</code></td>
               </tr>
               <tr>
-                <td><code>Quotation</code></td>
-                <td>The speaker&#8217;s exact words: <code>text</code>, <code>spokenByCharacter</code> referencing the Person node, <code>creator</code> (same Person), <code>isPartOf</code> linking to the PodcastEpisode. One Quotation per answer, paired with its Clip.</td>
-                <td>Answer pages, episode pages</td>
+                <td><code>CollectionPage</code> / <code>DefinedTerm</code></td>
+                <td>A topic as a named, overlapping grouping of conversations.</td>
+                <td><code>/answers/</code> (topic index), future <code>/topics/{slug}/</code> pages once 2+ conversations share a topic</td>
+              </tr>
+              <tr>
+                <td><code>FAQPage</code></td>
+                <td>Site-authored Q&amp;A only.</td>
+                <td><code>/faq/</code> only &#8212; never conversation pages</td>
               </tr>
             </tbody>
           </table>
@@ -325,7 +334,6 @@ Allow: /</code></pre>
         <a href="/schema/">Schema</a><span class="footer-sep">&middot;</span>
         <a href="/robots.txt">robots.txt</a><span class="footer-sep">&middot;</span>
         <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a><span class="footer-sep">&middot;</span>
-        <a href="https://citedconversations.substack.com/" rel="noopener">Substack</a><span class="footer-sep">&middot;</span>
         <a href="https://x.com/citedconv" rel="noopener">@citedconv</a>
       </nav>
       <p class="footer-tagline">Every claim links to its source. Every speaker is named.</p>
