@@ -161,7 +161,7 @@
         "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#breadcrumb",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://citedconversations.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Episodes", "item": "https://citedconversations.com/episodes/" },
+          { "@type": "ListItem", "position": 2, "name": "Answers", "item": "https://citedconversations.com/answers/" },
           { "@type": "ListItem", "position": 3, "name": "{{ EPISODE_TITLE }}", "item": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/" }
         ]
       }
@@ -195,10 +195,9 @@
   <section class="episode-hero" aria-labelledby="episode-title">
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="/">Home</a> / <a href="/episodes/">Episodes</a> / Episode {{ EPISODE_NUMBER }}
+        <a href="/">Home</a> / <a href="/answers/">Answers</a> / {{ EPISODE_TITLE }}
       </nav>
 
-      <p class="section-label">Episode {{ EPISODE_NUMBER }}</p>
       <h1 id="episode-title">{{ EPISODE_TITLE }}</h1>
 
       <p style="color: var(--muted); margin-top: var(--space-2); font-size: var(--step-0);">
@@ -359,13 +358,14 @@
       <nav class="footer-nav-row" aria-label="Footer navigation">
         <a href="/about/">Methodology</a><span class="footer-sep">&middot;</span>
         <a href="/answers/">Answers</a><span class="footer-sep">&middot;</span>
+        <a href="/episodes/">Episodes</a><span class="footer-sep">&middot;</span>
         <a href="/faq/">FAQ</a><span class="footer-sep">&middot;</span>
         <a href="/schema/">Schema</a><span class="footer-sep">&middot;</span>
         <a href="/robots.txt">robots.txt</a><span class="footer-sep">&middot;</span>
         <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a><span class="footer-sep">&middot;</span>
         <a href="https://x.com/citedconv" rel="noopener">@citedconv</a>
       </nav>
-      <p class="footer-tagline">Every claim links to its source. Every speaker is named. &middot; <a href="/for-humans/">For humans &#8594;</a></p>
+      <p class="footer-tagline">Every claim links to its source. Every speaker is named.</p>
     </div>
   </footer>
 
