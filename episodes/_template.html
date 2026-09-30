@@ -15,8 +15,8 @@
   ── TRANSISTOR TIMESTAMP FORMAT (CORRECTED) ──────────────────────────
   Use a QUERY PARAMETER, not a URL fragment. The fragment form (#t=) does not work.
 
-    CORRECT:   https://podcast.citedconversations.com/<episode-slug>?t=<seconds>
-    INCORRECT: https://podcast.citedconversations.com/<episode-slug>#t=<seconds>
+    CORRECT:   https://podcast.citedconversations.com/episodes/<episode-slug>?t=<seconds>
+    INCORRECT: https://podcast.citedconversations.com/episodes/<episode-slug>#t=<seconds>
 
   Examples:  1m 23s → ?t=83   |   6m 00s → ?t=360   |   13m 43s → ?t=823
 
@@ -228,7 +228,7 @@
 
       <p style="margin-top: var(--space-3); font-size: var(--step--1); color: var(--muted);">
         Published {{ DATE_PUBLISHED_HUMAN }} &middot;
-        <a href="https://podcast.citedconversations.com/{{ TRANSISTOR_EPISODE_SLUG }}" rel="noopener">
+        <a href="https://podcast.citedconversations.com/episodes/{{ TRANSISTOR_EPISODE_SLUG }}" rel="noopener">
           Listen to the full episode &#8599;
         </a>
       </p>
@@ -341,7 +341,7 @@
     <div class="container">
       <p class="section-label">Full episode</p>
       <p>
-        <a href="https://podcast.citedconversations.com/{{ TRANSISTOR_EPISODE_SLUG }}" rel="noopener" style="font-weight: 600;">
+        <a href="https://podcast.citedconversations.com/episodes/{{ TRANSISTOR_EPISODE_SLUG }}" rel="noopener" style="font-weight: 600;">
           Listen to Episode {{ EPISODE_NUMBER }}: {{ EPISODE_TITLE }} &#8599;
         </a>
       </p>
