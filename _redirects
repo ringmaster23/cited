@@ -16,10 +16,10 @@
 /episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/ /answers/best-agency-to-get-my-brand-cited-by-chatgpt/ 301
 /episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002 /answers/best-agency-to-get-my-brand-cited-by-chatgpt/ 301
 
-# ── Prefix-less episode slugs (no /episodes/ prefix) → real episode pages ─────
-# Source: JSON-LD citation fields using podcast.citedconversations.com domain;
-# GPTBot strips subdomain and requests these paths on the root domain.
-# Fix: 301 to the canonical /episodes/SLUG/ URL (with and without trailing slash).
+# ── Prefix-less episode slugs (no /episodes/ prefix) → canonical episode pages ───
+# Source: JSON-LD citation fields previously used podcast.citedconversations.com;
+# GPTBot strips the subdomain and hits citedconversations.com/SLUG?t=N.
+# Named rules for existing episodes (take priority over pattern below).
 
 /best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/ /episodes/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/ 301
 /best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001 /episodes/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/ 301
@@ -27,8 +27,8 @@
 /best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002 /episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/ 301
 
 # Pattern rule: any future prefix-less episode slug → /episodes/same-slug/
-# Catches /best-*-episode-NNN and /best-*-episode-NNN/ (with and without trailing slash).
-/best-* /episodes/best-* 301
+# Uses Cloudflare Pages :splat syntax to substitute the wildcard match.
+/best-* /episodes/best-:splat 301
 
 # ── Favicon ───────────────────────────────────────────────────────────────────────
 # 46 x 404 on /favicon.ico — serve the existing 32x32 PNG.
