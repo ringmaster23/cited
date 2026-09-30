@@ -3,7 +3,7 @@
 
   <url>
     <loc>https://citedconversations.com/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -24,7 +24,7 @@
 
   <url>
     <loc>https://citedconversations.com/episodes/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -36,16 +36,18 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Add one <url> block per episode answer page as they publish.
-       Pattern: https://citedconversations.com/episodes/<slug>/
-       Example (Episode 1 — uncomment when live):
-
   <url>
-    <loc>https://citedconversations.com/episodes/aeo-what-ai-engines-actually-need-simon-wilhelm/</loc>
+    <loc>https://citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/</loc>
     <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-  ──────────────────────────────────────────────────────────────── -->
+
+  <url>
+    <loc>https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 
 </urlset>

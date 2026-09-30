@@ -1,0 +1,823 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y9K5VS79MD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y9K5VS79MD');
+  </script>
+
+  <title>Why Isn't My Brand Showing Up in AI Answers? — Cited Conversations</title>
+  <meta name="description" content="Simon Wilhelm of SCAILE explains the technical access blockers and undefined buying personas that keep brands out of AI answers, and what a real AI visibility agency does differently." />
+
+  <link rel="canonical" href="https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="apple-touch-icon" href="/favicon-256.png" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/" />
+  <meta property="og:title" content="Why Isn't My Brand Showing Up in AI Answers? — Cited Conversations" />
+  <meta property="og:description" content="Simon Wilhelm of SCAILE explains the technical access blockers and undefined buying personas that keep brands out of AI answers, and what a real AI visibility agency does differently." />
+  <meta property="og:image" content="https://citedconversations.com/og-image.png" />
+  <meta property="og:site_name" content="Cited Conversations" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Why Isn't My Brand Showing Up in AI Answers? — Cited Conversations" />
+  <meta name="twitter:description" content="Simon Wilhelm of SCAILE explains the technical access blockers and undefined buying personas that keep brands out of AI answers, and what a real AI visibility agency does differently." />
+  <meta name="twitter:image" content="https://citedconversations.com/og-image.png" />
+
+  <link rel="stylesheet" href="/styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "FAQPage",
+        "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#faqpage",
+        "url": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/",
+        "name": "Why Isn't My Brand Showing Up in AI Answers?",
+        "description": "Simon Wilhelm of SCAILE explains the technical access blockers and undefined buying personas that keep brands out of AI answers, and what a real AI visibility agency does differently.",
+        "isPartOf": { "@id": "https://citedconversations.com/#website" },
+        "breadcrumb": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#breadcrumb" },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "When a brand isn't showing up in AI answers, what's actually broken?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "There are multiple reasons, but at a high level it starts with whether your website is technically accessible to AI crawlers. If a site relies heavily on JavaScript, tools like ChatGPT cannot read it — they can only see the meta title and description, nothing else on the page.",
+              "author": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+              "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=122"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does a robots.txt file end up blocking the AI bots a company actually wants to reach?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "When you host a website on Cloudflare, it blocks GPTBot, PerplexityBot, and ClaudeBot by default. You have to proactively enable them in your robots.txt file and explicitly allow those bots so they can read your content.",
+              "author": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+              "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=215"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do you find out what buying intent your content should target?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Use three sources: social listening on Reddit, Quora, YouTube, TikTok, and Instagram to find the questions people ask; asking your customer success and sales teams what they get asked most; and extracting data from Google Search Console, GA4, and Bing Webmaster Tools to see what you're already being found for.",
+              "author": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+              "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=278"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does the intent of the buying persona matter for showing up in AI search?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "LLMs search based on context. Every user has their own saved context in a tool like ChatGPT — their work, location, and preferences — and the AI matches search results to that context, so two people asking about the same product category get different answers based on differing intent.",
+              "author": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+              "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=505"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between SEO and AEO in plain terms?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "SEO optimizes for the technical readability of a website and for ranking high on certain keywords, mostly for one algorithm. AEO is about understanding customer intent, which varies by persona and context, across many different search engines that each work differently — ChatGPT uses its own index, Perplexity searches the web, and Claude searches via Brave.",
+              "author": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+              "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=696"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is good SEO enough, or does a brand need to do AEO as a separate step?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Doing good SEO already covers about 70% of AEO. The remaining 30% is cross-functional: it requires understanding intent, which means talking to customer success, sales, and product teams, rather than just having a technical optimizer and a copywriter.",
+              "author": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+              "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=782"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What kind of content can't AI engines parse or read at all?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "AI engines can't parse JavaScript, so they ignore it entirely — a common problem for booking widgets in the hotel and travel industry that are rendered in JavaScript. AI models also can't watch YouTube videos, even though YouTube is one of the most cited sources in AI overviews, so visibility there depends on a well-optimized title, description, and timestamps.",
+              "author": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+              "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=846"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Should a raw interview transcript be cleaned up and polished before publishing it for AI, or left as-is?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Keep it as raw as possible, because that's what makes it unique. If you run a transcript through an AI editor and it changes what was said, the content stops being a unique human answer and becomes generic AI-rewritten content instead.",
+              "author": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+              "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=1630"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does named expert attribution matter so much for AI citation?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "There is now more AI-written content on the web than human-written content, and foundation model companies are hungry for real expert knowledge that hasn't been written down yet. When an AI can verify that a piece of writing really came from a named expert — through a linked LinkedIn profile and a well-structured author page — it is far more likely to cite that person.",
+              "author": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+              "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=1484"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do you measure whether a brand's AI visibility is actually improving?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Prompt tracking is unreliable because LLMs are not deterministic — no tool can prove a brand is definitively 'the answer.' The only valid metric is revenue: tracking clicks from AI chatbots and AI overviews in Google Analytics through to bookings or purchases, plus self-attribution by asking leads directly where they found you.",
+              "author": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+              "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=2163"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is share of answer, and why does it matter more than traffic?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Share of answer is how many times, out of a defined set of bottom-of-funnel prompts, a brand appears as the answer. Human traffic is becoming a vanity metric as search moves into LLMs, so being the answer in 29 out of 30 relevant prompts can matter more than a thousand clicks that aren't intent-based.",
+              "author": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+              "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=2320"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does a marketing leader tell a real AI visibility agency apart from a repackaged SEO shop?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ask them one question: have they driven revenue through AI search visibility? The most common failure of fake AEO agencies is mass-producing low-value AI-generated content at volume instead of proving actual business impact.",
+              "author": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+              "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=2401"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between AEO and GEO?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "AEO is about being visible in the AI Overview panel that appears above Google's normal search results. GEO is the broader, cross-functional capability of understanding your ideal customers and becoming the answer across conversational AI engines like ChatGPT, Claude, Perplexity, and Gemini from the outset.",
+              "author": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+              "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=2596"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "PodcastEpisode",
+        "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#episode",
+        "name": "Best Agency to Get My Brand Cited by ChatGPT",
+        "episodeNumber": 2,
+        "description": "Host Casey Cheshire, Founder & CEO of Ringmaster, talks with Simon Wilhelm, Co-Founder and CEO of SCAILE, about why brands fail to appear in AI answers, the technical and intent gaps behind AI visibility, and how to measure whether AI search visibility is actually driving revenue.",
+        "datePublished": "2026-09-30T12:30:00.000Z",
+        "url": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/",
+        "partOfSeries": {
+          "@type": "PodcastSeries",
+          "name": "Cited Conversations",
+          "url": "https://podcast.citedconversations.com"
+        },
+        "associatedMedia": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#audio" },
+        "actor": [
+          { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-casey-cheshire" },
+          { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" }
+        ]
+      },
+      {
+        "@type": "AudioObject",
+        "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#audio",
+        "name": "Best Agency to Get My Brand Cited by ChatGPT",
+        "description": "Host Casey Cheshire, Founder & CEO of Ringmaster, talks with Simon Wilhelm, Co-Founder and CEO of SCAILE, about why brands fail to appear in AI answers, the technical and intent gaps behind AI visibility, and how to measure whether AI search visibility is actually driving revenue.",
+        "contentUrl": "https://media.transistor.fm/b7db32b8/dac964c3.mp3",
+        "embedUrl": "https://share.transistor.fm/e/b7db32b8",
+        "encodingFormat": "audio/mpeg",
+        "duration": "PT45M12S",
+        "uploadDate": "2026-09-30T12:30:00.000Z"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-casey-cheshire",
+        "name": "Casey Cheshire",
+        "jobTitle": "Founder & CEO",
+        "worksFor": { "@type": "Organization", "name": "Ringmaster", "url": "https://ringmaster.com" },
+        "sameAs": ["https://linkedin.com/in/caseycheshire", "https://ringmaster.com"]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm",
+        "name": "Simon Wilhelm",
+        "jobTitle": "Co-Founder and CEO",
+        "worksFor": { "@type": "Organization", "name": "SCAILE", "url": "https://scaile.tech/" },
+        "sameAs": ["https://www.linkedin.com/in/simon-leander-wilhelm", "https://scaile.tech/"]
+      },
+      {
+        "@type": "Quotation",
+        "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#quotation-1",
+        "text": "There are multiple reasons, but at a high level it starts with whether your website is technically accessible to AI crawlers. If a site relies heavily on JavaScript, tools like ChatGPT cannot read it — they can only see the meta title and description, nothing else on the page.",
+        "spokenByCharacter": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "creator": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "dateCreated": "2026-09-30T12:30:00.000Z",
+        "isPartOf": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#episode" },
+        "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=122"
+      },
+      {
+        "@type": "Quotation",
+        "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#quotation-2",
+        "text": "When you host a website on Cloudflare, it blocks GPTBot, PerplexityBot, and ClaudeBot by default. You have to proactively enable them in your robots.txt file and explicitly allow those bots so they can read your content.",
+        "spokenByCharacter": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "creator": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "dateCreated": "2026-09-30T12:30:00.000Z",
+        "isPartOf": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#episode" },
+        "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=215"
+      },
+      {
+        "@type": "Quotation",
+        "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#quotation-3",
+        "text": "Use three sources: social listening on Reddit, Quora, YouTube, TikTok, and Instagram to find the questions people ask; asking your customer success and sales teams what they get asked most; and extracting data from Google Search Console, GA4, and Bing Webmaster Tools to see what you're already being found for.",
+        "spokenByCharacter": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "creator": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "dateCreated": "2026-09-30T12:30:00.000Z",
+        "isPartOf": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#episode" },
+        "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=278"
+      },
+      {
+        "@type": "Quotation",
+        "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#quotation-4",
+        "text": "LLMs search based on context. Every user has their own saved context in a tool like ChatGPT — their work, location, and preferences — and the AI matches search results to that context, so two people asking about the same product category get different answers based on differing intent.",
+        "spokenByCharacter": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "creator": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "dateCreated": "2026-09-30T12:30:00.000Z",
+        "isPartOf": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#episode" },
+        "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=505"
+      },
+      {
+        "@type": "Quotation",
+        "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#quotation-5",
+        "text": "SEO optimizes for the technical readability of a website and for ranking high on certain keywords, mostly for one algorithm. AEO is about understanding customer intent, which varies by persona and context, across many different search engines that each work differently — ChatGPT uses its own index, Perplexity searches the web, and Claude searches via Brave.",
+        "spokenByCharacter": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "creator": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "dateCreated": "2026-09-30T12:30:00.000Z",
+        "isPartOf": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#episode" },
+        "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=696"
+      },
+      {
+        "@type": "Quotation",
+        "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#quotation-6",
+        "text": "Doing good SEO already covers about 70% of AEO. The remaining 30% is cross-functional: it requires understanding intent, which means talking to customer success, sales, and product teams, rather than just having a technical optimizer and a copywriter.",
+        "spokenByCharacter": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "creator": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "dateCreated": "2026-09-30T12:30:00.000Z",
+        "isPartOf": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#episode" },
+        "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=782"
+      },
+      {
+        "@type": "Quotation",
+        "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#quotation-7",
+        "text": "AI engines can't parse JavaScript, so they ignore it entirely — a common problem for booking widgets in the hotel and travel industry that are rendered in JavaScript. AI models also can't watch YouTube videos, even though YouTube is one of the most cited sources in AI overviews, so visibility there depends on a well-optimized title, description, and timestamps.",
+        "spokenByCharacter": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "creator": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "dateCreated": "2026-09-30T12:30:00.000Z",
+        "isPartOf": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#episode" },
+        "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=846"
+      },
+      {
+        "@type": "Quotation",
+        "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#quotation-8",
+        "text": "Keep it as raw as possible, because that's what makes it unique. If you run a transcript through an AI editor and it changes what was said, the content stops being a unique human answer and becomes generic AI-rewritten content instead.",
+        "spokenByCharacter": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "creator": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "dateCreated": "2026-09-30T12:30:00.000Z",
+        "isPartOf": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#episode" },
+        "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=1630"
+      },
+      {
+        "@type": "Quotation",
+        "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#quotation-9",
+        "text": "There is now more AI-written content on the web than human-written content, and foundation model companies are hungry for real expert knowledge that hasn't been written down yet. When an AI can verify that a piece of writing really came from a named expert — through a linked LinkedIn profile and a well-structured author page — it is far more likely to cite that person.",
+        "spokenByCharacter": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "creator": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "dateCreated": "2026-09-30T12:30:00.000Z",
+        "isPartOf": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#episode" },
+        "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=1484"
+      },
+      {
+        "@type": "Quotation",
+        "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#quotation-10",
+        "text": "Prompt tracking is unreliable because LLMs are not deterministic — no tool can prove a brand is definitively 'the answer.' The only valid metric is revenue: tracking clicks from AI chatbots and AI overviews in Google Analytics through to bookings or purchases, plus self-attribution by asking leads directly where they found you.",
+        "spokenByCharacter": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "creator": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "dateCreated": "2026-09-30T12:30:00.000Z",
+        "isPartOf": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#episode" },
+        "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=2163"
+      },
+      {
+        "@type": "Quotation",
+        "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#quotation-11",
+        "text": "Share of answer is how many times, out of a defined set of bottom-of-funnel prompts, a brand appears as the answer. Human traffic is becoming a vanity metric as search moves into LLMs, so being the answer in 29 out of 30 relevant prompts can matter more than a thousand clicks that aren't intent-based.",
+        "spokenByCharacter": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "creator": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "dateCreated": "2026-09-30T12:30:00.000Z",
+        "isPartOf": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#episode" },
+        "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=2320"
+      },
+      {
+        "@type": "Quotation",
+        "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#quotation-12",
+        "text": "Ask them one question: have they driven revenue through AI search visibility? The most common failure of fake AEO agencies is mass-producing low-value AI-generated content at volume instead of proving actual business impact.",
+        "spokenByCharacter": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "creator": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "dateCreated": "2026-09-30T12:30:00.000Z",
+        "isPartOf": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#episode" },
+        "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=2401"
+      },
+      {
+        "@type": "Quotation",
+        "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#quotation-13",
+        "text": "AEO is about being visible in the AI Overview panel that appears above Google's normal search results. GEO is the broader, cross-functional capability of understanding your ideal customers and becoming the answer across conversational AI engines like ChatGPT, Claude, Perplexity, and Gemini from the outset.",
+        "spokenByCharacter": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "creator": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#speaker-simon-wilhelm" },
+        "dateCreated": "2026-09-30T12:30:00.000Z",
+        "isPartOf": { "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#episode" },
+        "citation": "https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=2596"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://citedconversations.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Episodes", "item": "https://citedconversations.com/episodes/" },
+          { "@type": "ListItem", "position": 3, "name": "Best Agency to Get My Brand Cited by ChatGPT", "item": "https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="/" class="raccoon-chip" aria-label="Cited Conversations home">
+        <img src="/favicon-32x32.png" alt="" width="22" height="22" />
+        <span>
+          <span class="raccoon-chip__name"><span>Cited</span> Conversations</span>
+          <span class="raccoon-chip__byline">by Ringmaster</span>
+        </span>
+      </a>
+      <nav class="header-nav" aria-label="Site navigation">
+        <a href="/episodes/" aria-current="true">Episodes</a>
+        <a href="/about/">Methodology</a>
+        <a href="/faq/">FAQ</a>
+        <a href="/how-machines-read-this/">Schema</a>
+        <a href="/robots.txt">robots.txt</a>
+        <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a>
+        <a href="/for-humans/" class="header-nav__human-door">New here? For humans &#8594;</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="episode-hero" aria-labelledby="episode-title">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> / <a href="/episodes/">Episodes</a> / Episode 2
+      </nav>
+
+      <p class="episode-hero__number">Episode 2</p>
+      <h1 class="episode-hero__title" id="episode-title">Best Agency to Get My Brand Cited by ChatGPT</h1>
+
+      <p style="max-width: 60ch; color: var(--text-dim); margin-top: var(--sp-2); font-size: var(--step-0);">
+        Host Casey Cheshire, Founder &amp; CEO of Ringmaster, talks with Simon Wilhelm, Co-Founder and CEO of SCAILE, about why brands fail to appear in AI answers, the technical and intent gaps behind AI visibility, and how to measure whether AI search visibility is actually driving revenue.
+      </p>
+
+      <div class="episode-hero__guests" aria-label="Episode speakers">
+
+        <div class="guest-card">
+          <p class="guest-card__name">Casey Cheshire</p>
+          <p class="guest-card__role">Founder &amp; CEO, Ringmaster</p>
+          <div class="guest-card__links">
+            <a href="https://linkedin.com/in/caseycheshire" rel="noopener" aria-label="Casey Cheshire on LinkedIn">LinkedIn</a>
+            <a href="https://ringmaster.com" rel="noopener">Ringmaster</a>
+          </div>
+        </div>
+
+        <div class="guest-card">
+          <p class="guest-card__name">Simon Wilhelm</p>
+          <p class="guest-card__role">Co-Founder and CEO, SCAILE</p>
+          <div class="guest-card__links">
+            <a href="https://www.linkedin.com/in/simon-leander-wilhelm" rel="noopener" aria-label="Simon Wilhelm on LinkedIn">LinkedIn</a>
+            <a href="https://scaile.tech/" rel="noopener">SCAILE</a>
+          </div>
+        </div>
+
+      </div>
+
+      <p style="margin-top: var(--sp-3); font-size: var(--step--1); color: var(--text-muted);">
+        Published September 30, 2026 &middot;
+        <a href="https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002" rel="noopener">
+          Listen to the full episode &nearr;
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <section class="qa-section" aria-labelledby="qa-heading">
+    <div class="container">
+      <h2 id="qa-heading" class="sr-only">Questions and answers from this episode</h2>
+
+      <div class="qa-list">
+
+        <article class="qa-item" id="q1">
+          <p class="qa-item__id">best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002#q1</p>
+          <h3 class="qa-item__question">When a brand isn't showing up in AI answers, what's actually broken?</h3>
+          <div class="qa-item__paper">
+            <p class="qa-item__answer">There are multiple reasons, but at a high level it starts with whether your website is technically accessible to AI crawlers. If a site relies heavily on JavaScript, tools like ChatGPT cannot read it — they can only see the meta title and description, nothing else on the page.</p>
+          </div>
+          <div class="qa-item__citation">
+            <span class="citation-speaker">
+              <strong>Simon Wilhelm</strong> &middot;
+              Co-Founder and CEO, SCAILE
+            </span>
+            <a
+              class="citation-link"
+              href="https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=122"
+              rel="noopener"
+              aria-label="Listen: Simon Wilhelm at 2:02"
+            >
+              &#9654; 2:02
+            </a>
+          </div>
+        </article>
+
+        <article class="qa-item" id="q2">
+          <p class="qa-item__id">best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002#q2</p>
+          <h3 class="qa-item__question">How does a robots.txt file end up blocking the AI bots a company actually wants to reach?</h3>
+          <div class="qa-item__paper">
+            <p class="qa-item__answer">When you host a website on Cloudflare, it blocks GPTBot, PerplexityBot, and ClaudeBot by default. You have to proactively enable them in your robots.txt file and explicitly allow those bots so they can read your content.</p>
+          </div>
+          <div class="qa-item__citation">
+            <span class="citation-speaker">
+              <strong>Simon Wilhelm</strong> &middot;
+              Co-Founder and CEO, SCAILE
+            </span>
+            <a
+              class="citation-link"
+              href="https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=215"
+              rel="noopener"
+              aria-label="Listen: Simon Wilhelm at 3:35"
+            >
+              &#9654; 3:35
+            </a>
+          </div>
+        </article>
+
+        <article class="qa-item" id="q3">
+          <p class="qa-item__id">best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002#q3</p>
+          <h3 class="qa-item__question">How do you find out what buying intent your content should target?</h3>
+          <div class="qa-item__paper">
+            <p class="qa-item__answer">Use three sources: social listening on Reddit, Quora, YouTube, TikTok, and Instagram to find the questions people ask; asking your customer success and sales teams what they get asked most; and extracting data from Google Search Console, GA4, and Bing Webmaster Tools to see what you're already being found for.</p>
+          </div>
+          <div class="qa-item__citation">
+            <span class="citation-speaker">
+              <strong>Simon Wilhelm</strong> &middot;
+              Co-Founder and CEO, SCAILE
+            </span>
+            <a
+              class="citation-link"
+              href="https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=278"
+              rel="noopener"
+              aria-label="Listen: Simon Wilhelm at 4:38"
+            >
+              &#9654; 4:38
+            </a>
+          </div>
+        </article>
+
+        <article class="qa-item" id="q4">
+          <p class="qa-item__id">best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002#q4</p>
+          <h3 class="qa-item__question">Why does the intent of the buying persona matter for showing up in AI search?</h3>
+          <div class="qa-item__paper">
+            <p class="qa-item__answer">LLMs search based on context. Every user has their own saved context in a tool like ChatGPT — their work, location, and preferences — and the AI matches search results to that context, so two people asking about the same product category get different answers based on differing intent.</p>
+          </div>
+          <div class="qa-item__citation">
+            <span class="citation-speaker">
+              <strong>Simon Wilhelm</strong> &middot;
+              Co-Founder and CEO, SCAILE
+            </span>
+            <a
+              class="citation-link"
+              href="https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=505"
+              rel="noopener"
+              aria-label="Listen: Simon Wilhelm at 8:25"
+            >
+              &#9654; 8:25
+            </a>
+          </div>
+        </article>
+
+        <article class="qa-item" id="q5">
+          <p class="qa-item__id">best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002#q5</p>
+          <h3 class="qa-item__question">What is the difference between SEO and AEO in plain terms?</h3>
+          <div class="qa-item__paper">
+            <p class="qa-item__answer">SEO optimizes for the technical readability of a website and for ranking high on certain keywords, mostly for one algorithm. AEO is about understanding customer intent, which varies by persona and context, across many different search engines that each work differently — ChatGPT uses its own index, Perplexity searches the web, and Claude searches via Brave.</p>
+          </div>
+          <div class="qa-item__citation">
+            <span class="citation-speaker">
+              <strong>Simon Wilhelm</strong> &middot;
+              Co-Founder and CEO, SCAILE
+            </span>
+            <a
+              class="citation-link"
+              href="https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=696"
+              rel="noopener"
+              aria-label="Listen: Simon Wilhelm at 11:36"
+            >
+              &#9654; 11:36
+            </a>
+          </div>
+        </article>
+
+        <article class="qa-item" id="q6">
+          <p class="qa-item__id">best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002#q6</p>
+          <h3 class="qa-item__question">Is good SEO enough, or does a brand need to do AEO as a separate step?</h3>
+          <div class="qa-item__paper">
+            <p class="qa-item__answer">Doing good SEO already covers about 70% of AEO. The remaining 30% is cross-functional: it requires understanding intent, which means talking to customer success, sales, and product teams, rather than just having a technical optimizer and a copywriter.</p>
+          </div>
+          <div class="qa-item__citation">
+            <span class="citation-speaker">
+              <strong>Simon Wilhelm</strong> &middot;
+              Co-Founder and CEO, SCAILE
+            </span>
+            <a
+              class="citation-link"
+              href="https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=782"
+              rel="noopener"
+              aria-label="Listen: Simon Wilhelm at 13:02"
+            >
+              &#9654; 13:02
+            </a>
+          </div>
+        </article>
+
+        <article class="qa-item" id="q7">
+          <p class="qa-item__id">best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002#q7</p>
+          <h3 class="qa-item__question">What kind of content can't AI engines parse or read at all?</h3>
+          <div class="qa-item__paper">
+            <p class="qa-item__answer">AI engines can't parse JavaScript, so they ignore it entirely — a common problem for booking widgets in the hotel and travel industry that are rendered in JavaScript. AI models also can't watch YouTube videos, even though YouTube is one of the most cited sources in AI overviews, so visibility there depends on a well-optimized title, description, and timestamps.</p>
+          </div>
+          <div class="qa-item__citation">
+            <span class="citation-speaker">
+              <strong>Simon Wilhelm</strong> &middot;
+              Co-Founder and CEO, SCAILE
+            </span>
+            <a
+              class="citation-link"
+              href="https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=846"
+              rel="noopener"
+              aria-label="Listen: Simon Wilhelm at 14:06"
+            >
+              &#9654; 14:06
+            </a>
+          </div>
+        </article>
+
+        <article class="qa-item" id="q8">
+          <p class="qa-item__id">best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002#q8</p>
+          <h3 class="qa-item__question">Should a raw interview transcript be cleaned up and polished before publishing it for AI, or left as-is?</h3>
+          <div class="qa-item__paper">
+            <p class="qa-item__answer">Keep it as raw as possible, because that's what makes it unique. If you run a transcript through an AI editor and it changes what was said, the content stops being a unique human answer and becomes generic AI-rewritten content instead.</p>
+          </div>
+          <div class="qa-item__citation">
+            <span class="citation-speaker">
+              <strong>Simon Wilhelm</strong> &middot;
+              Co-Founder and CEO, SCAILE
+            </span>
+            <a
+              class="citation-link"
+              href="https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=1630"
+              rel="noopener"
+              aria-label="Listen: Simon Wilhelm at 27:10"
+            >
+              &#9654; 27:10
+            </a>
+          </div>
+        </article>
+
+        <article class="qa-item" id="q9">
+          <p class="qa-item__id">best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002#q9</p>
+          <h3 class="qa-item__question">Why does named expert attribution matter so much for AI citation?</h3>
+          <div class="qa-item__paper">
+            <p class="qa-item__answer">There is now more AI-written content on the web than human-written content, and foundation model companies are hungry for real expert knowledge that hasn't been written down yet. When an AI can verify that a piece of writing really came from a named expert — through a linked LinkedIn profile and a well-structured author page — it is far more likely to cite that person.</p>
+          </div>
+          <div class="qa-item__citation">
+            <span class="citation-speaker">
+              <strong>Simon Wilhelm</strong> &middot;
+              Co-Founder and CEO, SCAILE
+            </span>
+            <a
+              class="citation-link"
+              href="https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=1484"
+              rel="noopener"
+              aria-label="Listen: Simon Wilhelm at 24:44"
+            >
+              &#9654; 24:44
+            </a>
+          </div>
+        </article>
+
+        <article class="qa-item" id="q10">
+          <p class="qa-item__id">best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002#q10</p>
+          <h3 class="qa-item__question">How do you measure whether a brand's AI visibility is actually improving?</h3>
+          <div class="qa-item__paper">
+            <p class="qa-item__answer">Prompt tracking is unreliable because LLMs are not deterministic — no tool can prove a brand is definitively 'the answer.' The only valid metric is revenue: tracking clicks from AI chatbots and AI overviews in Google Analytics through to bookings or purchases, plus self-attribution by asking leads directly where they found you.</p>
+          </div>
+          <div class="qa-item__citation">
+            <span class="citation-speaker">
+              <strong>Simon Wilhelm</strong> &middot;
+              Co-Founder and CEO, SCAILE
+            </span>
+            <a
+              class="citation-link"
+              href="https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=2163"
+              rel="noopener"
+              aria-label="Listen: Simon Wilhelm at 36:03"
+            >
+              &#9654; 36:03
+            </a>
+          </div>
+        </article>
+
+        <article class="qa-item" id="q11">
+          <p class="qa-item__id">best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002#q11</p>
+          <h3 class="qa-item__question">What is share of answer, and why does it matter more than traffic?</h3>
+          <div class="qa-item__paper">
+            <p class="qa-item__answer">Share of answer is how many times, out of a defined set of bottom-of-funnel prompts, a brand appears as the answer. Human traffic is becoming a vanity metric as search moves into LLMs, so being the answer in 29 out of 30 relevant prompts can matter more than a thousand clicks that aren't intent-based.</p>
+          </div>
+          <div class="qa-item__citation">
+            <span class="citation-speaker">
+              <strong>Simon Wilhelm</strong> &middot;
+              Co-Founder and CEO, SCAILE
+            </span>
+            <a
+              class="citation-link"
+              href="https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=2320"
+              rel="noopener"
+              aria-label="Listen: Simon Wilhelm at 38:40"
+            >
+              &#9654; 38:40
+            </a>
+          </div>
+        </article>
+
+        <article class="qa-item" id="q12">
+          <p class="qa-item__id">best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002#q12</p>
+          <h3 class="qa-item__question">How does a marketing leader tell a real AI visibility agency apart from a repackaged SEO shop?</h3>
+          <div class="qa-item__paper">
+            <p class="qa-item__answer">Ask them one question: have they driven revenue through AI search visibility? The most common failure of fake AEO agencies is mass-producing low-value AI-generated content at volume instead of proving actual business impact.</p>
+          </div>
+          <div class="qa-item__citation">
+            <span class="citation-speaker">
+              <strong>Simon Wilhelm</strong> &middot;
+              Co-Founder and CEO, SCAILE
+            </span>
+            <a
+              class="citation-link"
+              href="https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=2401"
+              rel="noopener"
+              aria-label="Listen: Simon Wilhelm at 40:01"
+            >
+              &#9654; 40:01
+            </a>
+          </div>
+        </article>
+
+        <article class="qa-item" id="q13">
+          <p class="qa-item__id">best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002#q13</p>
+          <h3 class="qa-item__question">What is the difference between AEO and GEO?</h3>
+          <div class="qa-item__paper">
+            <p class="qa-item__answer">AEO is about being visible in the AI Overview panel that appears above Google's normal search results. GEO is the broader, cross-functional capability of understanding your ideal customers and becoming the answer across conversational AI engines like ChatGPT, Claude, Perplexity, and Gemini from the outset.</p>
+          </div>
+          <div class="qa-item__citation">
+            <span class="citation-speaker">
+              <strong>Simon Wilhelm</strong> &middot;
+              Co-Founder and CEO, SCAILE
+            </span>
+            <a
+              class="citation-link"
+              href="https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=2596"
+              rel="noopener"
+              aria-label="Listen: Simon Wilhelm at 43:16"
+            >
+              &#9654; 43:16
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="schema-reveal" aria-label="Structured data for this page">
+    <div class="container">
+      <details>
+        <summary class="schema-reveal__label">
+          Structured data — what machines read on this page
+        </summary>
+        <div class="schema-reveal__body">
+          <p>
+            The JSON-LD below is the machine-readable version of this page.
+            The same block is in a <code>&lt;script type="application/ld+json"&gt;</code>
+            tag in the page head for crawlers. This copy is for human inspection.
+          </p>
+          <pre class="schema-code" aria-label="JSON-LD structured data"><span class="t-punct">{</span>
+  <span class="t-key">"@context"</span><span class="t-punct">:</span> <span class="t-str">"https://schema.org"</span><span class="t-punct">,</span>
+  <span class="t-key">"@graph"</span><span class="t-punct">: [</span>
+    <span class="t-punct">{</span>
+      <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-type">"FAQPage"</span><span class="t-punct">,</span>
+      <span class="t-key">"name"</span><span class="t-punct">:</span> <span class="t-str">"Why Isn't My Brand Showing Up in AI Answers?"</span><span class="t-punct">,</span>
+      <span class="t-key">"mainEntity"</span><span class="t-punct">: [</span>
+        <span class="t-punct">{</span>
+          <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-type">"Question"</span><span class="t-punct">,</span>
+          <span class="t-key">"name"</span><span class="t-punct">:</span> <span class="t-str">"When a brand isn't showing up in AI answers, what's actually broken?"</span><span class="t-punct">,</span>
+          <span class="t-key">"acceptedAnswer"</span><span class="t-punct">: {</span>
+            <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-type">"Answer"</span><span class="t-punct">,</span>
+            <span class="t-key">"text"</span><span class="t-punct">:</span> <span class="t-str">"There are multiple reasons, but at a high level it starts with whether your website is technically accessible to AI crawlers. If a site relies heavily on JavaScript, tools like ChatGPT cannot read it — they can only see the meta title and description, nothing else on the page."</span><span class="t-punct">,</span>
+            <span class="t-key">"author"</span><span class="t-punct">:</span> <span class="t-str">"Simon Wilhelm"</span><span class="t-punct">,</span>
+            <span class="t-key">"citation"</span><span class="t-punct">:</span> <span class="t-url">"https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=122"</span>
+          <span class="t-punct">}</span>
+        <span class="t-punct">}</span>
+      <span class="t-punct">]</span>
+    <span class="t-punct">},</span>
+    <span class="t-punct">{</span>
+      <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-type">"Quotation"</span><span class="t-punct">,</span>
+      <span class="t-key">"text"</span><span class="t-punct">:</span> <span class="t-str">"There are multiple reasons, but at a high level it starts with whether your website is technically accessible to AI crawlers. If a site relies heavily on JavaScript, tools like ChatGPT cannot read it — they can only see the meta title and description, nothing else on the page."</span><span class="t-punct">,</span>
+      <span class="t-key">"spokenByCharacter"</span><span class="t-punct">:</span> <span class="t-name">"Simon Wilhelm"</span><span class="t-punct">,</span>
+      <span class="t-key">"citation"</span><span class="t-punct">:</span> <span class="t-url">"https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002?t=122"</span>
+    <span class="t-punct">},</span>
+    <span class="t-punct">{</span>
+      <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-type">"PodcastEpisode"</span><span class="t-punct">,</span>
+      <span class="t-key">"name"</span><span class="t-punct">:</span> <span class="t-str">"Best Agency to Get My Brand Cited by ChatGPT"</span><span class="t-punct">,</span>
+      <span class="t-key">"episodeNumber"</span><span class="t-punct">:</span> <span class="t-num">2</span><span class="t-punct">,</span>
+      <span class="t-key">"datePublished"</span><span class="t-punct">:</span> <span class="t-str">"2026-09-30T12:30:00.000Z"</span>
+    <span class="t-punct">},</span>
+    <span class="t-punct">{</span>
+      <span class="t-key">"@type"</span><span class="t-punct">:</span> <span class="t-type">"Person"</span><span class="t-punct">,</span>
+      <span class="t-key">"name"</span><span class="t-punct">:</span> <span class="t-name">"Simon Wilhelm"</span><span class="t-punct">,</span>
+      <span class="t-key">"jobTitle"</span><span class="t-punct">:</span> <span class="t-str">"Co-Founder and CEO"</span><span class="t-punct">,</span>
+      <span class="t-key">"sameAs"</span><span class="t-punct">:</span> <span class="t-url">"https://www.linkedin.com/in/simon-leander-wilhelm"</span>
+    <span class="t-punct">}</span>
+  <span class="t-punct">]</span>
+<span class="t-punct">}</span></pre>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <div class="episode-footer-strip" aria-label="Full episode">
+    <div class="container">
+      <p class="episode-footer-strip__label">Full episode</p>
+      <a
+        class="episode-footer-strip__link"
+        href="https://podcast.citedconversations.com/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002"
+        rel="noopener"
+        aria-label="Listen to Episode 2 in full"
+      >
+        Listen to Episode 2: Best Agency to Get My Brand Cited by ChatGPT &nearr;
+      </a>
+    </div>
+  </div>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>
+        <strong style="color: var(--text-dim);">Cited Conversations</strong> &middot;
+        A <a href="https://ringmaster.com" rel="noopener">Ringmaster</a> reference library
+      </p>
+      <nav aria-label="Footer navigation">
+        <a href="/about/">Methodology</a> &middot;
+        <a href="/episodes/">Episodes</a> &middot;
+        <a href="/faq/">FAQ</a> &middot;
+        <a href="/how-machines-read-this/">Schema</a> &middot;
+        <a href="/robots.txt">robots.txt</a> &middot;
+        <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a> &middot;
+        <a href="https://x.com/citedconv" rel="noopener">@citedconv</a>
+      </nav>
+      <p class="footer-byline">Every claim links to its source. Every speaker is named. &middot; <a href="/for-humans/">For humans →</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
