@@ -50,4 +50,25 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://citedconversations.com/speakers/casey-cheshire/</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://citedconversations.com/speakers/adam-needles/</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://citedconversations.com/speakers/simon-wilhelm/</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
