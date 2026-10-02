@@ -1,5 +1,5 @@
 # Cloudflare Pages _redirects for citedconversations.com
-# Updated: 2026-09-30
+# Updated: 2026-10-02
 
 # ── Existing structural redirects ───────────────────────────────────────────────
 
@@ -16,17 +16,17 @@
 /episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/ /answers/best-agency-to-get-my-brand-cited-by-chatgpt/ 301
 /episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002 /answers/best-agency-to-get-my-brand-cited-by-chatgpt/ 301
 
-# ── Prefix-less episode slugs (no /episodes/ prefix) → canonical episode pages ───
+# ── Prefix-less episode slugs (no /episodes/ prefix) → canonical /answers/ pages ───
 # Source: JSON-LD citation fields previously used podcast.citedconversations.com;
 # GPTBot strips the subdomain and hits citedconversations.com/SLUG?t=N.
 # Named rules for existing episodes (take priority over pattern below).
 
-/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/ /episodes/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/ 301
-/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001 /episodes/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/ 301
-/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/ /episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/ 301
-/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002 /episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/ 301
+/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/ /answers/best-b2b-podcast-agency-for-ai-visibility/ 301
+/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001 /answers/best-b2b-podcast-agency-for-ai-visibility/ 301
+/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/ /answers/best-agency-to-get-my-brand-cited-by-chatgpt/ 301
+/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002 /answers/best-agency-to-get-my-brand-cited-by-chatgpt/ 301
 
-# Pattern rule: any future prefix-less episode slug → /episodes/same-slug/
+# Pattern rule: any future prefix-less episode slug → /answers/ via /episodes/ chain
 # Uses Cloudflare Pages :splat syntax to substitute the wildcard match.
 /best-* /episodes/best-:splat 301
 
