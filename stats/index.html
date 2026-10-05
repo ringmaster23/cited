@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AI Crawler Stats — Cited Conversations</title>
-  <meta name="description" content="AI crawler activity on Cited Conversations since launch." />
+  <meta name="description" content="AI crawler activity on Cited Conversations — daily request log by bot." />
   <meta name="robots" content="noindex, nofollow" />
 
   <!-- Match site font -->
@@ -351,10 +351,10 @@
       <div class="kpi-card">
         <span class="kpi-label">Total AI requests</span>
         <span class="kpi-value kpi-value--red" id="kpi-total">—</span>
-        <span class="kpi-sub">since launch</span>
+        <span class="kpi-sub" id="kpi-since">since —</span>
       </div>
       <div class="kpi-card">
-        <span class="kpi-label">Days since launch</span>
+        <span class="kpi-label">Days tracked</span>
         <span class="kpi-value" id="kpi-days">—</span>
         <span class="kpi-sub" id="kpi-launch-date">—</span>
       </div>
@@ -372,7 +372,7 @@
 
     <!-- Zero state (shown when no data yet) -->
     <div class="zero-state" id="zero-state" style="display:none">
-      <p><strong>No crawler activity recorded yet.</strong> The tracker started at launch (Sep 30, 2026). Check back after a few days — AI crawlers typically index a new site within one to two weeks of launch.</p>
+      <p><strong>No crawler activity recorded yet.</strong> Check back after a few days — AI crawlers typically index a new site within one to two weeks of launch.</p>
     </div>
 
     <!-- 1. Requests by day -->
@@ -382,7 +382,7 @@
         <span class="stats-section-note">Stacked by crawler — each bar = one calendar day</span>
       </div>
       <div class="chart-wrap">
-        <canvas id="chart-daily" role="img" aria-label="Stacked bar chart of AI crawler requests per day since launch"></canvas>
+        <canvas id="chart-daily" role="img" aria-label="Stacked bar chart of AI crawler requests per day"></canvas>
       </div>
       <p class="sr-only" id="chart-daily-summary"></p>
     </section>
@@ -391,7 +391,7 @@
     <section class="stats-section" aria-labelledby="bot-breakdown-title">
       <div class="stats-section-header">
         <h2 class="stats-section-title" id="bot-breakdown-title">Breakdown by crawler</h2>
-        <span class="stats-section-note">All time since launch</span>
+        <span class="stats-section-note" id="bot-section-note">All time in range</span>
       </div>
       <div style="overflow-x:auto">
         <table class="bot-table" aria-label="AI crawler request totals">
@@ -557,7 +557,7 @@
     }
 
     const { updated_at, launch_date, daily = [], traffic_mix = [] } = data;
-    const dayCount = daysBetween(launch_date, today());
+    
 
     // ── Aggregate ──────────────────────────────────────────────────────────────
 
@@ -572,7 +572,15 @@
       }
       return dates;
     }
-    const allDates = dateRange(launch_date, today());
+    // Find the earliest date across both daily rows and traffic_mix rows
+    const allDailyDates = daily.map(r => r.date);
+    const allMixDates = traffic_mix.map(r => r.date);
+    const allDataDates = [...allDailyDates, ...allMixDates].filter(Boolean);
+    const earliestDate = allDataDates.length > 0
+      ? allDataDates.reduce((a, b) => a < b ? a : b)
+      : launch_date;
+    const allDates = dateRange(earliestDate, today());
+    const dayCount = allDates.length;
 
     // Bot totals
     const botMap = {}; // name → { operator, requests, paths: Set }
@@ -604,11 +612,13 @@
     document.getElementById('kpi-days').textContent  = fmtNum(dayCount);
     document.getElementById('kpi-bots').textContent  = fmtNum(totalBots);
     document.getElementById('kpi-pages').textContent = fmtNum(totalPages);
-    document.getElementById('kpi-launch-date').textContent = 'since ' + fmtDate(launch_date);
+    document.getElementById('kpi-launch-date').textContent = fmtDate(earliestDate) + ' – ' + fmtDate(today());
+    document.getElementById('kpi-since').textContent = fmtDate(earliestDate) + ' – today';
+    document.getElementById('bot-section-note').textContent = fmtDate(earliestDate) + ' – ' + fmtDate(today());
 
     // Meta line
     document.getElementById('stats-meta').innerHTML =
-      `<strong>Since launch</strong><span class="sep">·</span>` +
+      `<strong>${fmtDate(earliestDate)} – today</strong><span class="sep">·</span>` +
       (IS_DEMO ? '<strong style="color:var(--red)">Sample data</strong><span class="sep">·</span>' : '') +
       `Tracking: GPTBot, ClaudeBot, PerplexityBot, Googlebot, and more`;
 
@@ -641,7 +651,7 @@
     const peakIdx = totalByDate.indexOf(Math.max(...totalByDate));
     document.getElementById('chart-daily-summary').textContent =
       daily.length === 0
-        ? 'No crawler activity recorded yet since launch.'
+        ? 'No crawler activity recorded yet.'
         : `Peak day: ${fmtDate(allDates[peakIdx])} with ${fmtNum(totalByDate[peakIdx])} requests. Total: ${fmtNum(totalRequests)} across ${allDates.length} days.`;
 
     new Chart(document.getElementById('chart-daily'), {
