@@ -20,6 +20,23 @@
   <style>
     /* ── Stats-page-specific styles ── */
 
+    /* Map stats-page variables to site's light-theme palette */
+    :root {
+      --bg:          #ffffff;
+      --bg-raised:   #f6f4f1;
+      --text:        #0A0A0A;
+      --text-dim:    #333333;
+      --text-muted:  #888888;
+      --border:      #e8e4de;
+      --border-dim:  #f0ece6;
+      --sp-1: 0.5rem;
+      --sp-2: 1rem;
+      --sp-3: 1.5rem;
+      --sp-4: 2rem;
+      --sp-5: 2.5rem;
+      --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    }
+
     /* Demo banner */
     .demo-banner {
       background: var(--red);
@@ -501,17 +518,19 @@
     return new Date().toISOString().slice(0, 10);
   }
 
-  // ─── Chart.js global defaults ────────────────────────────────────────────────
+  // ─── Chart.js global defaults — tuned for white background ──────────────────
   Chart.defaults.font.family = "'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace";
   Chart.defaults.font.size = 11;
-  Chart.defaults.color = 'rgba(239,234,227,0.45)';
-  Chart.defaults.borderColor = 'rgba(239,234,227,0.07)';
+  Chart.defaults.color = '#444444';
+  Chart.defaults.borderColor = 'rgba(0,0,0,0.08)';
   Chart.defaults.plugins.legend.position = 'bottom';
   Chart.defaults.plugins.legend.labels.usePointStyle = true;
   Chart.defaults.plugins.legend.labels.boxWidth = 8;
   Chart.defaults.plugins.legend.labels.padding = 14;
   Chart.defaults.plugins.tooltip.backgroundColor = '#1a1a1a';
-  Chart.defaults.plugins.tooltip.borderColor = 'rgba(239,234,227,0.12)';
+  Chart.defaults.plugins.tooltip.titleColor = '#ffffff';
+  Chart.defaults.plugins.tooltip.bodyColor = '#ffffff';
+  Chart.defaults.plugins.tooltip.borderColor = 'rgba(0,0,0,0.2)';
   Chart.defaults.plugins.tooltip.borderWidth = 1;
   Chart.defaults.plugins.tooltip.padding = 10;
   Chart.defaults.plugins.tooltip.cornerRadius = 2;
@@ -523,14 +542,14 @@
       stacked: true,
       grid: { display: false },
       border: { display: false },
-      ticks: { padding: 6, maxTicksLimit: 14 }
+      ticks: { padding: 6, maxTicksLimit: 14, color: '#888888' }
     },
     y: {
       stacked: true,
-      grid: { color: 'rgba(239,234,227,0.06)', drawTicks: false },
+      grid: { color: 'rgba(0,0,0,0.06)', drawTicks: false },
       border: { display: false },
       beginAtZero: true,
-      ticks: { padding: 8, precision: 0, callback: v => fmtNum(v) }
+      ticks: { padding: 8, precision: 0, callback: v => fmtNum(v), color: '#888888' }
     }
   };
 
@@ -667,7 +686,7 @@
           title: { display: false },
           legend: {
             display: botNames.length > 0,
-            labels: { color: 'rgba(239,234,227,0.5)', padding: 14 }
+            labels: { color: '#444444', padding: 14 }
           },
           tooltip: {
             callbacks: {
@@ -765,8 +784,8 @@
                 const row = traffic_mix.find(r => r.date === d);
                 return row?.human || 0;
               }),
-              borderColor: '#EFEAE3',
-              backgroundColor: 'rgba(239,234,227,0.05)',
+              borderColor: '#2d4a3e',
+              backgroundColor: 'rgba(45,74,62,0.08)',
               borderWidth: 1,
               tension: 0.3,
               pointRadius: 0,
@@ -778,8 +797,8 @@
         options: {
           responsive: true,
           scales: {
-            x: { grid: { display: false }, border: { display: false }, ticks: { padding: 6, maxTicksLimit: 10 } },
-            y: { grid: { color: 'rgba(239,234,227,0.06)', drawTicks: false }, border: { display: false }, beginAtZero: true, ticks: { padding: 8, precision: 0, callback: v => fmtNum(v) } }
+            x: { grid: { display: false }, border: { display: false }, ticks: { padding: 6, maxTicksLimit: 10, color: '#888888' } },
+            y: { grid: { color: 'rgba(0,0,0,0.06)', drawTicks: false }, border: { display: false }, beginAtZero: true, ticks: { padding: 8, precision: 0, callback: v => fmtNum(v), color: '#888888' } }
           },
           plugins: {
             legend: { display: false },
@@ -788,11 +807,11 @@
         }
       });
 
-      // Legend
+      // Legend — replace near-white Human swatch with a visible dark teal
       const legendItems = [
         { label: 'Verified bot', total: totV, pct: Math.round((totV/totAll)*100), color: '#A7011F' },
         { label: 'Automated',    total: totA, pct: Math.round((totA/totAll)*100), color: '#6b7280' },
-        { label: 'Human',        total: totH, pct: Math.round((totH/totAll)*100), color: '#EFEAE3' },
+        { label: 'Human',        total: totH, pct: Math.round((totH/totAll)*100), color: '#2d4a3e' },
       ];
       document.getElementById('mix-legend').innerHTML = legendItems.map(item => `
         <div class="mix-legend-item">
