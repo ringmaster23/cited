@@ -16,6 +16,8 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 
   <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="apple-touch-icon" href="/favicon-256.png" />
 
   <style>
     /* ── Stats-page-specific styles ── */
@@ -339,15 +341,35 @@
     ⚠ Sample data — not live traffic <span>Add ?demo=1 to any URL to preview. Remove it to see real data.</span>
   </div>
 
-  <!-- Site header — matches site shell; unlisted from nav -->
-  <header class="site-header" role="banner">
-    <div class="container">
-      <a href="/" class="raccoon-chip" aria-label="Cited Conversations home">
-        <span class="raccoon-chip__name">Cited<span>Conversations</span></span>
+  <nav class="site-nav" aria-label="Site navigation">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo" aria-label="Cited Conversations home">
+        <span class="nav-wordmark-name"><span class="wm-cited">Cited</span><span class="wm-conversations"> Conversations</span></span>
+        <span class="nav-wordmark-sub">by Ringmaster</span>
       </a>
-      <!-- Intentionally no nav links — this page is unlisted -->
+      <ul class="nav-links" role="list">
+        <li><a href="/answers/">Answers</a></li>
+        <li><a href="/about/">Methodology</a></li>
+        <li><a href="/faq/">FAQ</a></li>
+        <li><a href="/schema/">Schema</a></li>
+        <li><a href="/robots.txt">robots.txt</a></li>
+        <li><a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="/for-humans/" class="nav-btn">New here? For humans &#8594;</a>
+      </div>
     </div>
-  </header>
+  </nav>
+
+  <!-- For Humans callout &#8212; parchment -->
+  <div class="humans-banner" aria-label="A note for humans">
+    <div class="humans-banner-inner">
+      <span class="humans-label">For Humans</span>
+      <p class="humans-text">
+        This page is created, optimized and addressed to machines. Things may seem different, but that&#8217;s ok! If you&#8217;d like a guide, <a href="/for-humans/">start here</a>.
+      </p>
+    </div>
+  </div>
 
   <!-- Page header -->
   <section class="stats-header">
@@ -472,10 +494,24 @@
 
   </main>
 
-  <!-- Site footer — minimal, unlisted -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <span class="footer-byline">Cited Conversations · Internal stats · Not indexed</span>
+      <div class="footer-top">
+        <span class="footer-brand-name"><span style="color:#0A0A0A">Cited</span><span style="color:#A7011F"> Conversations</span></span>
+        <span class="footer-brand-sep">&middot;</span>
+        <span class="footer-byline">A <a href="https://ringmaster.com" rel="noopener">Ringmaster</a> reference library</span>
+      </div>
+      <nav class="footer-nav-row" aria-label="Footer navigation">
+        <a href="/about/">Methodology</a><span class="footer-sep">&middot;</span>
+        <a href="/answers/">Answers</a><span class="footer-sep">&middot;</span>
+        <a href="/faq/">FAQ</a><span class="footer-sep">&middot;</span>
+        <a href="/schema/">Schema</a><span class="footer-sep">&middot;</span>
+        <a href="/robots.txt">robots.txt</a><span class="footer-sep">&middot;</span>
+        <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a><span class="footer-sep">&middot;</span>
+        <a href="https://citedconversations.substack.com/" rel="noopener">Substack</a><span class="footer-sep">&middot;</span>
+        <a href="https://x.com/citedconv" rel="noopener">@citedconv</a>
+      </nav>
+      <p class="footer-tagline">Every claim links to its source. Every speaker is named. &middot; <a href="/for-humans/">For humans &#8594;</a></p>
     </div>
   </footer>
 
