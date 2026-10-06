@@ -289,6 +289,45 @@ https://podcast.citedconversations.com/ep1-aeo-practice?t=383</code></pre>
       </div>
 
       <div class="schema-block">
+        <h2>Verification state: <code>creativeWorkStatus</code></h2>
+
+        <p>Every Clip, Quotation, WebPage, and PodcastEpisode node on this site carries a <code>creativeWorkStatus</code> field. This field communicates the transcript verification state to AI crawlers and agents in machine-readable form, not just as a visual badge in the page body.</p>
+
+        <h3>Values in use</h3>
+        <dl style="margin-bottom: var(--space-3);">
+          <dt><code>"Published"</code></dt>
+          <dd>The transcript for this episode has been verified against the source audio. Speaker attribution, timestamps, and quoted text have been confirmed. This is the standard state for all published answer pages once verification is complete.</dd>
+          <dt style="margin-top: var(--space-2);"><code>"PendingVerification"</code></dt>
+          <dd>The episode has been published but its transcript has not yet been spot-audited against the source recording. Claims are sourced and attributed but not yet confirmed against the audio at the passage level. This state is temporary; it transitions to <code>"Published"</code> after verification.</dd>
+        </dl>
+
+        <h3>Where the field appears</h3>
+        <p>The field is set consistently on four node types per episode page:</p>
+        <ul style="margin-bottom: var(--space-3);">
+          <li><code>WebPage</code> — the page itself</li>
+          <li><code>PodcastEpisode</code> — the source episode</li>
+          <li>Every <code>Clip</code> node — each timestamped answer segment</li>
+          <li>Every <code>Quotation</code> node — each attributed speaker quotation</li>
+        </ul>
+
+        <h3>Example: verified episode</h3>
+        <pre><code>{
+  "@type": "Quotation",
+  "@id": "https://citedconversations.com/answers/&lt;slug&gt;/#q1-quotation",
+  "text": "&lt;speaker's exact words&gt;",
+  "spokenByCharacter": { "@id": "https://citedconversations.com/speakers/&lt;name&gt;/#speaker" },
+  "creator": { "@id": "https://citedconversations.com/speakers/&lt;name&gt;/#speaker" },
+  "isPartOf": { "@id": "https://citedconversations.com/answers/&lt;slug&gt;/#episode" },
+  "citation": "https://podcast.citedconversations.com/&lt;slug&gt;?t=&lt;seconds&gt;",
+  "relatedLink": [],
+  "creativeWorkStatus": "Published"
+}</code></pre>
+
+        <h3>Why <code>creativeWorkStatus</code></h3>
+        <p><code>creativeWorkStatus</code> is a standard <code>schema.org</code> property on <code>CreativeWork</code> (and all its subtypes, including Clip, Quotation, WebPage, and PodcastEpisode). Its vocabulary is unrestricted &#8212; any string value is valid. Using it here lets agents that read only structured data distinguish verified claims from pending ones without parsing the human-readable DOM. The site&#8217;s core trust promise &#8212; verified, source-linked claims &#8212; is now visible to both humans and machines.</p>
+      </div>
+
+      <div class="schema-block">
         <h2>Crawlers and access</h2>
 
         <h3>robots.txt</h3>
