@@ -32,4 +32,4 @@
 
 # ── Favicon ───────────────────────────────────────────────────────────────────────
 # 46 x 404 on /favicon.ico — serve the existing 32x32 PNG.
-/favicon.ico /favicon-32x32.png 302
+# /favicon.ico redirect removed — real favicon.ico now served as static file
