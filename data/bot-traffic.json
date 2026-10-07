@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-07T17:40:12Z",
+  "updated_at": "2026-10-07T18:03:36Z",
   "launch_date": "2026-09-30",
   "daily": [
     {"date":"2026-09-24","bot_name":"ClaudeBot","operator":"Anthropic","request_count":4,"distinct_paths_crawled":2,"top_paths":["/robots.txt","/sitemap.xml"],"status_summary":{"200":4}},
@@ -96,6 +96,6 @@
     {"date":"2026-10-04","verified_bot":56,"automated":181,"human":346},
     {"date":"2026-10-05","verified_bot":84,"automated":424,"human":864},
     {"date":"2026-10-06","verified_bot":48,"automated":254,"human":802},
-    {"date":"2026-10-07","verified_bot":36,"automated":207,"human":216}
+    {"date":"2026-10-07","verified_bot":36,"automated":209,"human":232}
   ]
 }
