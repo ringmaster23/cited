@@ -65,6 +65,13 @@
   </url>
 
   <url>
+    <loc>https://citedconversations.com/stats/</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://citedconversations.com/speakers/casey-cheshire/</loc>
     <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
