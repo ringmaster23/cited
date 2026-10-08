@@ -266,30 +266,10 @@
       <p style="color: var(--muted); margin-top: var(--space-2); font-size: var(--step-0);">
         {{ EPISODE_DESCRIPTION }}
       </p>
+    </div>
+  </section>
 
-      <div class="episode-hero__guests" aria-label="Episode speakers" style="display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-4);">
-
-        <div style="padding: var(--space-2) var(--space-3); background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg);">
-          <p style="font-weight: 600; color: var(--ink);">Casey Cheshire</p>
-          <p style="font-size: var(--step--1); color: var(--muted);">Founder &amp; CEO, Ringmaster</p>
-          <div style="display: flex; gap: var(--space-2); margin-top: 0.5rem; font-size: var(--step--1);">
-            <a href="https://linkedin.com/in/caseycheshire" rel="noopener">LinkedIn</a>
-            <a href="https://ringmaster.com" rel="noopener">Ringmaster</a>
-          </div>
-        </div>
-
-        <div style="padding: var(--space-2) var(--space-3); background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg);">
-          <p style="font-weight: 600; color: var(--ink);">{{ GUEST_SPEAKER_NAME }}</p>
-          <p style="font-size: var(--step--1); color: var(--muted);">{{ GUEST_SPEAKER_TITLE }}, {{ GUEST_SPEAKER_COMPANY }}</p>
-          <div style="display: flex; gap: var(--space-2); margin-top: 0.5rem; font-size: var(--step--1);">
-            <a href="{{ GUEST_SPEAKER_LINKEDIN }}" rel="noopener">LinkedIn</a>
-            <a href="{{ GUEST_SPEAKER_COMPANY_URL }}" rel="noopener">{{ GUEST_SPEAKER_COMPANY }}</a>
-          </div>
-        </div>
-
-      </div>
-
-      <p style="margin-top: var(--space-3); font-size: var(--step--1); color: var(--muted);">
+        <p style="margin-top: var(--space-3); font-size: var(--step--1); color: var(--muted);">
         Published {{ DATE_PUBLISHED_HUMAN }} &middot;
         <a href="https://podcast.citedconversations.com/episodes/{{ TRANSISTOR_EPISODE_SLUG }}" rel="noopener">
           Listen to the full episode &#8599;
@@ -311,6 +291,32 @@
         <li style="font-size: var(--step--1); line-height: 1.4;"><a href="#q2" style="color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--border);">#q2 — {{ QUESTION_2 }}</a></li>
         <!-- Add one <li> per Q&A block below — copy the pattern above -->
       </ol>
+    </div>
+  </section>
+
+    <!-- ── Short credit block — appears after TOC, before Q1 ──────────────────────
+    BUILDER: fill in each person's role. For any guest with a commercial relationship
+    to Ringmaster, include it in parentheses, e.g. "(a Ringmaster partner)".
+    ⚠️  RELATIONSHIP FLAG: If you do not know whether {{ GUEST_SPEAKER_COMPANY }}
+    has a commercial relationship with Ringmaster, DO NOT OMIT AND DO NOT INVENT —
+    leave the flag text as "<!-- RELATIONSHIP: not confirmed — check with Casey before publishing -->"
+    and Casey will fill it in before the page goes live.
+    
+    Example (guest with confirmed relationship):
+      Guest Expert: Simon Wilhelm, Co-Founder & CEO, SCAILE (a Ringmaster partner).
+      Host / Publisher: Casey Cheshire, Founder & CEO, Ringmaster.
+    
+    Example (guest with no commercial relationship):
+      Guest: Adam Needles, CEO & Co-Founder, ANNUITAS, and Casey Cheshire,
+      Founder & CEO, Ringmaster (publisher of Cited Conversations).
+  -->
+  <section id="credits" aria-label="Episode credits" style="padding-block: var(--space-3); background: #ffffff; border-top: 1px solid var(--border);">
+    <div class="container">
+      <p style="font-size: var(--step--1); color: var(--muted); margin: 0;">
+        <!-- RELATIONSHIP: not confirmed — check with Casey before publishing -->
+        <strong>Guest{{ GUEST_COUNT_PLURAL }}:</strong> {{ GUEST_SPEAKER_NAME }}, {{ GUEST_SPEAKER_TITLE }}, {{ GUEST_SPEAKER_COMPANY }}.
+        <strong>Host / Publisher:</strong> Casey Cheshire, Founder &amp; CEO, Ringmaster.
+      </p>
     </div>
   </section>
 
@@ -451,6 +457,47 @@
       <p class="footer-tagline">Every claim links to its source. Every speaker is named.</p>
     </div>
   </footer>
+
+
+  <!-- ── Full speaker bios — moved below all answers ──────────────────────────
+    BUILDER: fill in bios for all speakers. If {{ GUEST_SPEAKER_COMPANY }} is a
+    Ringmaster partner, add "{{ GUEST_SPEAKER_COMPANY }} is a Ringmaster partner."
+    as the last sentence of the guest bio paragraph.
+    If the relationship is not confirmed, leave a <!-- RELATIONSHIP: check with Casey --> flag.
+  -->
+  <section id="speaker-bios" aria-labelledby="bios-heading" style="padding-block: var(--space-4); background: #ffffff; border-top: 1px solid var(--border);">
+    <div class="container">
+      <h2 id="bios-heading" class="section-label" style="margin-bottom: var(--space-3);">Speaker profiles</h2>
+      <p style="color: var(--muted); margin-bottom: var(--space-3); max-width: 70ch;">
+        All answers on this page come from a recorded conversation between these named, verified people &mdash; not from generated text.
+      </p>
+      <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+
+        <div style="padding: var(--space-2) var(--space-3); background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg); flex: 1; min-width: 260px;">
+          <p style="font-weight: 600; color: var(--ink);"><a href="/speakers/casey-cheshire/" style="color: inherit; text-decoration: none;">Casey Cheshire</a></p>
+          <p style="font-size: var(--step--1); color: var(--muted); margin-bottom: 0.5rem;">Founder &amp; CEO, Ringmaster</p>
+          <p style="font-size: var(--step--1); color: var(--muted); margin-bottom: 0.5rem;">Casey Cheshire is the Founder &amp; CEO of Ringmaster, a B2B podcasting agency that designs, produces, and promotes branded podcasts for enterprise and mid-market companies. He is the host of Cited Conversations.</p>
+          <div style="display: flex; gap: var(--space-2); font-size: var(--step--1);">
+            <a href="https://linkedin.com/in/caseycheshire" rel="noopener">LinkedIn</a>
+            <span aria-hidden="true">&middot;</span>
+            <a href="https://ringmaster.com" rel="noopener">Ringmaster</a>
+          </div>
+        </div>
+
+        <div style="padding: var(--space-2) var(--space-3); background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg); flex: 1; min-width: 260px;">
+          <p style="font-weight: 600; color: var(--ink);"><a href="/speakers/{{ GUEST_SPEAKER_SLUG }}/" style="color: inherit; text-decoration: none;">{{ GUEST_SPEAKER_NAME }}</a></p>
+          <p style="font-size: var(--step--1); color: var(--muted); margin-bottom: 0.5rem;">{{ GUEST_SPEAKER_TITLE }}, {{ GUEST_SPEAKER_COMPANY }}</p>
+          <p style="font-size: var(--step--1); color: var(--muted); margin-bottom: 0.5rem;">{{ GUEST_SPEAKER_BIO }}<!-- If Ringmaster partner: add "{{ GUEST_SPEAKER_COMPANY }} is a Ringmaster partner." here --></p>
+          <div style="display: flex; gap: var(--space-2); font-size: var(--step--1);">
+            <a href="{{ GUEST_SPEAKER_LINKEDIN }}" rel="noopener">LinkedIn</a>
+            <span aria-hidden="true">&middot;</span>
+            <a href="{{ GUEST_SPEAKER_COMPANY_URL }}" rel="noopener">{{ GUEST_SPEAKER_COMPANY }}</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
 </body>
 </html>
