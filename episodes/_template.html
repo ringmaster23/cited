@@ -184,7 +184,9 @@
         "creator": { "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-{{ SPEAKER_1_ID }}" },
         "dateCreated": "{{ DATE_PUBLISHED_ISO }}",
         "isPartOf": { "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#episode" },
-        "citation": "{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}"
+        "citation": "{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}",
+        "startOffset": {{ START_OFFSET_Q1 }},
+        "endOffset": {{ END_OFFSET_Q1 }}
       },
       {
         "@type": "BreadcrumbList",
@@ -344,6 +346,11 @@
           Listen to the full episode &#8599;
         </a>
       </p>
+      <p style="margin-top: var(--space-2); font-size: var(--step--1); color: var(--muted);">
+        <a href="/episodes/{{ EPISODE_SLUG }}/transcript.txt" rel="noopener">Download transcript (.txt)</a>
+        &middot;
+        <a href="/episodes/{{ EPISODE_SLUG }}/transcript.vtt" rel="noopener">Subtitles (.vtt)</a>
+      </p>
     </div>
   </section>
 
@@ -393,7 +400,7 @@
           <div style="display: flex; align-items: center; gap: 0.6rem; font-size: var(--step--1); color: var(--muted);">
             <span><strong style="color: var(--ink);">{{ SPEAKER_1_NAME }}</strong> &middot; {{ SPEAKER_1_TITLE }}, {{ SPEAKER_1_COMPANY }}</span>
             <span style="color: var(--subtle);">&middot;</span>
-            <a href="{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}" class="citation-ts" rel="noopener" aria-label="Listen to this answer in the episode">&#9654; {{ TIMESTAMP_DISPLAY_Q1 }}</a>
+            <a href="{{ TRANSISTOR_TIMESTAMP_URL_Q1 }}" class="citation-ts" rel="noopener" aria-label="Listen to this answer in the episode">▶ {{ TIMESTAMP_DISPLAY_Q1 }}–{{ TIMESTAMP_END_Q1 }}</a>
           </div>
         </article>
 
@@ -407,7 +414,7 @@
           <div style="display: flex; align-items: center; gap: 0.6rem; font-size: var(--step--1); color: var(--muted);">
             <span><strong style="color: var(--ink);">{{ SPEAKER_2_NAME }}</strong> &middot; {{ SPEAKER_2_TITLE }}, {{ SPEAKER_2_COMPANY }}</span>
             <span style="color: var(--subtle);">&middot;</span>
-            <a href="{{ TRANSISTOR_TIMESTAMP_URL_Q2 }}" class="citation-ts" rel="noopener" aria-label="Listen to this answer in the episode">&#9654; {{ TIMESTAMP_DISPLAY_Q2 }}</a>
+            <a href="{{ TRANSISTOR_TIMESTAMP_URL_Q2 }}" class="citation-ts" rel="noopener" aria-label="Listen to this answer in the episode">▶ {{ TIMESTAMP_DISPLAY_Q2 }}–{{ TIMESTAMP_END_Q2 }}</a>
           </div>
         </article>
 
