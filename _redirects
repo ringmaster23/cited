@@ -1,6 +1,16 @@
 # Cloudflare Pages _redirects for citedconversations.com
 # Updated: 2026-10-08
 
+# ── Security: block .git and other dot-files ─────────────────────────────────
+# Belt-and-braces — functions/_middleware.js is the primary guard.
+# These rules fire at the CDN edge before the file system is consulted.
+/.git  404
+/.git/* 404
+/.htaccess 404
+/.htpasswd 404
+/.env 404
+/.env.* 404
+
 # ── Structural redirects ────────────────────────────────────────────────────────
 
 /how-machines-read-this/ /schema/ 301
