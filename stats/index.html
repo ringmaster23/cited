@@ -713,8 +713,8 @@
       }
     }
 
-    const totalRequests = Object.entries(botMap).filter(([n]) => n !== 'Grok*').reduce((s, [, b]) => s + b.requests, 0);
-    const totalBots = Object.keys(botMap).filter(n => n !== 'Grok*').length;
+    const totalRequests = Object.values(botMap).reduce((s, b) => s + b.requests, 0);
+    const totalBots = Object.keys(botMap).length;
     const totalPages = Object.keys(pathMap).length;
 
     // ── KPI cards ─────────────────────────────────────────────────────────────
