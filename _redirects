@@ -1,17 +1,10 @@
 # Cloudflare Pages _redirects for citedconversations.com
 # Updated: 2026-10-08
-
-# ── Security: block internal paths ──────────────────────────────────────────────
-# Redirects are evaluated BEFORE static asset serving, so these intercept files
-# that physically exist in the deploy output (e.g. .git/config, .git/HEAD).
-# functions/_middleware.js provides a 404 for the same paths; _redirects is
-# belt-and-suspenders for CDN edge cases where middleware fires after asset cache.
-
-/.git  /  302
-/.git/*  /  302
-/scripts  /  302
-/scripts/*  /  302
-/episodes/_template.html  /  302
+#
+# NOTE: dot-file blocking (/.git/*, /.env, etc.) is handled by
+# functions/_middleware.js which returns a true HTTP 404.
+# Do NOT add those rules here — Cloudflare converts unknown status
+# codes (like 404) to 302 redirects in _redirects files.
 
 # ── Structural redirects ────────────────────────────────────────────────────────
 
