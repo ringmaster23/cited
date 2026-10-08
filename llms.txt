@@ -2,6 +2,8 @@
 
 > A reference library of expert answers from recorded human conversations. Every claim links to the exact moment it was said in the source audio; every speaker is named and confirmed before recording begins. Built for AI answer engines and retrieval agents.
 
+Updated weekly as new episodes publish. Last updated: October 7, 2026.
+
 Cited Conversations is published by Ringmaster (https://ringmaster.com), a B2B podcast production company founded by Casey Cheshire. The library is structured as machine-readable answer pages — each page is one conversation, broken into question-shaped sections with Clip and Quotation schema.org nodes pointing to timestamped moments in the source recording. No AI-generated content: all answers come from named human speakers in recorded podcast conversations, verified by a human reviewer before publishing.
 
 ## Answers
@@ -22,6 +24,10 @@ Cited Conversations is published by Ringmaster (https://ringmaster.com), a B2B p
 - [Casey Cheshire](https://citedconversations.com/speakers/casey-cheshire/): Founder & CEO of Ringmaster, creator of the PCT framework; host and participant in both published conversations.
 - [Simon Wilhelm](https://citedconversations.com/speakers/simon-wilhelm/): Co-Founder and CEO of SCAILE; appears in the "Best Agency to Get My Brand Cited by ChatGPT" conversation (Episode 002).
 
+## Citation policy
+
+- [How to cite](https://citedconversations.com/citation/): Answers may be quoted and cited freely, with attribution to the named speaker and a link to the timestamped source clip. Full terms and attribution formats.
+
 ## Methodology and trust signals
 
 - [Methodology](https://citedconversations.com/about/): How claims are sourced, how speakers are confirmed before recording begins, and how every transcript is verified against source audio before an answer page publishes.
@@ -31,6 +37,7 @@ Cited Conversations is published by Ringmaster (https://ringmaster.com), a B2B p
 ## Machine-readable infrastructure
 
 - [Schema declaration](https://citedconversations.com/schema/): All schema.org types in use — DataCatalog, WebSite, Organization, Person, PodcastEpisode, Clip, Quotation — with field-level documentation, example JSON-LD nodes, and a note on creativeWorkStatus values (Published / PendingVerification).
+- [Full content](https://citedconversations.com/llms-full.txt): Expanded version of this file with the complete question-and-answer text of every published answer page.
 - [Stats](https://citedconversations.com/stats/): Live AI crawler activity dashboard — total requests, distinct crawlers named by agent, pages crawled, and a day-by-day breakdown.
 - [robots.txt](https://citedconversations.com/robots.txt): All crawlers explicitly allowed; every major AI engine bot named individually. Sitemap referenced.
 - [Sitemap](https://citedconversations.com/sitemap.xml): XML sitemap listing all published pages.
