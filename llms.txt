@@ -18,7 +18,9 @@ Cited Conversations is published by Ringmaster (https://ringmaster.com), a B2B p
 
 ## Speakers
 
-- [Speakers](https://citedconversations.com/speakers/): Named speakers in the library with titles, organizations, and sameAs links to LinkedIn profiles and company URLs.
+- [Adam Needles](https://citedconversations.com/speakers/adam-needles/): CEO and Co-Founder of ANNUITAS; appears in the "Best B2B Podcast Agency for AI Visibility" conversation (Episode 001).
+- [Casey Cheshire](https://citedconversations.com/speakers/casey-cheshire/): Founder & CEO of Ringmaster, creator of the PCT framework; host and participant in both published conversations.
+- [Simon Wilhelm](https://citedconversations.com/speakers/simon-wilhelm/): Co-Founder and CEO of SCAILE; appears in the "Best Agency to Get My Brand Cited by ChatGPT" conversation (Episode 002).
 
 ## Methodology and trust signals
 
