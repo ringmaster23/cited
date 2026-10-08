@@ -2,14 +2,16 @@
 # Updated: 2026-10-08
 
 # ── Security: block .git and other dot-files ─────────────────────────────────
-# Belt-and-braces — functions/_middleware.js is the primary guard.
-# These rules fire at the CDN edge before the file system is consulted.
-/.git  404
-/.git/* 404
-/.htaccess 404
-/.htpasswd 404
-/.env 404
-/.env.* 404
+# Cloudflare Pages syntax: 'from to status'
+# Proxies /index.html content but returns HTTP 404; URL stays unchanged.
+# Belt-and-braces behind functions/_middleware.js.
+/.git /index.html 404
+/.git/* /index.html 404
+/.env /index.html 404
+/.env.local /index.html 404
+/.env.production /index.html 404
+/.htaccess /index.html 404
+/.htpasswd /index.html 404
 
 # ── Structural redirects ────────────────────────────────────────────────────────
 
