@@ -8,9 +8,15 @@
   ── INSTRUCTIONS FOR GENERATING EPISODE PAGES ────────────────────────
   1. Copy this file to /episodes/<slug>/index.html
   2. Replace every {{ PLACEHOLDER }} with real values from the transcript
-  3. Add the new URL to sitemap.xml before committing
-  4. Casey reviews attribution and timestamp links before commit
-  5. No claim page ships without a working, clickable timestamp link
+  3. Add TWO catch-all redirect rules to _redirects (one /episodes/ line, one root):
+       /episodes/{ANSWER_SLUG}-* /answers/{ANSWER_SLUG}/ 301
+       /{ANSWER_SLUG}-*          /answers/{ANSWER_SLUG}/ 301
+     {ANSWER_SLUG} = the /answers/ directory name for this episode.
+     One pair of lines covers the numbered slug, the guest-name slug, and
+     any future bot-generated variant — no per-slug entry needed.
+  4. Add the new /answers/{ANSWER_SLUG}/ URL to sitemap.xml before committing
+  5. Casey reviews attribution and timestamp links before commit
+  6. No claim page ships without a working, clickable timestamp link
 
   ── TRANSISTOR TIMESTAMP FORMAT (CORRECTED) ──────────────────────────
   Use a QUERY PARAMETER, not a URL fragment. The fragment form (#t=) does not work.
@@ -43,6 +49,7 @@
   NOTE: the visible <pre><code> block at page foot is plain HTML —
   it does NOT need JSON escaping. Only the <script> block does.
 
+  ✓ _redirects updated: two catch-all pattern lines added for this episode
   ✓ Every answer has a working timestamp link (tested in a browser)
   ✓ Full schema: FAQPage + PodcastEpisode + AudioObject + Person (sameAs)
       + Organization + Quotation (one per Q&A) + BreadcrumbList
