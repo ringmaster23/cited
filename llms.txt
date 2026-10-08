@@ -26,7 +26,7 @@ Cited Conversations is published by Ringmaster (https://ringmaster.com), a B2B p
 
 ## Citation policy
 
-- [How to cite](https://citedconversations.com/citation/): Answers may be quoted and cited freely, with attribution to the named speaker and a link to the timestamped source clip. Full terms and attribution formats.
+- [How to cite](https://citedconversations.com/citation/): Answers may be quoted and cited freely, with attribution to the named speaker and a link to the answer on citedconversations.com. Full terms and attribution formats.
 
 ## Methodology and trust signals
 
