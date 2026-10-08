@@ -498,6 +498,28 @@
         </table>
       </div>
       <p class="bot-footnote" id="grok-footnote" style="display:none">&#42; <strong>Grok&#42;</strong> is a best guess, not a confirmed xAI crawler. xAI publishes no crawler name or IP ranges, so this row counts bursts where several IPs in different countries open the same page within seconds without loading its styles, scripts or images &#8212; the pattern of a Grok answer fetching a page. 0 means no qualifying burst.</p>
+      <p class="bot-footnote" id="muse-footnote" style="display:none">&#42; <strong>Muse&#42;</strong> is a best guess, not a confirmed Meta crawler. It counts fetches from Meta&#8217;s Fastly network (2a04:4e41::/32) that use a script or stripped-down browser user agent and read several pages or robots.txt / llms.txt / sitemap.xml without loading page assets &#8212; the pattern of Meta&#8217;s Muse agent checking a site. Full Safari/Chrome visitors from that network (iCloud Private Relay users) are never counted. 0 means nothing qualified.</p>
+    </section>
+
+    <!-- 2b. Other bots + malicious (kept out of the crawler totals above) -->
+    <section class="stats-section" aria-labelledby="other-bots-title" id="other-bots-section" style="display:none">
+      <div class="stats-section-header">
+        <h2 class="stats-section-title" id="other-bots-title">Other bots</h2>
+        <span class="stats-section-note">Link previews, SEO tools, monitors and scanners &#8212; not counted as crawlers</span>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="bot-table" aria-label="Other bot request totals">
+          <thead><tr><th>Bot</th><th>Type</th><th class="num">Requests</th><th class="num">Distinct URLs</th></tr></thead>
+          <tbody id="other-bots-body"></tbody>
+        </table>
+      </div>
+      <div style="overflow-x:auto;margin-top:var(--sp-3, 24px)">
+        <table class="bot-table" aria-label="Malicious requests">
+          <thead><tr><th>Malicious &#127988;&#8205;&#9760;&#65039;</th><th>Blocked / not found</th><th class="num">Requests</th><th class="num">Served (2xx)</th></tr></thead>
+          <tbody id="malicious-body"></tbody>
+        </table>
+      </div>
+      <p class="bot-footnote" id="malicious-footnote">&#127988;&#8205;&#9760;&#65039; Attack probes (wp-admin, .git, .env, config files and the like) and known scanner tools. Kept out of every crawler total above.</p>
     </section>
 
     <!-- 3. Top crawled pages -->
@@ -591,6 +613,7 @@
     'Meta-ExternalAgent':'#3b3060',
     'Bytespider':        '#5a3060',
     'Grok*':             '#7c3aed',
+      'Muse*':             '#0891b2',
   };
   const FALLBACK_COLORS = ['#A7011F','#1f2937','#6b7280','#c8021f','#374151','#9ca3af','#6b4f2a','#4a3f35'];
   function botColor(name, idx) {
@@ -692,11 +715,16 @@
     const allDates = dateRange(earliestDate, today());
     const dayCount = allDates.length;
 
+    // Labeled non-content bots and malicious traffic get their own section, outside the crawler totals.
+    const isSide = r => r.group === 'other' || r.group === 'malicious';
+    const sideDaily = daily.filter(isSide);
+    const crawlerDaily = daily.filter(r => !isSide(r));
+
     // Bot totals
     const botMap = {}; // name → { operator, requests, paths: Set }
     const pathMap = {}; // path → { requests, bots: Set }
 
-    for (const row of daily) {
+    for (const row of crawlerDaily) {
       if (!botMap[row.bot_name]) {
         botMap[row.bot_name] = { operator: row.operator || '—', requests: 0, paths: new Set() };
       }
@@ -740,7 +768,7 @@
     // ── Chart 1: Daily stacked bar ─────────────────────────────────────────────
     const botNames = Object.keys(botMap).filter(n => botMap[n].requests > 0); // chart: active bots only; zero rows still listed in the table
     const dailyByBotDate = {}; // bot → date → count
-    for (const row of daily) {
+    for (const row of crawlerDaily) {
       if (!dailyByBotDate[row.bot_name]) dailyByBotDate[row.bot_name] = {};
       dailyByBotDate[row.bot_name][row.date] = (dailyByBotDate[row.bot_name][row.date] || 0) + row.request_count;
     }
@@ -812,6 +840,38 @@
     if (botMap['Grok*'] !== undefined) {
       const fn = document.getElementById('grok-footnote');
       if (fn) fn.style.display = 'block';
+    }
+
+
+    // Show Muse* footnote when that bot is in the data
+    if (botMap['Muse*'] !== undefined) {
+      const fm = document.getElementById('muse-footnote');
+      if (fm) fm.style.display = 'block';
+    }
+
+    // ── Other bots + Malicious (own section, out of crawler KPIs) ─────────────
+    {
+      const side = {};
+      for (const row of sideDaily) {
+        const k = row.bot_name;
+        if (!side[k]) side[k] = { group: row.group, type: row.reasons || '', requests: 0, paths: 0, status: {} };
+        side[k].requests += row.request_count;
+        side[k].paths += row.distinct_paths_crawled || 0;
+        if (row.group === 'other' && row.reasons) side[k].type = row.reasons;
+        for (const [s, n] of Object.entries(row.status_summary || {})) side[k].status[s] = (side[k].status[s] || 0) + n;
+      }
+      const others = Object.entries(side).filter(([, b]) => b.group === 'other' && b.requests > 0)
+        .sort((a, b) => b[1].requests - a[1].requests || a[0].localeCompare(b[0]));
+      const mal = Object.entries(side).filter(([, b]) => b.group === 'malicious');
+      if (others.length || mal.length) document.getElementById('other-bots-section').style.display = 'block';
+      document.getElementById('other-bots-body').innerHTML = others.length ? others.map(([name, b]) => `
+        <tr><td class="bot-name">${esc(name)}</td><td class="bot-op">${esc(b.type)}</td><td class="num">${fmtNum(b.requests)}</td><td class="num">${fmtNum(b.paths)}</td></tr>`).join('')
+        : '<tr><td colspan="4" style="color:var(--text-muted)">None yet.</td></tr>';
+      document.getElementById('malicious-body').innerHTML = mal.map(([name, b]) => {
+        const blocked = (b.status['403'] || 0) + (b.status['404'] || 0);
+        const served = Object.entries(b.status).filter(([s]) => s.startsWith('2')).reduce((t, [, n]) => t + n, 0);
+        return `<tr><td class="bot-name">${esc(name)} &#127988;&#8205;&#9760;&#65039;</td><td class="bot-op">${fmtNum(blocked)}</td><td class="num">${fmtNum(b.requests)}</td><td class="num">${fmtNum(served)}</td></tr>`;
+      }).join('');
     }
 
     // ── Table 2: Top pages ─────────────────────────────────────────────────────
