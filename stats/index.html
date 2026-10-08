@@ -504,22 +504,23 @@
     <!-- 2b. Other bots + malicious (kept out of the crawler totals above) -->
     <section class="stats-section" aria-labelledby="other-bots-title" id="other-bots-section" style="display:none">
       <div class="stats-section-header">
-        <h2 class="stats-section-title" id="other-bots-title">Other bots</h2>
-        <span class="stats-section-note">Link previews, SEO tools, monitors and scanners &#8212; not counted as crawlers</span>
+        <h2 class="stats-section-title" id="other-bots-title">Non-crawler traffic</h2>
+        <span class="stats-section-note">Excluded from AI crawler totals above</span>
       </div>
       <div style="overflow-x:auto">
-        <table class="bot-table" aria-label="Other bot request totals">
-          <thead><tr><th>Bot</th><th>Type</th><th class="num">Requests</th><th class="num">Distinct URLs</th></tr></thead>
+        <table class="bot-table" aria-label="Unknown bot request totals">
+          <thead><tr><th>Unknown bots</th><th class="num">Requests</th></tr></thead>
           <tbody id="other-bots-body"></tbody>
         </table>
       </div>
       <div style="overflow-x:auto;margin-top:var(--sp-3, 24px)">
         <table class="bot-table" aria-label="Malicious requests">
-          <thead><tr><th>Malicious &#127988;&#8205;&#9760;&#65039;</th><th>Blocked / not found</th><th class="num">Requests</th><th class="num">Served (2xx)</th></tr></thead>
+          <thead><tr><th>Malicious &#127988;&#8205;&#9760;&#65039;</th><th class="num">Requests</th></tr></thead>
           <tbody id="malicious-body"></tbody>
         </table>
       </div>
-      <p class="bot-footnote" id="malicious-footnote">&#127988;&#8205;&#9760;&#65039; Attack probes (wp-admin, .git, .env, config files and the like) and known scanner tools. Kept out of every crawler total above.</p>
+      <p class="bot-footnote" id="unknown-bots-footnote">Bots that name themselves in their user-agent but don’t match any crawler we track individually. Grouped into one row; excluded from every crawler total.</p>
+      <p class="bot-footnote" id="malicious-footnote">&#127988;&#8205;&#9760;&#65039; Attack probes (wp-admin, .git, .env, config files and the like) and known scanner tools. Total requests only; breakdown removed. Kept out of every crawler total above.</p>
     </section>
 
     <!-- 3. Top crawled pages -->
@@ -864,14 +865,13 @@
         .sort((a, b) => b[1].requests - a[1].requests || a[0].localeCompare(b[0]));
       const mal = Object.entries(side).filter(([, b]) => b.group === 'malicious');
       if (others.length || mal.length) document.getElementById('other-bots-section').style.display = 'block';
-      document.getElementById('other-bots-body').innerHTML = others.length ? others.map(([name, b]) => `
-        <tr><td class="bot-name">${esc(name)}</td><td class="bot-op">${esc(b.type)}</td><td class="num">${fmtNum(b.requests)}</td><td class="num">${fmtNum(b.paths)}</td></tr>`).join('')
-        : '<tr><td colspan="4" style="color:var(--text-muted)">None yet.</td></tr>';
-      document.getElementById('malicious-body').innerHTML = mal.map(([name, b]) => {
-        const blocked = (b.status['403'] || 0) + (b.status['404'] || 0);
-        const served = Object.entries(b.status).filter(([s]) => s.startsWith('2')).reduce((t, [, n]) => t + n, 0);
-        return `<tr><td class="bot-name">${esc(name)} &#127988;&#8205;&#9760;&#65039;</td><td class="bot-op">${fmtNum(blocked)}</td><td class="num">${fmtNum(b.requests)}</td><td class="num">${fmtNum(served)}</td></tr>`;
-      }).join('');
+      const unknownBots = others.filter(([name]) => name === 'Other bots (unnamed)');
+      document.getElementById('other-bots-body').innerHTML = unknownBots.length
+        ? unknownBots.map(([name, b]) => `<tr><td class="bot-name">${esc(name)}</td><td class="num">${fmtNum(b.requests)}</td></tr>`).join('')
+        : '<tr><td colspan="2" style="color:var(--text-muted)">None yet.</td></tr>';
+      document.getElementById('malicious-body').innerHTML = mal.length
+        ? mal.map(([name, b]) => `<tr><td class="bot-name">${esc(name)} &#127988;&#8205;&#9760;&#65039;</td><td class="num">${fmtNum(b.requests)}</td></tr>`).join('')
+        : '<tr><td colspan="2" style="color:var(--text-muted)">None yet.</td></tr>';
     }
 
     // ── Table 2: Top pages ─────────────────────────────────────────────────────
