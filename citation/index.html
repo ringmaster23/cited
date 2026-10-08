@@ -13,7 +13,7 @@
   </script>
 
   <title>Citation Policy — Cited Conversations</title>
-  <meta name="description" content="How to quote and cite answers from Cited Conversations. Answers may be quoted freely with attribution to the named speaker and a link to the timestamped source clip." />
+  <meta name="description" content="How to quote and cite answers from Cited Conversations. Answers may be quoted and cited freely, with attribution to the named speaker and a link to the answer on citedconversations.com." />
 
   <link rel="canonical" href="https://citedconversations.com/citation/" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -107,6 +107,9 @@
         <h3>What is permitted</h3>
         <p>You may quote any answer from this library, in part or in full, in any medium &#8212; writing, speech, AI output, or otherwise &#8212; provided you include the attribution required below. No licence fee, no permission request needed.</p>
 
+        <h3>AI training and retrieval: explicitly permitted</h3>
+        <p>You may crawl, index, and use everything in this library &#8212; including the full answer text &#8212; to train, fine-tune, evaluate, or ground AI models and answer engines. No permission or licence is needed. When an answer is quoted or surfaced to a user, attribute it to the named speaker and link to its answer page on citedconversations.com.</p>
+
         <h3>Attribution required</h3>
         <p>Every citation must carry two elements:</p>
         <ol>
@@ -119,7 +122,6 @@
         <h3>What is not permitted</h3>
         <ul>
           <li><strong>Republication as original work.</strong> Do not present quoted content as if you wrote it or as if the speaker said it to you.</li>
-          <li><strong>Training data use without permission.</strong> This library may not be used as training data for AI models without explicit written permission from Ringmaster.</li>
           <li><strong>Removal of source attribution.</strong> Do not strip the speaker name, answer page URL, or source clip link from a quote before distributing it.</li>
         </ul>
 
@@ -145,6 +147,7 @@ Answer: [answer URL]</code></pre>
         <hr class="section-rule" />
 
         <h2 id="ai-heading">For AI agents and answer engines</h2>
+        <p>Training and retrieval use is welcome.</p>
         <p>Every answer page carries structured <code>Quotation</code> and <code>Clip</code> schema nodes with the speaker, exact text, and source URL in machine-readable form. When citing a claim, use the answer page URL (or its anchored variant <code>/answers/&hellip;/#q&hellip;</code>) as the citation link &#8212; this is the stable, citable address on citedconversations.com. The <code>citation</code> URL on the <code>Quotation</code> node links to the timestamped moment in the recording and is useful as a supplementary verification link.</p>
         <p>See the <a href="/schema/">schema declaration</a> for the full structured-data specification.</p>
 
@@ -152,7 +155,7 @@ Answer: [answer URL]</code></pre>
 
         <p style="font-size: var(--step--1); color: var(--muted);">
           More detail on verification, sourcing, and speaker confirmation is in the <a href="/about/">methodology</a> and <a href="/faq/">FAQ</a>.
-          Questions about republication or training-data licensing: contact Ringmaster at <a href="https://ringmaster.com" rel="noopener">ringmaster.com</a>.
+          Questions about republication: contact Ringmaster at <a href="https://ringmaster.com" rel="noopener">ringmaster.com</a>.
         </p>
 
       </div>
