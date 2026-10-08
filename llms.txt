@@ -39,10 +39,10 @@ Cited Conversations is published by Ringmaster (https://ringmaster.com), a B2B p
 
 Every published episode includes a downloadable plain-text transcript and a timed WebVTT subtitle file. Transcripts are the real recorded conversation — not AI-generated summaries. They contain speaker labels and timestamps.
 
-- [Episode 001 transcript (.txt)](https://citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/transcript.txt): Full text of the Adam Needles and Casey Cheshire conversation, with timestamps.
-- [Episode 001 subtitles (.vtt)](https://citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/transcript.vtt): WebVTT timed cues for Episode 001.
-- [Episode 002 transcript (.txt)](https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/transcript.txt): Full text of the Casey Cheshire and Simon Wilhelm conversation, with timestamps.
-- [Episode 002 subtitles (.vtt)](https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/transcript.vtt): WebVTT timed cues for Episode 002.
+- [Episode 001 transcript (.txt)](https://citedconversations.com/answers/best-b2b-podcast-agency-for-ai-visibility/transcript.txt): Full text of the Adam Needles and Casey Cheshire conversation, with timestamps.
+- [Episode 001 subtitles (.vtt)](https://citedconversations.com/answers/best-b2b-podcast-agency-for-ai-visibility/transcript.vtt): WebVTT timed cues for Episode 001.
+- [Episode 002 transcript (.txt)](https://citedconversations.com/answers/best-agency-to-get-my-brand-cited-by-chatgpt/transcript.txt): Full text of the Casey Cheshire and Simon Wilhelm conversation, with timestamps.
+- [Episode 002 subtitles (.vtt)](https://citedconversations.com/answers/best-agency-to-get-my-brand-cited-by-chatgpt/transcript.vtt): WebVTT timed cues for Episode 002.
 ## Machine-readable infrastructure
 
 - [Schema declaration](https://citedconversations.com/schema/): All schema.org types in use — DataCatalog, WebSite, Organization, Person, PodcastEpisode, Clip, Quotation — with field-level documentation, example JSON-LD nodes, and a note on creativeWorkStatus values (Published — all content verified).
