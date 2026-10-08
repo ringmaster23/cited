@@ -1,24 +1,25 @@
 /**
- * Cloudflare Pages middleware — security guard
+ * Cloudflare Pages _middleware — blocks dot-files / dot-directories
  *
- * Blocks all dot-directories and dot-files except /.well-known/.
- * This prevents /.git/, /.env, /.htaccess etc. from ever being served,
- * regardless of what the Pages build output directory includes.
+ * Intercepts every request. Any path that starts with a dot segment
+ * (e.g. /.git/, /.env, /.htaccess) gets a plain 404 response.
+ * /.well-known/ is exempted (RFC 5785).
  */
-export async function onRequest({ request, next }) {
-  const url = new URL(request.url);
+export async function onRequest(context) {
+  const url = new URL(context.request.url);
   const path = url.pathname;
 
-  // Match any path starting with /. that is NOT /.well-known (RFC 5785)
+  // Block any path whose first segment is a dot-name, except /.well-known
   if (/^\/\.(?!well-known(?:\/|$))/.test(path)) {
     return new Response('Not Found', {
       status: 404,
       headers: {
         'Content-Type': 'text/plain; charset=utf-8',
         'Cache-Control': 'no-store',
+        'X-Robots-Tag': 'noindex',
       },
     });
   }
 
-  return next();
+  return context.next();
 }
