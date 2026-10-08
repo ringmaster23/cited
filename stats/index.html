@@ -315,6 +315,17 @@
       border-top: 1px solid var(--border-dim);
     }
 
+    /* Grok* best-guess footnote */
+    .bot-footnote {
+      font-size: var(--step--1);
+      color: var(--text-muted);
+      margin-top: var(--sp-2);
+      max-width: 72ch;
+      line-height: 1.6;
+      border-left: 2px solid var(--border);
+      padding-left: var(--sp-2);
+    }
+
     /* Loading / error state */
     .loading-msg {
       color: var(--text-muted);
@@ -486,6 +497,7 @@
           </tbody>
         </table>
       </div>
+      <p class="bot-footnote" id="grok-footnote" style="display:none">&#42; <strong>Grok&#42;</strong> is a best guess, not a confirmed xAI crawler. xAI publishes no crawler name or IP ranges, so this row counts bursts of page fetches that look like Grok answers (several countries within seconds, a bare Chrome/&lt;version&gt; or mixed Go/browser clients, no page assets loaded). 0 means no qualifying burst.</p>
     </section>
 
     <!-- 3. Top crawled pages -->
@@ -578,6 +590,7 @@
     'Amazonbot':         '#2d4a3e',
     'Meta-ExternalAgent':'#3b3060',
     'Bytespider':        '#5a3060',
+    'Grok*':             '#7c3aed',
   };
   const FALLBACK_COLORS = ['#A7011F','#1f2937','#6b7280','#c8021f','#374151','#9ca3af','#6b4f2a','#4a3f35'];
   function botColor(name, idx) {
@@ -700,8 +713,8 @@
       }
     }
 
-    const totalRequests = Object.values(botMap).reduce((s, b) => s + b.requests, 0);
-    const totalBots = Object.keys(botMap).length;
+    const totalRequests = Object.entries(botMap).filter(([n]) => n !== 'Grok*').reduce((s, [, b]) => s + b.requests, 0);
+    const totalBots = Object.keys(botMap).filter(n => n !== 'Grok*').length;
     const totalPages = Object.keys(pathMap).length;
 
     // ── KPI cards ─────────────────────────────────────────────────────────────
@@ -793,6 +806,12 @@
           </td>
         </tr>
       `).join('');
+    }
+
+    // Show Grok* footnote when that bot is in the data
+    if (botMap['Grok*'] !== undefined) {
+      const fn = document.getElementById('grok-footnote');
+      if (fn) fn.style.display = 'block';
     }
 
     // ── Table 2: Top pages ─────────────────────────────────────────────────────
