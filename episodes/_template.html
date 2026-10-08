@@ -230,6 +230,14 @@
     .footer-top { margin-bottom: 0.25rem; }
     .footer-nav-row { margin-bottom: 0.25rem; }
   </style>
+
+  <!--
+    BUILD GATE META — builder checks this before committing.
+    If content still contains "{{ GUEST_RELATIONSHIP }}", the page is blocked.
+    Replace {{ GUEST_RELATIONSHIP }} with: partner | client | none
+    Source: data/episodes/{{ EPISODE_SLUG }}.json → guests[N].ringmaster_relationship
+  -->
+  <meta name="build-gate" content="relationship:{{ GUEST_RELATIONSHIP }}" />
 </head>
 <body>
 
@@ -269,6 +277,67 @@
     </div>
   </section>
 
+  <!-- ── Short credit block — full speaker bios appear below the answers ───────
+    REQUIRED INPUT FIELD: {{ GUEST_RELATIONSHIP }}
+    Allowed values (case-sensitive): partner | client | none
+    
+    This value comes from the episode input file at:
+      data/episodes/{{ EPISODE_SLUG }}.json → guests[N].ringmaster_relationship
+    
+    ██ BUILD GATE ██ Before committing this file to GitHub, the builder MUST:
+      1. Replace {{ GUEST_RELATIONSHIP }} with one of: partner | client | none
+         for every non-host guest. Value comes from the episode input JSON.
+      2. After rendering, grep the output file for the literal string
+         "{{ GUEST_RELATIONSHIP }}". If found → STOP. Do not commit.
+         Report: "guest [name]'s Ringmaster relationship is unconfirmed.
+         Check with Casey, then set ringmaster_relationship in the episode
+         input JSON before building again."
+      3. Never omit, invent, or leave blank. The only valid committed values
+         are partner, client, or none.
+    
+    CREDIT LINE WORDING by relationship value:
+      partner → "Guest Expert: [Name], [Title], [Company] (a Ringmaster partner).
+                  Host / Publisher: Casey Cheshire, Founder & CEO, Ringmaster."
+      client  → "Guest: [Name], [Title], [Company] (a Ringmaster client).
+                  Host / Publisher: Casey Cheshire, Founder & CEO, Ringmaster."
+      none    → "Guest: [Name], [Title], [Company], and Casey Cheshire,
+                  Founder & CEO, Ringmaster (publisher of Cited Conversations)."
+  -->
+  <section id="credits" aria-label="Episode credits"
+    data-relationship="{{ GUEST_RELATIONSHIP }}"
+    style="padding-block: var(--space-3); background: #ffffff; border-top: 1px solid var(--border);">
+    <div class="container">
+      <!--
+        BUILD GATE: replace {{ GUEST_RELATIONSHIP }} above AND delete this comment
+        block before committing. A page is blocked from publishing as long as
+        data-relationship="{{ GUEST_RELATIONSHIP }}" remains unresolved.
+
+        Fill the credit line below exactly as shown in the wording table above.
+        Do NOT use the generic placeholder — write the actual credit sentence.
+      -->
+      <p style="font-size: var(--step--1); color: var(--muted); margin: 0;">
+        <!--
+          BUILDER: replace this comment with the credit sentence for {{ GUEST_RELATIONSHIP }} = [value].
+          See wording table above.
+          Example (partner): <strong>Guest Expert:</strong> {{ GUEST_SPEAKER_NAME }}, {{ GUEST_SPEAKER_TITLE }}, {{ GUEST_SPEAKER_COMPANY }} (a Ringmaster partner). <strong>Host / Publisher:</strong> Casey Cheshire, Founder &amp; CEO, Ringmaster.
+          Example (none):    <strong>Guests:</strong> {{ GUEST_SPEAKER_NAME }}, {{ GUEST_SPEAKER_TITLE }}, {{ GUEST_SPEAKER_COMPANY }}, and Casey Cheshire, Founder &amp; CEO, Ringmaster (publisher of Cited Conversations).
+        -->
+        {{ CREDIT_LINE }}
+      </p>
+    </div>
+  </section>
+
+  <section id="toc" aria-labelledby="toc-heading" style="padding-block: var(--space-3) var(--space-4); background: var(--surface-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <h2 id="toc-heading" style="font-size: var(--step--1); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: var(--space-2);">Questions answered in this episode</h2>
+      <ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(30ch, 1fr)); gap: 0.55rem 2rem;">
+        <li style="font-size: var(--step--1); line-height: 1.4;"><a href="#q1" style="color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--border);">#q1 — {{ QUESTION_1 }}</a></li>
+        <li style="font-size: var(--step--1); line-height: 1.4;"><a href="#q2" style="color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--border);">#q2 — {{ QUESTION_2 }}</a></li>
+        <!-- Add one <li> per Q&A block below — copy the pattern above -->
+      </ol>
+    </div>
+  </section>
+
         <p style="margin-top: var(--space-3); font-size: var(--step--1); color: var(--muted);">
         Published {{ DATE_PUBLISHED_HUMAN }} &middot;
         <a href="https://podcast.citedconversations.com/episodes/{{ TRANSISTOR_EPISODE_SLUG }}" rel="noopener">
@@ -283,16 +352,7 @@
     Add one <li> per question in order. These are the stable external links.
     BUILDER: copy the block below and fill {{ QUESTION_N }} values before committing.
   -->
-  <section id="toc" aria-labelledby="toc-heading" style="padding-block: var(--space-3) var(--space-4); background: var(--surface-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-    <div class="container">
-      <h2 id="toc-heading" style="font-size: var(--step--1); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: var(--space-2);">Questions answered in this episode</h2>
-      <ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(30ch, 1fr)); gap: 0.55rem 2rem;">
-        <li style="font-size: var(--step--1); line-height: 1.4;"><a href="#q1" style="color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--border);">#q1 — {{ QUESTION_1 }}</a></li>
-        <li style="font-size: var(--step--1); line-height: 1.4;"><a href="#q2" style="color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--border);">#q2 — {{ QUESTION_2 }}</a></li>
-        <!-- Add one <li> per Q&A block below — copy the pattern above -->
-      </ol>
-    </div>
-  </section>
+  
 
     <!-- ── Short credit block — appears after TOC, before Q1 ──────────────────────
     BUILDER: fill in each person's role. For any guest with a commercial relationship
@@ -310,15 +370,7 @@
       Guest: Adam Needles, CEO & Co-Founder, ANNUITAS, and Casey Cheshire,
       Founder & CEO, Ringmaster (publisher of Cited Conversations).
   -->
-  <section id="credits" aria-label="Episode credits" style="padding-block: var(--space-3); background: #ffffff; border-top: 1px solid var(--border);">
-    <div class="container">
-      <p style="font-size: var(--step--1); color: var(--muted); margin: 0;">
-        <!-- RELATIONSHIP: not confirmed — check with Casey before publishing -->
-        <strong>Guest{{ GUEST_COUNT_PLURAL }}:</strong> {{ GUEST_SPEAKER_NAME }}, {{ GUEST_SPEAKER_TITLE }}, {{ GUEST_SPEAKER_COMPANY }}.
-        <strong>Host / Publisher:</strong> Casey Cheshire, Founder &amp; CEO, Ringmaster.
-      </p>
-    </div>
-  </section>
+  
 
   <!-- ── Q&A answers ──
     TIMESTAMP LINKS — use ?t=<seconds> (query parameter, not fragment).
