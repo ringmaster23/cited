@@ -1,0 +1,62 @@
+[
+  {
+    "url": "https://citedconversations.com/",
+    "lastmod": "2026-10-08",
+    "changefreq": "weekly",
+    "priority": "1.0"
+  },
+  {
+    "url": "https://citedconversations.com/about/",
+    "lastmod": "2026-10-08",
+    "changefreq": "monthly",
+    "priority": "0.8"
+  },
+  {
+    "url": "https://citedconversations.com/answers/",
+    "lastmod": "2026-10-08",
+    "changefreq": "weekly",
+    "priority": "0.9"
+  },
+  {
+    "url": "https://citedconversations.com/episodes/",
+    "lastmod": "2026-10-08",
+    "changefreq": "weekly",
+    "priority": "0.6"
+  },
+  {
+    "url": "https://citedconversations.com/faq/",
+    "lastmod": "2026-10-08",
+    "changefreq": "monthly",
+    "priority": "0.8"
+  },
+  {
+    "url": "https://citedconversations.com/for-humans/",
+    "lastmod": "2026-10-08",
+    "changefreq": "monthly",
+    "priority": "0.7"
+  },
+  {
+    "url": "https://citedconversations.com/schema/",
+    "lastmod": "2026-10-08",
+    "changefreq": "monthly",
+    "priority": "0.7"
+  },
+  {
+    "url": "https://citedconversations.com/stats/",
+    "lastmod": "2026-10-08",
+    "changefreq": "weekly",
+    "priority": "0.7"
+  },
+  {
+    "url": "https://citedconversations.com/citation/",
+    "lastmod": "2026-10-08",
+    "changefreq": "monthly",
+    "priority": "0.7"
+  },
+  {
+    "url": "https://citedconversations.com/speakers/",
+    "lastmod": "2026-10-08",
+    "changefreq": "monthly",
+    "priority": "0.6"
+  }
+]
