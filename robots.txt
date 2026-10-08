@@ -95,3 +95,7 @@ Allow: /
 
 # ── Sitemap ──────────────────────────────────────────────────────
 Sitemap: https://citedconversations.com/sitemap.xml
+
+# ── LLMs.txt ─────────────────────────────────────────────────────────────────
+# Machine-readable index for AI answer engines and retrieval agents.
+# https://citedconversations.com/llms.txt
