@@ -1,17 +1,17 @@
 # Cloudflare Pages _redirects for citedconversations.com
 # Updated: 2026-10-08
 
-# ── Security: block .git and other dot-files ─────────────────────────────────
-# Cloudflare Pages syntax: 'from to status'
-# Proxies /index.html content but returns HTTP 404; URL stays unchanged.
-# Belt-and-braces behind functions/_middleware.js.
-/.git /index.html 404
-/.git/* /index.html 404
-/.env /index.html 404
-/.env.local /index.html 404
-/.env.production /index.html 404
-/.htaccess /index.html 404
-/.htpasswd /index.html 404
+# ── Security: block internal paths ──────────────────────────────────────────────
+# Redirects are evaluated BEFORE static asset serving, so these intercept files
+# that physically exist in the deploy output (e.g. .git/config, .git/HEAD).
+# functions/_middleware.js provides a 404 for the same paths; _redirects is
+# belt-and-suspenders for CDN edge cases where middleware fires after asset cache.
+
+/.git  /  302
+/.git/*  /  302
+/scripts  /  302
+/scripts/*  /  302
+/episodes/_template.html  /  302
 
 # ── Structural redirects ────────────────────────────────────────────────────────
 
