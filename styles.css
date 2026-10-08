@@ -564,13 +564,6 @@ button:focus-visible { outline: 1px solid var(--red); outline-offset: 3px; }
   border-radius: 999px;
   white-space: nowrap;
 }
-.badge-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: #27ae60;
-  display: inline-block;
-}
-.badge-dot--amber { background: #e67e22; }
 /* Green = published with verified transcript | Amber = transcript verification pending */
 
 .table-note {
