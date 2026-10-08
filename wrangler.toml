@@ -1,0 +1,8 @@
+# Cloudflare Pages configuration
+# https://developers.cloudflare.com/pages/functions/wrangler-configuration/
+
+name = "cited"
+pages_build_output_dir = "dist"
+
+[build]
+command = "node build.js"
