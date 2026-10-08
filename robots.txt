@@ -4,7 +4,7 @@
 # Groups are named for documentation and future-proofing: if a Disallow is ever
 # added under User-agent: *, these named groups keep the AI agents unrestricted.
 
-# ── OpenAI ───────────────────────────────────────────────────────
+# ── OpenAI ──────────────────────────────────────────────────────────────────────
 # GPTBot = training corpus | OAI-SearchBot = ChatGPT search index
 # ChatGPT-User = live fetch when a user asks ChatGPT about a URL
 User-agent: GPTBot
@@ -16,7 +16,7 @@ Allow: /
 User-agent: ChatGPT-User
 Allow: /
 
-# ── Anthropic ────────────────────────────────────────────────────
+# ── Anthropic ───────────────────────────────────────────────────────────────────
 # ClaudeBot = training | Claude-SearchBot = search index
 # Claude-User = live fetch on behalf of a Claude user
 User-agent: ClaudeBot
@@ -28,7 +28,7 @@ Allow: /
 User-agent: Claude-User
 Allow: /
 
-# ── Perplexity ───────────────────────────────────────────────────
+# ── Perplexity ──────────────────────────────────────────────────────────────────
 # PerplexityBot = index | Perplexity-User = live fetch for an answer
 User-agent: PerplexityBot
 Allow: /
@@ -36,7 +36,7 @@ Allow: /
 User-agent: Perplexity-User
 Allow: /
 
-# ── Google ───────────────────────────────────────────────────────
+# ── Google ──────────────────────────────────────────────────────────────────────
 # Googlebot governs AI Overviews and AI Mode citation.
 # Google-Extended is a separate opt-in for Gemini training / grounding.
 User-agent: Googlebot
@@ -48,12 +48,12 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-# ── Microsoft / Bing ─────────────────────────────────────────────
+# ── Microsoft / Bing ────────────────────────────────────────────────────────────
 # Bingbot powers Copilot retrieval.
 User-agent: Bingbot
 Allow: /
 
-# ── Apple ────────────────────────────────────────────────────────
+# ── Apple ───────────────────────────────────────────────────────────────────────
 # Applebot = Siri / Spotlight | Applebot-Extended = Apple Intelligence training
 User-agent: Applebot
 Allow: /
@@ -61,7 +61,7 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-# ── Other AI models and retrievers ───────────────────────────────
+# ── Other AI models and retrievers ──────────────────────────────────────────────
 User-agent: Meta-ExternalAgent
 Allow: /
 
@@ -80,22 +80,26 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
-# ── Open training corpora ────────────────────────────────────────
+# ── Open training corpora ────────────────────────────────────────────────────────
 # CCBot feeds Common Crawl, an input to many open and commercial models.
 User-agent: CCBot
 Allow: /
 
-# ── Conventional search ──────────────────────────────────────────
+# ── Conventional search ─────────────────────────────────────────────────────────
 User-agent: DuckDuckBot
 Allow: /
 
-# ── General ──────────────────────────────────────────────────────
+# ── General ─────────────────────────────────────────────────────────────────────
 User-agent: *
 Allow: /
 
-# ── Sitemap ──────────────────────────────────────────────────────
+# ── Sitemap ──────────────────────────────────────────────────────────────────────
 Sitemap: https://citedconversations.com/sitemap.xml
 
-# ── LLMs.txt ─────────────────────────────────────────────────────────────────
+# ── RSS Feed ─────────────────────────────────────────────────────────────────────
+# Machine-readable feed of new answer pages — newest first.
+# https://citedconversations.com/feed.xml
+
+# ── LLMs.txt ─────────────────────────────────────────────────────────────────────
 # Machine-readable index for AI answer engines and retrieval agents.
 # https://citedconversations.com/llms.txt
