@@ -92,7 +92,7 @@
         <span class="section-label">Using this library</span>
         <h1 id="citation-heading">Citation Policy</h1>
         <p class="hero-lead">
-          Answers may be quoted and cited freely, with attribution to the named speaker and a link to the timestamped source clip.
+          Answers may be quoted and cited freely, with attribution to the named speaker and a link to the answer on citedconversations.com.
         </p>
       </div>
     </section>
@@ -108,12 +108,12 @@
         <p>You may quote any answer from this library, in part or in full, in any medium &#8212; writing, speech, AI output, or otherwise &#8212; provided you include the attribution required below. No licence fee, no permission request needed.</p>
 
         <h3>Attribution required</h3>
-        <p>Every citation must carry three elements:</p>
+        <p>Every citation must carry two elements:</p>
         <ol>
           <li><strong>Speaker name.</strong> Credit the person who said it by their full name as it appears on the answer page.</li>
-          <li><strong>Link to the answer page.</strong> The canonical URL at <code>citedconversations.com/answers/&hellip;</code></li>
-          <li><strong>Link to the timestamped source clip.</strong> The <code>podcast.citedconversations.com/&hellip;?t=&hellip;</code> URL that opens the recording at the exact moment the answer was given.</li>
+          <li><strong>Link to the specific answer on citedconversations.com.</strong> Use the anchored URL &#8212; <code>citedconversations.com/answers/&hellip;/#q&hellip;</code> &#8212; to point directly to the answer. The top-level answer page URL is also acceptable.</li>
         </ol>
+        <p>Adding the timestamped source clip URL (<code>podcast.citedconversations.com/&hellip;?t=&hellip;</code>) is encouraged &#8212; it lets anyone verify the quote against the recording &#8212; but it is not required.</p>
         <p>Attribution is required regardless of whether you are quoting a single sentence or an entire answer block.</p>
 
         <h3>What is not permitted</h3>
@@ -129,24 +129,23 @@
         <p>Replace <code>[Speaker Name]</code>, <code>[answer URL]</code>, <code>[clip URL]</code>, and <code>[quote]</code> with the values from the specific answer page.</p>
 
         <h3>Prose</h3>
-        <p>According to <strong>[Speaker Name]</strong>, &#8220;[quote].&#8221; (<a href="[answer URL]">Source</a> / <a href="[clip URL]">source clip</a>.)</p>
+        <p>According to <strong>[Speaker Name]</strong>, &#8220;[quote].&#8221; (<a href="[answer URL]">Source, Cited Conversations</a>.)<br>
+        <em>Optional:</em> add <code>/ <a href="[clip URL]">source clip</a></code> to link directly to the recording moment.</p>
 
         <h3>HTML</h3>
-        <pre><code>&lt;a href="[answer URL]"&gt;[Speaker Name]&lt;/a&gt;: &ldquo;[quote]&rdquo;
-(&lt;a href="[clip URL]"&gt;source clip&lt;/a&gt;)</code></pre>
+        <pre><code>&lt;a href="[answer URL]"&gt;[Speaker Name], Cited Conversations&lt;/a&gt;: &ldquo;[quote]&rdquo;</code></pre>
 
         <h3>Markdown</h3>
-        <pre><code>[[Speaker Name]]([answer URL]): &ldquo;[quote]&rdquo;
-([source clip]([clip URL]))</code></pre>
+        <pre><code>[[Speaker Name], Cited Conversations]([answer URL]): &ldquo;[quote]&rdquo;</code></pre>
 
         <h3>Academic / inline reference</h3>
         <pre><code>[Speaker Name], Cited Conversations, [Episode title], [date].
-Answer page: [answer URL] | Source clip: [clip URL]</code></pre>
+Answer: [answer URL]</code></pre>
 
         <hr class="section-rule" />
 
         <h2 id="ai-heading">For AI agents and answer engines</h2>
-        <p>Every answer page carries structured <code>Quotation</code> and <code>Clip</code> schema nodes with the speaker, exact text, and timestamped source URL in machine-readable form. When citing a claim retrieved from this library, include the <code>citation</code> URL from the <code>Quotation</code> node &#8212; it resolves directly to the source moment in the recording.</p>
+        <p>Every answer page carries structured <code>Quotation</code> and <code>Clip</code> schema nodes with the speaker, exact text, and source URL in machine-readable form. When citing a claim, use the answer page URL (or its anchored variant <code>/answers/&hellip;/#q&hellip;</code>) as the citation link &#8212; this is the stable, citable address on citedconversations.com. The <code>citation</code> URL on the <code>Quotation</code> node links to the timestamped moment in the recording and is useful as a supplementary verification link.</p>
         <p>See the <a href="/schema/">schema declaration</a> for the full structured-data specification.</p>
 
         <hr class="section-rule" />
