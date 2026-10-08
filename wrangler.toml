@@ -1,9 +1,9 @@
-# Cloudflare Pages configuration
-# https://developers.cloudflare.com/pages/functions/wrangler-configuration/
+# Cloudflare Workers + Static Assets configuration
+# https://developers.cloudflare.com/workers/static-assets/
 
 name = "cited"
 compatibility_date = "2024-09-23"
-pages_build_output_dir = "dist"
+assets = { directory = "dist" }
 
 [build]
 command = "node build.js"
