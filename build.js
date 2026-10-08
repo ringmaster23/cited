@@ -4,38 +4,37 @@
  *
  * Copies all site files from repo root to dist/, excluding:
  *   .git/         — never deploy the git database
- *   functions/    — Pages Functions stay at repo root, not in output
+ *   functions/    — Workers Functions are not static assets
+ *   scripts/      — Node.js build-time scripts; not part of the public site
  *   dist/         — avoid recursive copy
  *   build tooling — package.json, package-lock.json, build.js, wrangler.toml
  *
  * Post-processing steps (applied to dist/ after copy):
- *   1. Replace all href="/about/" → href="/methodology/" across every HTML file,
- *      so new pages added with the old path are corrected automatically.
- *   2. Inject live answer counts into the homepage conversation rows. Any
- *      <span data-answer-slug="…"> has its text updated to match the actual
- *      number of <article class="qa-item"> elements in that conversation's
- *      index.html, so counts can never drift from the real page again.
+ *   1. Replace all href="/about/" → href="/methodology/" across every HTML file.
+ *   2. Inject live answer counts into homepage conversation rows from the
+ *      actual answer pages so counts can never drift from reality.
  *
  * Note: uses .replace() with global regex (not .replaceAll) for Node 14 compat.
  *
- * Output: dist/  (set as pages_build_output_dir in wrangler.toml)
+ * Output: dist/  (set as assets.directory in wrangler.toml)
  */
 
-const fs   = require('fs');
-const path = require('path');
+var fs   = require('fs');
+var path = require('path');
 
-const ROOT    = __dirname;
-const OUT     = path.join(ROOT, 'dist');
-const EXCLUDE = new Set([
-  '.git',
-  'dist',
-  'functions',
-  'node_modules',
-  'build.js',
-  'wrangler.toml',
-  'package.json',
-  'package-lock.json',
-]);
+var ROOT    = __dirname;
+var OUT     = path.join(ROOT, 'dist');
+var EXCLUDE = {
+  '.git':             true,
+  'dist':             true,
+  'functions':        true,
+  'scripts':          true,
+  'node_modules':     true,
+  'build.js':         true,
+  'wrangler.toml':    true,
+  'package.json':     true,
+  'package-lock.json':true,
+};
 
 // ── Copy ─────────────────────────────────────────────────────────────────────
 
@@ -43,11 +42,13 @@ function copy(src, dest) {
   if (!fs.existsSync(dest)) {
     fs.mkdirSync(dest, { recursive: true });
   }
-  for (const item of fs.readdirSync(src)) {
-    if (EXCLUDE.has(item)) continue;
-    const s = path.join(src, item);
-    const d = path.join(dest, item);
-    const stat = fs.statSync(s);
+  var items = fs.readdirSync(src);
+  for (var i = 0; i < items.length; i++) {
+    var item = items[i];
+    if (EXCLUDE[item]) continue;
+    var s = path.join(src, item);
+    var d = path.join(dest, item);
+    var stat = fs.statSync(s);
     if (stat.isDirectory()) {
       copy(s, d);
     } else {
@@ -77,6 +78,7 @@ function patchAboutLinks(dir) {
 }
 
 // ── Post-process: inject real answer counts into homepage ─────────────────────
+// Badge format: "N answers" (total count, not additional-beyond-featured)
 
 function countQaItems(slug) {
   var file = path.join(OUT, 'answers', slug, 'index.html');
@@ -91,11 +93,12 @@ function patchHomepageCounts() {
   if (!fs.existsSync(idxPath)) return;
   var html = fs.readFileSync(idxPath, 'utf8');
 
+  // Replace "N answers" inside any span that carries data-answer-slug
   html = html.replace(
-    /(<span[^>]+data-answer-slug="([^"]+)"[^>]*>)\d+ more answers(<\/span>)/g,
+    /(<span[^>]+data-answer-slug="([^"]+)"[^>]*>)\d+ answers(<\/span>)/g,
     function(match, open, slug, close) {
       var count = countQaItems(slug);
-      return open + count + ' more answers' + close;
+      return open + count + ' answers' + close;
     }
   );
 
