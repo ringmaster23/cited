@@ -298,6 +298,22 @@
     </div>
   </section>
 
+  
+  <!-- ── Table of contents — generated from Q&A headings below ────────────────
+    Add one <li> per question in order. These are the stable external links.
+    BUILDER: copy the block below and fill {{ QUESTION_N }} values before committing.
+  -->
+  <section id="toc" aria-labelledby="toc-heading" style="padding-block: var(--space-3) var(--space-4); background: var(--surface-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <h2 id="toc-heading" style="font-size: var(--step--1); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: var(--space-2);">Questions answered in this episode</h2>
+      <ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(30ch, 1fr)); gap: 0.55rem 2rem;">
+        <li style="font-size: var(--step--1); line-height: 1.4;"><a href="#q1" style="color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--border);">#q1 — {{ QUESTION_1 }}</a></li>
+        <li style="font-size: var(--step--1); line-height: 1.4;"><a href="#q2" style="color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--border);">#q2 — {{ QUESTION_2 }}</a></li>
+        <!-- Add one <li> per Q&A block below — copy the pattern above -->
+      </ol>
+    </div>
+  </section>
+
   <!-- ── Q&A answers ──
     TIMESTAMP LINKS — use ?t=<seconds> (query parameter, not fragment).
     Test every link in a browser before committing.
