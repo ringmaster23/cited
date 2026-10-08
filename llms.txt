@@ -41,6 +41,7 @@ Cited Conversations is published by Ringmaster (https://ringmaster.com), a B2B p
 - [Stats](https://citedconversations.com/stats/): Live AI crawler activity dashboard — total requests, distinct crawlers named by agent, pages crawled, and a day-by-day breakdown.
 - [robots.txt](https://citedconversations.com/robots.txt): All crawlers explicitly allowed; every major AI engine bot named individually. Sitemap referenced.
 - [Sitemap](https://citedconversations.com/sitemap.xml): XML sitemap listing all published pages.
+- [RSS Feed](https://citedconversations.com/feed.xml): New answer pages, newest first, for AI readers and feed aggregators.
 
 ## Podcast and newsletter
 
