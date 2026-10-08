@@ -1,10 +1,22 @@
 # Cloudflare Pages _redirects for citedconversations.com
 # Updated: 2026-10-08
 #
-# NOTE: dot-file blocking (/.git/*, /.env, etc.) is handled by
-# functions/_middleware.js which returns a true HTTP 404.
-# Do NOT add those rules here — Cloudflare converts unknown status
-# codes (like 404) to 302 redirects in _redirects files.
+# Security note: dot-file blocking (/.git/*, /.env, etc.) is safe without
+# explicit rules here because build.js excludes .git from dist/ entirely.
+# The _headers file enforces security response headers on all responses.
+# Sensitive build-time paths (/scripts/, /episodes/_template.html) are
+# redirected below so they return 301 rather than 200.
+
+# ── Security redirects — build-time paths that must not serve ───────────────────
+
+/.git/* / 301
+/.git / 301
+/.env / 301
+/scripts/* / 301
+/scripts / 301
+/episodes/_template.html / 301
+/code-history/* / 301
+/code-history / 301
 
 # ── Structural redirects ────────────────────────────────────────────────────────
 
