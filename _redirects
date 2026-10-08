@@ -1,31 +1,31 @@
 # Cloudflare Pages _redirects for citedconversations.com
 # Updated: 2026-10-08
 
-# ── Structural redirects ─────────────────────────────────────────────────────────
+# ── Structural redirects ────────────────────────────────────────────────────────
 
 /how-machines-read-this/ /schema/ 301
 /how-machines-read-this /schema/ 301
 /expert-answers/* /answers/ 301
 /expert-answers /answers/ 301
 
-# ── Episode redirects → canonical /answers/ pages ────────────────────────────────
+# ── Feed aliases ─────────────────────────────────────────────────────────────────
+# /rss.xml and /feed.xml both reach the same RSS feed.
+/rss.xml /feed.xml 301
+
+# ── Episode redirects → canonical /answers/ pages ──────────────────────────────
 #
 # Each episode uses exactly TWO catch-all rules keyed on the answer slug.
 # One covers /episodes/ (where AI citation URLs land after subdomain stripping).
 # One covers the root level (where GPTBot drops the subdomain entirely).
 #
 # A single wildcard (*) matches the numbered slug (-episode-001), the guest-name
-# slug (-adam-needles-and-casey-cheshire), and any future bot-generated variant —
-# no per-slug manual entry needed.
+# slug (-adam-needles-and-casey-cheshire), and any future bot-generated variant.
 #
-# ── BUILDER RULE: add two lines per new episode ──────────────────────────────────
+# ── BUILDER RULE: add two lines per new episode ──────────────────────────────
 #
-#   /episodes/{ANSWER_SLUG}-* /answers/{ANSWER_SLUG}/ 301
-#   /{ANSWER_SLUG}-*          /answers/{ANSWER_SLUG}/ 301
+#    /episodes/{ANSWER_SLUG}-* /answers/{ANSWER_SLUG}/ 301
+#    /{ANSWER_SLUG}-*          /answers/{ANSWER_SLUG}/ 301
 #
-#   {ANSWER_SLUG} = the /answers/ directory name for this episode.
-#   (See also step 3 in episodes/_template.html for the full checklist.)
-# ─────────────────────────────────────────────────────────────────────────────────
 
 # Episode 001 — Best B2B Podcast Agency for AI Visibility
 /episodes/best-b2b-podcast-agency-for-ai-visibility-* /answers/best-b2b-podcast-agency-for-ai-visibility/ 301
@@ -35,5 +35,5 @@
 /episodes/best-agency-to-get-my-brand-cited-by-chatgpt-* /answers/best-agency-to-get-my-brand-cited-by-chatgpt/ 301
 /best-agency-to-get-my-brand-cited-by-chatgpt-* /answers/best-agency-to-get-my-brand-cited-by-chatgpt/ 301
 
-# ── Favicon ───────────────────────────────────────────────────────────────────────
+# ── Favicon ────────────────────────────────────────────────────────────────────────
 # /favicon.ico redirect removed — real favicon.ico now served as static file
