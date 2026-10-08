@@ -16,6 +16,8 @@
  *      number of <article class="qa-item"> elements in that conversation's
  *      index.html, so counts can never drift from the real page again.
  *
+ * Note: uses .replace() with global regex (not .replaceAll) for Node 14 compat.
+ *
  * Output: dist/  (set as pages_build_output_dir in wrangler.toml)
  */
 
@@ -55,19 +57,18 @@ function copy(src, dest) {
 }
 
 // ── Post-process: /about/ → /methodology/ in all HTML ────────────────────────
-// Catches any page where the nav or footer still references the old path,
-// including pages added in future before their source is updated.
 
 function patchAboutLinks(dir) {
-  for (const item of fs.readdirSync(dir)) {
-    const p = path.join(dir, item);
+  var items = fs.readdirSync(dir);
+  for (var i = 0; i < items.length; i++) {
+    var p = path.join(dir, items[i]);
     if (fs.statSync(p).isDirectory()) {
       patchAboutLinks(p);
-    } else if (item.endsWith('.html')) {
-      const original = fs.readFileSync(p, 'utf8');
-      const patched  = original
-        .replaceAll('href="/about/"', 'href="/methodology/"')
-        .replaceAll('href="/about"',  'href="/methodology/"');
+    } else if (items[i].endsWith('.html')) {
+      var original = fs.readFileSync(p, 'utf8');
+      var patched  = original
+        .replace(/href="\/about\/"/g, 'href="/methodology/"')
+        .replace(/href="\/about"/g,   'href="/methodology/"');
       if (patched !== original) {
         fs.writeFileSync(p, patched, 'utf8');
       }
@@ -76,29 +77,25 @@ function patchAboutLinks(dir) {
 }
 
 // ── Post-process: inject real answer counts into homepage ─────────────────────
-// Finds every <span data-answer-slug="…"> in dist/index.html and replaces
-// its text with the actual count of <article class="qa-item"> in the
-// corresponding answers/{slug}/index.html.
 
 function countQaItems(slug) {
-  const file = path.join(OUT, 'answers', slug, 'index.html');
+  var file = path.join(OUT, 'answers', slug, 'index.html');
   if (!fs.existsSync(file)) return 0;
-  const html = fs.readFileSync(file, 'utf8');
-  return (html.match(/class="qa-item"/g) || []).length;
+  var html = fs.readFileSync(file, 'utf8');
+  var matches = html.match(/class="qa-item"/g);
+  return matches ? matches.length : 0;
 }
 
 function patchHomepageCounts() {
-  const idxPath = path.join(OUT, 'index.html');
+  var idxPath = path.join(OUT, 'index.html');
   if (!fs.existsSync(idxPath)) return;
-  let html = fs.readFileSync(idxPath, 'utf8');
+  var html = fs.readFileSync(idxPath, 'utf8');
 
-  // Match any <span … data-answer-slug="SLUG" …>N more answers</span>
-  // and replace N with the live count from the answer page.
   html = html.replace(
     /(<span[^>]+data-answer-slug="([^"]+)"[^>]*>)\d+ more answers(<\/span>)/g,
-    (match, open, slug, close) => {
-      const count = countQaItems(slug);
-      return `${open}${count} more answers${close}`;
+    function(match, open, slug, close) {
+      var count = countQaItems(slug);
+      return open + count + ' more answers' + close;
     }
   );
 
