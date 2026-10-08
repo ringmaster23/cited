@@ -8,10 +8,17 @@
 
 # ── Structural redirects ────────────────────────────────────────────────────────
 
+/about/ /methodology/ 301
+/about /methodology/ 301
 /how-machines-read-this/ /schema/ 301
 /how-machines-read-this /schema/ 301
 /expert-answers/* /answers/ 301
 /expert-answers /answers/ 301
+
+# ── Podcast ──────────────────────────────────────────────────────────────────────
+# /podcast/ and anything under it redirect to the external podcast site.
+/podcast/* https://podcast.citedconversations.com 301
+/podcast https://podcast.citedconversations.com 301
 
 # ── Feed aliases ─────────────────────────────────────────────────────────────────
 # /rss.xml and /feed.xml both reach the same RSS feed.
