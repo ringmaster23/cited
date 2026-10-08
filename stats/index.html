@@ -714,7 +714,7 @@
     }
 
     const totalRequests = Object.values(botMap).reduce((s, b) => s + b.requests, 0);
-    const totalBots = Object.keys(botMap).length;
+    const totalBots = Object.values(botMap).filter(b => b.requests > 0).length; // zero rows (full roster) don't count
     const totalPages = Object.keys(pathMap).length;
 
     // ── KPI cards ─────────────────────────────────────────────────────────────
@@ -738,7 +738,7 @@
     }
 
     // ── Chart 1: Daily stacked bar ─────────────────────────────────────────────
-    const botNames = Object.keys(botMap);
+    const botNames = Object.keys(botMap).filter(n => botMap[n].requests > 0); // chart: active bots only; zero rows still listed in the table
     const dailyByBotDate = {}; // bot → date → count
     for (const row of daily) {
       if (!dailyByBotDate[row.bot_name]) dailyByBotDate[row.bot_name] = {};
@@ -789,7 +789,7 @@
     });
 
     // ── Table 1: Bot breakdown ─────────────────────────────────────────────────
-    const sortedBots = Object.entries(botMap).sort((a, b) => b[1].requests - a[1].requests);
+    const sortedBots = Object.entries(botMap).sort((a, b) => b[1].requests - a[1].requests || a[0].localeCompare(b[0])); // zero rows sink to the bottom
     const maxBotReqs = sortedBots[0]?.[1].requests || 1;
     const tbody1 = document.getElementById('bot-table-body');
     if (sortedBots.length === 0) {
