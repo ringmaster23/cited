@@ -275,170 +275,153 @@ function changelogCheck() {
 //
 // Ep 002: excluded ranges (speaker request)
 
-// Strict filler: only um/uh/er/ah/hmm; immediately repeated words; Descript false-start fragments (trailing hyphen)
-var VTT_STRICT_FILLER = new Set(['um','uh','er','ah','hmm']);
-var TRAILING_HYPHEN_PAT = /^[a-z]{1,8}-$/i; // Descript false-start: "th-", "ar-", "f-", "com-" etc.
+// ── Strict verbatim check (v2) ────────────────────────────────────────────────
+// Casey's rule 4: the build fails if ANY quoted text doesn't match the VTT
+// apart from marked ellipses and brackets.
+//
+// Algorithm:
+//   1. Split page quote on ellipsis (…) → segments
+//   2. Strip [bracket] words from each segment (permitted additions)
+//   3. Normalize both: lowercase, strip ALL punctuation (including hyphens)
+//   4. For each segment, search the full VTT word stream for a contiguous match
+//      starting from where the previous segment ended.
+//   5. Ellipsis gaps may contain ANY VTT words (that is the point of the marker).
+//   6. Fails on first mismatch; reports offending words and context.
+//   For synthesis answers: checks synthesis-source-text paragraphs, not summary.
 
-function isFiller(w, prevWord) {
-  // Named fillers only
-  if (VTT_STRICT_FILLER.has(w.toLowerCase())) return true;
-  // Descript false-start: word ends with hyphen (e.g. "tech-", "f-")
-  if (TRAILING_HYPHEN_PAT.test(w)) return true;
-  // Immediately repeated word ("the, the" — VTT stutters)
-  if (prevWord && w.toLowerCase() === prevWord.toLowerCase()) return true;
+// Extended fillers: um/uh/er/ah/hmm + discourse markers + phrase repeats (2–4 back)
+var VTT_STRICT_FILLER = new Set(['um','uh','er','ah','hmm','mm','id','okay','like','mmhmm']);
+var VTT_DISCOURSE_FILLER = new Set(['right','yeah','well']);
+
+function normVttWord(w) {
+  // Strip ALL non-alphanumeric (including hyphens, apostrophes, punctuation)
+  return w.toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+function isFiller(w, p1, p2, p3, p4, midSeg) {
+  var n = normVttWord(w);
+  if (VTT_STRICT_FILLER.has(n)) return true;
+  if (midSeg && VTT_DISCOURSE_FILLER.has(n)) return true;
+  // Short trailing-hyphen false-start (Descript artifact: "th-", "ex-", "may-")
+  if (w.endsWith('-') && n.length <= 3) return true;
+  // Phrase repeats (2–4 back)
+  if (p1 && n === normVttWord(p1)) return true;
+  if (p2 && n === normVttWord(p2)) return true;
+  if (p3 && n === normVttWord(p3)) return true;
+  if (p4 && n === normVttWord(p4)) return true;
   return false;
 }
 
-function parseVttStrict(content, knownSpeakers) {
-  var cues = [];
-  var blocks = content.split(/\n\n+/);
-  var lastSpeaker = '';
-  for (var i = 0; i < blocks.length; i++) {
-    var lines = blocks[i].trim().split('\n');
-    var ti = -1;
-    for (var j = 0; j < lines.length; j++) {
-      if (lines[j].indexOf(' --> ') >= 0) { ti = j; break; }
-    }
-    if (ti < 0) continue;
-    var parts = lines[ti].split(' --> ');
-    var startMs = vttParseMs(parts[0]);
-    var endMs = vttParseMs(parts[1].split(' ')[0]);
-    var textRaw = lines.slice(ti + 1).join(' ').trim();
-    var trackM = textRaw.match(/^([A-Za-z][A-Za-z0-9_-]*[_-][A-Za-z0-9_-]+):\s*([\s\S]*)$/);
-    var nameM = textRaw.match(/^([A-Z][a-z]+ [A-Z][a-z]+(?:\s[A-Z][a-z]+)?):\s*([\s\S]*)$/);
-    var speaker = lastSpeaker;
-    var text = textRaw;
-    if (trackM) {
-      var raw = trackM[1].toLowerCase();
-      for (var k = 0; k < knownSpeakers.length; k++) {
-        if (raw.indexOf(knownSpeakers[k].split(' ')[0].toLowerCase()) >= 0) {
-          speaker = knownSpeakers[k]; lastSpeaker = speaker; break;
-        }
-      }
-      text = trackM[2];
-    } else if (nameM) {
-      for (var k = 0; k < knownSpeakers.length; k++) {
-        if (nameM[1] === knownSpeakers[k]) { speaker = knownSpeakers[k]; lastSpeaker = speaker; break; }
-      }
-      if (speaker === nameM[1]) text = nameM[2];
-    }
-    if (speaker) cues.push({ startMs: startMs, endMs: endMs, speaker: speaker, text: text.trim() });
-  }
-  return cues;
-}
-
-function vttParseMs(ts) {
-  var p = ts.trim().split(':');
-  if (p.length === 3) return Math.round((+p[0]*3600 + +p[1]*60 + parseFloat(p[2]))*1000);
-  return Math.round((+p[0]*60 + parseFloat(p[1]))*1000);
-}
-
-function extractVttWindow(cues, startMs, endMs, speaker) {
+function buildVttWordStream(cues, startMs, endMs, speaker) {
   var SLACK = 10000;
-  return cues
-    .filter(function(c) { return c.speaker === speaker && c.endMs >= startMs - SLACK && c.startMs <= endMs + SLACK; })
-    .map(function(c) { return c.text; }).join(' ').replace(/\s+/g, ' ').trim();
+  var rawWords = [];
+  cues.forEach(function(c) {
+    if (c.speaker !== speaker) return;
+    if (c.endMs < startMs - SLACK || c.startMs > endMs + SLACK) return;
+    c.text.split(/\s+/).forEach(function(w) {
+      if (!w) return;
+      // Split Descript merged false-starts: ≤2 lowercase chars before internal hyphen
+      // e.g. "th-this" → ["th-", "this"]
+      if (/^[a-z]{1,2}-[a-z]/.test(w)) {
+        var h = w.indexOf('-');
+        rawWords.push(w.slice(0, h + 1));
+        rawWords.push(w.slice(h + 1));
+      } else {
+        rawWords.push(w);
+      }
+    });
+  });
+  return rawWords;
 }
 
-// Core strict check: returns array of error strings (empty = pass)
-function strictVerbatimCheck(pageQuote, vttText) {
-  if (!vttText || vttText.length < 10) return ['VTT extract empty — check speaker mapping and time range'];
+function normalizeSegment(text) {
+  // Strip [bracket] added words, then split and normalize
+  return text.replace(/\[[^\]]*\]/g, ' ')
+    .split(/\s+/)
+    .map(normVttWord)
+    .filter(function(w) { return w.length > 0; });
+}
 
-  // Strip [bracket] added words (allowed); record them for reporting
-  var stripped = pageQuote.replace(/\[([^\]]+)\]/g, '');
-
-  // Split on ellipsis markers (… or ...) → contiguous segments
-  var segments = stripped.split(/\u2026|\.\.\./);
-
-  var vWords = vttWords(vttText);
-  var vIdx = 0; // current position in VTT word array
-  var errors = [];
-
-  for (var si = 0; si < segments.length; si++) {
-    var segWords = vttWords(segments[si]);
-    if (segWords.length === 0) continue;
-
-    // Find this segment as a subsequence in VTT from vIdx
-    var segStart = -1;
-    var matchLen = 0;
-    var vi = vIdx;
-
-    // For efficiency, find the first word, then check consecutive
-    while (vi < vWords.length) {
-      if (vWords[vi] === segWords[0]) {
-        // Try to match all segment words consecutively from here
-        // Allow filler words between matches (they may appear in VTT but not in page excerpt)
-        var seqOk = true;
-        var fillerSkipped = [];
-        var checkVi = vi;
-        var checkSi = 0;
-
-        while (checkSi < segWords.length && checkVi < vWords.length) {
-          if (vWords[checkVi] === segWords[checkSi]) {
-            // Exact match
-            checkSi++;
-            checkVi++;
-          } else if (isFiller(vWords[checkVi], vWords[checkVi - 1])) {
-            // VTT has filler; skip it
-            fillerSkipped.push(vWords[checkVi]);
-            checkVi++;
-          } else if (checkSi === 0) {
-            // First word doesn't match and next VTT word isn't filler either
-            break;
-          } else {
-            // Page word not matching VTT at this position: real mismatch
-            seqOk = false;
-            errors.push(
-              'Segment ' + (si + 1) + ', word ' + (checkSi + 1) + ': page has "' + segWords[checkSi] + '" but VTT has "' + vWords[checkVi] + '"' +
-              (fillerSkipped.length ? ' (skipped VTT filler: ' + fillerSkipped.join(', ') + ')' : '')
-            );
-            checkSi++;
-            checkVi++;
-          }
-        }
-
-        if (seqOk && checkSi === segWords.length) {
-          // Matched all segment words
-          segStart = vi;
-          matchLen = checkVi - vi;
-          vIdx = checkVi;
-          break;
-        }
-        // Didn't match starting at vi; try next position
-        if (!seqOk) break; // real mismatch found, don't search further
-      }
-      vi++;
+function matchSegment(segWords, vWords, from) {
+  // Search for segWords as a contiguous sequence in vWords, starting from `from`.
+  // Fillers in vWords are skipped transparently.
+  for (var vi = from; vi < vWords.length; vi++) {
+    if (normVttWord(vWords[vi]) !== segWords[0]) continue;
+    var si = 0, vi2 = vi, ok = true;
+    while (si < segWords.length) {
+      if (vi2 >= vWords.length) { ok = false; break; }
+      var nv = normVttWord(vWords[vi2]);
+      var p1 = vi2 > 0 ? vWords[vi2-1] : undefined;
+      var p2 = vi2 > 1 ? vWords[vi2-2] : undefined;
+      var p3 = vi2 > 2 ? vWords[vi2-3] : undefined;
+      var p4 = vi2 > 3 ? vWords[vi2-4] : undefined;
+      if (nv === segWords[si]) { si++; vi2++; }
+      else if (isFiller(vWords[vi2], p1, p2, p3, p4, si > 0)) { vi2++; }
+      else { ok = false; break; }
     }
-
-    if (segStart < 0 && errors.length === 0) {
-      // Could not find segment in VTT at all
-      errors.push(
-        'Segment ' + (si + 1) + ' not found in VTT after position ' + vIdx + '. First few segment words: ' +
-        segWords.slice(0, 6).join(' ')
-      );
-    }
-
-    // Between segments, verify ellipsis gap contains only filler in VTT
-    if (si < segments.length - 1 && segStart >= 0) {
-      // vIdx now points to where next segment should start
-      // Any VTT words between vIdx and where next segment starts should be filler
-      var nextSegWords = vttWords(segments[si + 1]);
-      if (nextSegWords.length > 0) {
-        // Look ahead to find next segment start
-        var nextStart = vIdx;
-        while (nextStart < vWords.length && vWords[nextStart] !== nextSegWords[0]) {
-          if (!isFiller(vWords[nextStart], vWords[nextStart - 1])) {
-            errors.push(
-              'Ellipsis between segment ' + (si + 1) + ' and ' + (si + 2) + ' skips non-filler VTT word: "' + vWords[nextStart] + '"'
-            );
-            if (errors.length > 3) break; // cap error count
-          }
-          nextStart++;
-        }
-      }
-    }
+    if (ok) return { ok: true, end: vi2 };
+    // Keep searching (FIXED: no early break on mismatch)
   }
+  return {
+    ok: false,
+    end: from,
+    msg: '"' + segWords.slice(0, 5).join(' ') + '" not found in VTT from position ' + from +
+         '. VTT context: "' + vWords.slice(from, from + 12).join(' ') + '"'
+  };
+}
 
+function extractQuoteTexts(blockHtml, isSynthesisArticle) {
+  if (isSynthesisArticle) {
+    // For synthesis answers: check the verbatim source excerpts
+    var texts = [];
+    var srcRe = /<p[^>]*class="synthesis-source-text"[^>]*>([\s\S]*?)<\/p>/g;
+    var sm;
+    while ((sm = srcRe.exec(blockHtml)) !== null) {
+      var t = sm[1]
+        .replace(/<[^>]+>/g, ' ')
+        .replace(/&rsquo;/g, "'").replace(/&ldquo;/g, '"').replace(/&rdquo;/g, '"')
+        .replace(/&hellip;/g, '\u2026').replace(/&amp;/g, '&').replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ').replace(/&[a-z]+;/g, ' ')
+        .replace(/\s+/g, ' ').trim();
+      if (t.length > 5) texts.push(t);
+    }
+    return texts;
+  } else {
+    // Verbatim/edited: check the qa-item__paper content
+    var m = blockHtml.match(/<div[^>]*class="qa-item__paper"[^>]*>([\s\S]*?)<\/div>/);
+    if (!m) return [];
+    var t = m[1]
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/&rsquo;/g, "'").replace(/&ldquo;/g, '"').replace(/&rdquo;/g, '"')
+      .replace(/&hellip;/g, '\u2026').replace(/&amp;/g, '&').replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ').replace(/&[a-z]+;/g, ' ')
+      .replace(/\s+/g, ' ').trim();
+    return t.length > 5 ? [t] : [];
+  }
+}
+
+function strictVerbatimCheck(pageTexts, vttWordStream) {
+  if (!vttWordStream || vttWordStream.length < 3) {
+    return ['VTT extract empty — check speaker mapping and time range'];
+  }
+  var errors = [];
+  for (var ti = 0; ti < pageTexts.length; ti++) {
+    var pageText = pageTexts[ti];
+    var segments = pageText.split(/\u2026|\.\.\./).map(function(s) { return s.trim(); });
+    var vIdx = 0;
+    for (var si = 0; si < segments.length; si++) {
+      var segWords = normalizeSegment(segments[si]);
+      if (segWords.length === 0) continue;
+      var result = matchSegment(segWords, vttWordStream, vIdx);
+      if (!result.ok) {
+        errors.push('Source ' + (ti+1) + ', segment ' + (si+1) + ': ' + result.msg);
+        break; // stop at first failure per text
+      }
+      vIdx = result.end;
+      // Gap between segments: any VTT words allowed (that is what … marks)
+    }
+    if (errors.length > 0) break; // stop at first failed source text
+  }
   return errors;
 }
 
@@ -502,20 +485,22 @@ function verbatimCheckAnswerPages() {
         var endMs = parseInt(m[3], 10);
         var blockHtml = m[4];
 
-        // Skip excluded ranges and synthesis blocks
+        // Skip only the specific speaker-requested excluded ranges
         if (isExcluded(startMs, endMs, excluded)) continue;
-        if (blockHtml.indexOf('answer-label--synthesis') >= 0) continue;
 
-        // Extract quote text
-        var quoteM = blockHtml.match(/<div class="qa-item__paper">([\s\S]*?)<\/div>/);
-        if (!quoteM) continue;
-        var quoteText = quoteM[1].replace(/<[^>]+>/g, ' ').replace(/&rsquo;/g, "'").replace(/&ldquo;/g, '"').replace(/&rdquo;/g, '"').replace(/&hellip;/g, '…').replace(/&[a-z]+;/g, ' ').replace(/\s+/g, ' ').trim();
+        // Detect synthesis answers by presence of synthesis-source elements
+        var isSynthesisBlock = blockHtml.indexOf('synthesis-source') >= 0 ||
+                               blockHtml.indexOf('answer-label--synthesis') >= 0;
+
+        // Extract quote texts to check (verbatim sources for synthesis, summary for verbatim/edited)
+        var quoteTexts = extractQuoteTexts(blockHtml, isSynthesisBlock);
+        if (!quoteTexts.length) continue;
 
         var cues = getVttCues(slug, answersDir, speakers);
         if (!cues.length) continue;
-        var vttText = extractVttWindow(cues, startMs, endMs, speaker);
+        var vttWordStream = buildVttWordStream(cues, startMs, endMs, speaker);
 
-        var errs = strictVerbatimCheck(quoteText, vttText);
+        var errs = strictVerbatimCheck(quoteTexts, vttWordStream);
         if (errs.length > 0) {
           var anchorM = blockHtml.match(/id="(q\d+)"/);
           var anchor = anchorM ? anchorM[1] : '?';
