@@ -180,6 +180,18 @@ function integrityCheckAnswerPages() {
       pageErrors.push(articleCount + ' rendered articles but ' + clipCount + ' JSON-LD Clip nodes — must match');
     }
 
+
+    // Batch 4: required editorial fields for every answer page
+    if (!html.includes('conversation-notice')) {
+      pageErrors.push('Missing .conversation-notice top notice ("not an independent ranking" block)');
+    }
+    if (!html.includes('answer-label')) {
+      pageErrors.push('Missing at least one .answer-label (verbatim/edited/synthesis transformation label)');
+    }
+    if (!html.includes('question headings are written by our editors')) {
+      pageErrors.push('Missing label-line: "question headings are written by our editors"');
+    }
+
     if (pageErrors.length > 0) {
       errors.push(slug + ':');
       for (var pi = 0; pi < pageErrors.length; pi++) {

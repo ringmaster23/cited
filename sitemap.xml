@@ -6,21 +6,21 @@
 
   <url>
     <loc>https://citedconversations.com/</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://citedconversations.com/methodology/</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://citedconversations.com/answers/</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -30,14 +30,14 @@
 
   <url>
     <loc>https://citedconversations.com/answers/best-b2b-podcast-agency-for-ai-visibility/</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://citedconversations.com/answers/best-agency-to-get-my-brand-cited-by-chatgpt/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -85,25 +85,25 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- Speaker pages — lastmod = episode publish date (content unchanged since launch). -->
+  <!-- Speaker pages — lastmod updated 2026-10-09 (titles changed). -->
 
   <url>
     <loc>https://citedconversations.com/speakers/casey-cheshire/</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://citedconversations.com/speakers/adam-needles/</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://citedconversations.com/speakers/simon-wilhelm/</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

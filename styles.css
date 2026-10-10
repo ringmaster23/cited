@@ -1099,3 +1099,67 @@ p.section-label, span.section-label {
   .episode-table { font-size: 0.8rem; }
   .episode-table tbody td { padding: 0.875rem 1rem; }
 }
+
+/* ── Batch 4 editorial label styles ─────────────────────────────── */
+
+/* Transformation label (verbatim / edited / synthesis) */
+.answer-label {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-family: var(--font-mono, monospace);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted, #888);
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  padding: 1px 5px;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+.answer-label--verbatim-quote { color: #4a7a4a; border-color: #4a7a4a; }
+.answer-label--edited-quote   { color: #7a6a2a; border-color: #7a6a2a; }
+.answer-label--synthesis      { color: #7a3a2a; border-color: #7a3a2a; }
+
+/* Top notice ("not an independent ranking" + label line) */
+.conversation-notice {
+  background: #fdf9f0;
+  border-left: 3px solid #c8a84b;
+  padding: 0.75rem 1rem;
+  margin: var(--space-3, 1.25rem) 0 var(--space-4, 1.75rem);
+  font-size: var(--step--1, 0.875rem);
+  line-height: 1.55;
+  color: var(--text, #1a1a1a);
+}
+.conversation-notice p { margin: 0; }
+.conversation-notice p + p { margin-top: 0.25rem; color: var(--muted, #666); }
+
+/* Original question field */
+.question-field {
+  margin: 0.5rem 0 0.75rem;
+  font-size: var(--step--1, 0.875rem);
+  color: var(--muted, #777);
+  font-style: italic;
+  line-height: 1.5;
+}
+.question-label {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--subtle, #999);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-right: 0.35rem;
+}
+
+/* Paraphrase heading note */
+.heading-note {
+  display: block;
+  font-size: 0.7rem;
+  font-family: var(--font-mono, monospace);
+  letter-spacing: 0.04em;
+  color: var(--muted, #999);
+  text-transform: uppercase;
+  margin-top: -0.5rem;
+  margin-bottom: 0.75rem;
+}
