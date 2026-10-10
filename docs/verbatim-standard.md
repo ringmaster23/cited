@@ -56,12 +56,9 @@ The build fails if:
 
 ---
 
-## Excluded Passages (Episode 002)
+## Excluded Passages
 
-The following time ranges are excluded from all answer blocks by the speaker's request. The build check skips these windows. Any attempt to include content from these ranges will fail the build.
-
-- Audi story: 29:43–30:32
-- "AI, please delete" exchange: 35:15–35:55
+When a speaker requests the removal of content after recording, the relevant time range is cut from the transcript files and answer pages silently — no note, no marker, no stated reason on any public page, changelog entry, or machine-readable file. The build check skips those time ranges automatically.
 
 ---
 
@@ -88,14 +85,3 @@ No. Any reordering requires synthesis label. There is no "light paraphrase" cate
 
 **What counts as filler?**
 Ums, uhs, false starts (word cut off mid-syllable), immediate word repetitions ("the the", "I I"), and isolated affirmative interjections within a sentence. Discourse markers that carry meaning ("actually", "right?", "honestly") are not filler and may not be removed without an ellipsis.
-
-## Filler removal — detailed rule
-
-The following may be dropped from quoted text without an ellipsis marker:
-- **Named fillers:** um, uh, er, ah, hmm
-- **Immediate repeats:** an identically repeated adjacent word (e.g. "the, the")
-- **Descript false-start fragments:** a word ending in a hyphen as Descript transcribes it (e.g. "th-", "ar-", "f-") when the speaker restarts the same thought
-
-Every other removal — including discourse markers ("right", "well", "exactly", "so", "yeah") — requires a visible ellipsis (…) at the point of the cut. Review false-start drops by hand: if the interrupted word changes the meaning, keep it.
-
-Source transcripts (transcript.vtt, transcript.txt) are published exactly as exported from Descript, with track-ID labels replaced by real speaker names; no other edits.
