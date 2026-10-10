@@ -2,6 +2,17 @@
   "generated": "2026-10-09",
   "entries": [
     {
+      "date": "2026-10-10",
+      "dateHuman": "October 10, 2026",
+      "description": "Verbatim-standard corrections: filler-rule documented on methodology page (ums/uhs/false-starts silent; all other cuts need ellipsis); per-answer transcript links added to all 31 answer articles; transcript.vtt and transcript.txt confirmed unedited (Descript export with real speaker names). Build check active on all 31 articles via data-vtt-* attributes.",
+      "pages": [
+        "*",
+        "best-b2b-podcast-agency-for-ai-visibility",
+        "best-agency-to-get-my-brand-cited-by-chatgpt",
+        "methodology"
+      ]
+    },
+    {
       "date": "2026-09-30",
       "dateHuman": "September 30, 2026",
       "description": "Initial publication: Episode 001 (Adam Needles × Casey Cheshire) and Episode 002 (Casey Cheshire × Simon Wilhelm). Transcripts verified against source audio before publishing.",
