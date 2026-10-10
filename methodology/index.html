@@ -155,6 +155,17 @@
         </ul>
         <p>We spot-audit published pages against source audio on an ongoing basis.</p>
 
+        
+        <h3>Transcript fidelity and filler removal</h3>
+        <p>
+          Ums, uhs, and Descript-style false-start fragments (a word ending in a hyphen, e.g.
+          &#8220;th-&#8221;, &#8220;ar-&#8221;) may be dropped from quoted answer text without an ellipsis;
+          every other omission &#8212; including discourse markers such as &#8220;right,&#8221;
+          &#8220;well,&#8221; or &#8220;exactly&#8221; &#8212; requires a visible ellipsis (&#8230;) at the point of the cut.
+          Added words go in [square brackets]. No reordering. No paraphrasing inside quotation marks.
+          The source transcripts (<code>transcript.vtt</code>, <code>transcript.txt</code>) are published
+          exactly as exported from Descript, with track-ID labels replaced by real speaker names.
+        </p>
         <h3>What does not get in</h3>
         <p>The library is deliberately narrow. We exclude:</p>
         <ul>
