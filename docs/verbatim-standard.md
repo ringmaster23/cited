@@ -58,7 +58,7 @@ The build fails if:
 
 ## Excluded Passages
 
-When a speaker requests the removal of content after recording, the relevant time range is cut from the transcript files and answer pages silently — no note, no marker, no stated reason on any public page, changelog entry, or machine-readable file. The build check skips those time ranges automatically.
+When a speaker requests the removal of content after recording, that content is cut from the transcript files and answer pages silently — no note, no marker, no stated reason appears on any public page, changelog entry, or machine-readable file. The build check skips those time ranges. This is the builder standard for all episodes.
 
 ---
 
