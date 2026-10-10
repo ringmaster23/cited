@@ -275,22 +275,18 @@ function changelogCheck() {
 //
 // Ep-002 excluded ranges: Audi story (29:43–30:32), AI-please-delete (35:15–35:55)
 
-var VTT_FILLER_PAT = /^(uh|um|ah|hmm|mm|yeah|okay|right|so|and|but|like|you|know|well|got|it|the)$/i;
-var FALSE_START_PAT = /^[a-z]{1,4}-$/i; // partial word e.g. "tech-", "f-", "com-"
+// Strict filler: only um/uh/er/ah/hmm; immediately repeated words; Descript false-start fragments (trailing hyphen)
+var VTT_STRICT_FILLER = new Set(['um','uh','er','ah','hmm']);
+var TRAILING_HYPHEN_PAT = /^[a-z]{1,8}-$/i; // Descript false-start: "th-", "ar-", "f-", "com-" etc.
 
-function vttNorm(s) {
-  return s.toLowerCase()
-    .replace(/[\u2018\u2019']/g, "'")
-    .replace(/[^a-z0-9' ]/g, ' ')
-    .replace(/\s+/g, ' ').trim();
-}
-
-function vttWords(s) {
-  return vttNorm(s).split(' ').filter(function(w) { return w.length > 0; });
-}
-
-function isFiller(w) {
-  return VTT_FILLER_PAT.test(w) || FALSE_START_PAT.test(w);
+function isFiller(w, prevWord) {
+  // Named fillers only
+  if (VTT_STRICT_FILLER.has(w.toLowerCase())) return true;
+  // Descript false-start: word ends with hyphen (e.g. "tech-", "f-")
+  if (TRAILING_HYPHEN_PAT.test(w)) return true;
+  // Immediately repeated word ("the, the" — VTT stutters)
+  if (prevWord && w.toLowerCase() === prevWord.toLowerCase()) return true;
+  return false;
 }
 
 function parseVttStrict(content, knownSpeakers) {
@@ -382,7 +378,7 @@ function strictVerbatimCheck(pageQuote, vttText) {
             // Exact match
             checkSi++;
             checkVi++;
-          } else if (isFiller(vWords[checkVi])) {
+          } else if (isFiller(vWords[checkVi], vWords[checkVi - 1])) {
             // VTT has filler; skip it
             fillerSkipped.push(vWords[checkVi]);
             checkVi++;
@@ -431,7 +427,7 @@ function strictVerbatimCheck(pageQuote, vttText) {
         // Look ahead to find next segment start
         var nextStart = vIdx;
         while (nextStart < vWords.length && vWords[nextStart] !== nextSegWords[0]) {
-          if (!isFiller(vWords[nextStart])) {
+          if (!isFiller(vWords[nextStart], vWords[nextStart - 1])) {
             errors.push(
               'Ellipsis between segment ' + (si + 1) + ' and ' + (si + 2) + ' skips non-filler VTT word: "' + vWords[nextStart] + '"'
             );
@@ -529,7 +525,7 @@ function verbatimCheckAnswerPages() {
       }
     } else {
       // Fallback: warn but don't fail (HTML doesn't have data-vtt-* attributes yet)
-      console.warn('⚠  ' + slug + ': answer articles lack data-vtt-* attributes — verbatim check skipped. Add data-vtt-speaker, data-vtt-start, data-vtt-end to every <article class="qa-item">.');
+      errors.push(slug + ': answer articles lack data-vtt-* attributes — add data-vtt-speaker, data-vtt-start, data-vtt-end to every <article class="qa-item">. Verbatim check cannot run' — verbatim check skipped. Add data-vtt-speaker, data-vtt-start, data-vtt-end to every <article class="qa-item">.');
     }
   }
 
