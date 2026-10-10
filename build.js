@@ -259,6 +259,198 @@ function changelogCheck() {
   }
 }
 
+// ── Verbatim check: quoted text must match VTT ────────────────────────────────
+// Reads data-vtt-speaker / data-vtt-start / data-vtt-end attributes from each
+// answer block and checks the visible quote text against the corresponding VTT window.
+// Fails the build if content words appear that are not in the VTT (beyond threshold).
+//
+// Usage: node build.js              — full build with check
+//        node build.js --dry-run   — check only, no file writes
+
+var VTT_THRESHOLD = 3;  // max content-word mismatches before build fails
+
+// Filler words not counted in mismatch check
+var VTT_FILLER = new Set(['uh','um','ah','like','right','okay','well','so','and','but','you','know']);
+
+function vttParseMs(ts) {
+  var p = ts.trim().split(':');
+  if (p.length === 3) return Math.round((+p[0]*3600 + +p[1]*60 + parseFloat(p[2]))*1000);
+  return Math.round((+p[0]*60 + parseFloat(p[1]))*1000);
+}
+
+function vttNorm(s) {
+  return s.toLowerCase()
+    .replace(/['']/g, "'")
+    .replace(/[^a-z0-9' ]/g, ' ')
+    .replace(/\s+/g, ' ').trim();
+}
+
+function vttWords(s) {
+  return vttNorm(s).split(' ').filter(Boolean);
+}
+
+function parseVttFile(content, knownSpeakers) {
+  var cues = [];
+  var blocks = content.split(/\n\n+/);
+  var lastSpeaker = '';
+  for (var i = 0; i < blocks.length; i++) {
+    var lines = blocks[i].trim().split('\n');
+    var ti = -1;
+    for (var j = 0; j < lines.length; j++) {
+      if (lines[j].indexOf(' --> ') >= 0) { ti = j; break; }
+    }
+    if (ti < 0) continue;
+    var parts = lines[ti].split(' --> ');
+    var startMs = vttParseMs(parts[0]);
+    var endMs = vttParseMs(parts[1].split(' ')[0]);
+    var textRaw = lines.slice(ti + 1).join(' ').trim();
+    // Match track-ID labels (e.g., casey_3_...: text)
+    var trackM = textRaw.match(/^([A-Za-z][A-Za-z0-9_-]*[_-][A-Za-z0-9_-]+):\s*([\s\S]*)$/);
+    // Match inline name labels (e.g., Casey Cheshire: text)
+    var nameM = textRaw.match(/^([A-Z][a-z]+ [A-Z][a-z]+(?:\s[A-Z][a-z]+)?):\s*([\s\S]*)$/);
+    var speaker = lastSpeaker, text = textRaw;
+    if (trackM) {
+      var raw = trackM[1].toLowerCase();
+      for (var k = 0; k < knownSpeakers.length; k++) {
+        if (raw.indexOf(knownSpeakers[k].split(' ')[0].toLowerCase()) >= 0) {
+          speaker = knownSpeakers[k]; lastSpeaker = speaker; break;
+        }
+      }
+      text = trackM[2];
+    } else if (nameM) {
+      for (var k = 0; k < knownSpeakers.length; k++) {
+        if (nameM[1] === knownSpeakers[k]) { speaker = knownSpeakers[k]; lastSpeaker = speaker; break; }
+      }
+      if (speaker === nameM[1]) text = nameM[2]; // matched
+    }
+    if (speaker) cues.push({ startMs: startMs, endMs: endMs, speaker: speaker, text: text.trim() });
+  }
+  return cues;
+}
+
+function extractVttWindow(cues, startMs, endMs, speaker) {
+  var SLACK = 10000;
+  return cues
+    .filter(function(c) { return c.speaker === speaker && c.endMs >= startMs - SLACK && c.startMs <= endMs + SLACK; })
+    .map(function(c) { return c.text; }).join(' ').replace(/\s+/g, ' ').trim();
+}
+
+function checkQuoteAgainstVtt(quoteText, vttText) {
+  // Strip [bracket] additions — these are permitted
+  var stripped = quoteText.replace(/\[([^\]]+)\]/g, '');
+  // Split ellipsis-separated segments — each must appear in order in VTT
+  var segments = stripped.split(/…|\.{3}/);
+  var vWords = vttWords(vttText);
+  var notFound = [];
+  var vIdx = 0;
+  for (var s = 0; s < segments.length; s++) {
+    var pWords = vttWords(segments[s]);
+    for (var p = 0; p < pWords.length; p++) {
+      var pw = pWords[p];
+      var found = false;
+      for (var v = vIdx; v < vWords.length; v++) {
+        if (vWords[v] === pw) { vIdx = v + 1; found = true; break; }
+      }
+      if (!found && !VTT_FILLER.has(pw) && pw.length > 2) notFound.push(pw);
+    }
+  }
+  return notFound;
+}
+
+// Ep-002 excluded ranges (Simon's request)
+var EP002_EXCLUDED = [
+  { startMs: 29*60000+43000, endMs: 30*60000+32000 },
+  { startMs: 35*60000+15000, endMs: 35*60000+55000 }
+];
+
+function isExcluded(startMs, endMs, excluded) {
+  for (var i = 0; i < excluded.length; i++) {
+    var ex = excluded[i];
+    if (startMs < ex.endMs && endMs > ex.startMs) return true;
+  }
+  return false;
+}
+
+// VTT cache (keyed by episode slug)
+var vttCache = {};
+function getVttCues(slug, answersDir, speakers) {
+  if (vttCache[slug]) return vttCache[slug];
+  var vttPath = path.join(answersDir, slug, 'transcript.vtt');
+  if (!fs.existsSync(vttPath)) return [];
+  var content = fs.readFileSync(vttPath, 'utf8');
+  vttCache[slug] = parseVttFile(content, speakers);
+  return vttCache[slug];
+}
+
+var EPISODE_SPEAKERS = {
+  'best-b2b-podcast-agency-for-ai-visibility': ['Casey Cheshire', 'Adam Needles'],
+  'best-agency-to-get-my-brand-cited-by-chatgpt': ['Simon Wilhelm', 'Casey Cheshire'],
+  'paul-jones-community-led-growth-b2b-podcast-ai-visibility': ['Paul Jones', 'Casey Cheshire'],
+};
+
+function verbatimCheckAnswerPages() {
+  var answersDir = path.join(OUT, 'answers');
+  if (!fs.existsSync(answersDir)) return;
+
+  var errors = [];
+  var warnings = [];
+  var slugs = fs.readdirSync(answersDir).filter(function(d) {
+    return fs.statSync(path.join(answersDir, d)).isDirectory();
+  });
+
+  for (var si = 0; si < slugs.length; si++) {
+    var slug = slugs[si];
+    var file = path.join(answersDir, slug, 'index.html');
+    if (!fs.existsSync(file)) continue;
+    var html = fs.readFileSync(file, 'utf8');
+    var speakers = EPISODE_SPEAKERS[slug] || [];
+    if (!speakers.length) continue; // no speaker map for this episode yet
+    var excluded = slug === 'best-agency-to-get-my-brand-cited-by-chatgpt' ? EP002_EXCLUDED : [];
+
+    // Find all answer blocks: <article data-vtt-speaker="..." data-vtt-start="..." data-vtt-end="...">
+    var blockRe = /<article[^>]+data-vtt-speaker="([^"]+)"[^>]+data-vtt-start="([^"]+)"[^>]+data-vtt-end="([^"]+)"[^>]*>([\s\S]*?)<\/article>/g;
+    var match;
+    while ((match = blockRe.exec(html)) !== null) {
+      var speaker = match[1];
+      var startMs = parseInt(match[2], 10);
+      var endMs = parseInt(match[3], 10);
+      var blockHtml = match[4];
+
+      // Check excluded ranges
+      if (isExcluded(startMs, endMs, excluded)) continue;
+
+      // Check label — skip synthesis blocks (they're editor summaries)
+      if (blockHtml.indexOf('synthesis') >= 0) continue;
+
+      // Extract visible quote text (strip HTML tags, keep text content)
+      var quoteM = blockHtml.match(/<blockquote[^>]*>([\s\S]*?)<\/blockquote>/);
+      if (!quoteM) continue;
+      var quoteText = quoteM[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+
+      // Get VTT
+      var cues = getVttCues(slug, answersDir, speakers);
+      if (!cues.length) continue;
+      var vttText = extractVttWindow(cues, startMs, endMs, speaker);
+
+      // Check
+      var notFound = checkQuoteAgainstVtt(quoteText, vttText);
+      if (notFound.length > VTT_THRESHOLD) {
+        var anchorM = blockHtml.match(/id="(q\d+)"/);
+        var anchor = anchorM ? anchorM[1] : '?';
+        errors.push(slug + ' ' + anchor + ' [' + speaker + ']: ' + notFound.length + ' words not in VTT: ' + notFound.slice(0,8).join(', '));
+      }
+    }
+  }
+
+  if (errors.length > 0) {
+    console.error('\n✗ VERBATIM CHECK FAILED — fix these before shipping:');
+    errors.forEach(function(e) { console.error('  • ' + e); });
+    process.exit(1);
+  }
+  console.log('Verbatim check passed (' + slugs.length + ' answer page' + (slugs.length === 1 ? '' : 's') + ').');
+}
+
+
 // ── Main ─────────────────────────────────────────────────────────────────────
 
 console.log('Building dist/ ...');
@@ -276,5 +468,8 @@ integrityCheckAnswerPages();
 
 console.log('Changelog check: validating changelog entries ...');
 changelogCheck();
+
+console.log('Verbatim check: validating quoted text against VTT...');
+verbatimCheckAnswerPages();
 
 console.log('Build complete.');
