@@ -4,6 +4,15 @@
     {
       "date": "2026-10-10",
       "dateHuman": "October 10, 2026",
+      "description": "Verbatim check: upgraded build-time enforcement. Fixed multi-segment search algorithm (loop bound, phrase-repeat detection, extended filler set). Both episode answer pages re-verified against committed transcripts; wording corrected where the source transcript differed from the published quote (false-starts restored, ellipses added for intentional non-filler cuts, bracketed additions where words were missing from the speaker).",
+      "pages": [
+        "best-b2b-podcast-agency-for-ai-visibility",
+        "best-agency-to-get-my-brand-cited-by-chatgpt"
+      ]
+    },
+    {
+      "date": "2026-10-10",
+      "dateHuman": "October 10, 2026",
       "description": "Editorial policy: speaker-requested content removals are applied silently to transcript files and answer pages — no note, marker, or stated reason on any public page.",
       "pages": [
         "*"
