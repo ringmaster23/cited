@@ -273,7 +273,7 @@ function changelogCheck() {
 //      in the VTT (ums, false starts ≤4 chars, repeated adjacent words)
 //   6. Fails on first mismatch; reports the offending words and context
 //
-// Ep-002 excluded ranges: Audi story (29:43–30:32), AI-please-delete (35:15–35:55)
+// Ep 002: excluded ranges (speaker request)
 
 // Strict filler: only um/uh/er/ah/hmm; immediately repeated words; Descript false-start fragments (trailing hyphen)
 var VTT_STRICT_FILLER = new Set(['um','uh','er','ah','hmm']);
