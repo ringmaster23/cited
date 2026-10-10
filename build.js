@@ -211,6 +211,54 @@ function integrityCheckAnswerPages() {
   console.log('Integrity check passed (' + slugs.length + ' answer page' + (slugs.length === 1 ? '' : 's') + ').');
 }
 
+
+// ── Changelog check: dateModified must have a matching changelog entry ────────
+// Reads data/changelog.json and warns if any answer page has a dateModified
+// in its JSON-LD that is newer than the latest entry for that page in the log.
+
+function changelogCheck() {
+  var changelogPath = path.join(OUT, 'data', 'changelog.json');
+  if (!fs.existsSync(changelogPath)) {
+    console.warn('\u26a0\ufe0f  No data/changelog.json found — skipping changelog check.');
+    return;
+  }
+  var log = JSON.parse(fs.readFileSync(changelogPath, 'utf8'));
+  var answersDir = path.join(OUT, 'answers');
+  if (!fs.existsSync(answersDir)) return;
+
+  var slugs = fs.readdirSync(answersDir).filter(function(d) {
+    return fs.statSync(path.join(answersDir, d)).isDirectory();
+  });
+
+  var warnings = [];
+  for (var si = 0; si < slugs.length; si++) {
+    var slug = slugs[si];
+    var file = path.join(answersDir, slug, 'index.html');
+    if (!fs.existsSync(file)) continue;
+    var html = fs.readFileSync(file, 'utf8');
+    var dmMatch = html.match(/"dateModified":\s*"(\d{4}-\d{2}-\d{2})"/);
+    if (!dmMatch) continue;
+    var dateModified = dmMatch[1];
+    var entries = log.entries.filter(function(e) {
+      return e.pages.includes(slug) || e.pages.includes('*');
+    });
+    if (!entries.length) {
+      warnings.push(slug + ': dateModified is ' + dateModified + ' but no changelog entries exist for this page.');
+      continue;
+    }
+    var latest = entries.map(function(e) { return e.date; }).sort().pop();
+    if (dateModified > latest) {
+      warnings.push(slug + ': dateModified ' + dateModified + ' is newer than latest changelog entry ' + latest + ' — add a changelog entry for this change.');
+    }
+  }
+  if (warnings.length) {
+    console.warn('\n\u26a0\ufe0f  CHANGELOG WARNINGS — add entries to data/changelog.json:');
+    warnings.forEach(function(w) { console.warn('   • ' + w); });
+  } else {
+    console.log('Changelog check passed (' + slugs.length + ' answer page' + (slugs.length === 1 ? '' : 's') + ').');
+  }
+}
+
 // ── Main ─────────────────────────────────────────────────────────────────────
 
 console.log('Building dist/ ...');
@@ -224,5 +272,9 @@ patchHomepageCounts();
 
 console.log('Integrity check: validating answer pages ...');
 integrityCheckAnswerPages();
+
+
+console.log('Changelog check: validating changelog entries ...');
+changelogCheck();
 
 console.log('Build complete.');
