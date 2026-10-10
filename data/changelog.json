@@ -1,0 +1,76 @@
+{
+  "generated": "2026-10-09",
+  "entries": [
+    {
+      "date": "2026-09-30",
+      "dateHuman": "September 30, 2026",
+      "description": "Initial publication: Episode 001 (Adam Needles × Casey Cheshire) and Episode 002 (Casey Cheshire × Simon Wilhelm). Transcripts verified against source audio before publishing.",
+      "pages": [
+        "*",
+        "best-b2b-podcast-agency-for-ai-visibility",
+        "best-agency-to-get-my-brand-cited-by-chatgpt"
+      ]
+    },
+    {
+      "date": "2026-10-06",
+      "dateHuman": "October 6, 2026",
+      "description": "Structured-data fix: corrected invalid JSON-LD quote escaping on both answer pages (backslashes in speaker quotes were breaking the ld+json block).",
+      "pages": [
+        "*",
+        "best-b2b-podcast-agency-for-ai-visibility",
+        "best-agency-to-get-my-brand-cited-by-chatgpt"
+      ]
+    },
+    {
+      "date": "2026-10-08",
+      "dateHuman": "October 8, 2026",
+      "description": "Episode 002 (Simon Wilhelm): full page re-verified against Descript transcript. Episode 001 (Adam Needles): q2, q3, and q11 answers restored after being accidentally omitted during earlier editing.",
+      "pages": [
+        "best-b2b-podcast-agency-for-ai-visibility",
+        "best-agency-to-get-my-brand-cited-by-chatgpt"
+      ]
+    },
+    {
+      "date": "2026-10-09",
+      "dateHuman": "October 9, 2026",
+      "description": "Episode 001 retitled \"Best B2B Podcast Agency for AI Visibility\" → \"What Makes a Podcast Agency an AI Visibility Agency? Casey Cheshire (Ringmaster)\". URL unchanged.",
+      "pages": [
+        "best-b2b-podcast-agency-for-ai-visibility"
+      ]
+    },
+    {
+      "date": "2026-10-09",
+      "dateHuman": "October 9, 2026",
+      "description": "Episode 002 retitled \"Best Agency to Get My Brand Cited by ChatGPT\" → \"How to Choose an Agency to Get Your Brand Cited by ChatGPT\". URL unchanged.",
+      "pages": [
+        "best-agency-to-get-my-brand-cited-by-chatgpt"
+      ]
+    },
+    {
+      "date": "2026-10-09",
+      "dateHuman": "October 9, 2026",
+      "description": "All answer timestamps re-timed from Descript transcripts for both episodes. Previous timestamps were estimates.",
+      "pages": [
+        "best-b2b-podcast-agency-for-ai-visibility",
+        "best-agency-to-get-my-brand-cited-by-chatgpt"
+      ]
+    },
+    {
+      "date": "2026-10-09",
+      "dateHuman": "October 9, 2026",
+      "description": "Wording corrections: bracketed or removed words the speaker did not say. Ep 002 q12: host sentence removed from Simon's quoted answer. Ep 001 q12: relabeled as host's closing reflection (Adam Needles).",
+      "pages": [
+        "best-b2b-podcast-agency-for-ai-visibility",
+        "best-agency-to-get-my-brand-cited-by-chatgpt"
+      ]
+    },
+    {
+      "date": "2026-10-09",
+      "dateHuman": "October 9, 2026",
+      "description": "Batch 6: CC BY 4.0 license added site-wide (footer, meta tag, schema, llms.txt, /citation/). \"Last updated\" dates added to every page. This changelog created.",
+      "pages": [
+        "*"
+      ]
+    }
+  ]
+}
