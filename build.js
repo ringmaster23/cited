@@ -565,7 +565,7 @@ function verbatimCheckAnswerPages() {
       }
     } else {
       // Fallback: warn but don't fail (HTML doesn't have data-vtt-* attributes yet)
-      errors.push(slug + ': answer articles lack data-vtt-* attributes — add data-vtt-speaker, data-vtt-start, data-vtt-end to every <article class="qa-item">. Verbatim check cannot run' — verbatim check skipped. Add data-vtt-speaker, data-vtt-start, data-vtt-end to every <article class="qa-item">.');
+      errors.push(slug + ': verbatim check skipped -- add data-vtt-speaker, data-vtt-start, data-vtt-end to every qa-item article');
     }
   }
 
