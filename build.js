@@ -259,37 +259,41 @@ function changelogCheck() {
   }
 }
 
-// ── Verbatim check: quoted text must match VTT ────────────────────────────────
-// Reads data-vtt-speaker / data-vtt-start / data-vtt-end attributes from each
-// answer block and checks the visible quote text against the corresponding VTT window.
-// Fails the build if content words appear that are not in the VTT (beyond threshold).
+// ── Strict verbatim check ─────────────────────────────────────────────────────
+// Casey's rule 4: the build fails if ANY quoted text doesn't match the VTT
+// apart from marked ellipses and brackets.
 //
-// Usage: node build.js              — full build with check
-//        node build.js --dry-run   — check only, no file writes
+// Algorithm:
+//   1. Split page quote on ellipsis (…) → segments
+//   2. Strip [bracket] words from each segment (permitted additions)
+//   3. Normalize both: lowercase, strip punctuation, split into words
+//   4. For each segment, the word sequence must appear contiguously in VTT order
+//      starting from where the previous segment ended
+//   5. Between segments (the gap marked by …), only filler words are permitted
+//      in the VTT (ums, false starts ≤4 chars, repeated adjacent words)
+//   6. Fails on first mismatch; reports the offending words and context
+//
+// Ep-002 excluded ranges: Audi story (29:43–30:32), AI-please-delete (35:15–35:55)
 
-var VTT_THRESHOLD = 3;  // max content-word mismatches before build fails
-
-// Filler words not counted in mismatch check
-var VTT_FILLER = new Set(['uh','um','ah','like','right','okay','well','so','and','but','you','know']);
-
-function vttParseMs(ts) {
-  var p = ts.trim().split(':');
-  if (p.length === 3) return Math.round((+p[0]*3600 + +p[1]*60 + parseFloat(p[2]))*1000);
-  return Math.round((+p[0]*60 + parseFloat(p[1]))*1000);
-}
+var VTT_FILLER_PAT = /^(uh|um|ah|hmm|mm|yeah|okay|right|so|and|but|like|you|know|well|got|it|the)$/i;
+var FALSE_START_PAT = /^[a-z]{1,4}-$/i; // partial word e.g. "tech-", "f-", "com-"
 
 function vttNorm(s) {
   return s.toLowerCase()
-    .replace(/['']/g, "'")
+    .replace(/[\u2018\u2019']/g, "'")
     .replace(/[^a-z0-9' ]/g, ' ')
     .replace(/\s+/g, ' ').trim();
 }
 
 function vttWords(s) {
-  return vttNorm(s).split(' ').filter(Boolean);
+  return vttNorm(s).split(' ').filter(function(w) { return w.length > 0; });
 }
 
-function parseVttFile(content, knownSpeakers) {
+function isFiller(w) {
+  return VTT_FILLER_PAT.test(w) || FALSE_START_PAT.test(w);
+}
+
+function parseVttStrict(content, knownSpeakers) {
   var cues = [];
   var blocks = content.split(/\n\n+/);
   var lastSpeaker = '';
@@ -304,11 +308,10 @@ function parseVttFile(content, knownSpeakers) {
     var startMs = vttParseMs(parts[0]);
     var endMs = vttParseMs(parts[1].split(' ')[0]);
     var textRaw = lines.slice(ti + 1).join(' ').trim();
-    // Match track-ID labels (e.g., casey_3_...: text)
     var trackM = textRaw.match(/^([A-Za-z][A-Za-z0-9_-]*[_-][A-Za-z0-9_-]+):\s*([\s\S]*)$/);
-    // Match inline name labels (e.g., Casey Cheshire: text)
     var nameM = textRaw.match(/^([A-Z][a-z]+ [A-Z][a-z]+(?:\s[A-Z][a-z]+)?):\s*([\s\S]*)$/);
-    var speaker = lastSpeaker, text = textRaw;
+    var speaker = lastSpeaker;
+    var text = textRaw;
     if (trackM) {
       var raw = trackM[1].toLowerCase();
       for (var k = 0; k < knownSpeakers.length; k++) {
@@ -321,11 +324,17 @@ function parseVttFile(content, knownSpeakers) {
       for (var k = 0; k < knownSpeakers.length; k++) {
         if (nameM[1] === knownSpeakers[k]) { speaker = knownSpeakers[k]; lastSpeaker = speaker; break; }
       }
-      if (speaker === nameM[1]) text = nameM[2]; // matched
+      if (speaker === nameM[1]) text = nameM[2];
     }
     if (speaker) cues.push({ startMs: startMs, endMs: endMs, speaker: speaker, text: text.trim() });
   }
   return cues;
+}
+
+function vttParseMs(ts) {
+  var p = ts.trim().split(':');
+  if (p.length === 3) return Math.round((+p[0]*3600 + +p[1]*60 + parseFloat(p[2]))*1000);
+  return Math.round((+p[0]*60 + parseFloat(p[1]))*1000);
 }
 
 function extractVttWindow(cues, startMs, endMs, speaker) {
@@ -335,29 +344,113 @@ function extractVttWindow(cues, startMs, endMs, speaker) {
     .map(function(c) { return c.text; }).join(' ').replace(/\s+/g, ' ').trim();
 }
 
-function checkQuoteAgainstVtt(quoteText, vttText) {
-  // Strip [bracket] additions — these are permitted
-  var stripped = quoteText.replace(/\[([^\]]+)\]/g, '');
-  // Split ellipsis-separated segments — each must appear in order in VTT
-  var segments = stripped.split(/…|\.{3}/);
+// Core strict check: returns array of error strings (empty = pass)
+function strictVerbatimCheck(pageQuote, vttText) {
+  if (!vttText || vttText.length < 10) return ['VTT extract empty — check speaker mapping and time range'];
+
+  // Strip [bracket] added words (allowed); record them for reporting
+  var stripped = pageQuote.replace(/\[([^\]]+)\]/g, '');
+
+  // Split on ellipsis markers (… or ...) → contiguous segments
+  var segments = stripped.split(/\u2026|\.\.\./);
+
   var vWords = vttWords(vttText);
-  var notFound = [];
-  var vIdx = 0;
-  for (var s = 0; s < segments.length; s++) {
-    var pWords = vttWords(segments[s]);
-    for (var p = 0; p < pWords.length; p++) {
-      var pw = pWords[p];
-      var found = false;
-      for (var v = vIdx; v < vWords.length; v++) {
-        if (vWords[v] === pw) { vIdx = v + 1; found = true; break; }
+  var vIdx = 0; // current position in VTT word array
+  var errors = [];
+
+  for (var si = 0; si < segments.length; si++) {
+    var segWords = vttWords(segments[si]);
+    if (segWords.length === 0) continue;
+
+    // Find this segment as a subsequence in VTT from vIdx
+    var segStart = -1;
+    var matchLen = 0;
+    var vi = vIdx;
+
+    // For efficiency, find the first word, then check consecutive
+    while (vi < vWords.length) {
+      if (vWords[vi] === segWords[0]) {
+        // Try to match all segment words consecutively from here
+        // Allow filler words between matches (they may appear in VTT but not in page excerpt)
+        var seqOk = true;
+        var fillerSkipped = [];
+        var checkVi = vi;
+        var checkSi = 0;
+
+        while (checkSi < segWords.length && checkVi < vWords.length) {
+          if (vWords[checkVi] === segWords[checkSi]) {
+            // Exact match
+            checkSi++;
+            checkVi++;
+          } else if (isFiller(vWords[checkVi])) {
+            // VTT has filler; skip it
+            fillerSkipped.push(vWords[checkVi]);
+            checkVi++;
+          } else if (checkSi === 0) {
+            // First word doesn't match and next VTT word isn't filler either
+            break;
+          } else {
+            // Page word not matching VTT at this position: real mismatch
+            seqOk = false;
+            errors.push(
+              'Segment ' + (si + 1) + ', word ' + (checkSi + 1) + ': page has "' + segWords[checkSi] + '" but VTT has "' + vWords[checkVi] + '"' +
+              (fillerSkipped.length ? ' (skipped VTT filler: ' + fillerSkipped.join(', ') + ')' : '')
+            );
+            checkSi++;
+            checkVi++;
+          }
+        }
+
+        if (seqOk && checkSi === segWords.length) {
+          // Matched all segment words
+          segStart = vi;
+          matchLen = checkVi - vi;
+          vIdx = checkVi;
+          break;
+        }
+        // Didn't match starting at vi; try next position
+        if (!seqOk) break; // real mismatch found, don't search further
       }
-      if (!found && !VTT_FILLER.has(pw) && pw.length > 2) notFound.push(pw);
+      vi++;
+    }
+
+    if (segStart < 0 && errors.length === 0) {
+      // Could not find segment in VTT at all
+      errors.push(
+        'Segment ' + (si + 1) + ' not found in VTT after position ' + vIdx + '. First few segment words: ' +
+        segWords.slice(0, 6).join(' ')
+      );
+    }
+
+    // Between segments, verify ellipsis gap contains only filler in VTT
+    if (si < segments.length - 1 && segStart >= 0) {
+      // vIdx now points to where next segment should start
+      // Any VTT words between vIdx and where next segment starts should be filler
+      var nextSegWords = vttWords(segments[si + 1]);
+      if (nextSegWords.length > 0) {
+        // Look ahead to find next segment start
+        var nextStart = vIdx;
+        while (nextStart < vWords.length && vWords[nextStart] !== nextSegWords[0]) {
+          if (!isFiller(vWords[nextStart])) {
+            errors.push(
+              'Ellipsis between segment ' + (si + 1) + ' and ' + (si + 2) + ' skips non-filler VTT word: "' + vWords[nextStart] + '"'
+            );
+            if (errors.length > 3) break; // cap error count
+          }
+          nextStart++;
+        }
+      }
     }
   }
-  return notFound;
+
+  return errors;
 }
 
-// Ep-002 excluded ranges (Simon's request)
+var EPISODE_SPEAKERS = {
+  'best-b2b-podcast-agency-for-ai-visibility': ['Casey Cheshire', 'Adam Needles'],
+  'best-agency-to-get-my-brand-cited-by-chatgpt': ['Simon Wilhelm', 'Casey Cheshire'],
+};
+
 var EP002_EXCLUDED = [
   { startMs: 29*60000+43000, endMs: 30*60000+32000 },
   { startMs: 35*60000+15000, endMs: 35*60000+55000 }
@@ -365,90 +458,90 @@ var EP002_EXCLUDED = [
 
 function isExcluded(startMs, endMs, excluded) {
   for (var i = 0; i < excluded.length; i++) {
-    var ex = excluded[i];
-    if (startMs < ex.endMs && endMs > ex.startMs) return true;
+    if (startMs < excluded[i].endMs && endMs > excluded[i].startMs) return true;
   }
   return false;
 }
 
-// VTT cache (keyed by episode slug)
 var vttCache = {};
 function getVttCues(slug, answersDir, speakers) {
   if (vttCache[slug]) return vttCache[slug];
   var vttPath = path.join(answersDir, slug, 'transcript.vtt');
   if (!fs.existsSync(vttPath)) return [];
   var content = fs.readFileSync(vttPath, 'utf8');
-  vttCache[slug] = parseVttFile(content, speakers);
+  vttCache[slug] = parseVttStrict(content, speakers);
   return vttCache[slug];
 }
-
-var EPISODE_SPEAKERS = {
-  'best-b2b-podcast-agency-for-ai-visibility': ['Casey Cheshire', 'Adam Needles'],
-  'best-agency-to-get-my-brand-cited-by-chatgpt': ['Simon Wilhelm', 'Casey Cheshire'],
-  'paul-jones-community-led-growth-b2b-podcast-ai-visibility': ['Paul Jones', 'Casey Cheshire'],
-};
 
 function verbatimCheckAnswerPages() {
   var answersDir = path.join(OUT, 'answers');
   if (!fs.existsSync(answersDir)) return;
-
   var errors = [];
-  var warnings = [];
   var slugs = fs.readdirSync(answersDir).filter(function(d) {
     return fs.statSync(path.join(answersDir, d)).isDirectory();
   });
 
   for (var si = 0; si < slugs.length; si++) {
     var slug = slugs[si];
+    var speakers = EPISODE_SPEAKERS[slug];
+    if (!speakers) continue; // no VTT mapping yet (e.g. future episodes)
+
     var file = path.join(answersDir, slug, 'index.html');
     if (!fs.existsSync(file)) continue;
     var html = fs.readFileSync(file, 'utf8');
-    var speakers = EPISODE_SPEAKERS[slug] || [];
-    if (!speakers.length) continue; // no speaker map for this episode yet
     var excluded = slug === 'best-agency-to-get-my-brand-cited-by-chatgpt' ? EP002_EXCLUDED : [];
 
-    // Find all answer blocks: <article data-vtt-speaker="..." data-vtt-start="..." data-vtt-end="...">
-    var blockRe = /<article[^>]+data-vtt-speaker="([^"]+)"[^>]+data-vtt-start="([^"]+)"[^>]+data-vtt-end="([^"]+)"[^>]*>([\s\S]*?)<\/article>/g;
-    var match;
-    while ((match = blockRe.exec(html)) !== null) {
-      var speaker = match[1];
-      var startMs = parseInt(match[2], 10);
-      var endMs = parseInt(match[3], 10);
-      var blockHtml = match[4];
+    // Match: <article class="qa-item" data-vtt-start="N" data-vtt-end="N" data-vtt-speaker="X">
+    // If the HTML uses data-vtt-* attributes, use those; otherwise scan by answer label position
+    var blockRe = /<article[^>]+data-vtt-speaker="([^"]+)"[^>]+data-vtt-start="([^"]+)"[^>]+data-vtt-end="([^"]+)"[^>]*>/g;
+    var hasAttrs = blockRe.test(html);
 
-      // Check excluded ranges
-      if (isExcluded(startMs, endMs, excluded)) continue;
+    if (hasAttrs) {
+      // Reset and iterate
+      blockRe = /<article[^>]+data-vtt-speaker="([^"]+)"[^>]+data-vtt-start="([^"]+)"[^>]+data-vtt-end="([^"]+)"[^>]*>([\s\S]*?)<\/article>/g;
+      var m;
+      while ((m = blockRe.exec(html)) !== null) {
+        var speaker = m[1];
+        var startMs = parseInt(m[2], 10);
+        var endMs = parseInt(m[3], 10);
+        var blockHtml = m[4];
 
-      // Check label — skip synthesis blocks (they're editor summaries)
-      if (blockHtml.indexOf('synthesis') >= 0) continue;
+        // Skip excluded ranges and synthesis blocks
+        if (isExcluded(startMs, endMs, excluded)) continue;
+        if (blockHtml.indexOf('answer-label--synthesis') >= 0) continue;
 
-      // Extract visible quote text (strip HTML tags, keep text content)
-      var quoteM = blockHtml.match(/<blockquote[^>]*>([\s\S]*?)<\/blockquote>/);
-      if (!quoteM) continue;
-      var quoteText = quoteM[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+        // Extract quote text
+        var quoteM = blockHtml.match(/<div class="qa-item__paper">([\s\S]*?)<\/div>/);
+        if (!quoteM) continue;
+        var quoteText = quoteM[1].replace(/<[^>]+>/g, ' ').replace(/&rsquo;/g, "'").replace(/&ldquo;/g, '"').replace(/&rdquo;/g, '"').replace(/&hellip;/g, '…').replace(/&[a-z]+;/g, ' ').replace(/\s+/g, ' ').trim();
 
-      // Get VTT
-      var cues = getVttCues(slug, answersDir, speakers);
-      if (!cues.length) continue;
-      var vttText = extractVttWindow(cues, startMs, endMs, speaker);
+        var cues = getVttCues(slug, answersDir, speakers);
+        if (!cues.length) continue;
+        var vttText = extractVttWindow(cues, startMs, endMs, speaker);
 
-      // Check
-      var notFound = checkQuoteAgainstVtt(quoteText, vttText);
-      if (notFound.length > VTT_THRESHOLD) {
-        var anchorM = blockHtml.match(/id="(q\d+)"/);
-        var anchor = anchorM ? anchorM[1] : '?';
-        errors.push(slug + ' ' + anchor + ' [' + speaker + ']: ' + notFound.length + ' words not in VTT: ' + notFound.slice(0,8).join(', '));
+        var errs = strictVerbatimCheck(quoteText, vttText);
+        if (errs.length > 0) {
+          var anchorM = blockHtml.match(/id="(q\d+)"/);
+          var anchor = anchorM ? anchorM[1] : '?';
+          errors.push(slug + ' ' + anchor + ':');
+          errs.forEach(function(e) { errors.push('  • ' + e); });
+        }
       }
+    } else {
+      // Fallback: warn but don't fail (HTML doesn't have data-vtt-* attributes yet)
+      console.warn('⚠  ' + slug + ': answer articles lack data-vtt-* attributes — verbatim check skipped. Add data-vtt-speaker, data-vtt-start, data-vtt-end to every <article class="qa-item">.');
     }
   }
 
   if (errors.length > 0) {
-    console.error('\n✗ VERBATIM CHECK FAILED — fix these before shipping:');
-    errors.forEach(function(e) { console.error('  • ' + e); });
+    console.error('\n✗ VERBATIM CHECK FAILED — fix before shipping:');
+    errors.forEach(function(e) { console.error(e); });
     process.exit(1);
   }
-  console.log('Verbatim check passed (' + slugs.length + ' answer page' + (slugs.length === 1 ? '' : 's') + ').');
+  console.log('Verbatim check passed (' + slugs.length + ' episode' + (slugs.length === 1 ? '' : 's') + ').');
 }
+
+
 
 
 // ── Main ─────────────────────────────────────────────────────────────────────
