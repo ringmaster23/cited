@@ -290,7 +290,7 @@ function changelogCheck() {
 //   For synthesis answers: checks synthesis-source-text paragraphs, not summary.
 
 // Extended fillers: um/uh/er/ah/hmm + discourse markers + phrase repeats (2–4 back)
-var VTT_STRICT_FILLER = new Set(['um','uh','er','ah','hmm','mm','id','okay','like','mmhmm']);
+var VTT_STRICT_FILLER = new Set(['um','uh','er','ah','hmm','mm','mmhmm']);
 var VTT_DISCOURSE_FILLER = new Set(['right','yeah','well']);
 
 function normVttWord(w) {
@@ -371,34 +371,39 @@ function matchSegment(segWords, vWords, from) {
 }
 
 function extractQuoteTexts(blockHtml, isSynthesisArticle) {
+  function decodeEntities(s) {
+    return s
+      .replace(/’|‘/g, "'")
+      .replace(/“|”/g, '"')
+      .replace(/&rsquo;|&lsquo;|&apos;/g, "'")
+      .replace(/&rdquo;|&ldquo;/g, '"')
+      .replace(/&mdash;/g, '\u2014')
+      .replace(/&ndash;/g, '\u2013')
+      .replace(/&hellip;/g, '\u2026')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&nbsp;/g, ' ')
+      .replace(/&[a-z]+;/g, ' ')
+      .replace(/&#(\d+);/g, function(_, n) { return String.fromCharCode(parseInt(n, 10)); });
+  }
   if (isSynthesisArticle) {
-    // For synthesis answers: check the verbatim source excerpts
     var texts = [];
     var srcRe = /<p[^>]*class="synthesis-source-text"[^>]*>([\s\S]*?)<\/p>/g;
     var sm;
     while ((sm = srcRe.exec(blockHtml)) !== null) {
-      var t = sm[1]
-        .replace(/<[^>]+>/g, ' ')
-        .replace(/&rsquo;/g, "'").replace(/&ldquo;/g, '"').replace(/&rdquo;/g, '"')
-        .replace(/&hellip;/g, '\u2026').replace(/&amp;/g, '&').replace(/&lt;/g, '<')
-        .replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ').replace(/&[a-z]+;/g, ' ')
-        .replace(/\s+/g, ' ').trim();
+      var t = decodeEntities(sm[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim());
       if (t.length > 5) texts.push(t);
     }
     return texts;
   } else {
-    // Verbatim/edited: check the qa-item__paper content
     var m = blockHtml.match(/<div[^>]*class="qa-item__paper"[^>]*>([\s\S]*?)<\/div>/);
     if (!m) return [];
-    var t = m[1]
-      .replace(/<[^>]+>/g, ' ')
-      .replace(/&rsquo;/g, "'").replace(/&ldquo;/g, '"').replace(/&rdquo;/g, '"')
-      .replace(/&hellip;/g, '\u2026').replace(/&amp;/g, '&').replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ').replace(/&[a-z]+;/g, ' ')
-      .replace(/\s+/g, ' ').trim();
+    var t = decodeEntities(m[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim());
     return t.length > 5 ? [t] : [];
   }
 }
+
 
 function strictVerbatimCheck(pageTexts, vttWordStream) {
   if (!vttWordStream || vttWordStream.length < 3) {
@@ -440,6 +445,56 @@ function isExcluded(startMs, endMs, excluded) {
     if (startMs < excluded[i].endMs && endMs > excluded[i].startMs) return true;
   }
   return false;
+}
+
+
+function parseVttStrict(content, speakers) {
+  var cues = [];
+  var text = content.replace(/\r\n/g, '\n').replace(/\r/g, '\n').replace(/^\uFEFF/, '');
+  var blocks = text.split(/\n\n+/);
+  var lastSpeaker = '';
+  for (var bi = 0; bi < blocks.length; bi++) {
+    var block = blocks[bi];
+    var lines = block.trim().split('\n');
+    var tLine = null;
+    for (var li = 0; li < lines.length; li++) {
+      if (/\d+:\d+.*-->/.test(lines[li])) { tLine = lines[li]; break; }
+    }
+    if (!tLine) continue;
+    var arrowIdx = tLine.indexOf('-->');
+    var startMs = _toMs(tLine.slice(0, arrowIdx));
+    var endMs   = _toMs(tLine.slice(arrowIdx + 3));
+    var tIdx = lines.indexOf(tLine);
+    var textLines = lines.slice(tIdx + 1).filter(function(l) { return l.trim(); });
+    if (!textLines.length) continue;
+    var speaker = '', cueText = '';
+    var vm = textLines[0].match(/^<v ([^>]+)>/);
+    if (vm) {
+      speaker = vm[1]; lastSpeaker = speaker;
+      cueText = textLines.map(function(l) { return l.replace(/^<v [^>]+>/, '').replace(/<\/v>/, '').trim(); }).join(' ');
+    } else {
+      var cm = textLines[0].match(/^([A-Za-z][^:]{1,30}):\s(.+)/);
+      if (cm) {
+        speaker = cm[1]; lastSpeaker = speaker;
+        cueText = cm[2] + (textLines.length > 1 ? ' ' + textLines.slice(1).join(' ') : '');
+      } else {
+        speaker = lastSpeaker;
+        cueText = textLines.join(' ');
+      }
+    }
+    cueText = cueText.trim();
+    if (cueText) cues.push({ startMs: startMs, endMs: endMs, speaker: speaker, text: cueText });
+  }
+  return cues;
+}
+
+function _toMs(ts) {
+  var clean = ts.trim().split(' ')[0];
+  var parts = clean.split(':');
+  if (parts.length === 3) {
+    return (parseInt(parts[0], 10) * 3600 + parseInt(parts[1], 10) * 60 + parseFloat(parts[2])) * 1000;
+  }
+  return (parseInt(parts[0], 10) * 60 + parseFloat(parts[1])) * 1000;
 }
 
 var vttCache = {};
