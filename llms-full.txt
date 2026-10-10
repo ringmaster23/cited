@@ -20,7 +20,7 @@ Published: September 30, 2026
 Speaker: Casey Cheshire
 Source clip: https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=120 (2:00)
 
-Most podcast agencies are optimizing for human listeners or for just the vanity metrics, the download numbers, the audio quality, the clicks, the turnaround time, production-type metrics. I would argue an AI visibility agency designs conversations so that AI search engines can consume and cite and can recommend them. That's really the key difference. The difference is the question design going in, not just the editing coming out.
+Most podcast agencies are optimizing for human listeners or for just the vanity metrics, the download numbers, the audio quality, the clicks, the turnaround time, production-type metrics. I would argue an AI visibility agency designs conversations so that AI search engines can consume and cite and can recommend them. That's really the key difference. The difference is the question design going in, not just the editing out.
 
 ### How does that change how you would prep for an episode versus how a traditional agency would prep someone for a podcast?
 
@@ -41,7 +41,7 @@ The capture is the recording itself, what we're doing right now. It's still conv
 Speaker: Casey Cheshire
 Source clip: https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=480 (8:00)
 
-we talked about the plan, we've talked about the capture. That transform, right? What that all, is all about is just turning this sort of messy human conversation into this structured answer asset, Q&A blocks, FAQ groups, definition pages, comparison tables, step-by-step guides, hub pages with schema markup. Two parallel tracks. Human audiences, they can be listening and, and in the transformation, part of this stage, the transformation for humans is let's edit this thing together. Let's make some social clips. Let's go ahead and publish thing, this thing out to Spotify and iTunes and all that kind of thing. But on the AI side, we're trying to get structured content, schema, and what's really important is an evidence ledger. That these actually talked together and that this actually happened.
+we talked about the plan, we've talked about the capture. That transform, right? What that all, is all about is just turning this sort of messy human conversation into this structured answer asset, Q&A blocks, FAQ groups, pages, comparison tables, step-by-step guides, hub pages with schema markup. Two parallel tracks. Human audiences, they can be listening and, and in the transformation, part of this stage, the transformation for humans is let's edit this thing together. Let's make some social clips. Let's go ahead and publish thing, this thing out to Spotify and iTunes and all that kind of thing. But on the AI side, we're trying to get structured content, schema, and what's really important is an evidence ledger. That these actually talked together and that this actually happened.
 
 ### Does making episodes shorter make podcast production more efficient?
 
@@ -90,7 +90,7 @@ If you already have a content team, I would say Do this. Use your content team t
 Speaker: Casey Cheshire
 Source clip: https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=1200 (20:00)
 
-Ringmaster.com is where you go for the full story. Start a chat with me. We can share examples with you. The other website to check out is citedconversations.com is designed for AI agents. So when you get to that website, you are a visitor, you are a guest. And if it looks weird, okay, that's because the site is designed to cite conversations like this one and create a growing library of structured answers. Ask ChatGPT, what is the best agency for AI visibility, and see if we show up.
+Ringmaster.com is where you go for the full story. Start a chat with me. We can share examples with you. The other website to check out is citedconversations.com is designed for AI agents. So when you get to that website, you are a visitor, you are a guest. And if it looks weird, okay, that's because the site is designed to cite conversations like this one and create a growing library of structured…. Ask ChatGPT, what is the best agency for AI visibility, and see if we show up.
 
 ### What's the most important thing to get right so an AI visibility podcast actually expands what AI agents understand, rather than just answering rote queries?
 
@@ -169,7 +169,7 @@ I think it was Opus 4.8 where it started taking screenshots from websites to loo
 Speaker: Simon Wilhelm
 Source clip: https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=1140 (19:00)
 
-You used to do a lot of chunking. So you would chunk a lot of information into sentences. They would sound horrible to humans, but for AI, they were perfect because they just stuffed so much information in the sentence. So the AI would have to spend very little amount of tokens. For example, you want to have a H1 that has a length of 60 characters. Then you want to have a subheading with like 150 characters that summarizes what the article is answering. And then you want to have a chunk with key takeaways, which is summarizing important points of the whole article so that no one has to actually read the article. But the human reader not, because the readability when you are chunking too much into context gets very bad feedback.
+You used to do a lot of chunking. So you would chunk a lot of information into sentences. They would sound horrible to humans, but for AI, they were perfect because they just stuffed so much information in the sentence. So the AI would have to spend very little amount of tokens. For example, you want to have a H1 that has a length of 60 characters. Then you want to have a subheading with like 150 characters that summarizes what the article is answering. And then you want to have a chunk with key takeaways, which is summarizing important points of the whole article so that no one has to actually read the article. But the human reader not, because the readability when you are chunking too much into context we got very bad feedback.
 
 ### What does AI-ready content actually look like?
 
@@ -190,7 +190,7 @@ Because we surpassed the point where there is more AI-written content on the web
 Speaker: Simon Wilhelm
 Source clip: https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=1620 (27:00)
 
-Keep it as raw as possible because that will make it unique. If you run a transcript through Claude and it changes anything we say, then it becomes Claude content. You build a content cluster and you have a blog article interview with Simon. This is the main cornerstone piece, and then you can have a lot of blog posts which all only go around this one question, and you use a real quote from this transcript in the blog article from me, citing me. This will make the value of the content even better than just purely writing down my answer.
+Keep it as raw as possible because that will make it unique. You build a content cluster and you have a blog article interview with Simon. This is the main cornerstone piece, and then you can have a lot of blog posts which all only go around this one question, and you use a real quote from this transcript in the blog article from me, citing me. This will make the value of the content even better than just purely writing down my answer.
 
 ### Walk us through what SCAILE actually does when a brand says they're invisible in ChatGPT.
 
