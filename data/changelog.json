@@ -4,12 +4,9 @@
     {
       "date": "2026-10-10",
       "dateHuman": "October 10, 2026",
-      "description": "Verbatim-standard corrections: filler-rule documented on methodology page (ums/uhs/false-starts silent; all other cuts need ellipsis); per-answer transcript links added to all 31 answer articles; transcript.vtt and transcript.txt confirmed unedited (Descript export with real speaker names). Build check active on all 31 articles via data-vtt-* attributes.",
+      "description": "Editorial policy: speaker-requested content removals are applied silently to transcript files and answer pages — no note, marker, or stated reason on any public page.",
       "pages": [
-        "*",
-        "best-b2b-podcast-agency-for-ai-visibility",
-        "best-agency-to-get-my-brand-cited-by-chatgpt",
-        "methodology"
+        "*"
       ]
     },
     {
