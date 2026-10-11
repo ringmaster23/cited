@@ -81,34 +81,82 @@ function patchAboutLinks(dir) {
 }
 
 
-// ── Post-process: strip trailing guest name/company from conversation titles ──
-// Any "Topic title? First Last (Company)" pattern left in HTML, XML, or TXT files
-// is removed automatically on every build. This means new episode pages never need
-// manual cleanup — the builder enforces clean titles end-to-end.
+// ── Post-process: strip trailing guest name/company from conversation titles ──────────────────
+// Applies ONLY to known title-bearing fields:
+//   HTML: <title>, og:title / twitter:title meta, JSON-LD "name" values,
+//         conversation-row <a href="/answers/slug/"> link text.
+//   XML:  RSS <item><title> only (never the channel-level <title>).
+//   TXT:  Markdown [link text](url) and ## headings.
+// Body text, answer quotations, and descriptions are never touched.
 
 function stripGuestSuffixes(dir) {
-  // Regex: sentence-terminal char (? ! .) → one or more Title-Case words → (Company)
-  // Example: "What Makes a Podcast Agency an AI Visibility Agency? Casey Cheshire (Ringmaster)"
-  //       →  "What Makes a Podcast Agency an AI Visibility Agency?"
-  var re = /([?!.])\s+[A-Z][A-Za-z'\u2019-]+(?:\s+[A-Z][A-Za-z'\u2019-]+){1,4}\s+\([^)]{2,60}\)/g;
+  // Matches: sentence-terminal (? ! .) + Title-Case words + (Company).
+  var SUFFIX_RE = /([?!.])\s+[A-Z][A-Za-z'\u2019-]+(?:\s+[A-Z][A-Za-z'\u2019-]+){1,4}\s+\([^)]{2,60}\)/g;
+  function fix(s) { return s.replace(SUFFIX_RE, '$1'); }
+
+  function patchHtml(content) {
+    // 1. <title>...</title>
+    content = content.replace(/(<title>)([^<]*)(<\/title>)/g,
+      function(_, a, t, b) { return a + fix(t) + b; });
+    // 2. og:title meta — both attribute orderings
+    content = content.replace(/(property="og:title"\s+content=")([^"]*?)(")/g,
+      function(_, a, t, b) { return a + fix(t) + b; });
+    content = content.replace(/(content="([^"]*?)")(\s+property="og:title")/g,
+      function(_, cv, t, attr) { return 'content="' + fix(t) + '"' + attr; });
+    // 3. twitter:title meta — both attribute orderings
+    content = content.replace(/(name="twitter:title"\s+content=")([^"]*?)(")/g,
+      function(_, a, t, b) { return a + fix(t) + b; });
+    content = content.replace(/(content="([^"]*?)")(\s+name="twitter:title")/g,
+      function(_, cv, t, attr) { return 'content="' + fix(t) + '"' + attr; });
+    // 4. JSON-LD "name" field values only — not "text", "description", or other fields
+    content = content.replace(/(<script type="application\/ld\+json">[\s\S]*?<\/script>)/g,
+      function(block) {
+        return block.replace(/"name":\s*"([^"]*)"/g,
+          function(m, val) { return '"name": "' + fix(val) + '"'; });
+      });
+    // 5. Conversation-row anchor link text: <a href="/answers/slug/"> (no fragment = no #)
+    content = content.replace(/(<a[^>]+href="\/answers\/[^#"]+\/"[^>]*>)([ \t\n\r]*)([^<]+?)([ \t\n\r]*)(<\/a>)/g,
+      function(_, open, ws1, text, ws2, close) { return open + ws1 + fix(text) + ws2 + close; });
+    return content;
+  }
+
+  function patchXml(content) {
+    // RSS <item><title>...</title> only (skip the channel-level <title>)
+    content = content.replace(/(<item>[\s\S]*?<title>)([^<]*)(<\/title>[\s\S]*?<\/item>)/g,
+      function(m, open, text, tail) { return open + fix(text) + tail; });
+    return content;
+  }
+
+  function patchTxt(content) {
+    // Markdown link text [text](url) only
+    content = content.replace(/\[([^\]\n]+)\](\(https?:\/\/[^)\n]+\))/g,
+      function(_, text, url) { return '[' + fix(text) + ']' + url; });
+    // Markdown headings ## Episode / ## Conversation headings
+    content = content.replace(/^(#{1,3} )(.+)$/gm,
+      function(_, h, text) { return h + fix(text); });
+    return content;
+  }
+
   function walk(d) {
     var items = fs.readdirSync(d);
     for (var i = 0; i < items.length; i++) {
       var p = path.join(d, items[i]);
-      if (fs.statSync(p).isDirectory()) {
-        walk(p);
-      } else if (/\.(html|xml|txt)$/.test(items[i])) {
-        var original = fs.readFileSync(p, 'utf8');
-        var patched = original.replace(re, '$1');
-        if (patched !== original) {
-          fs.writeFileSync(p, patched, 'utf8');
-          console.log('  stripped guest suffix: ' + path.relative(OUT, p));
-        }
+      if (fs.statSync(p).isDirectory()) { walk(p); continue; }
+      var original = fs.readFileSync(p, 'utf8');
+      var patched = original;
+      if (items[i].endsWith('.html')) patched = patchHtml(patched);
+      else if (items[i].endsWith('.xml')) patched = patchXml(patched);
+      else if (items[i].endsWith('.txt')) patched = patchTxt(patched);
+      if (patched !== original) {
+        fs.writeFileSync(p, patched, 'utf8');
+        console.log('  stripped guest suffix: ' + path.relative(OUT, p));
       }
     }
   }
+
   walk(dir);
 }
+
 
 // ── Post-process: inject real answer counts into homepage ─────────────────────
 // Badge format: "N answers" (total count)
