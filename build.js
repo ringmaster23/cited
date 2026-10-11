@@ -80,6 +80,36 @@ function patchAboutLinks(dir) {
   }
 }
 
+
+// ── Post-process: strip trailing guest name/company from conversation titles ──
+// Any "Topic title? First Last (Company)" pattern left in HTML, XML, or TXT files
+// is removed automatically on every build. This means new episode pages never need
+// manual cleanup — the builder enforces clean titles end-to-end.
+
+function stripGuestSuffixes(dir) {
+  // Regex: sentence-terminal char (? ! .) → one or more Title-Case words → (Company)
+  // Example: "What Makes a Podcast Agency an AI Visibility Agency? Casey Cheshire (Ringmaster)"
+  //       →  "What Makes a Podcast Agency an AI Visibility Agency?"
+  var re = /([?!.])\s+[A-Z][A-Za-z'\u2019-]+(?:\s+[A-Z][A-Za-z'\u2019-]+){1,4}\s+\([^)]{2,60}\)/g;
+  function walk(d) {
+    var items = fs.readdirSync(d);
+    for (var i = 0; i < items.length; i++) {
+      var p = path.join(d, items[i]);
+      if (fs.statSync(p).isDirectory()) {
+        walk(p);
+      } else if (/\.(html|xml|txt)$/.test(items[i])) {
+        var original = fs.readFileSync(p, 'utf8');
+        var patched = original.replace(re, '$1');
+        if (patched !== original) {
+          fs.writeFileSync(p, patched, 'utf8');
+          console.log('  stripped guest suffix: ' + path.relative(OUT, p));
+        }
+      }
+    }
+  }
+  walk(dir);
+}
+
 // ── Post-process: inject real answer counts into homepage ─────────────────────
 // Badge format: "N answers" (total count)
 
@@ -587,6 +617,10 @@ copy(ROOT, OUT);
 
 console.log('Post-processing: patching /about/ links ...');
 patchAboutLinks(OUT);
+
+console.log('Post-processing: stripping guest name/company suffixes from titles ...');
+stripGuestSuffixes(OUT);
+
 
 console.log('Post-processing: injecting answer counts ...');
 patchHomepageCounts();
