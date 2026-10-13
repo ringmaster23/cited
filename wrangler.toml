@@ -4,7 +4,6 @@
 name = "cited"
 compatibility_date = "2024-09-23"
 assets = { directory = "dist" }
-main = "worker.js"
 
 [build]
 command = "node build.js"
