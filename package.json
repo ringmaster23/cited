@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node build.js"
+    "build": "node build.js",
+    "check": "node build.js && rm -rf dist",
+    "install-hooks": "sh scripts/install-hooks.sh"
   }
 }

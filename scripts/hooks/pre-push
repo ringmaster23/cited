@@ -1,0 +1,18 @@
+#!/bin/sh
+# Pre-push hook for ringmaster23/cited
+# Runs the full build check (including verbatim VTT verification) before push.
+# Install: cp scripts/hooks/pre-push .git/hooks/pre-push && chmod +x .git/hooks/pre-push
+# Or run:  npm run install-hooks
+
+set -e
+
+echo "→ Running build check before push..."
+npm run build
+if [ $? -ne 0 ]; then
+  echo ""
+  echo "✖ Build check FAILED. Fix errors above before pushing."
+  echo "  (To bypass in an emergency: git push --no-verify)"
+  exit 1
+fi
+echo "✓ Build check passed. Pushing..."
+rm -rf dist

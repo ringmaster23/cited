@@ -1,6 +1,14 @@
 {
-  "generated": "2026-10-09",
+  "generated": "2026-10-13",
   "entries": [
+    {
+      "date": "2026-10-13",
+      "dateHuman": "October 13, 2026",
+      "description": "Structural fix: restored missing </script>, </head>, and <body> on the Simon Wilhelm (EP002) answer page. The JSON-LD block had been truncated mid-way through the q6-quotation text field (trailing </p> tag baked in, remaining q6 fields and all of q7–q19 clip/quotation entries absent). Fixed the JSON-LD, restored the nav and episode-hero HTML that were missing from the body, and added q-number labeling to the verbatim-check error output. No answer wording changed.",
+      "pages": [
+        "best-agency-to-get-my-brand-cited-by-chatgpt"
+      ]
+    },
     {
       "date": "2026-10-10",
       "dateHuman": "October 10, 2026",

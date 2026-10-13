@@ -28,6 +28,7 @@ var generateMarkdown = require('./scripts/generate-markdown');
 
 var ROOT = __dirname;
 var OUT = path.join(ROOT, 'dist');
+var BUILD_COMMIT = (process.env.CF_PAGES_COMMIT_SHA || process.env.GITHUB_SHA || '').slice(0, 7);
 var EXCLUDE = {
  '.git': true,
  'dist': true,
@@ -75,6 +76,9 @@ function patchAboutLinks(dir) {
  var patched = original
  .replace(/href="\/about\/"/g, 'href="/methodology/"')
  .replace(/href="\/about"/g, 'href="/methodology/"');
+ if (BUILD_COMMIT && patched.includes('<meta charset=')) {
+ patched = patched.replace(/(<meta charset=[^>]+>)/, '$1\n  <meta name="build-commit" content="' + BUILD_COMMIT + '" />');
+ }
  if (patched !== original) {
  fs.writeFileSync(p, patched, 'utf8');
  }
@@ -601,18 +605,19 @@ function verbatimCheckAnswerPages() {
 
  // Match: 
  // If the HTML uses data-vtt-* attributes, use those; otherwise scan by answer label position
- var blockRe = /<article[^>]+data-vtt-speaker="([^"]+)"[^>]+data-vtt-start="([^"]+)"[^>]+data-vtt-end="([^"]+)"[^>]*>/g;
+ var blockRe = /<article[^>]*id="(q\d+)"[^>]*data-vtt-speaker="([^"]+)"[^>]+data-vtt-start="([^"]+)"[^>]+data-vtt-end="([^"]+)"[^>]*>/g;
  var hasAttrs = blockRe.test(html);
 
  if (hasAttrs) {
  // Reset and iterate
- blockRe = /<article[^>]+data-vtt-speaker="([^"]+)"[^>]+data-vtt-start="([^"]+)"[^>]+data-vtt-end="([^"]+)"[^>]*>([\s\S]*?)<\/article>/g;
+ blockRe = /<article[^>]*id="(q\d+)"[^>]*data-vtt-speaker="([^"]+)"[^>]+data-vtt-start="([^"]+)"[^>]+data-vtt-end="([^"]+)"[^>]*>([\s\S]*?)<\/article>/g;
  var m;
  while ((m = blockRe.exec(html)) !== null) {
- var speaker = m[1];
- var startMs = parseInt(m[2], 10);
- var endMs = parseInt(m[3], 10);
- var blockHtml = m[4];
+ var qId = m[1] || '?';
+ var speaker = m[2];
+ var startMs = parseInt(m[3], 10);
+ var endMs = parseInt(m[4], 10);
+ var blockHtml = m[5];
 
  // Skip only the specific speaker-requested excluded ranges
  if (isExcluded(startMs, endMs, excluded)) continue;
@@ -631,8 +636,7 @@ function verbatimCheckAnswerPages() {
 
  var errs = strictVerbatimCheck(quoteTexts, vttWordStream);
  if (errs.length > 0) {
- var anchorM = blockHtml.match(/id="(q\d+)"/);
- var anchor = anchorM ? anchorM[1] : '?';
+ var anchor = qId;
  errors.push(slug + ' ' + anchor + ':');
  errs.forEach(function(e) { errors.push(' • ' + e); });
  }
@@ -644,8 +648,9 @@ function verbatimCheckAnswerPages() {
  }
 
  if (errors.length > 0) {
- console.error('\n✗ VERBATIM CHECK FAILED — fix before shipping:');
+ console.error('\n✗ VERBATIM CHECK FAILED — ' + errors.filter(function(e){return e.indexOf('  •')===0;}).length + ' issue(s) found in ' + slugs.length + ' episode(s):');
  errors.forEach(function(e) { console.error(e); });
+    console.error('\nSummary: page and q-number named above. Check those words in the VTT transcript and correct the answer text.');
  process.exit(1);
  }
  console.log('Verbatim check passed (' + slugs.length + ' episode' + (slugs.length === 1 ? '' : 's') + ').');
