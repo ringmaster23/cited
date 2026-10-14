@@ -39,11 +39,29 @@ const SECURITY_HEADERS = {
 // Requests with these extensions skip all markdown logic.
 const ASSET_EXT = /\.(css|js|png|jpg|jpeg|webp|avif|gif|ico|svg|xml|txt|json|woff|woff2|ttf|otf|mp3|mp4|vtt|pdf|map)$/i;
 
+// IndexNow key — served inline so the value is authoritative regardless of
+// what the static-asset build has at this path.
+const INDEXNOW_KEY      = 'b3a7c9f2e1d4a8b6c0f3e5d7a2b4c6d8';
+const INDEXNOW_KEY_PATH = `/${INDEXNOW_KEY}.txt`;
+
 export default {
   async fetch(request, env) {
-    const url = new URL(request.url);
+    const url     = new URL(request.url);
     const accepts = request.headers.get('Accept') || '';
     const isPagePath = !ASSET_EXT.test(url.pathname);
+
+    // ── IndexNow key file ────────────────────────────────────────────────────
+    // Served directly from worker code so the response is authoritative and
+    // independent of what the static-asset build placed at this path.
+    if (url.pathname === INDEXNOW_KEY_PATH) {
+      return new Response(INDEXNOW_KEY, {
+        status: 200,
+        headers: {
+          'Content-Type': 'text/plain; charset=utf-8',
+          'Cache-Control': 'public, max-age=86400',
+        },
+      });
+    }
 
     // ── Markdown branch ──────────────────────────────────────────────────────
     if (isPagePath && accepts.includes('text/markdown')) {
