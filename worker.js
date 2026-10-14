@@ -24,9 +24,6 @@
  */
 
 // Security headers mirrored from _headers so markdown responses carry them too.
-// _headers only decorates asset responses served by the binding; this worker's
-// own responses need the headers added manually.
-// Keep in sync with _headers whenever that file changes.
 const SECURITY_HEADERS = {
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'DENY',
@@ -36,12 +33,11 @@ const SECURITY_HEADERS = {
 };
 
 // File extensions that are never HTML pages.
-// Requests with these extensions skip all markdown logic.
 const ASSET_EXT = /\.(css|js|png|jpg|jpeg|webp|avif|gif|ico|svg|xml|txt|json|woff|woff2|ttf|otf|mp3|mp4|vtt|pdf|map)$/i;
 
 // IndexNow key — served inline so the value is authoritative regardless of
 // what the static-asset build has at this path.
-const INDEXNOW_KEY      = 'b3a7c9f2e1d4a8b6c0f3e5d7a2b4c6d8';
+const INDEXNOW_KEY      = 'c7d4e2f8a1b9c3d6e0f5a8b2c4d7e1f3';
 const INDEXNOW_KEY_PATH = `/${INDEXNOW_KEY}.txt`;
 
 export default {
@@ -65,10 +61,6 @@ export default {
 
     // ── Markdown branch ──────────────────────────────────────────────────────
     if (isPagePath && accepts.includes('text/markdown')) {
-      // Derive the companion .md path:
-      //   /                         → /index.md
-      //   /answers/foo/             → /answers/foo/index.md
-      //   /answers/foo              → /answers/foo/index.md
       let mdPath = url.pathname;
       if (mdPath.endsWith('/')) {
         mdPath += 'index.md';
@@ -91,32 +83,22 @@ export default {
           headers.set('Vary', 'Accept');
           headers.set('Content-Signal', 'ai-train=yes, search=yes, ai-input=yes');
 
-          // Forward cache directives from the .md asset if present.
           const cc = mdResponse.headers.get('Cache-Control');
           if (cc) headers.set('Cache-Control', cc);
 
           return new Response(mdResponse.body, { status: 200, headers });
         }
-        // No .md found → fall through to serve the HTML version.
-      } catch (_) {
-        // ASSETS binding unavailable or fetch failed → serve HTML normally.
-      }
+      } catch (_) {}
     }
 
     // ── Normal / fallback branch ─────────────────────────────────────────────
-    // All other requests (HTML, CSS, JS, images, …) come here.
     const response = await env.ASSETS.fetch(request);
     const ct = response.headers.get('Content-Type') || '';
 
     if (ct.includes('text/html')) {
-      // Add Vary: Accept so CDN/proxy caches never serve a cached HTML page
-      // to an agent requesting markdown at the same URL.
       const headers = new Headers(response.headers);
       const existingVary = headers.get('Vary');
       headers.set('Vary', existingVary ? `${existingVary}, Accept` : 'Accept');
-
-      // Advertise the markdown alternate to agents that discover capabilities
-      // via response headers (before sending Accept: text/markdown).
       headers.set(
         'Link',
         `<${url.pathname}>; rel="alternate"; type="text/markdown"`
