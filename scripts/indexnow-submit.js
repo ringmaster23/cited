@@ -6,19 +6,11 @@
  * Runs automatically as part of `wrangler deploy` (via wrangler.toml [build] command).
  * Safe to run standalone:  node scripts/indexnow-submit.js
  *
- * IndexNow key  : b3a7c9f2e1d4a8b6c0f3e5d7a2b4c6d8
- * Key file URL  : https://citedconversations.com/b3a7c9f2e1d4a8b6c0f3e5d7a2b4c6d8.txt
+ * IndexNow key  : c7d4e2f8a1b9c3d6e0f5a8b2c4d7e1f3
+ * Key file URL  : https://citedconversations.com/c7d4e2f8a1b9c3d6e0f5a8b2c4d7e1f3.txt
  * Endpoint      : https://www.bing.com/indexnow  (distributes to Bing / DuckDuckGo)
  *
  * Docs: https://www.indexnow.org/
- *
- * FIRST-DEPLOY NOTE
- * -----------------
- * The key file must be live on the site before Bing can verify ownership.
- * Bing verifies asynchronously, so submitting before the deploy completes
- * is fine — by the time Bing crawls the key URL, the deploy is done.
- * If you see HTTP 422 in the output, the key file isn't live yet; it will
- * resolve automatically on the next deploy.
  */
 
 'use strict';
@@ -27,13 +19,11 @@ const fs    = require('fs');
 const path  = require('path');
 const https = require('https');
 
-const INDEXNOW_KEY          = 'b3a7c9f2e1d4a8b6c0f3e5d7a2b4c6d8';
+const INDEXNOW_KEY          = 'c7d4e2f8a1b9c3d6e0f5a8b2c4d7e1f3';
 const INDEXNOW_HOST         = 'citedconversations.com';
 const INDEXNOW_KEY_LOCATION = `https://${INDEXNOW_HOST}/${INDEXNOW_KEY}.txt`;
 const INDEXNOW_ENDPOINT     = 'www.bing.com';
 const INDEXNOW_PATH         = '/indexnow';
-
-// ── Helpers ────────────────────────────────────────────────────────────────────
 
 function extractUrls(xml) {
   const urls = [];
@@ -70,14 +60,11 @@ function post(payload) {
   });
 }
 
-// ── Main ───────────────────────────────────────────────────────────────────────
-
 async function main() {
-  // Read sitemap from repo root (one level up from scripts/)
   const sitemapPath = path.resolve(__dirname, '..', 'sitemap.xml');
 
   if (!fs.existsSync(sitemapPath)) {
-    console.warn('[indexnow] sitemap.xml not found at', sitemapPath, '— skipping submission.');
+    console.warn('[indexnow] sitemap.xml not found — skipping submission.');
     return;
   }
 
@@ -106,16 +93,14 @@ async function main() {
       console.log(`[indexnow] ✓ Accepted — HTTP ${result.statusCode}`);
     } else if (result.statusCode === 422) {
       console.warn('[indexnow] ⚠ HTTP 422 — key file not yet verified.');
-      console.warn('[indexnow]   This resolves automatically once the key file is live.');
       console.warn(`[indexnow]   Expected at: ${INDEXNOW_KEY_LOCATION}`);
     } else if (result.statusCode === 429) {
-      console.warn('[indexnow] ⚠ HTTP 429 — rate limited. Bing already has these URLs queued.');
+      console.warn('[indexnow] ⚠ HTTP 429 — rate limited. URLs already queued.');
     } else {
       console.warn(`[indexnow] ⚠ Unexpected HTTP ${result.statusCode}`);
       if (result.body) console.warn(`[indexnow]   ${result.body.slice(0, 300)}`);
     }
   } catch (err) {
-    // Never fail the build due to a network error.
     console.warn(`[indexnow] ⚠ Network error (build continues): ${err.message}`);
   }
 }
