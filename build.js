@@ -201,7 +201,17 @@ function integrityCheckAnswerPages() {
     if (html.match(/class="synthesis-sources"/)) {
       pageErrors.push('Synthesis-sources div found — remove it. Use the transcript source text directly in qa-item__paper instead.');
     }
-    if (html.match(/labeled verbatim, edited, or synthesis/i)) {
+
+    // Rule 6 (EDITORIAL-PRINCIPLES.md, Casey, 2026-10-14):
+    // No brackets inside quotes. Brackets mark editor-added words, which are forbidden.
+    // Exact match: [...] inside a qa-item__paper paragraph.
+    var paperBlocks = html.match(/<div[^>]*class="qa-item__paper"[^>]*>[\s\S]*?<\/div>/g) || [];
+    var bracketedAnswers = paperBlocks.filter(function(b) { return /\[[^\]]+\]/.test(b); });
+    if (bracketedAnswers.length > 0) {
+      pageErrors.push('Bracket insertion in ' + bracketedAnswers.length + ' answer(s) — forbidden by editorial rule 6. Use the speaker\u2019s exact words without brackets.');
+    }
+
+        if (html.match(/labeled verbatim, edited, or synthesis/i)) {
       pageErrors.push('Notice text still references synthesis — change to "labeled verbatim or edited".');
     }
 
