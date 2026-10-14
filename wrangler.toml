@@ -14,4 +14,6 @@ binding = "ASSETS"
 run_worker_first = true
 
 [build]
-command = "node build.js"
+# build.js copies repo → dist/, then indexnow-submit.js pushes the sitemap
+# URL list to Bing via IndexNow so every deploy auto-notifies the search index.
+command = "node build.js && node scripts/indexnow-submit.js"
