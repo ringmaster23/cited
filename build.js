@@ -313,7 +313,7 @@ function changelogCheck() {
 //   For synthesis answers: checks synthesis-source-text paragraphs, not summary.
 
 // Extended fillers: um/uh/er/ah/hmm + discourse markers + phrase repeats (2–4 back)
-var VTT_STRICT_FILLER = new Set(['um','uh','er','ah','hmm','mm','mmhmm']);
+var VTT_STRICT_FILLER = new Set(['um','uh','er','ah','hmm','mm','mmhmm','yeah','yes','okay','ok']);
 var VTT_DISCOURSE_FILLER = new Set(['right','yeah','well']);
 
 function normVttWord(w) {
@@ -327,6 +327,8 @@ function isFiller(w, p1, p2, p3, p4, midSeg) {
   if (midSeg && VTT_DISCOURSE_FILLER.has(n)) return true;
   // Short trailing-hyphen false-start (Descript artifact: "th-", "ex-", "may-")
   if (w.endsWith('-') && n.length <= 3) return true;
+    // Descript split-word false-starts: "th-this" → ['th-','this'] — skip the prefix
+    if (/^[a-z]{1,2}-[a-z]/i.test(w)) return true;
   // Phrase repeats (2–4 back)
   if (p1 && n === normVttWord(p1)) return true;
   if (p2 && n === normVttWord(p2)) return true;
@@ -422,8 +424,17 @@ function extractQuoteTexts(blockHtml, isSynthesisArticle) {
   } else {
     var m = blockHtml.match(/<div[^>]*class="qa-item__paper"[^>]*>([\s\S]*?)<\/div>/);
     if (!m) return [];
-    var t = decodeEntities(m[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim());
-    return t.length > 5 ? [t] : [];
+    // Extract each <p> element as a separate passage; join with … so the checker
+    // treats each paragraph as an independent segment (not one giant cross-VTT span)
+    var pMatches = m[1].match(/<p[^>]*>[\s\S]*?<\/p>/g) || [];
+    if (pMatches.length === 0) {
+      var t = decodeEntities(m[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim());
+      return t.length > 5 ? [t] : [];
+    }
+    var texts = pMatches.map(function(p) {
+      return decodeEntities(p.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim());
+    }).filter(function(t) { return t.length > 5; });
+    return texts.length > 0 ? [texts.join(' \u2026 ')] : [];
   }
 }
 
