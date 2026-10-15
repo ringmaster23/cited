@@ -30,6 +30,7 @@ var ROOT    = __dirname;
 var OUT     = path.join(ROOT, 'dist');
 var EXCLUDE = {
   '.git':             true,
+  '.github':          true,
   'dist':             true,
   'functions':        true,
   'scripts':          true,
@@ -356,7 +357,22 @@ function buildVttWordStream(cues, startMs, endMs, speaker) {
       }
     });
   });
-  return rawWords;
+  // Rejoin line-break hyphens: VTT sometimes splits compound words (like "AI-written",
+  // "AI-ready") across cue boundaries — "AI-" ends one cue, "written" starts the next.
+  // Only rejoin when the hyphen word contains an uppercase letter (abbreviation/proper
+  // prefix like "AI-"); lowercase stutter prefixes ("th-", "ex-") are left as-is so
+  // isFiller() can still recognize them. This is a false-positive fix — Descript's
+  // export splits these at cue-line boundaries, not because they're real stutters.
+  var merged = [];
+  for (var i = 0; i < rawWords.length; i++) {
+    if (rawWords[i].endsWith('-') && /[A-Z]/.test(rawWords[i]) && i + 1 < rawWords.length) {
+      merged.push(rawWords[i] + rawWords[i + 1]);
+      i++;
+    } else {
+      merged.push(rawWords[i]);
+    }
+  }
+  return merged;
 }
 
 function normalizeSegment(text) {
