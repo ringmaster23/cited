@@ -197,7 +197,7 @@ function integrityCheckAnswerPages() {
     // Rule 3 + 7 (EDITORIAL-PRINCIPLES.md, Casey, 2026-10-14):
     // No synthesis answers may be published. Build fails loudly if found.
     if (html.match(/answer-label--synthesis/)) {
-      pageErrors.push('Synthesis answer label found (answer-label--synthesis). All answers must be Verbatim or Edited. Replace the synthesis answer with the guest's real transcript passage and change the label.');
+      pageErrors.push('Synthesis answer label found (answer-label--synthesis). All answers must be Verbatim or Edited. Replace the synthesis answer with the guest\'s real transcript passage and change the label.');
     }
     if (html.match(/class="synthesis-sources"/)) {
       pageErrors.push('Synthesis-sources div found — remove it. Use the transcript source text directly in qa-item__paper instead.');
