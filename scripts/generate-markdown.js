@@ -92,7 +92,8 @@ function parseDisclosure(html) {
   if (!m) return '';
   var txt = et(m[1]);
   // strip trailing "Conflicts policy" link text added by et
-  return txt.replace(/\s*Conflicts policy\s*\u2197?\s*$/, '').trim();
+  const _disc = txt.replace(/\s*Conflicts policy\s*\u2197?\s*$/, '').trim();
+  return _disc.replace(/^Editorial disclosure:\s*/i, '').replace(/\s*Conflicts policy[\s\S]*$/, '').trim();
 }
 
 function parseCreditLine(html) {
