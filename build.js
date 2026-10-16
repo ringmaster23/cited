@@ -663,8 +663,8 @@ function strictVerbatimCheck(pageTexts, vttWordStream) {
 }
 
 var EPISODE_SPEAKERS = {
-  'best-b2b-podcast-agency-for-ai-visibility':         ['Casey Cheshire', 'Adam Needles'],
-  'best-agency-to-get-my-brand-cited-by-chatgpt':      ['Simon Wilhelm', 'Casey Cheshire'],
+  'b2b-podcast-agency-for-ai-visibility':         ['Casey Cheshire', 'Adam Needles'],
+  'agency-to-get-my-brand-cited-by-chatgpt':      ['Simon Wilhelm', 'Casey Cheshire'],
 };
 
 var EP002_EXCLUDED = [
@@ -759,7 +759,7 @@ function verbatimCheckAnswerPages() {
     var file = path.join(answersDir, slug, 'index.html');
     if (!fs.existsSync(file)) continue;
     var html     = fs.readFileSync(file, 'utf8');
-    var excluded = slug === 'best-agency-to-get-my-brand-cited-by-chatgpt' ? EP002_EXCLUDED : [];
+    var excluded = slug === 'agency-to-get-my-brand-cited-by-chatgpt' ? EP002_EXCLUDED : [];
 
     // Match articles with data-vtt-* attributes
     var blockRe = /<article[^>]+data-vtt-speaker="([^"]+)"[^>]+data-vtt-start="([^"]+)"[^>]+data-vtt-end="([^"]+)"[^>]*>/g;
