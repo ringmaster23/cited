@@ -837,7 +837,8 @@
           <h3 style="font-size: var(--step-1); margin-bottom: var(--space-2);">When a brand isn&rsquo;t showing up in AI answers, what&rsquo;s actually broken?</h3>
           <div class="qa-item__paper">
             <p>&hellip; So multiple reasons. We normally run a 29-step health check to see why you&rsquo;re not being cited. But very high level, you always want to start with, is your website actually technical accessible for the AI crawlers? For example, if you have a lot of JavaScript, that&rsquo;s not good because, for example, ChatGPT does not read JavaScript, so it can only read the meta description and meta title of your website, but nothing else.</p>
-          </div>
+          <div id="q1-editor-note">
+          <aside class="editor-note" style="margin-top: var(--space-2); padding: var(--space-1) var(--space-2); background: #f0f4ff; border-left: 3px solid #4a6cf7; font-size: var(--step--1); color: var(--ink); line-height: 1.5;"><strong>Editor's note:</strong> This overstates the current behavior. How much an AI reading agent retrieves from a JavaScript-heavy page depends on the reader and how the page renders. Some AI browsers execute JavaScript; others index only static HTML. The claim that ChatGPT can read only the meta title and description is not universally true.</aside></div></div>
           <div class="citation">
             <span class="citation-speaker"><a href="/speakers/simon-wilhelm/" style="color: inherit; text-decoration: none;">Simon Wilhelm</a></span>
             <span style="color: var(--muted);">&middot; Co-Founder and CEO, SCAILE</span>
@@ -855,7 +856,8 @@
           <h3 style="font-size: var(--step-1); margin-bottom: var(--space-2);">How does a robots.txt file end up blocking the AI bots a company actually wants to reach?</h3>
           <div class="qa-item__paper">
             <p>&hellip; Very often, for example, when you host a website on Cloudflare, it per default blocks GPT bot, Perplexity bot, Claude bot, and so on. Okay so you have to proactively enable it in your robots.txt file and put allow so that the bots can actually go and read your content on your website.</p>
-          </div>
+          <div id="q2-editor-note">
+          <aside class="editor-note" style="margin-top: var(--space-2); padding: var(--space-1) var(--space-2); background: #f0f4ff; border-left: 3px solid #4a6cf7; font-size: var(--step--1); color: var(--ink); line-height: 1.5;"><strong>Editor's note:</strong> Cloudflare's AI-bot blocking happens primarily through its bot-management and firewall settings, not through robots.txt alone. A robots.txt update may not fix blocking that is applied at the infrastructure level. We checked this site's Cloudflare configuration and found no active rules blocking AI crawlers.</aside></div></div>
           <div class="citation">
             <span class="citation-speaker"><a href="/speakers/simon-wilhelm/" style="color: inherit; text-decoration: none;">Simon Wilhelm</a></span>
             <span style="color: var(--muted);">&middot; Co-Founder and CEO, SCAILE</span>
@@ -910,7 +912,8 @@
           <h3 style="font-size: var(--step-1); margin-bottom: var(--space-2);">What is the difference between SEO and AEO in plain terms?</h3>
           <div class="qa-item__paper">
             <p>SEO is optimizing for also technical readability of your website and optimizing to rank high for certain keywords. And AEO is really understanding the intent of your customer that can be super different and based on the persona and the location and the context within the LLM and all the search engines work differently. ChatGPT has its own index. Perplexity searches on the web. Claude is searching through Brave. And in traditional SEO, you were mostly targeting only Google and only focusing on one algorithm. Now you&rsquo;re focusing a lot of different algorithms and a lot of different personas.</p>
-          </div>
+          <div id="q5-editor-note">
+          <aside class="editor-note" style="margin-top: var(--space-2); padding: var(--space-1) var(--space-2); background: #f0f4ff; border-left: 3px solid #4a6cf7; font-size: var(--step--1); color: var(--ink); line-height: 1.5;"><strong>Editor's note:</strong> Anthropic does not publicly document Claude's web search provider. We could not verify this.</aside></div></div>
           <div class="citation">
             <span class="citation-speaker"><a href="/speakers/simon-wilhelm/" style="color: inherit; text-decoration: none;">Simon Wilhelm</a></span>
             <span style="color: var(--muted);">&middot; Co-Founder and CEO, SCAILE</span>
@@ -968,7 +971,8 @@
           <div class="qa-item__paper">
             <p>So I think it was Opus 4.8, um, where it started taking screenshots from websites to look at the, look at the page to actually see what i- what is on there.</p>
             <p>You always want to have the subline describing what is in the picture. &hellip; You always want to keep the effort for the LLM as low as possible because they don&rsquo;t want to spend a lot of tokens. That&rsquo;s why it&rsquo;s so important that also everything is in clean HTML because they don&rsquo;t have to spend a lot of tokens.</p>
-          </div>
+          <div id="q8-editor-note">
+          <aside class="editor-note" style="margin-top: var(--space-2); padding: var(--space-1) var(--space-2); background: #f0f4ff; border-left: 3px solid #4a6cf7; font-size: var(--step--1); color: var(--ink); line-height: 1.5;"><strong>Editor's note:</strong> We could not verify this model name or the claim that it takes screenshots of websites. Anthropic has not publicly released a model called "Opus 4.8" as of this recording.</aside></div></div>
     
           <div class="citation">
             <span class="citation-speaker"><a href="/speakers/simon-wilhelm/" style="color: inherit; text-decoration: none;">Simon Wilhelm</a></span>

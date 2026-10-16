@@ -4,6 +4,16 @@
   {
    "date": "2026-10-16",
    "dateHuman": "October 16, 2026",
+   "description": "Batch 8: Added editor's notes to EP002 (q1: JavaScript/ChatGPT claim; q2: Cloudflare/robots.txt claim; q5: Claude/Brave claim; q8: Opus 4.8 model name) and EP001 (q1: AI citation premise; q2: transcript efficiency claim; q5: episode length comparison; q8: 5–15 assets claim; q9: 76% stat + content writer comparison; q10: Google decline trend). Added annotation policy to Methodology page.",
+   "pages": [
+    "best-agency-to-get-my-brand-cited-by-chatgpt",
+    "best-b2b-podcast-agency-for-ai-visibility",
+    "methodology"
+   ]
+  },
+  {
+   "date": "2026-10-16",
+   "dateHuman": "October 16, 2026",
    "description": "Batch 7: Added editorial disclosures under title on both episode and answer pages (EP001 and EP002). Updated credit blocks with role labels (Guest Expert / Host / Publisher). Added 'About the guest company and partnership' section heading before q13/q14 on EP002 answers page. Added content-type label 'Recorded expert answer' to notice blocks. Published conflicts and independence policy section on Methodology page (id: conflicts). Added disclosure text to schema descriptions on both answer pages. Added /editorial/ page for publisher-written content. Updated llms.txt and llms-full.txt with conflicts policy reference.",
    "pages": [
     "best-agency-to-get-my-brand-cited-by-chatgpt",
