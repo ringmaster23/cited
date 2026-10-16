@@ -109,11 +109,27 @@ const pages = fs.readdirSync(answersDir)
   .filter(Boolean)
   .sort((a, b) => (a.publishDate || "").localeCompare(b.publishDate || ""));
 
-// Derive last updated date
-// Always use today's build date — this script runs on every build, so
-// the date always reflects the last time content was deployed.
-const lastUpdatedISO  = new Date().toISOString().slice(0, 10);
-const lastUpdatedHuman = formatDate(lastUpdatedISO);
+// Derive "Last updated" — only bump when Q&A content actually changes.
+// Compare the new Q&A body against the existing llms-full.txt.
+// If content is identical, keep the existing date so a no-op rebuild
+// does not alter it.
+const existingFullPath = path.join(repoRoot, "llms-full.txt");
+let _prevDate = null;
+let _prevBody = null;
+if (fs.existsSync(existingFullPath)) {
+  const _existing = fs.readFileSync(existingFullPath, "utf8");
+  const _dm = _existing.match(/Last updated: ([^\n]+)/);
+  if (_dm) _prevDate = _dm[1];
+  const _si = _existing.indexOf("\n---\n\n");
+  if (_si !== -1) _prevBody = _existing.slice(_si + 6).trim();
+}
+const _newBody = pages.map(renderPageFull).join("\n\n---\n\n").trim();
+let lastUpdatedHuman;
+if (_prevDate && _prevBody === _newBody) {
+  lastUpdatedHuman = _prevDate;  // unchanged — keep existing date
+} else {
+  lastUpdatedHuman = formatDate(new Date().toISOString().slice(0, 10));
+}
 
 // ─── llms-full.txt ────────────────────────────────────────────────────────────
 

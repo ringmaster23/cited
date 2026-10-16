@@ -81,7 +81,83 @@ function writeReport() {
   var outPath = path.join(OUT, 'build-report.json');
   try {
     fs.writeFileSync(outPath, JSON.stringify(REPORT, null, 2), 'utf8');
-    if (REPORT.status === 'failed') {
+    
+// ─── llms-full.txt consistency check ─────────────────────────────────────────
+// Fails the build if any answer page's blockquote text is absent from
+// dist/llms-full.txt.  Catches cases where generate-llms.js ran but wrote
+// wrong content, or where the file was somehow omitted from the copy step.
+
+function checkLlmsConsistency() {
+  var llmsPath = path.join(OUT, 'llms-full.txt');
+  if (!fs.existsSync(llmsPath)) {
+    reportError('llms-check', null, null, null,
+      'dist/llms-full.txt is missing — generate-llms.js may not have run or the copy step skipped it.');
+    return;
+  }
+  var llmsContent = fs.readFileSync(llmsPath, 'utf8');
+  var answersOutDir = path.join(OUT, 'answers');
+  if (!fs.existsSync(answersOutDir)) return;
+
+  function _et(h) {
+    return h
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"').replace(/&rsquo;/g, '’').replace(/&lsquo;/g, '‘')
+      .replace(/&rdquo;/g, '”').replace(/&ldquo;/g, '“')
+      .replace(/&hellip;/g, '…')
+      .replace(/&#8212;/g, '—').replace(/&#8217;/g, '’').replace(/&#8216;/g, '‘')
+      .replace(/&#8220;/g, '“').replace(/&#8221;/g, '”').replace(/&#8230;/g, '…')
+      .replace(/&[a-z]+;|&#\d+;/gi, ' ')
+      .replace(/\s+/g, ' ').trim();
+  }
+
+  var slugs = fs.readdirSync(answersOutDir).filter(function(d) {
+    return fs.statSync(path.join(answersOutDir, d)).isDirectory();
+  });
+
+  for (var _si = 0; _si < slugs.length; _si++) {
+    var _slug = slugs[_si];
+    var _file = path.join(answersOutDir, _slug, 'index.html');
+    if (!fs.existsSync(_file)) continue;
+    var _html = fs.readFileSync(_file, 'utf8');
+    var _qaStart = _html.indexOf('class="qa-list"');
+    if (_qaStart === -1) continue;
+    var _ftIdx = _html.indexOf('</footer>');
+    var _qaEnd = _ftIdx > -1 ? _html.lastIndexOf('</section>', _ftIdx) + 10 : _html.length;
+    var _qaSection = _html.slice(_qaStart, _qaEnd);
+    var _pos = 0;
+    while (_pos < _qaSection.length) {
+      var _aStart = _qaSection.indexOf('<article class="qa-item"', _pos);
+      if (_aStart === -1) break;
+      var _aEnd = _qaSection.indexOf('</article>', _aStart) + 10;
+      var _art = _qaSection.slice(_aStart, _aEnd);
+      var _blkM = _art.match(/<blockquote[^>]*>([\s\S]*?)<\/blockquote>/);
+      var _idM  = _art.match(/id="(q\d+)"/);
+      var _h3M  = _art.match(/<h3[^>]*>([\s\S]*?)<\/h3>/);
+      if (_blkM) {
+        var _raw = _et(_blkM[1]);
+        var _fi  = _raw.indexOf(' Flag:');
+        if (_fi !== -1) _raw = _raw.slice(0, _fi).trim();
+        // Use first 100 non-trivial chars as the probe
+        var _probe = _raw.replace(/^[…\s]+/, '').slice(0, 100).trim();
+        if (_probe.length > 30 && llmsContent.indexOf(_probe) === -1) {
+          var _qId  = _idM ? _idM[1] : 'q?';
+          var _qTxt = _h3M ? _h3M[1].replace(/<[^>]+>/g, '').trim().slice(0, 60) : '';
+          var _msg  = _slug + ' ' + _qId.toUpperCase() + ': answer text in dist/llms-full.txt does not match the answer page. ' +
+            'Expected to find: "' + _probe.slice(0, 80) + '..."';
+          console.error('\u2717 LLMS CHECK: ' + _msg);
+          reportError('llms-check', _slug, _qId, _qTxt, _msg);
+        }
+      }
+      _pos = _aEnd;
+    }
+  }
+  console.log('llms-full.txt consistency check passed.');
+}
+
+checkLlmsConsistency();
+
+if (REPORT.status === 'failed') {
       console.error('  → Full report: dist/build-report.json');
     }
   } catch(e) {
