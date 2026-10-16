@@ -110,10 +110,9 @@ const pages = fs.readdirSync(answersDir)
   .sort((a, b) => (a.publishDate || "").localeCompare(b.publishDate || ""));
 
 // Derive last updated date
-const latestDate = pages.reduce((latest, p) => {
-  return p.publishDate && p.publishDate > latest ? p.publishDate : latest;
-}, "");
-const lastUpdatedISO  = latestDate || new Date().toISOString().slice(0, 10);
+// Always use today's build date — this script runs on every build, so
+// the date always reflects the last time content was deployed.
+const lastUpdatedISO  = new Date().toISOString().slice(0, 10);
 const lastUpdatedHuman = formatDate(lastUpdatedISO);
 
 // ─── llms-full.txt ────────────────────────────────────────────────────────────
