@@ -96,7 +96,10 @@ function parseAnswerPage(html, url) {
     const question = h3M  ? extractText(h3M[1]) : '';
     const rawAns   = blkM ? extractText(blkM[1]) : (() => {
       const afterH3 = h3M ? article.slice(article.indexOf('</h3>')+5) : article;
-      return (afterH3.match(/<p[^>]*>([\s\S]*?)<\/p>/g)||[]).map(extractText).filter(Boolean).join(' ');
+      // Extract answer <p> elements, excluding editor-note annotations
+      const _rawPTags = afterH3.match(/<p[^>]*>([\s\S]*?)<\/p>/g) || [];
+      return _rawPTags.filter(function(p) { return p.indexOf('editor-note') === -1; }).map(extractText).filter(Boolean).join(' ');
+
     })();
     const answer    = stripFlag(rawAns);
     const speaker   = spkM ? extractText(spkM[1]) : '';
