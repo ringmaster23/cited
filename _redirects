@@ -51,13 +51,26 @@
 #    /{ANSWER_SLUG}-*          /answers/{ANSWER_SLUG}/ 301
 #
 
+# ── Slug rename: remove "best" prefix from URLs (2026-10-16) ─────────────────────
+# Old answer canonical URLs → new answer slugs (single 301, no chain)
+/answers/best-b2b-podcast-agency-for-ai-visibility/ /answers/b2b-podcast-agency-for-ai-visibility/ 301
+/answers/best-agency-to-get-my-brand-cited-by-chatgpt/ /answers/agency-to-get-my-brand-cited-by-chatgpt/ 301
+# Old episode canonical URLs → new episode slugs (single 301, no chain)
+/episodes/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/ /episodes/b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/ 301
+/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/ /episodes/agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/ 301
+
+# New episode wildcard rules for new slug prefix (AI citation URL variants)
+/episodes/b2b-podcast-agency-for-ai-visibility-* /answers/b2b-podcast-agency-for-ai-visibility/ 301
+/b2b-podcast-agency-for-ai-visibility-* /answers/b2b-podcast-agency-for-ai-visibility/ 301
+/episodes/agency-to-get-my-brand-cited-by-chatgpt-* /answers/agency-to-get-my-brand-cited-by-chatgpt/ 301
+/agency-to-get-my-brand-cited-by-chatgpt-* /answers/agency-to-get-my-brand-cited-by-chatgpt/ 301
 # Episode 001 — Best B2B Podcast Agency for AI Visibility
-/episodes/best-b2b-podcast-agency-for-ai-visibility-* /answers/best-b2b-podcast-agency-for-ai-visibility/ 301
-/best-b2b-podcast-agency-for-ai-visibility-* /answers/best-b2b-podcast-agency-for-ai-visibility/ 301
+/episodes/best-b2b-podcast-agency-for-ai-visibility-* /answers/b2b-podcast-agency-for-ai-visibility/ 301
+/best-b2b-podcast-agency-for-ai-visibility-* /answers/b2b-podcast-agency-for-ai-visibility/ 301
 
 # Episode 002 — Best Agency to Get My Brand Cited by ChatGPT
-/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-* /answers/best-agency-to-get-my-brand-cited-by-chatgpt/ 301
-/best-agency-to-get-my-brand-cited-by-chatgpt-* /answers/best-agency-to-get-my-brand-cited-by-chatgpt/ 301
+/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-* /answers/agency-to-get-my-brand-cited-by-chatgpt/ 301
+/best-agency-to-get-my-brand-cited-by-chatgpt-* /answers/agency-to-get-my-brand-cited-by-chatgpt/ 301
 
 # ── Favicon ────────────────────────────────────────────────────────────────────────
 # /favicon.ico redirect removed — real favicon.ico now served as static file
