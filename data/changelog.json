@@ -2,6 +2,14 @@
  "generated": "2026-10-14",
  "entries": [
   {
+   "date": "2026-10-16",
+   "dateHuman": "October 16, 2026",
+   "description": "Speaker-requested content removal: excised all Audi brand-name references from Episode 002 transcript files (episodes and answers directories). Removal is silent per standing editorial policy. No Q&A text on the published HTML pages was affected — those pages were already clean. Transcript VTT cue text updated to match.",
+   "pages": [
+    "best-agency-to-get-my-brand-cited-by-chatgpt"
+   ]
+  },
+  {
    "date": "2026-10-14",
    "dateHuman": "October 14, 2026",
    "description": "Editorial integrity fix: replaced 5 synthesis answers (Q7, Q8, Q9, Q12, Q18) on the Simon Wilhelm EP002 page with Simon's real transcript passages (labeled Edited). Removed synthesis-sources divs. Fixed Q18's editor-inserted bracket \"[And the answer you want to hear is:]\" and Q7's [a] bracket. Updated notice text: \"verbatim or edited\" (no synthesis). Added EDITORIAL-PRINCIPLES.md to repo. Added synthesis gate to build.js — builds now fail if any synthesis structure is detected. Adam Needles EP001 page: notice text updated.",

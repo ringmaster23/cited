@@ -346,11 +346,7 @@ CASEY CHESHIRE: And then you take over with the technical side and the, the blog
 
 SIMON WILHELM: Yeah. Exactly. Yeah 
 
-CASEY CHESHIRE: All right. Uh, quick question. That example earlier, did Audi's, the president's wife, is that a true story
-
-or is that a 
-
-SIMON WILHELM: AI, please delete because we're in the process of , uh, of hopefully working together with them. But, um, I actually had the ... Like, it's super, super, uh, interesting because we always, of course, ask, like, "Why are we now talking?" And one of the main reasons very often is the, that actually the CEO typed into ChatGPT, "Who's the best solution for X, Y, Z?"
+SIMON WILHELM: Like, it's super, super, uh, interesting because we always, of course, ask, like, "Why are we now talking?" And one of the main reasons very often is the, that actually the CEO typed into ChatGPT, "Who's the best solution for X, Y, Z?"
 
 And they're not appearing
 
@@ -358,7 +354,7 @@ CASEY CHESHIRE: Got it. So,
 
 Yeah.
 
-Great story, and it sounds like that happens a lot of the case, not necessarily with, with Audi,
+Great story, and it sounds like that happens a lot of the case, not necessarily with,
 
 SIMON WILHELM: Yes.
 
@@ -370,7 +366,7 @@ CASEY CHESHIRE: Yeah. Perfect. So and with the Google, uh, with the Google. With
 
 And some folks have gotten rid of their forms, so in which case, good luck to you. Now, if you've gotten rid of your forms, then that self-attribution's gonna be huge. What is share of answer and why does it matter more than traffic? Or does it matter more than traffic?
 
-SIMON WILHELM: I mean, traffic will become a vanity metric. Human traffic will become a vanity metric because we're moving towards that all search is happening in LLMs [00:39:00] so it's more important how many times when someone asks a question, am I the answer? So out of these 30 prompts, how many times is Audi being mentioned as having the best electric vehicle?
+SIMON WILHELM: I mean, traffic will become a vanity metric. Human traffic will become a vanity metric because we're moving towards that all search is happening in LLMs [00:39:00] so it's more important how many times when someone asks a question, am I the answer? So out of these 30 prompts, how many times is [a target brand] being mentioned?
 
 If out of one hundred of these or 30 prompts I'm being visible in
 
