@@ -34,7 +34,7 @@ function parseDisclosure(html) {
   const m = html.match(/<p class="editorial-disclosure"[^>]*>([\s\S]*?)<\/p>/);
   if (!m) return '';
   const raw = extractText(m[1]);
-  return raw.replace(/\s*Conflicts policy\s*\u2197?\s*$/, '').trim();
+  return raw.replace(/^Editorial disclosure:\s*/i, '').replace(/^Editorial disclosure:\s*/i, '').replace(/\s*Conflicts policy\s*\u2197?\s*$/, '').trim();
 }
 
 function parseCreditLine(html) {
