@@ -143,7 +143,12 @@
           "name": "Cited Conversations",
           "url": "https://podcast.citedconversations.com"
         },
-        "associatedMedia": { "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#audio" },
+        "associatedMedia": { "PLACEHOLDER_AUDIO_ID" },
+        "transcript": {
+          "@type": "MediaObject",
+          "encodingFormat": "text/vtt",
+          "contentUrl": "PLACEHOLDER_TRANSCRIPT_URL"
+        }}/#audio" },
         "actor": [
           { "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-casey-cheshire" },
           { "@id": "https://citedconversations.com/episodes/{{ EPISODE_SLUG }}/#speaker-{{ GUEST_SPEAKER_ID }}" }
@@ -272,6 +277,12 @@
       </nav>
 
       <h1 id="episode-title">{{ EPISODE_TITLE }}</h1>
+      <!-- BUILDER: Insert editorial disclosure here. Template:
+      <div class="editorial-disclosure" role="note" aria-label="Editorial disclosure" style="margin-top: var(--space-3); padding: var(--space-2) var(--space-3); background: #fffbe6; border-left: 3px solid #c8a000; font-size: var(--step--1); color: var(--ink); line-height: 1.5;">
+        <strong>Editorial disclosure:</strong> Cited Conversations is published by Ringmaster. Casey Cheshire, Ringmaster's Founder & CEO, hosts this conversation. [GUEST COMPANY / COMMERCIAL TIE OR NO COMMERCIAL TIE]. This page is a recorded expert interview, not an independent ranking or endorsement of [GUEST COMPANY] or any other [CATEGORY]. The answers below are [GUEST NAME]'s recorded statements, each linked to its source timestamp. <a href="/methodology/#conflicts">Conflicts policy &#8599;</a>
+      </div>
+      Customize: [GUEST COMPANY], [COMMERCIAL TIE], [GUEST NAME] per episode. For no commercial tie: "has no commercial relationship with Ringmaster."
+      -->
 
       <p style="color: var(--muted); margin-top: var(--space-2); font-size: var(--step-0);">
         {{ EPISODE_DESCRIPTION }}
