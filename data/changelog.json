@@ -4,6 +4,16 @@
   {
    "date": "2026-10-16",
    "dateHuman": "October 16, 2026",
+   "description": "Batch 5: Verification states. Updated notice block on both answer pages: \"Transcript checked against source audio by Kristina on October 10, 2026\" and \"Factual claims are [speaker]'s views, not independently verified.\" Updated creativeWorkStatus on all Clip and Quotation schema nodes to reflect transcript verification date. Added verification states reference table to /schema/ page. Batch 5 also relies on the editor's notes added in Batch 8 to document unverifiable specific claims.",
+   "pages": [
+    "best-agency-to-get-my-brand-cited-by-chatgpt",
+    "best-b2b-podcast-agency-for-ai-visibility",
+    "schema"
+   ]
+  },
+  {
+   "date": "2026-10-16",
+   "dateHuman": "October 16, 2026",
    "description": "Batch 9: Schema cleanup. Removed spokenByCharacter from all Quotation nodes on both episode and answer pages (replaced by creator which carries the same value). Added transcript MediaObject reference to PodcastEpisode and AudioObject nodes on both episode pages.",
    "pages": [
     "best-agency-to-get-my-brand-cited-by-chatgpt",

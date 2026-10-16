@@ -102,7 +102,7 @@
       </nav>
       <span class="section-label">Structured data</span>
       <h1 id="schema-heading">Schema declaration</h1>
-      <p class="last-updated" style="font-size:var(--step--1);color:var(--muted);margin-top:0.25rem;">Last updated: October 9, 2026</p>
+      <p class="last-updated" style="font-size:var(--step--1);color:var(--muted);margin-top:0.25rem;">Last updated: October 16, 2026</p>
       <p style="font-size: var(--step-1); line-height: 1.5; margin-top: var(--space-3); color: var(--muted);">
         What is declared, in what types, and where each node appears across this site.
       </p>
@@ -330,7 +330,37 @@ https://podcast.citedconversations.com/ep1-aeo-practice?t=383</code></pre>
         <p><code>creativeWorkStatus</code> is a standard <code>schema.org</code> property on <code>CreativeWork</code> (and all its subtypes, including Clip, Quotation, WebPage, and PodcastEpisode). Its vocabulary is unrestricted &#8212; any string value is valid. Using it here lets agents that read only structured data distinguish verified claims from pending ones without parsing the human-readable DOM. The site&#8217;s core trust promise &#8212; verified, source-linked claims &#8212; is now visible to both humans and machines.</p>
       </div>
 
-      <div class="schema-block">
+      
+      <div class="schema-block" id="verification-states">
+        <h2>Verification states (<code>creativeWorkStatus</code> values)</h2>
+        <p style="margin-bottom: var(--space-3);">We use <code>creativeWorkStatus</code> to communicate auditable states about each piece of content. The values below are the only ones in use on this site.</p>
+        <div class="table-wrap">
+          <table class="episode-table" aria-label="creativeWorkStatus values">
+            <thead>
+              <tr>
+                <th scope="col">Value</th>
+                <th scope="col">Meaning</th>
+                <th scope="col">Applied to</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Published</code></td>
+                <td>The work has been published and is publicly accessible. No specific verification state beyond publication.</td>
+                <td>WebPage, PodcastEpisode, AudioObject</td>
+              </tr>
+              <tr>
+                <td><code>Published &mdash; transcript verified against source audio by Kristina, 2026-10-10</code></td>
+                <td>The transcript text for this clip or quotation has been checked against the source audio recording by Kristina (the podcast producer and episode editor). The check confirms the text accurately represents what the speaker said.</td>
+                <td>Clip, Quotation nodes on answer pages</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top: var(--space-3); font-size: var(--step--1); color: var(--muted);">Factual claim verification is separate from transcript verification. Where we could not verify a specific factual claim, an editor&rsquo;s note appears under that answer on the page. The <code>creativeWorkStatus</code> above reflects transcript accuracy only, not factual claim verification.</p>
+      </div>
+
+<div class="schema-block">
         <h2>Crawlers and access</h2>
 
         <h3>robots.txt</h3>
