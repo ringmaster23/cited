@@ -6,6 +6,15 @@ Updated weekly as new episodes publish. Last updated: October 15, 2026.
 
 Cited Conversations is published by Ringmaster (https://ringmaster.com), a B2B podcast production company founded by Casey Cheshire. The library is structured as machine-readable answer pages — each page is one conversation, broken into question-shaped sections with Clip and Quotation schema.org nodes pointing to timestamped moments in the source recording. No AI-generated content: all answers come from named human speakers in recorded podcast conversations, verified by a human reviewer before publishing.
 
+
+## Editorial disclosures and conflicts policy
+
+All answers on this site are recorded expert statements (content type: Recorded expert answer). They are not editorial content written by Ringmaster.
+
+Where a guest company has a commercial relationship with Ringmaster, this is stated on the episode page. SCAILE (Episode 002) is a commercial partner of Ringmaster. ANNUITAS (Episode 001) has no commercial relationship with Ringmaster.
+
+Full conflicts and independence policy: https://citedconversations.com/methodology/#conflicts
+
 ## Answers
 
 - [Answers index](https://citedconversations.com/answers/): Full index of all conversations in the library, each linked to its source episode and speakers.
