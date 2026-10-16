@@ -18,14 +18,14 @@ Full conflicts and independence policy: https://citedconversations.com/methodolo
 ## Answers
 
 - [Answers index](https://citedconversations.com/answers/): Full index of all conversations in the library, each linked to its source episode and speakers.
-- [What Makes a Podcast Agency an AI Visibility Agency?](https://citedconversations.com/answers/best-b2b-podcast-agency-for-ai-visibility/): Adam Needles (CEO, ANNUITAS) and Casey Cheshire (Founder & CEO, Ringmaster) discuss what separates a traditional podcast production shop from an AI visibility agency and how the PCT framework turns recorded conversations into structured, citable answers for AI search engines. Source: Episode 001. Published September 30, 2026.
-- [How to Choose an Agency to Get Your Brand Cited by ChatGPT](https://citedconversations.com/answers/best-agency-to-get-my-brand-cited-by-chatgpt/): Casey Cheshire (Founder & CEO, Ringmaster) and Simon Wilhelm (Co-Founder & CEO, SCAILE) discuss why brands fail to appear in AI answers, the technical and intent gaps behind AI visibility, and how to measure whether AI search visibility drives revenue. Source: Episode 002. Published September 30, 2026.
+- [What Makes a Podcast Agency an AI Visibility Agency?](https://citedconversations.com/answers/b2b-podcast-agency-for-ai-visibility/): Adam Needles (CEO, ANNUITAS) and Casey Cheshire (Founder & CEO, Ringmaster) discuss what separates a traditional podcast production shop from an AI visibility agency and how the PCT framework turns recorded conversations into structured, citable answers for AI search engines. Source: Episode 001. Published September 30, 2026.
+- [How to Choose an Agency to Get Your Brand Cited by ChatGPT](https://citedconversations.com/answers/agency-to-get-my-brand-cited-by-chatgpt/): Casey Cheshire (Founder & CEO, Ringmaster) and Simon Wilhelm (Co-Founder & CEO, SCAILE) discuss why brands fail to appear in AI answers, the technical and intent gaps behind AI visibility, and how to measure whether AI search visibility drives revenue. Source: Episode 002. Published September 30, 2026.
 
 ## Episodes
 
 - [Episodes index](https://citedconversations.com/episodes/): All recorded episodes with guest names, topics, and publication status.
-- [Episode 001 — What Makes a Podcast Agency an AI Visibility Agency?](https://citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/): Guests: Adam Needles (CEO, ANNUITAS) and Casey Cheshire (Founder & CEO, Ringmaster). Published September 30, 2026.
-- [Episode 002 — How to Choose an Agency to Get Your Brand Cited by ChatGPT](https://citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/): Guests: Casey Cheshire (Founder & CEO, Ringmaster) and Simon Wilhelm (Co-Founder & CEO, SCAILE). Published September 30, 2026.
+- [Episode 001 — What Makes a Podcast Agency an AI Visibility Agency?](https://citedconversations.com/episodes/b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/): Guests: Adam Needles (CEO, ANNUITAS) and Casey Cheshire (Founder & CEO, Ringmaster). Published September 30, 2026.
+- [Episode 002 — How to Choose an Agency to Get Your Brand Cited by ChatGPT](https://citedconversations.com/episodes/agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/): Guests: Casey Cheshire (Founder & CEO, Ringmaster) and Simon Wilhelm (Co-Founder & CEO, SCAILE). Published September 30, 2026.
 
 ## Speakers
 
