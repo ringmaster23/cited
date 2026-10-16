@@ -248,6 +248,20 @@
 </head>
 <body>
 
+<!-- BUILDER: When removing a Q&A from this page:
+     1. Remove the <article class="qa-item" id="qN"> element and its TOC <li> entry.
+     2. In the JSON-LD @graph, remove the Clip and Quotation nodes for that qN.
+     3. Renumber all subsequent @id URLs in the JSON-LD: use a proper JSON parser
+        (not regex) to update fragments like "#qN-clip" and "#qN-quotation" in the
+        @id field of each Clip and Quotation node. Example: after removing q16,
+        rename #q17-clip→#q16-clip, #q18-clip→#q17-clip, etc.
+        The generate-markdown.js generator uses the @id fragment (#qN-clip) to
+        label Q&A headings in the markdown version, so @id and HTML article id
+        must stay in sync.
+     4. Update article id="qN" and TOC href="#qN" to match the new numbering.
+     5. Run the build and verify: HTML article count == TOC count == Clip count.
+-->
+
   <nav class="site-nav" aria-label="Site navigation">
     <div class="container nav-inner">
       <a href="/" class="nav-logo" aria-label="Cited Conversations home">

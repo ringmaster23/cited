@@ -4,6 +4,15 @@
   {
    "date": "2026-10-16",
    "dateHuman": "October 16, 2026",
+   "description": "Follow-up #3: Fixed 'Editorial disclosure:' double label in markdown version (generate-markdown.js). Added @id renumbering guidance to _template.html builder. Confirmed EP002 JSON-LD @ids are correctly numbered q16-q18; markdown labels Q16-Q18; no #q19 references remain anywhere (sitemap, feed, llms.txt all clean).",
+   "pages": [
+    "best-agency-to-get-my-brand-cited-by-chatgpt",
+    "*"
+   ]
+  },
+  {
+   "date": "2026-10-16",
+   "dateHuman": "October 16, 2026",
    "description": "Follow-up fixes: (1) Removed q16 (share of answer / Audi example) from EP002 answers page — silent cut. Renumbered q17-q19 → q16-q18. (2) Fixed all 10 editor's notes: changed from <aside> to <p> for text-extractor compatibility; rephrased ep002-q8 to exact approved wording; removed counter-claims from ep002-q1, ep001-q10. (3) Changed editorial disclosures from styled <div> to <p> immediately after h1. (4) Updated generate-markdown.js: fixed creator attribution (post-spokenByCharacter removal), added disclosure/credit/section-heading/editor-note parsing. (5) Updated generate-llms.js: same additions. All three AI-readable versions (HTML body, markdown, llms-full.txt) now carry disclosure, credit line, content-type label, and editor notes in correct order.",
    "pages": [
     "best-agency-to-get-my-brand-cited-by-chatgpt",
