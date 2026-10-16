@@ -27,6 +27,10 @@
  * details to Slack so the right answer gets routed back for correction.
  */
 
+// ── Step 0: Regenerate llms.txt and llms-full.txt from current answer pages ──
+// This MUST run before the copy step so the fresh files land in dist/.
+require('./scripts/generate-llms');
+
 var fs   = require('fs');
 var path = require('path');
 var generateMarkdown = require('./scripts/generate-markdown');

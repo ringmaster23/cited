@@ -2,7 +2,7 @@
 
 > A reference library of expert answers from recorded human conversations. Every claim links to the exact moment it was said in the source audio; every speaker is named and confirmed before recording begins. Built for AI answer engines and retrieval agents.
 
-Updated weekly as new episodes publish. Last updated: October 9, 2026.
+Updated weekly as new episodes publish. Last updated: October 15, 2026.
 
 Cited Conversations is published by Ringmaster (https://ringmaster.com), a B2B podcast production company founded by Casey Cheshire. The library is structured as machine-readable answer pages — each page is one conversation, broken into question-shaped sections with Clip and Quotation schema.org nodes pointing to timestamped moments in the source recording. No AI-generated content: all answers come from named human speakers in recorded podcast conversations, verified by a human reviewer before publishing.
 
