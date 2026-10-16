@@ -10,7 +10,7 @@
  * the updated llms.txt and llms-full.txt alongside the new page files.
  *
  * What it does:
- *   1. Reads every answers/*/index.html in the repo.
+ *   1. Reads every answers/{slug}/index.html in the repo.
  *   2. Parses page title, publish date, speakers, and Q&A blocks.
  *   3. Derives "Last updated" from the most recent datePublished in those pages.
  *   4. Writes llms.txt (index with freshness line) and llms-full.txt (full Q&A).
