@@ -427,7 +427,7 @@
   <section class="stats-header">
     <div class="container">
       <h1 class="stats-title">AI Crawler Activity</h1>
-      <p class="last-updated" style="font-size:var(--step--1);color:var(--muted);margin-top:0.25rem;">Last updated: October 9, 2026</p>
+      <p class="last-updated" id="last-updated" style="font-size:var(--step--1);color:var(--muted);margin-top:0.25rem;">Last updated: —</p>
       <p class="stats-meta" id="stats-meta">
         Loading…
       </p>
@@ -629,13 +629,11 @@
   // ─── Formatters ─────────────────────────────────────────────────────────────
   const fmtNum  = n => new Intl.NumberFormat('en-US').format(n);
   const fmtDate = s => new Date(s + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  const fmtDateLong = s => new Date(s + 'T00:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   const fmtDT   = s => new Date(s).toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
 
   function daysBetween(a, b) {
     return Math.max(0, Math.floor((new Date(b) - new Date(a)) / 86400000));
-  }
-  function today() {
-    return new Date().toISOString().slice(0, 10);
   }
 
   // ─── Chart.js global defaults — tuned for white background ──────────────────
@@ -718,7 +716,12 @@
     const earliestDate = allDataDates.length > 0
       ? allDataDates.reduce((a, b) => a < b ? a : b)
       : launch_date;
-    const allDates = dateRange(earliestDate, today());
+    // Latest day of data actually captured. Every date on the page is derived from the
+    // data file the daily run updates, never from the browser clock or the build time.
+    const latestDate = allDataDates.length > 0
+      ? allDataDates.reduce((a, b) => a > b ? a : b)
+      : (updated_at ? updated_at.slice(0, 10) : earliestDate);
+    const allDates = dateRange(earliestDate, latestDate);
     const dayCount = allDates.length;
 
     // Labeled non-content bots and malicious traffic get their own section, outside the crawler totals.
@@ -756,13 +759,14 @@
     document.getElementById('kpi-days').textContent  = fmtNum(dayCount);
     document.getElementById('kpi-bots').textContent  = fmtNum(totalBots);
     document.getElementById('kpi-pages').textContent = fmtNum(totalPages);
-    document.getElementById('kpi-launch-date').textContent = fmtDate(earliestDate) + ' – ' + fmtDate(today());
-    document.getElementById('kpi-since').textContent = fmtDate(earliestDate) + ' – today';
-    document.getElementById('bot-section-note').textContent = fmtDate(earliestDate) + ' – ' + fmtDate(today());
+    document.getElementById('kpi-launch-date').textContent = fmtDate(earliestDate) + ' – ' + fmtDate(latestDate);
+    document.getElementById('kpi-since').textContent = fmtDate(earliestDate) + ' – ' + fmtDate(latestDate);
+    document.getElementById('bot-section-note').textContent = fmtDate(earliestDate) + ' – ' + fmtDate(latestDate);
+    document.getElementById('last-updated').textContent = 'Last updated: ' + fmtDateLong(latestDate);
 
     // Meta line
     document.getElementById('stats-meta').innerHTML =
-      `<strong>${fmtDate(earliestDate)} – today</strong><span class="sep">·</span>` +
+      `<strong>${fmtDate(earliestDate)} – ${fmtDate(latestDate)}</strong><span class="sep">·</span>` +
       (IS_DEMO ? '<strong style="color:var(--red)">Sample data</strong><span class="sep">·</span>' : '') +
       `Tracking: GPTBot, ClaudeBot, PerplexityBot, Googlebot, and more`;
 
