@@ -13,6 +13,8 @@
  *   1. Replace all href="/about/" → href="/methodology/" across every HTML file.
  *   2. Inject live answer counts into homepage conversation rows from the
  *      actual answer pages so counts can never drift from reality.
+ *   2b. Bake the data-through dates from data/bot-traffic.json into stats/index.html
+ *      so readers that don't run JavaScript see the current date (never fails the build).
  *   3. Integrity check on every answer page: fail the build if any page has
  *      a TOC anchor that has no matching body id, or if the number of rendered
  *      articles differs from the number of schema Clip nodes. A broken page
@@ -231,6 +233,81 @@ function patchHomepageCounts() {
   );
 
   fs.writeFileSync(idxPath, html, 'utf8');
+}
+
+// ── Post-process: bake data-through dates into the stats page ─────────────────
+// stats/index.html fills its dates in the browser from data/bot-traffic.json, so a
+// reader that doesn't run JavaScript would otherwise see placeholders. Write the same
+// dates into the static HTML here, from the same file the daily stats run updates.
+// "Latest date" = newest day in the data rows (not build time). Never fails the build:
+// if the data or page can't be read, the page is left as-is and a warning is printed.
+
+var STATS_MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'];
+
+function statsDateShort(iso) {
+  var p = iso.split('-');
+  return STATS_MONTHS[parseInt(p[1], 10) - 1].slice(0, 3) + ' ' + parseInt(p[2], 10);
+}
+
+function statsDateLong(iso) {
+  var p = iso.split('-');
+  return STATS_MONTHS[parseInt(p[1], 10) - 1] + ' ' + parseInt(p[2], 10) + ', ' + p[0];
+}
+
+function setElementText(html, id, inner) {
+  var re = new RegExp('(<([a-z0-9]+)[^>]*\\sid="' + id + '"[^>]*>)[\\s\\S]*?(</\\2>)', 'i');
+  if (!re.test(html)) return null;
+  return html.replace(re, function(m, open, tag, close) { return open + inner + close; });
+}
+
+function patchStatsDates() {
+  try {
+    var pagePath = path.join(OUT, 'stats', 'index.html');
+    var dataPath = path.join(ROOT, 'data', 'bot-traffic.json');
+    if (!fs.existsSync(pagePath) || !fs.existsSync(dataPath)) {
+      console.warn('\u26a0\ufe0f  Stats dates not baked in: stats page or data/bot-traffic.json not found.');
+      return;
+    }
+    var data  = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+    var dates = [];
+    (data.daily || []).concat(data.traffic_mix || []).forEach(function(r) {
+      if (r && typeof r.date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(r.date)) dates.push(r.date);
+    });
+    dates.sort();
+    var earliest = dates.length ? dates[0] : data.launch_date;
+    var latest   = dates.length ? dates[dates.length - 1]
+                                : (data.updated_at ? String(data.updated_at).slice(0, 10) : earliest);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(earliest)) || !/^\d{4}-\d{2}-\d{2}$/.test(String(latest))) {
+      console.warn('\u26a0\ufe0f  Stats dates not baked in: no usable dates in data/bot-traffic.json.');
+      return;
+    }
+
+    var range = statsDateShort(earliest) + ' \u2013 ' + statsDateShort(latest);
+    var edits = [
+      ['last-updated',     'Last updated: ' + statsDateLong(latest)],
+      ['stats-meta',       '<strong>' + range + '</strong><span class="sep">\u00b7</span>' +
+                           'Tracking: GPTBot, ClaudeBot, PerplexityBot, Googlebot, and more'],
+      ['kpi-since',        range],
+      ['kpi-launch-date',  range],
+      ['bot-section-note', range],
+      ['updated-note',     'Data last updated: ' + statsDateLong(latest) +
+                           ' \u00b7 Updates daily \u00b7 Source: Cloudflare Log Explorer']
+    ];
+
+    var html = fs.readFileSync(pagePath, 'utf8');
+    var missing = [];
+    edits.forEach(function(e) {
+      var next = setElementText(html, e[0], e[1]);
+      if (next === null) missing.push(e[0]); else html = next;
+    });
+    fs.writeFileSync(pagePath, html, 'utf8');
+
+    if (missing.length) console.warn('\u26a0\ufe0f  Stats dates: element(s) not found: ' + missing.join(', '));
+    console.log('Stats dates baked in: ' + range + ' (last updated ' + statsDateLong(latest) + ').');
+  } catch (err) {
+    console.warn('\u26a0\ufe0f  Stats dates not baked in: ' + err.message);
+  }
 }
 
 // ── Helpers: JSON-LD block + question text ────────────────────────────────────
@@ -897,6 +974,9 @@ patchAboutLinks(OUT);
 
 console.log('Post-processing: injecting answer counts ...');
 patchHomepageCounts();
+
+console.log('Post-processing: baking dates into stats page ...');
+patchStatsDates();
 
 console.log('Integrity check: validating answer pages ...');
 integrityCheckAnswerPages();

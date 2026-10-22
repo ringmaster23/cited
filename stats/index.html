@@ -701,11 +701,11 @@
     // All dates from launch to today
     function dateRange(from, to) {
       const dates = [];
-      let cur = new Date(from + 'T00:00:00');
-      const end = new Date(to + 'T00:00:00');
+      let cur = new Date(from + 'T00:00:00Z');
+      const end = new Date(to + 'T00:00:00Z');
       while (cur <= end) {
         dates.push(cur.toISOString().slice(0, 10));
-        cur.setDate(cur.getDate() + 1);
+        cur.setUTCDate(cur.getUTCDate() + 1);
       }
       return dates;
     }
@@ -992,7 +992,7 @@
 
     // ── Updated timestamp ──────────────────────────────────────────────────────
     document.getElementById('updated-note').textContent =
-      `Data last updated: ${updated_at ? fmtDT(updated_at) : '—'} · Updates daily · Source: Cloudflare Log Explorer`;
+      `Data last updated: ${fmtDateLong(latestDate)} · Updates daily · Source: Cloudflare Log Explorer`;
   }
 
   function esc(str) {
