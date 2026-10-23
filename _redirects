@@ -56,8 +56,26 @@
 /answers/best-b2b-podcast-agency-for-ai-visibility/ /answers/b2b-podcast-agency-for-ai-visibility/ 301
 /answers/best-agency-to-get-my-brand-cited-by-chatgpt/ /answers/agency-to-get-my-brand-cited-by-chatgpt/ 301
 # Old episode canonical URLs → new episode slugs (single 301, no chain)
-/episodes/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/ /episodes/b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/ 301
-/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/ /episodes/agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/ 301
+/episodes/best-b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/ /answers/b2b-podcast-agency-for-ai-visibility/ 301
+/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/ /answers/agency-to-get-my-brand-cited-by-chatgpt/ 301
+
+# Old "best-" URLs, every variant, one hop to the final page (added 2026-10-23).
+# The two rules above only matched the trailing-slash form; crawlers also request
+# the bare path, /index.html, the transcript files and the episode paths.
+/answers/best-b2b-podcast-agency-for-ai-visibility /answers/b2b-podcast-agency-for-ai-visibility/ 301
+/answers/best-b2b-podcast-agency-for-ai-visibility/index.html /answers/b2b-podcast-agency-for-ai-visibility/ 301
+/answers/best-b2b-podcast-agency-for-ai-visibility/* /answers/b2b-podcast-agency-for-ai-visibility/:splat 301
+/answers/best-agency-to-get-my-brand-cited-by-chatgpt /answers/agency-to-get-my-brand-cited-by-chatgpt/ 301
+/answers/best-agency-to-get-my-brand-cited-by-chatgpt/index.html /answers/agency-to-get-my-brand-cited-by-chatgpt/ 301
+/answers/best-agency-to-get-my-brand-cited-by-chatgpt/* /answers/agency-to-get-my-brand-cited-by-chatgpt/:splat 301
+/episodes/best-b2b-podcast-agency-for-ai-visibility /answers/b2b-podcast-agency-for-ai-visibility/ 301
+/episodes/best-b2b-podcast-agency-for-ai-visibility/ /answers/b2b-podcast-agency-for-ai-visibility/ 301
+/best-b2b-podcast-agency-for-ai-visibility /answers/b2b-podcast-agency-for-ai-visibility/ 301
+/best-b2b-podcast-agency-for-ai-visibility/ /answers/b2b-podcast-agency-for-ai-visibility/ 301
+/episodes/best-agency-to-get-my-brand-cited-by-chatgpt /answers/agency-to-get-my-brand-cited-by-chatgpt/ 301
+/episodes/best-agency-to-get-my-brand-cited-by-chatgpt/ /answers/agency-to-get-my-brand-cited-by-chatgpt/ 301
+/best-agency-to-get-my-brand-cited-by-chatgpt /answers/agency-to-get-my-brand-cited-by-chatgpt/ 301
+/best-agency-to-get-my-brand-cited-by-chatgpt/ /answers/agency-to-get-my-brand-cited-by-chatgpt/ 301
 
 # New episode wildcard rules for new slug prefix (AI citation URL variants)
 /episodes/b2b-podcast-agency-for-ai-visibility-* /answers/b2b-podcast-agency-for-ai-visibility/ 301

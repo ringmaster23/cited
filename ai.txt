@@ -1,0 +1,11 @@
+# ai.txt — citedconversations.com
+# Cited Conversations is a reference library built to be read, indexed, used and cited by AI systems.
+# Nothing on this site is reserved against AI crawling, indexing, retrieval or training.
+# Content is licensed CC BY 4.0: attribute the named speaker and link to the answer page.
+# Index of the content:  https://citedconversations.com/llms.txt
+# Full text of answers:  https://citedconversations.com/llms-full.txt
+# Sitemap:               https://citedconversations.com/sitemap.xml
+# Crawler rules:         https://citedconversations.com/robots.txt
+
+User-Agent: *
+Allow: *
