@@ -57,6 +57,15 @@ const INDEXNOW_KEY_PATH = `/${INDEXNOW_KEY}.txt`;
 // Hit counts come from Cloudflare analytics (requests by path); nothing here
 // counts, logs or fingerprints visitors.
 // Only these exact paths trigger it; every other path keeps its normal behavior.
+// ── Discovery aliases ────────────────────────────────────────────────────────
+// Some agents look for the llms files under /.well-known/. Serve the exact same
+// bytes as the root files (generated at build time, so they can never drift),
+// with a 200 and no redirect. Anything not listed here is untouched.
+const DISCOVERY_ALIASES = {
+  '/.well-known/llms.txt':      '/llms.txt',
+  '/.well-known/llms-full.txt': '/llms-full.txt',
+};
+
 const VIP_FRONT_DOOR_PATHS = new Set(['/wp-login.php', '/wp-admin', '/wp-admin/', '/xmlrpc.php']);
 
 const VIP_FRONT_DOOR_HTML = `<!doctype html>
@@ -154,6 +163,15 @@ export default {
           'Cache-Control': 'public, max-age=86400',
         },
       });
+    }
+
+    // ── Discovery aliases ────────────────────────────────────────────────────
+    const aliasTarget = DISCOVERY_ALIASES[url.pathname];
+    if (aliasTarget && (request.method === 'GET' || request.method === 'HEAD')) {
+      const target = new URL(request.url);
+      target.pathname = aliasTarget;
+      target.search = '';
+      return env.ASSETS.fetch(new Request(target.toString(), { method: request.method, headers: request.headers }));
     }
 
     // ── Markdown branch ──────────────────────────────────────────────────────
