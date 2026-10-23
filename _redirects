@@ -62,12 +62,18 @@
 # Old "best-" URLs, every variant, one hop to the final page (added 2026-10-23).
 # The two rules above only matched the trailing-slash form; crawlers also request
 # the bare path, /index.html, the transcript files and the episode paths.
+# Explicit rules only: a /* splat rule is evaluated before static rules and would
+# send /index.html through a second hop (via the trailing-slash redirect).
 /answers/best-b2b-podcast-agency-for-ai-visibility /answers/b2b-podcast-agency-for-ai-visibility/ 301
 /answers/best-b2b-podcast-agency-for-ai-visibility/index.html /answers/b2b-podcast-agency-for-ai-visibility/ 301
-/answers/best-b2b-podcast-agency-for-ai-visibility/* /answers/b2b-podcast-agency-for-ai-visibility/:splat 301
+/answers/best-b2b-podcast-agency-for-ai-visibility/transcript.txt /answers/b2b-podcast-agency-for-ai-visibility/transcript.txt 301
+/answers/best-b2b-podcast-agency-for-ai-visibility/transcript.vtt /answers/b2b-podcast-agency-for-ai-visibility/transcript.vtt 301
+/answers/best-b2b-podcast-agency-for-ai-visibility/index.md /answers/b2b-podcast-agency-for-ai-visibility/index.md 301
 /answers/best-agency-to-get-my-brand-cited-by-chatgpt /answers/agency-to-get-my-brand-cited-by-chatgpt/ 301
 /answers/best-agency-to-get-my-brand-cited-by-chatgpt/index.html /answers/agency-to-get-my-brand-cited-by-chatgpt/ 301
-/answers/best-agency-to-get-my-brand-cited-by-chatgpt/* /answers/agency-to-get-my-brand-cited-by-chatgpt/:splat 301
+/answers/best-agency-to-get-my-brand-cited-by-chatgpt/transcript.txt /answers/agency-to-get-my-brand-cited-by-chatgpt/transcript.txt 301
+/answers/best-agency-to-get-my-brand-cited-by-chatgpt/transcript.vtt /answers/agency-to-get-my-brand-cited-by-chatgpt/transcript.vtt 301
+/answers/best-agency-to-get-my-brand-cited-by-chatgpt/index.md /answers/agency-to-get-my-brand-cited-by-chatgpt/index.md 301
 /episodes/best-b2b-podcast-agency-for-ai-visibility /answers/b2b-podcast-agency-for-ai-visibility/ 301
 /episodes/best-b2b-podcast-agency-for-ai-visibility/ /answers/b2b-podcast-agency-for-ai-visibility/ 301
 /best-b2b-podcast-agency-for-ai-visibility /answers/b2b-podcast-agency-for-ai-visibility/ 301
