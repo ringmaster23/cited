@@ -19,6 +19,7 @@
  *      place a passage's time is written, times vs transcript.vtt, one label per answer,
  *      schema Quotation text == visible text, one Clip per passage, no mojibake / invalid
  *      UTF-8 in served text files. See the "Passage gates" section below.
+ *      Oct 27, 2026 (rule 8): host-join and host-question gates, and the verbatim gate now sees host speech.
  *   3. Integrity check on every answer page: fail the build if any page has
  *      a TOC anchor that has no matching body id, or if the number of rendered
  *      articles differs from the number of schema Clip nodes. A broken page
@@ -524,6 +525,10 @@ function integrityCheckAnswerPages() {
 //                   otherwise "Verbatim"
 //   quotation-text  schema Quotation text equals the visible passage text exactly
 //   clip-count      one Clip and one Quotation per passage
+//   host-join       guest words joined across host speech with no "…" (editorial rule 8)
+//   host-question   a cut over host speech needs the host's exact words shown with the answer, attributed to the
+//                   host, and the "Ellipsis added" tag (rule 8). Host crosstalk of five words or fewer that is
+//                   not a question is ignored (rule 8 exception).
 //   encoding        no mojibake and no invalid UTF-8 in any served text file
 //
 // Time rule: whole seconds on the page and in the schema; start rounds down, end
@@ -531,6 +536,18 @@ function integrityCheckAnswerPages() {
 
 var PG_VTT_TOLERANCE_MS = 3000;
 var PG_SPEAKERS = ['Casey Cheshire', 'Adam Needles', 'Simon Wilhelm'];
+// The Descript export sometimes leaves a raw track id ("casey_3_09-24-2026_111155:") inside a cue instead of the name.
+var PG_SPEAKER_ALIASES = { casey: 'Casey Cheshire', adam: 'Adam Needles', simon: 'Simon Wilhelm' };
+// Longest host stretch (in words) the cut checks will look across when following a quote through the transcript.
+var PG_HOST_SPAN_MAX = 1500;
+// Editorial rule 8 exception (Casey, 2026-10-27): short host crosstalk is ignored completely. A host turn of five words or
+// fewer that is not a question ("Got it.", "Right.", an echoed word) is treated as if it were not in the recording: no "\u2026",
+// not shown, no tag, no effect on the label. Anything longer, or any question, follows rule 8.
+var PG_CROSSTALK_MAX_WORDS = 5;
+
+function pgIsCrosstalk(text) {
+  return text.indexOf('?') === -1 && pgNorm(text).length <= PG_CROSSTALK_MAX_WORDS;
+}
 
 function pgDecode(s) {
   var named = { hellip: '\u2026', rsquo: '\u2019', lsquo: '\u2018', rdquo: '\u201d', ldquo: '\u201c', amp: '&',
@@ -587,24 +604,30 @@ function pgNorm(text) {
     .filter(function(w) { return w.length > 0; });
 }
 
+// Every token carries its cue, its speaker and the piece (a run of one speaker's words inside one cue) it came from.
+// The returned array also carries .pieces, the raw text of each piece, so a host turn can be shown word for word.
 function pgTokens(cues) {
   var out = [];
+  var allPieces = [];
   var spk = '';
-  var re = new RegExp('(' + PG_SPEAKERS.join('|') + '):\\s*', 'g');
+  var re = new RegExp('(' + PG_SPEAKERS.join('|') + '):\\s*|\\b(casey|adam|simon)_\\d+_[0-9-]+_\\d+:\\s*', 'g');
   cues.forEach(function(c, ci) {
     var last = 0, m, cur = spk, pieces = [];
     re.lastIndex = 0;
     while ((m = re.exec(c.t)) !== null) {
       if (m.index > last) pieces.push({ spk: cur, text: c.t.slice(last, m.index) });
-      cur = m[1];
+      cur = m[1] || PG_SPEAKER_ALIASES[m[2]];
       last = m.index + m[0].length;
     }
     pieces.push({ spk: cur, text: c.t.slice(last) });
     spk = cur;
     pieces.forEach(function(p) {
-      pgNorm(p.text).forEach(function(w) { out.push({ w: w, cue: ci, spk: p.spk }); });
+      var pc = allPieces.length;
+      allPieces.push({ spk: p.spk, text: p.text.replace(/\s+/g, ' ').trim(), cue: ci });
+      pgNorm(p.text).forEach(function(w) { out.push({ w: w, cue: ci, spk: p.spk, pc: pc }); });
     });
   });
+  out.pieces = allPieces;
   return out;
 }
 
@@ -682,6 +705,97 @@ function pgLocate(text, v, cues, hintSec, spk) {
   return { startMs: Math.round(cues[v[firstTok].cue].s * 1000), endMs: Math.round(cues[v[lastTok].cue].e * 1000) };
 }
 
+// ---- host speech inside an answer (editorial rule 8) ----
+//
+// Follows each segment of a passage (the text between two "…") through transcript.vtt and looks at what sits
+// between the guest words that were kept:
+//   joins  host speech between two guest words that the page shows back to back, with no "…"   -> never allowed
+//   cuts   host speech inside a stretch the page replaced with "…"                              -> allowed, but the
+//          host's words must be shown with the answer and the answer must carry the "Ellipsis added" tag
+// A host turn is { spk, text, startMs, endMs }: the host's exact words from the cues, and the first and last cue time.
+
+// ordered match of seg starting exactly at v[from], returning the token index of every matched word.
+// Unlike pgMatchAt it lets any amount of other-speaker talk sit between two matched words (up to PG_HOST_SPAN_MAX),
+// so the caller can see it. Same-speaker words may still be skipped (false starts, repeats), as in pgMatchAt.
+function pgMatchPath(seg, v, from) {
+  var spk = v[from].spk, path = [], vi = from;
+  for (var si = 0; si < seg.length; si++) {
+    var found = -1;
+    if (si === 0) {
+      if (v[vi].w === seg[0]) found = vi;
+    } else {
+      var same = 0;
+      for (var k = 0; vi + k < v.length && k < PG_HOST_SPAN_MAX; k++) {
+        var t = v[vi + k];
+        if (t.spk !== spk) continue;
+        if (t.w === seg[si]) { found = vi + k; break; }
+        same++;
+        if (same > 8) break;
+      }
+    }
+    if (found < 0) return null;
+    path.push(found);
+    vi = found + 1;
+  }
+  return path;
+}
+
+function pgFindPath(seg, v, cues, fromIdx, hintSec, spk) {
+  var best = null, bestScore = 0;
+  for (var i = fromIdx; i < v.length; i++) {
+    if (v[i].w !== seg[0] || v[i].spk !== spk) continue;
+    var path = pgMatchPath(seg, v, i);
+    if (!path) continue;
+    var sc = hintSec === null ? 0 : Math.abs(cues[v[i].cue].s - hintSec);
+    if (best === null || sc < bestScore) { best = path; bestScore = sc; }
+    if (hintSec === null) break;
+  }
+  return best;
+}
+
+// the other speaker's turns between guest tokens a and b (exclusive), with their exact words and times
+function pgHostBetween(v, cues, a, b, spk) {
+  var pieces = v.pieces, raw = [], cur = null;
+  for (var k = a + 1; k < b; k++) {
+    var t = v[k];
+    if (t.spk === spk) { cur = null; continue; }
+    if (cur && cur.spk === t.spk) { cur.lastPc = t.pc; cur.lastCue = t.cue; continue; }
+    cur = { spk: t.spk, firstPc: t.pc, lastPc: t.pc, firstCue: t.cue, lastCue: t.cue };
+    raw.push(cur);
+  }
+  return raw.map(function(c) {
+    var words = [];
+    for (var p = c.firstPc; p <= c.lastPc; p++) { if (pieces[p].spk === c.spk && pieces[p].text) words.push(pieces[p].text); }
+    var said = words.join(' ').replace(/\s+/g, ' ').trim();
+    return { spk: c.spk, text: said, crosstalk: pgIsCrosstalk(said),
+             startMs: Math.round(cues[c.firstCue].s * 1000), endMs: Math.round(cues[c.lastCue].e * 1000) };
+  });
+}
+
+// host turns that count under rule 8 (crosstalk left out)
+function pgHostRealBetween(v, cues, a, b, spk) {
+  return pgHostBetween(v, cues, a, b, spk).filter(function(t) { return !t.crosstalk; });
+}
+
+// ok = false when the passage's words could not be followed through the transcript (the verbatim and timing gates
+// report that); otherwise the host turns found as joins (no "…") and as cuts (at a "…")
+function pgPassageHostCuts(text, v, cues, hintSec, spk) {
+  var segs = text.split('\u2026').map(pgNorm).filter(function(s) { return s.length > 0; });
+  var res = { ok: true, joins: [], cuts: [] };
+  var idx = 0, prevLast = -1;
+  for (var si = 0; si < segs.length; si++) {
+    var path = pgFindPath(segs[si], v, cues, si === 0 ? 0 : idx, si === 0 ? hintSec : null, spk);
+    if (!path) return { ok: false, joins: [], cuts: [] };
+    for (var j = 1; j < path.length; j++) {
+      if (path[j] - path[j - 1] > 1) res.joins = res.joins.concat(pgHostRealBetween(v, cues, path[j - 1], path[j], spk));
+    }
+    if (prevLast >= 0) res.cuts = res.cuts.concat(pgHostRealBetween(v, cues, prevLast, path[0], spk));
+    prevLast = path[path.length - 1];
+    idx = prevLast + 1;
+  }
+  return res;
+}
+
 // ---- parse one answer page ----
 
 function pgParsePage(html) {
@@ -698,6 +812,23 @@ function pgParsePage(html) {
     var labels = [];
     var lre = /<span class="answer-label answer-label--([a-z-]+)"[^>]*>([^<]*)<\/span>/g, lm;
     while ((lm = lre.exec(region)) !== null) labels.push({ cls: lm[1], text: lm[2] });
+    // "Ellipsis added" tags (rule 8) sit with the label, before the article
+    var tags = [];
+    var tre = /<span class="answer-tag[^"]*"[^>]*>([^<]*)<\/span>/g, tm;
+    while ((tm = tre.exec(region)) !== null) tags.push(tm[1].trim());
+    // host words shown with the answer (rule 8)
+    var hostQs = [];
+    var hre = /<div class="question-field question-field--host"([^>]*)>([\s\S]*?)<\/div>/g, hm;
+    while ((hm = hre.exec(a)) !== null) {
+      var hs = hm[1].match(/data-host-speaker="([^"]*)"/), hst = hm[1].match(/data-vtt-start="(\d+)"/), het = hm[1].match(/data-vtt-end="(\d+)"/);
+      var hwho = hm[2].match(/<span class="question-speaker"[^>]*>([\s\S]*?)<\/span>/);
+      var htxt = hm[2].match(/<span class="question-text"[^>]*>([\s\S]*?)<\/span>/);
+      var hrange = hm[2].match(/<span class="question-time"[^>]*>([\s\S]*?)<\/span>/);
+      hostQs.push({
+        speaker: hs ? pgDecode(hs[1]) : '', startMs: hst ? parseInt(hst[1], 10) : null, endMs: het ? parseInt(het[1], 10) : null,
+        shownSpeaker: hwho ? pgText(hwho[1]) : '', text: htxt ? pgText(htxt[1]) : '', shownRange: hrange ? pgRange(pgText(hrange[1])) : null
+      });
+    }
 
     var ds = a.match(/data-vtt-start="(\d+)"/), de = a.match(/data-vtt-end="(\d+)"/);
     var paper = a.match(/<div class="qa-item__paper">([\s\S]*?)<\/div>/);
@@ -722,7 +853,7 @@ function pgParsePage(html) {
       speaker: spkM ? spkM[1] : '',
       dataStart: ds ? parseInt(ds[1], 10) : null,
       dataEnd: de ? parseInt(de[1], 10) : null,
-      labels: labels, passages: passages, anchors: anchors,
+      labels: labels, tags: tags, hostQs: hostQs, passages: passages, anchors: anchors,
       hasEllipsis: passages.some(function(p) { return p.text.indexOf('\u2026') !== -1; })
     });
     prevEnd = m.index + a.length;
@@ -756,10 +887,14 @@ function passageGates() {
     // schema nodes
     var graph = [];
     try { graph = JSON.parse(getJsonLdBlock(html))['@graph'] || []; } catch (e) { graph = []; }
-    var clips = {}, quotes = {}, clipTotal = 0, quoteTotal = 0;
+    var clips = {}, quotes = {}, hostQuotes = {}, clipTotal = 0, quoteTotal = 0;
     graph.forEach(function(n) {
       if (n['@type'] === 'Clip') { clips[n['@id']] = n; clipTotal++; }
-      if (n['@type'] === 'Quotation') { quotes[n['@id']] = n; quoteTotal++; }
+      if (n['@type'] === 'Quotation') {
+        // a host question shown with an answer (rule 8) is its own Quotation, by the host; it is not an answer passage
+        if (/-host-question-\d+$/.test(String(n['@id']))) hostQuotes[n['@id']] = n;
+        else { quotes[n['@id']] = n; quoteTotal++; }
+      }
     });
     var passageTotal = arts.reduce(function(sum, a) { return sum + a.passages.length; }, 0);
     if (clipTotal !== passageTotal) {
@@ -871,6 +1006,59 @@ function passageGates() {
       if (envMin !== null && (art.dataStart !== envMin || art.dataEnd !== envMax)) {
         fail('timing-agree', slug, art, 'article data-vtt window ' + art.dataStart + '\u2013' + art.dataEnd + 'ms does not match its passages (' + envMin + '\u2013' + envMax + 'ms).');
       }
+
+      // Host speech inside the answer (editorial rule 8).
+      //  host-join      guest words joined across host speech with no "\u2026"
+      //  host-question  a cut over host speech needs the host's exact words shown with the answer, attributed to the
+      //                 host, and the "Ellipsis added" tag
+      var hostNeeded = [];
+      if (vtok.length) {
+        for (var hi = 0; hi < n; hi++) {
+          var hp = art.passages[hi];
+          if (hp.startMs === null) continue;
+          var hc = pgPassageHostCuts(hp.text, vtok, cues, hp.startMs / 1000, art.speaker);
+          if (!hc.ok) continue;
+          var hwhere = n > 1 ? 'passage ' + (hi + 1) : 'the answer';
+          hc.joins.forEach(function(t) {
+            fail('host-join', slug, art, hwhere + ' joins the guest\u2019s words across ' + t.spk + ' speaking (' + pgClock(Math.floor(t.startMs / 1000)) +
+              '\u2013' + pgClock(Math.ceil(t.endMs / 1000)) + ', \u201C' + t.text + '\u201D) with no \u201C\u2026\u201D. Mark the join with \u201C\u2026\u201D, ' +
+              'show the host\u2019s words with the answer and add the \u201CEllipsis added\u201D tag (editorial rule 8).');
+          });
+          hostNeeded = hostNeeded.concat(hc.cuts);
+        }
+      }
+      if (hostNeeded.length) {
+        var needSummary = hostNeeded.map(function(t) { return t.spk + ' \u201C' + t.text + '\u201D (' + pgClock(Math.floor(t.startMs / 1000)) + '\u2013' + pgClock(Math.ceil(t.endMs / 1000)) + ')'; }).join('; ');
+        if (art.tags.length !== 1 || art.tags[0] !== 'Ellipsis added') {
+          fail('host-question', slug, art, 'a \u201C\u2026\u201D in this answer replaces host speech (' + needSummary + ') but the answer ' +
+            (art.tags.length === 0 ? 'has no \u201CEllipsis added\u201D tag.' : 'has the tag(s) \u201C' + art.tags.join('\u201D, \u201C') + '\u201D instead of exactly one \u201CEllipsis added\u201D.') + ' (Rule 8.)');
+        }
+        if (art.hostQs.length === 0) {
+          fail('host-question', slug, art, 'a \u201C\u2026\u201D in this answer replaces host speech (' + needSummary + ') but the host\u2019s words are not shown with the answer. ' +
+            'Show them word for word, attributed to the host (rule 8).');
+        } else if (art.hostQs.length !== hostNeeded.length) {
+          fail('host-question', slug, art, art.hostQs.length + ' host turn' + (art.hostQs.length === 1 ? ' is' : 's are') + ' shown but ' + hostNeeded.length +
+            ' ' + (hostNeeded.length === 1 ? 'was' : 'were') + ' cut from the answer: ' + needSummary + '.');
+        } else {
+          for (var qi = 0; qi < hostNeeded.length; qi++) {
+            var need = hostNeeded[qi], shownQ = art.hostQs[qi];
+            var qprob = [];
+            if (shownQ.text !== need.text) qprob.push('shows \u201C' + shownQ.text + '\u201D but the transcript has \u201C' + need.text + '\u201D');
+            if (shownQ.speaker !== need.spk || shownQ.shownSpeaker !== need.spk) qprob.push('is not attributed to ' + need.spk);
+            if (shownQ.startMs !== need.startMs || shownQ.endMs !== need.endMs) qprob.push('has times ' + shownQ.startMs + '\u2013' + shownQ.endMs + 'ms but the cues are ' + need.startMs + '\u2013' + need.endMs + 'ms');
+            var wantR = [Math.floor(need.startMs / 1000), Math.ceil(need.endMs / 1000)];
+            if (!shownQ.shownRange || shownQ.shownRange[0] !== wantR[0] || shownQ.shownRange[1] !== wantR[1]) qprob.push('shows the time range ' + (shownQ.shownRange ? pgClock(shownQ.shownRange[0]) + '\u2013' + pgClock(shownQ.shownRange[1]) : 'none') + ' instead of ' + pgClock(wantR[0]) + '\u2013' + pgClock(wantR[1]));
+            if (qprob.length) fail('host-question', slug, art, 'the shown host question ' + (qi + 1) + ' ' + qprob.join('; ') + '.');
+          }
+        }
+      }
+      // each shown host question is its own schema Quotation, by the host, with the same words
+      art.hostQs.forEach(function(hq, hi2) {
+        var hqid = 'https://citedconversations.com/answers/' + slug + '/#' + qid + '-host-question-' + (hi2 + 1);
+        var hqn = hostQuotes[hqid];
+        if (!hqn) fail('quotation-text', slug, art, 'schema Quotation ' + hqid.split('#')[1] + ' is missing for the shown host question ' + (hi2 + 1) + '.');
+        else if (hqn.text !== hq.text) fail('quotation-text', slug, art, 'schema Quotation ' + hqid.split('#')[1] + ' text \u201C' + hqn.text + '\u201D differs from the visible host question \u201C' + hq.text + '\u201D.');
+      });
     }
   }
 
@@ -1043,12 +1231,26 @@ function isFiller(w, p1, p2, p3, p4, midSeg) {
   return false;
 }
 
+// The other speaker's words are kept in the stream as one marker per turn (VTT_HOST_MARK + who + what they said), so a
+// quote that runs straight across host speech cannot match: it needs a "…" there (editorial rule 8). The marker's
+// text is never equal to a word of the page, and the host's words are available for the error message.
+var VTT_HOST_MARK = '\u0001';
+
 function buildVttWordStream(cues, startMs, endMs, speaker) {
   var SLACK   = 10000;
   var rawWords = [];
   cues.forEach(function(c) {
-    if (c.speaker !== speaker) return;
     if (c.endMs < startMs - SLACK || c.startMs > endMs + SLACK) return;
+    if (c.speaker !== speaker) {
+      var last = rawWords.length - 1;
+      var said = c.speaker + ': ' + c.text;
+      if (last >= 0 && rawWords[last].charAt(0) === VTT_HOST_MARK && rawWords[last].indexOf(VTT_HOST_MARK + c.speaker + ': ') === 0) {
+        rawWords[last] += ' ' + c.text;
+      } else {
+        rawWords.push(VTT_HOST_MARK + said);
+      }
+      return;
+    }
     c.text.split(/\s+/).forEach(function(w) {
       if (!w) return;
       // Split Descript merged false-starts: ≤2 lowercase chars before internal hyphen
@@ -1069,14 +1271,18 @@ function buildVttWordStream(cues, startMs, endMs, speaker) {
   // isFiller() can still recognize them.
   var merged = [];
   for (var i = 0; i < rawWords.length; i++) {
-    if (rawWords[i].endsWith('-') && /[A-Z]/.test(rawWords[i]) && i + 1 < rawWords.length) {
+    if (rawWords[i].endsWith('-') && /[A-Z]/.test(rawWords[i]) && rawWords[i].charAt(0) !== VTT_HOST_MARK &&
+        i + 1 < rawWords.length && rawWords[i + 1].charAt(0) !== VTT_HOST_MARK) {
       merged.push(rawWords[i] + rawWords[i + 1]);
       i++;
     } else {
       merged.push(rawWords[i]);
     }
   }
-  return merged;
+  // short host crosstalk (five words or fewer, not a question) is ignored completely (editorial rule 8 exception)
+  return merged.filter(function(w) {
+    return w.charAt(0) !== VTT_HOST_MARK || !pgIsCrosstalk(w.slice(w.indexOf(': ') + 2));
+  });
 }
 
 function normalizeSegment(text) {
@@ -1109,7 +1315,7 @@ function matchSegment(segWords, vWords, from) {
       else if (isFiller(vWords[vi2], p1, p2, p3, p4, si > 0)) { vi2++; }
       else { ok = false; break; }
     }
-    if (ok) return { ok: true, end: vi2 };
+    if (ok) return { ok: true, start: vi, end: vi2 };
     // Keep searching — no early break on mismatch
   }
   return {
@@ -1162,6 +1368,28 @@ function extractQuoteTexts(blockHtml, isSynthesisArticle) {
   }
 }
 
+// When a segment does not match the transcript, see whether it WOULD match if the host's words were ignored. If so the
+// quote joins the guest's words across host speech, and the message says who spoke in between and what they said.
+function diagnoseHostJoin(segWords, vttWordStream) {
+  var stripped = [], orig = [];
+  for (var i = 0; i < vttWordStream.length; i++) {
+    if (vttWordStream[i].charAt(0) === VTT_HOST_MARK) continue;
+    stripped.push(vttWordStream[i]);
+    orig.push(i);
+  }
+  var r = matchSegment(segWords, stripped, 0);
+  if (!r.ok) return null;
+  var said = [];
+  for (var k = orig[r.start]; k <= orig[r.end - 1]; k++) {
+    if (vttWordStream[k].charAt(0) === VTT_HOST_MARK) said.push(vttWordStream[k].slice(1));
+  }
+  if (!said.length) return null;
+  return 'Guest words are joined across host speech with no \u201C\u2026\u201D (editorial rule 8):\n' +
+    '      Answer has:   \u201C' + segWords.slice(0, 9).join(' ') + (segWords.length > 9 ? ' \u2026' : '') + '\u201D\n' +
+    '      In between:   ' + said.map(function(s) { return '\u201C' + s + '\u201D'; }).join(' then ') + '\n' +
+    '      Mark the join with \u201C\u2026\u201D, show the host\u2019s words with the answer and add the \u201CEllipsis added\u201D tag.';
+}
+
 function strictVerbatimCheck(pageTexts, vttWordStream) {
   if (!vttWordStream || vttWordStream.length < 3) {
     return ['Transcript extract is empty \u2014 check the data-vtt-speaker attribute and time range on this article.'];
@@ -1176,6 +1404,8 @@ function strictVerbatimCheck(pageTexts, vttWordStream) {
       if (segWords.length === 0) continue;
       var result = matchSegment(segWords, vttWordStream, vIdx);
       if (!result.ok) {
+        var hostJoinMsg = diagnoseHostJoin(segWords, vttWordStream);
+        if (hostJoinMsg) { errors.push(hostJoinMsg); break; }
         var answerSnippet = segWords.slice(0, 7).join(' ') + (segWords.length > 7 ? ' \u2026' : '');
         var vttSnippet    = vttWordStream
           .slice(Math.max(0, vIdx - 2), vIdx + 14)
@@ -1204,14 +1434,6 @@ function strictVerbatimCheck(pageTexts, vttWordStream) {
 var EPISODE_SPEAKERS = {
   'b2b-podcast-agency-for-ai-visibility':         ['Casey Cheshire', 'Adam Needles'],
   'agency-to-get-my-brand-cited-by-chatgpt':      ['Simon Wilhelm', 'Casey Cheshire'],
-};
-
-// Known verbatim exceptions, written down here so they are visible instead of silent.
-// These two Ep 002 answers join words across a host interjection without a "…" (editorial rule 2: every cut is marked).
-// Until Casey decides (mark the cuts, or drop the answers) the build WARNS instead of failing. Before Oct 27, 2026 they were
-// skipped with no message at all, because their (too wide) time window overlapped a speaker-removed range (EP002_EXCLUDED).
-var VERBATIM_WAIVERS = {
-  'agency-to-get-my-brand-cited-by-chatgpt': ['q13', 'q15']
 };
 
 var EP002_EXCLUDED = [
@@ -1347,13 +1569,6 @@ function verbatimCheckAnswerPages() {
         var qIdMatch  = bm[0].match(/id="(q\d+)"/);
         var qId       = qIdMatch ? qIdMatch[1] : '?';
         var qText     = extractQuestionText(blockHtml);
-        if ((VERBATIM_WAIVERS[slug] || []).indexOf(qId) !== -1) {
-          var wmsg = 'Verbatim check WAIVED for ' + qId.toUpperCase() + ': ' + errs[0].split('\n')[0] +
-                     ' (unmarked cut inside the answer — needs an editorial decision; see VERBATIM_WAIVERS in build.js).';
-          console.warn('  ⚠ ' + slug + ' ' + wmsg);
-          reportWarning('verbatim', slug, qId, qText, wmsg);
-          continue;
-        }
         var qLabel    = qText
           ? (qId.toUpperCase() + ' \u2014 \u201C' + qText + '\u201D')
           : qId;

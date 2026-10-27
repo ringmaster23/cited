@@ -4,6 +4,15 @@
   {
    "date": "2026-10-27",
    "dateHuman": "October 27, 2026",
+   "description": "Editorial rule 8 (host questions inside answers) applied to Ep 002. Where the host asks a question, or speaks more than five words, in the middle of a guest answer and the guest carries on, the guest's words are joined with an ellipsis, the host's words are shown with the answer word for word and attributed to the host, and the answer carries an 'Ellipsis added' tag and the Edited label (q6, q7, q9, q17). Short host crosstalk (five words or fewer, not a question) is ignored. Unmarked cuts in q13 and q15 are now marked with an ellipsis. Schema: the tag is a keyword on the answer's Clip and Quotation; each shown host question is its own Quotation by the host. Build: new host-join and host-question gates; the verbatim gate now sees host speech; the q13/q15 waivers are removed. No answer wording was changed.",
+   "pages": [
+    "agency-to-get-my-brand-cited-by-chatgpt",
+    "best-agency-to-get-my-brand-cited-by-chatgpt"
+   ]
+  },
+  {
+   "date": "2026-10-27",
+   "dateHuman": "October 27, 2026",
    "description": "Answer timing, label and encoding corrections on both answer pages. (1) Every answer's start–end time, play link, aria-label, data-vtt window and schema Clip offsets now come from where its words are actually spoken in transcript.vtt (the Descript export); earlier ranges ran from the question to the end of the speaker's turn and the places disagreed. (2) Ep 002 q7, q8, q9 and q12 now show each of their two passages with its own time and link, with one schema Clip and Quotation per passage. (3) Added the missing Verbatim/Edited labels (q1 on both pages, Ep 002 q18 had two) and corrected labels that contradicted the ellipsis rule. (4) Schema Quotation text now equals the visible answer text. (5) Fixed garbled arrow/dash characters on the Ep 001 page and restored Ep 001 transcript.vtt/.txt and Ep 002 transcript.txt, which had been saved as lists of byte numbers. (6) Added build gates for timing agreement, labels, schema text, clip count and file encoding. No answer wording was changed.",
    "pages": [
     "b2b-podcast-agency-for-ai-visibility",

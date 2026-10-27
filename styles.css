@@ -1152,6 +1152,34 @@ p.section-label, span.section-label {
   margin-right: 0.35rem;
 }
 
+/* "Ellipsis added" tag (editorial rule 8): sits beside the Verbatim/Edited label */
+.answer-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-family: var(--font-mono, monospace);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #7a6a2a;
+  background: #fdf9f0;
+  border: 1px solid #c8a84b;
+  border-radius: 2px;
+  padding: 1px 5px;
+  margin-left: 0.35rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+/* Host words cut from an answer (rule 8), shown with the answer, word for word */
+.question-field--host {
+  font-style: normal;
+  margin: 0.5rem 0 0.75rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--border, #ddd);
+}
+.question-field--host .question-speaker { font-weight: 600; color: var(--text, #1a1a1a); }
+.question-field--host .question-time { font-family: var(--font-mono, monospace); font-size: 0.8em; }
+.question-field--host .question-text { font-style: italic; }
+
 /* Paraphrase heading note */
 .heading-note {
   display: block;

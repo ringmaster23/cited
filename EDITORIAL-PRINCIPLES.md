@@ -15,6 +15,8 @@ Cited Conversations exists to preserve human answers. Every answer is the expert
 5. **Source of truth is the real transcript** (the producer's Riverside/Descript export with second-level timing), never machine transcription of audio or YouTube captions.
 6. **Editor text stays out of the answer.** Question headings are written by editors and say so. Nothing in brackets or editor wording goes inside a quote.
 7. **Enforced in code.** The page builder refuses to publish any answer that doesn't match the transcript under these rules. A human check is not a substitute for the gate.
+8. **A host question in the middle of an answer is cut with "…" and shown.** (Added by Casey, 2026-10-27.) When the host asks a question partway through the guest's answer and the guest carries on, the host's words may be cut and replaced with an ellipsis (…). The host's question is then shown with that answer, word for word and attributed to the host, so the reader sees what was asked. Every answer where this happens carries an "Ellipsis added" tag. Joining the guest's words across host speech without the ellipsis, the shown question and the tag is never allowed.
+   **Exception: short host crosstalk is ignored completely.** (Casey, 2026-10-27.) Brief host backchannel that overlaps or interrupts the guest without asking anything, such as "Got it.", "Right.", "Yeah", "Mm-hmm" or an echoed word or two, is treated as if it wasn't there. It isn't marked with an ellipsis, isn't shown and isn't tagged, and doesn't change the label. The test is: five words or fewer from the host, and not a question. Anything longer, or any question, follows rule 8.
 
 ## Origin
 
