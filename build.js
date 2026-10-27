@@ -20,6 +20,8 @@
  *      schema Quotation text == visible text, one Clip per passage, no mojibake / invalid
  *      UTF-8 in served text files. See the "Passage gates" section below.
  *      Oct 27, 2026 (rule 8): host-join and host-question gates, and the verbatim gate now sees host speech.
+ *      Oct 27, 2026 (rule 8 exception, refined): crosstalk is declared per host run in the article's data-crosstalk attribute;
+ *      the five-word test is gone. See the host-run notes in the Passage gates section.
  *   3. Integrity check on every answer page: fail the build if any page has
  *      a TOC anchor that has no matching body id, or if the number of rendered
  *      articles differs from the number of schema Clip nodes. A broken page
@@ -527,8 +529,10 @@ function integrityCheckAnswerPages() {
 //   clip-count      one Clip and one Quotation per passage
 //   host-join       guest words joined across host speech with no "…" (editorial rule 8)
 //   host-question   a cut over host speech needs the host's exact words shown with the answer, attributed to the
-//                   host, and the "Ellipsis added" tag (rule 8). Host crosstalk of five words or fewer that is
-//                   not a question is ignored (rule 8 exception).
+//                   host, and the "Ellipsis added" tag (rule 8).
+//                   Both gates need every host run inside an answer's span to be declared: a shown host question, or
+//                   crosstalk listed in the article's data-crosstalk attribute (rule 8 exception). A run containing
+//                   a "?" can never be declared crosstalk.
 //   encoding        no mojibake and no invalid UTF-8 in any served text file
 //
 // Time rule: whole seconds on the page and in the schema; start rounds down, end
@@ -540,13 +544,23 @@ var PG_SPEAKERS = ['Casey Cheshire', 'Adam Needles', 'Simon Wilhelm'];
 var PG_SPEAKER_ALIASES = { casey: 'Casey Cheshire', adam: 'Adam Needles', simon: 'Simon Wilhelm' };
 // Longest host stretch (in words) the cut checks will look across when following a quote through the transcript.
 var PG_HOST_SPAN_MAX = 1500;
-// Editorial rule 8 exception (Casey, 2026-10-27): short host crosstalk is ignored completely. A host turn of five words or
-// fewer that is not a question ("Got it.", "Right.", an echoed word) is treated as if it were not in the recording: no "\u2026",
-// not shown, no tag, no effect on the label. Anything longer, or any question, follows rule 8.
-var PG_CROSSTALK_MAX_WORDS = 5;
+// Editorial rule 8 exception (Casey, 2026-10-27): host crosstalk is ignored completely. Crosstalk is any host remark that does
+// not help the answer (an acknowledgement, an agreement, an echo, a side comment), however long. The test is whether the host's
+// words shape what the guest says next. Crosstalk gets no "\u2026", is not shown anywhere, has no tag, does not change the label
+// and does not invalidate the answer.
+//
+// Code cannot judge usefulness, so a person decides and writes the decision down. Every host run inside an answer's span (a run
+// is the consecutive cues of one other speaker between two of the guest's words) is either a shown host question (rule 8) or
+// listed in the article's data-crosstalk attribute: the start time in milliseconds of each ignored run (its first cue, the same
+// clock as data-vtt-start), separated by spaces. data-crosstalk is never rendered and is never copied into the schema, llms or
+// markdown output. A run that contains a "?" can never be declared crosstalk.
+function pgParseCrosstalk(attr) {
+  return (attr || '').split(/\s+/).filter(function(s) { return s.length > 0; }).map(function(s) { return parseInt(s, 10); });
+}
 
-function pgIsCrosstalk(text) {
-  return text.indexOf('?') === -1 && pgNorm(text).length <= PG_CROSSTALK_MAX_WORDS;
+// the host run starting at run.startMs is declared crosstalk (and is not a question)
+function pgIsDeclaredCrosstalk(declared, run) {
+  return declared.indexOf(run.startMs) !== -1 && run.text.indexOf('?') === -1;
 }
 
 function pgDecode(s) {
@@ -767,14 +781,9 @@ function pgHostBetween(v, cues, a, b, spk) {
     var words = [];
     for (var p = c.firstPc; p <= c.lastPc; p++) { if (pieces[p].spk === c.spk && pieces[p].text) words.push(pieces[p].text); }
     var said = words.join(' ').replace(/\s+/g, ' ').trim();
-    return { spk: c.spk, text: said, crosstalk: pgIsCrosstalk(said),
+    return { spk: c.spk, text: said,
              startMs: Math.round(cues[c.firstCue].s * 1000), endMs: Math.round(cues[c.lastCue].e * 1000) };
   });
-}
-
-// host turns that count under rule 8 (crosstalk left out)
-function pgHostRealBetween(v, cues, a, b, spk) {
-  return pgHostBetween(v, cues, a, b, spk).filter(function(t) { return !t.crosstalk; });
 }
 
 // ok = false when the passage's words could not be followed through the transcript (the verbatim and timing gates
@@ -787,9 +796,9 @@ function pgPassageHostCuts(text, v, cues, hintSec, spk) {
     var path = pgFindPath(segs[si], v, cues, si === 0 ? 0 : idx, si === 0 ? hintSec : null, spk);
     if (!path) return { ok: false, joins: [], cuts: [] };
     for (var j = 1; j < path.length; j++) {
-      if (path[j] - path[j - 1] > 1) res.joins = res.joins.concat(pgHostRealBetween(v, cues, path[j - 1], path[j], spk));
+      if (path[j] - path[j - 1] > 1) res.joins = res.joins.concat(pgHostBetween(v, cues, path[j - 1], path[j], spk));
     }
-    if (prevLast >= 0) res.cuts = res.cuts.concat(pgHostRealBetween(v, cues, prevLast, path[0], spk));
+    if (prevLast >= 0) res.cuts = res.cuts.concat(pgHostBetween(v, cues, prevLast, path[0], spk));
     prevLast = path[path.length - 1];
     idx = prevLast + 1;
   }
@@ -854,6 +863,8 @@ function pgParsePage(html) {
       dataStart: ds ? parseInt(ds[1], 10) : null,
       dataEnd: de ? parseInt(de[1], 10) : null,
       labels: labels, tags: tags, hostQs: hostQs, passages: passages, anchors: anchors,
+      // host runs declared as crosstalk (start times in ms); read from the article's own opening tag only
+      crosstalk: pgParseCrosstalk((((a.match(/^<article[^>]*>/) || [''])[0]).match(/data-crosstalk="([^"]*)"/) || [])[1]),
       hasEllipsis: passages.some(function(p) { return p.text.indexOf('\u2026') !== -1; })
     });
     prevEnd = m.index + a.length;
@@ -1012,6 +1023,7 @@ function passageGates() {
       //  host-question  a cut over host speech needs the host's exact words shown with the answer, attributed to the
       //                 host, and the "Ellipsis added" tag
       var hostNeeded = [];
+      var crossUsed = {};
       if (vtok.length) {
         for (var hi = 0; hi < n; hi++) {
           var hp = art.passages[hi];
@@ -1019,26 +1031,52 @@ function passageGates() {
           var hc = pgPassageHostCuts(hp.text, vtok, cues, hp.startMs / 1000, art.speaker);
           if (!hc.ok) continue;
           var hwhere = n > 1 ? 'passage ' + (hi + 1) : 'the answer';
+          // every host run inside the span is declared: a shown host question (a cut, below) or crosstalk (data-crosstalk)
+          hc.joins.concat(hc.cuts).forEach(function(t) {
+            if (art.crosstalk.indexOf(t.startMs) === -1) return;
+            crossUsed[t.startMs] = true;
+            if (!pgIsDeclaredCrosstalk(art.crosstalk, t)) {
+              fail('host-question', slug, art, hwhere + ': the host run at ' + pgClock(Math.floor(t.startMs / 1000)) + '\u2013' + pgClock(Math.ceil(t.endMs / 1000)) +
+                ' (' + t.spk + ' \u201C' + t.text + '\u201D) is declared crosstalk in data-crosstalk but it contains a \u201C?\u201D. A host question can never be crosstalk. ' +
+                'Remove it from data-crosstalk, mark the cut with \u201C\u2026\u201D, show the question with the answer and add the \u201CEllipsis added\u201D tag (editorial rule 8).');
+            }
+          });
           hc.joins.forEach(function(t) {
+            if (art.crosstalk.indexOf(t.startMs) !== -1) return;
             fail('host-join', slug, art, hwhere + ' joins the guest\u2019s words across ' + t.spk + ' speaking (' + pgClock(Math.floor(t.startMs / 1000)) +
-              '\u2013' + pgClock(Math.ceil(t.endMs / 1000)) + ', \u201C' + t.text + '\u201D) with no \u201C\u2026\u201D. Mark the join with \u201C\u2026\u201D, ' +
+              '\u2013' + pgClock(Math.ceil(t.endMs / 1000)) + ', \u201C' + t.text + '\u201D, starts at ' + t.startMs + ' ms) and the page does not say what that host run is. ' +
+              (t.text.indexOf('?') === -1
+                ? 'If it does not help the answer (the host\u2019s words do not shape what the guest says next), declare it crosstalk: add ' + t.startMs + ' to data-crosstalk on this article. Otherwise mark the join with \u201C\u2026\u201D, '
+                : 'A host run with a \u201C?\u201D can never be crosstalk. Mark the join with \u201C\u2026\u201D, ') +
               'show the host\u2019s words with the answer and add the \u201CEllipsis added\u201D tag (editorial rule 8).');
           });
-          hostNeeded = hostNeeded.concat(hc.cuts);
+          hostNeeded = hostNeeded.concat(hc.cuts.filter(function(t) { return art.crosstalk.indexOf(t.startMs) === -1; }));
         }
+      }
+      // a declaration that matches no host run inside this answer is reported (never fails the build)
+      if (vtok.length) {
+        art.crosstalk.forEach(function(ms) {
+          if (crossUsed[ms]) return;
+          var wmsg = 'data-crosstalk lists ' + ms + ' but no host run starts there inside this answer\u2019s span. Remove it or correct the time.';
+          console.warn('  \u26a0 HOST-CROSSTALK (' + slug + ') ' + qid.toUpperCase() + ': ' + wmsg);
+          reportWarning('host-crosstalk', slug, qid, art.question, wmsg);
+        });
       }
       if (hostNeeded.length) {
         var needSummary = hostNeeded.map(function(t) { return t.spk + ' \u201C' + t.text + '\u201D (' + pgClock(Math.floor(t.startMs / 1000)) + '\u2013' + pgClock(Math.ceil(t.endMs / 1000)) + ')'; }).join('; ');
+        var crossHint = hostNeeded.some(function(t) { return t.text.indexOf('?') !== -1; }) ? '' :
+          ' If these host words do not help the answer (the host\u2019s words do not shape what the guest says next), declare each as crosstalk instead: data-crosstalk="' +
+          hostNeeded.map(function(t) { return t.startMs; }).join(' ') + '" on the article.';
         if (art.tags.length !== 1 || art.tags[0] !== 'Ellipsis added') {
           fail('host-question', slug, art, 'a \u201C\u2026\u201D in this answer replaces host speech (' + needSummary + ') but the answer ' +
-            (art.tags.length === 0 ? 'has no \u201CEllipsis added\u201D tag.' : 'has the tag(s) \u201C' + art.tags.join('\u201D, \u201C') + '\u201D instead of exactly one \u201CEllipsis added\u201D.') + ' (Rule 8.)');
+            (art.tags.length === 0 ? 'has no \u201CEllipsis added\u201D tag.' : 'has the tag(s) \u201C' + art.tags.join('\u201D, \u201C') + '\u201D instead of exactly one \u201CEllipsis added\u201D.') + ' (Rule 8.)' + crossHint);
         }
         if (art.hostQs.length === 0) {
           fail('host-question', slug, art, 'a \u201C\u2026\u201D in this answer replaces host speech (' + needSummary + ') but the host\u2019s words are not shown with the answer. ' +
-            'Show them word for word, attributed to the host (rule 8).');
+            'Show them word for word, attributed to the host (rule 8).' + crossHint);
         } else if (art.hostQs.length !== hostNeeded.length) {
           fail('host-question', slug, art, art.hostQs.length + ' host turn' + (art.hostQs.length === 1 ? ' is' : 's are') + ' shown but ' + hostNeeded.length +
-            ' ' + (hostNeeded.length === 1 ? 'was' : 'were') + ' cut from the answer: ' + needSummary + '.');
+            ' ' + (hostNeeded.length === 1 ? 'was' : 'were') + ' cut from the answer: ' + needSummary + '.' + crossHint);
         } else {
           for (var qi = 0; qi < hostNeeded.length; qi++) {
             var need = hostNeeded[qi], shownQ = art.hostQs[qi];
@@ -1236,12 +1274,29 @@ function isFiller(w, p1, p2, p3, p4, midSeg) {
 // text is never equal to a word of the page, and the host's words are available for the error message.
 var VTT_HOST_MARK = '\u0001';
 
-function buildVttWordStream(cues, startMs, endMs, speaker) {
+// The first cue time (ms) and full text of the host run each non-guest cue belongs to. A run is the consecutive cues of one
+// other speaker between two of the guest's cues; it is the same run the passage gates look at, so the same data-crosstalk
+// start time identifies it in both places.
+function vttHostRuns(cues, speaker) {
+  var byCue = [], cur = null;
+  cues.forEach(function(c, i) {
+    if (c.speaker === speaker) { cur = null; return; }
+    if (cur && cur.speaker === c.speaker) cur.text += ' ' + c.text;
+    else cur = { speaker: c.speaker, startMs: Math.round(c.startMs), text: c.text };
+    byCue[i] = cur;
+  });
+  return byCue;
+}
+
+function buildVttWordStream(cues, startMs, endMs, speaker, declaredCrosstalk) {
   var SLACK   = 10000;
   var rawWords = [];
-  cues.forEach(function(c) {
+  var hostRuns = vttHostRuns(cues, speaker);
+  cues.forEach(function(c, ci) {
     if (c.endMs < startMs - SLACK || c.startMs > endMs + SLACK) return;
     if (c.speaker !== speaker) {
+      // a host run declared as crosstalk (data-crosstalk) is treated as if it were not there; a run with a "?" never is
+      if (pgIsDeclaredCrosstalk(declaredCrosstalk, hostRuns[ci])) return;
       var last = rawWords.length - 1;
       var said = c.speaker + ': ' + c.text;
       if (last >= 0 && rawWords[last].charAt(0) === VTT_HOST_MARK && rawWords[last].indexOf(VTT_HOST_MARK + c.speaker + ': ') === 0) {
@@ -1279,10 +1334,8 @@ function buildVttWordStream(cues, startMs, endMs, speaker) {
       merged.push(rawWords[i]);
     }
   }
-  // short host crosstalk (five words or fewer, not a question) is ignored completely (editorial rule 8 exception)
-  return merged.filter(function(w) {
-    return w.charAt(0) !== VTT_HOST_MARK || !pgIsCrosstalk(w.slice(w.indexOf(': ') + 2));
-  });
+  // host runs declared as crosstalk were left out above (editorial rule 8 exception); every other host run stays as a marker
+  return merged;
 }
 
 function normalizeSegment(text) {
@@ -1562,7 +1615,9 @@ function verbatimCheckAnswerPages() {
 
       var cues         = getVttCues(slug, answersDir, speakers);
       if (!cues.length) continue;
-      var vttWordStream = buildVttWordStream(cues, startMs, endMs, speaker);
+      var openTag = (bm[0].match(/^<article[^>]*>/) || [''])[0];
+      var ctM = openTag.match(/data-crosstalk="([^"]*)"/);
+      var vttWordStream = buildVttWordStream(cues, startMs, endMs, speaker, pgParseCrosstalk(ctM ? ctM[1] : ''));
 
       var errs = strictVerbatimCheck(quoteTexts, vttWordStream);
       if (errs.length > 0) {
