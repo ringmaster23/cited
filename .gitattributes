@@ -1,0 +1,22 @@
+# Every text file in this repo is plain UTF-8 text with LF line endings.
+# (Oct 2026: transcript and script files were once saved as lists of byte numbers and
+#  the Ep 1 page was re-saved with the wrong encoding, which garbled arrows and dashes.
+#  build.js now fails the build on garbled text; these settings help keep editors honest.)
+* text=auto eol=lf
+
+*.html  text eol=lf
+*.css   text eol=lf
+*.js    text eol=lf
+*.json  text eol=lf
+*.md    text eol=lf
+*.txt   text eol=lf
+*.vtt   text eol=lf
+*.xml   text eol=lf
+*.yml   text eol=lf
+*.toml  text eol=lf
+
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.webp  binary
+*.ico   binary

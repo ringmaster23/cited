@@ -1,0 +1,8 @@
+root = true
+
+# All text files are UTF-8 with LF line endings. Never save a page or transcript in
+# Latin-1 / Windows-1252: it turns arrows, dashes and curly quotes into garbage characters.
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true

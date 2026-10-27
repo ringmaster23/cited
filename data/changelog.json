@@ -2,6 +2,17 @@
  "generated": "2026-10-14",
  "entries": [
   {
+   "date": "2026-10-27",
+   "dateHuman": "October 27, 2026",
+   "description": "Answer timing, label and encoding corrections on both answer pages. (1) Every answer's start–end time, play link, aria-label, data-vtt window and schema Clip offsets now come from where its words are actually spoken in transcript.vtt (the Descript export); earlier ranges ran from the question to the end of the speaker's turn and the places disagreed. (2) Ep 002 q7, q8, q9 and q12 now show each of their two passages with its own time and link, with one schema Clip and Quotation per passage. (3) Added the missing Verbatim/Edited labels (q1 on both pages, Ep 002 q18 had two) and corrected labels that contradicted the ellipsis rule. (4) Schema Quotation text now equals the visible answer text. (5) Fixed garbled arrow/dash characters on the Ep 001 page and restored Ep 001 transcript.vtt/.txt and Ep 002 transcript.txt, which had been saved as lists of byte numbers. (6) Added build gates for timing agreement, labels, schema text, clip count and file encoding. No answer wording was changed.",
+   "pages": [
+    "b2b-podcast-agency-for-ai-visibility",
+    "agency-to-get-my-brand-cited-by-chatgpt",
+    "best-b2b-podcast-agency-for-ai-visibility",
+    "best-agency-to-get-my-brand-cited-by-chatgpt"
+   ]
+  },
+  {
    "date": "2026-10-16",
    "dateHuman": "October 16, 2026",
    "description": "Follow-up #3: Fixed 'Editorial disclosure:' double label in markdown version (generate-markdown.js). Added @id renumbering guidance to _template.html builder. Confirmed EP002 JSON-LD @ids are correctly numbered q16-q18; markdown labels Q16-Q18; no #q19 references remain anywhere (sitemap, feed, llms.txt all clean).",
