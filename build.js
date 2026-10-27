@@ -532,7 +532,8 @@ function integrityCheckAnswerPages() {
 //                   host, and the "Ellipsis added" tag (rule 8).
 //                   Both gates need every host run inside an answer's span to be declared: a shown host question, or
 //                   crosstalk listed in the article's data-crosstalk attribute (rule 8 exception). A run containing
-//                   a "?" can never be declared crosstalk.
+//                   a "?" can never be declared crosstalk. A declaration that matches no host run inside the span
+//                   fails (host-crosstalk), and so does a "…" that covers nothing but declared crosstalk.
 //   encoding        no mojibake and no invalid UTF-8 in any served text file
 //
 // Time rule: whole seconds on the page and in the schema; start rounds down, end
@@ -673,15 +674,24 @@ function pgFind(seg, v, cues, fromIdx, hintSec, spk) {
   for (var i = fromIdx; i < v.length; i++) {
     if (v[i].w !== seg[0]) continue;
     var last = pgMatchAt(seg, v, i);
-    if (last >= 0) cands.push({ first: i, last: last });
+    if (last >= 0) cands.push({ first: i, last: last, skip: (last - i + 1) - seg.length });
   }
   if (!cands.length) return null;
+  // The first segment (hintSec given) is placed by where its words are really spoken, not by where the page says they
+  // are. Among the places the whole segment matches, the tightest match wins (fewest skipped words, other speakers'
+  // included) and only then the one nearest the page's own start time. Before, the page's own time was the only
+  // tie-break, so a start that sat on an earlier, loosely matching "the" (q9 passage 2, 20:05 instead of 20:13)
+  // confirmed itself and passed the timing-vtt check.
   function score(c) {
     var d = hintSec === null ? 0 : Math.abs(cues[v[c.first].cue].s - hintSec);
-    return d + (v[c.first].spk === spk ? 0 : 1000);
+    return [v[c.first].spk === spk ? 0 : 1, hintSec === null ? 0 : c.skip, d];
   }
-  var best = cands[0];
-  for (var k = 1; k < cands.length; k++) { if (score(cands[k]) < score(best)) best = cands[k]; }
+  function less(a, b) { for (var q = 0; q < 3; q++) { if (a[q] !== b[q]) return a[q] < b[q]; } return false; }
+  var best = cands[0], bestScore = score(best);
+  for (var k = 1; k < cands.length; k++) {
+    var sc = score(cands[k]);
+    if (less(sc, bestScore)) { best = cands[k]; bestScore = sc; }
+  }
   return best;
 }
 
@@ -755,13 +765,13 @@ function pgMatchPath(seg, v, from) {
 }
 
 function pgFindPath(seg, v, cues, fromIdx, hintSec, spk) {
-  var best = null, bestScore = 0;
+  var best = null, bestScore = [0, 0];
   for (var i = fromIdx; i < v.length; i++) {
     if (v[i].w !== seg[0] || v[i].spk !== spk) continue;
     var path = pgMatchPath(seg, v, i);
     if (!path) continue;
-    var sc = hintSec === null ? 0 : Math.abs(cues[v[i].cue].s - hintSec);
-    if (best === null || sc < bestScore) { best = path; bestScore = sc; }
+    var sc = hintSec === null ? [0, 0] : [(path[path.length - 1] - path[0] + 1) - seg.length, Math.abs(cues[v[i].cue].s - hintSec)];
+    if (best === null || sc[0] < bestScore[0] || (sc[0] === bestScore[0] && sc[1] < bestScore[1])) { best = path; bestScore = sc; }
     if (hintSec === null) break;
   }
   return best;
@@ -790,15 +800,21 @@ function pgHostBetween(v, cues, a, b, spk) {
 // report that); otherwise the host turns found as joins (no "…") and as cuts (at a "…")
 function pgPassageHostCuts(text, v, cues, hintSec, spk) {
   var segs = text.split('\u2026').map(pgNorm).filter(function(s) { return s.length > 0; });
-  var res = { ok: true, joins: [], cuts: [] };
+  var res = { ok: true, joins: [], cuts: [], hostOnlyCuts: [] };
   var idx = 0, prevLast = -1;
   for (var si = 0; si < segs.length; si++) {
     var path = pgFindPath(segs[si], v, cues, si === 0 ? 0 : idx, si === 0 ? hintSec : null, spk);
-    if (!path) return { ok: false, joins: [], cuts: [] };
+    if (!path) return { ok: false, joins: [], cuts: [], hostOnlyCuts: [] };
     for (var j = 1; j < path.length; j++) {
       if (path[j] - path[j - 1] > 1) res.joins = res.joins.concat(pgHostBetween(v, cues, path[j - 1], path[j], spk));
     }
-    if (prevLast >= 0) res.cuts = res.cuts.concat(pgHostBetween(v, cues, prevLast, path[0], spk));
+    if (prevLast >= 0) {
+      var between = pgHostBetween(v, cues, prevLast, path[0], spk);
+      res.cuts = res.cuts.concat(between);
+      var guestIn = false;
+      for (var gk = prevLast + 1; gk < path[0]; gk++) { if (v[gk].spk === spk) { guestIn = true; break; } }
+      if (!guestIn && between.length) res.hostOnlyCuts.push(between);
+    }
     prevLast = path[path.length - 1];
     idx = prevLast + 1;
   }
@@ -1024,12 +1040,13 @@ function passageGates() {
       //                 host, and the "Ellipsis added" tag
       var hostNeeded = [];
       var crossUsed = {};
+      var followed = true;
       if (vtok.length) {
         for (var hi = 0; hi < n; hi++) {
           var hp = art.passages[hi];
-          if (hp.startMs === null) continue;
+          if (hp.startMs === null) { followed = false; continue; }
           var hc = pgPassageHostCuts(hp.text, vtok, cues, hp.startMs / 1000, art.speaker);
-          if (!hc.ok) continue;
+          if (!hc.ok) { followed = false; continue; }
           var hwhere = n > 1 ? 'passage ' + (hi + 1) : 'the answer';
           // every host run inside the span is declared: a shown host question (a cut, below) or crosstalk (data-crosstalk)
           hc.joins.concat(hc.cuts).forEach(function(t) {
@@ -1051,15 +1068,21 @@ function passageGates() {
               'show the host\u2019s words with the answer and add the \u201CEllipsis added\u201D tag (editorial rule 8).');
           });
           hostNeeded = hostNeeded.concat(hc.cuts.filter(function(t) { return art.crosstalk.indexOf(t.startMs) === -1; }));
+          // a "\u2026" that covers only declared crosstalk replaces nothing the guest said: crosstalk gets no "\u2026"
+          hc.hostOnlyCuts.forEach(function(group) {
+            var allCross = group.every(function(t) { return pgIsDeclaredCrosstalk(art.crosstalk, t); });
+            if (!allCross) return;
+            fail('host-join', slug, art, hwhere + ' has a \u201C\u2026\u201D where only host crosstalk sits between the guest\u2019s words (' +
+              group.map(function(t) { return pgClock(Math.floor(t.startMs / 1000)) + ' ' + t.spk + ' \u201C' + t.text + '\u201D'; }).join('; ') +
+              '). Crosstalk gets no \u201C\u2026\u201D: remove it so the guest\u2019s words read straight through (editorial rule 8 exception).');
+          });
         }
       }
-      // a declaration that matches no host run inside this answer is reported (never fails the build)
-      if (vtok.length) {
+      // a declaration that matches no host run inside this answer's span is stale and fails (only when every passage could be followed)
+      if (vtok.length && followed) {
         art.crosstalk.forEach(function(ms) {
           if (crossUsed[ms]) return;
-          var wmsg = 'data-crosstalk lists ' + ms + ' but no host run starts there inside this answer\u2019s span. Remove it or correct the time.';
-          console.warn('  \u26a0 HOST-CROSSTALK (' + slug + ') ' + qid.toUpperCase() + ': ' + wmsg);
-          reportWarning('host-crosstalk', slug, qid, art.question, wmsg);
+          fail('host-crosstalk', slug, art, 'data-crosstalk lists ' + ms + ' but no host run starts there inside this answer\u2019s span. Remove it or correct the time.');
         });
       }
       if (hostNeeded.length) {
