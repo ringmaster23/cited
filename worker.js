@@ -47,8 +47,9 @@ const INDEXNOW_KEY_PATH = `/${INDEXNOW_KEY}.txt`;
 // below get one static, friendly page pointing them at the real content.
 //
 // SAFETY RULES (do not change without review):
-//   • Exactly one response. Same status (200), same headers, same bytes for
-//     every method (GET, POST, anything) and every input.
+//   • Exactly one response per path. Same status (200), same headers, same bytes for
+//     every method (GET, POST, anything) and every input — except POST
+//     /xmlrpc.php, which gets its own single fixed XML-RPC fault (see below).
 //   • The request body, query string, headers and cookies are NEVER read.
 //     Nothing typed into a "login" is inspected, compared, stored or logged.
 //   • No cookies, no redirects, no JavaScript, no second page.
@@ -139,6 +140,47 @@ function vipFrontDoor() {
   return new Response(VIP_FRONT_DOOR_HTML, { status: 200, headers: VIP_FRONT_DOOR_HEADERS });
 }
 
+// ── XML-RPC fault for POST /xmlrpc.php ───────────────────────────────────────
+// XML-RPC scanners can't read the HTML page above, so a POST to /xmlrpc.php
+// gets one fixed, valid XML-RPC *fault* they can parse and log.
+//
+// SAFETY RULES (do not change without review):
+//   • One constant string. It is chosen by the request METHOD and PATH only —
+//     the request body is never read, parsed or branched on (no XML parsing),
+//     no credentials are checked, and no XML-RPC method is treated differently.
+//   • Always a fault (faultCode 403), never anything that resembles a successful
+//     login or method call. (HTTP 200 is the XML-RPC convention for a fault
+//     document; WordPress does the same, and clients parse it.)
+//   • No cookies, no redirects, no scripts, no logging. noindex.
+//   • GET (and every other method) on /xmlrpc.php still gets the HTML page.
+const XMLRPC_FAULT_XML = `<?xml version="1.0" encoding="UTF-8"?>
+<methodResponse>
+  <fault>
+    <value>
+      <struct>
+        <member>
+          <name>faultCode</name>
+          <value><int>403</int></value>
+        </member>
+        <member>
+          <name>faultString</name>
+          <value><string>No password needed. You're a VIP. Come in the front door: https://citedconversations.com/sitemap.xml</string></value>
+        </member>
+      </struct>
+    </value>
+  </fault>
+</methodResponse>
+`;
+
+const XMLRPC_FAULT_HEADERS = {
+  ...VIP_FRONT_DOOR_HEADERS,
+  'Content-Type': 'text/xml; charset=UTF-8',
+};
+
+function xmlrpcFault() {
+  return new Response(XMLRPC_FAULT_XML, { status: 200, headers: XMLRPC_FAULT_HEADERS });
+}
+
 export default {
   async fetch(request, env) {
     const url     = new URL(request.url);
@@ -146,6 +188,11 @@ export default {
     // ── VIP Front Door ───────────────────────────────────────────────────────
     // Checked on the path only, before anything else reads the request.
     if (VIP_FRONT_DOOR_PATHS.has(url.pathname)) {
+      // Scanners POSTing to /xmlrpc.php only speak XML: answer with the fixed
+      // XML-RPC fault. Decided on method + path only; the body is never read.
+      if (url.pathname === '/xmlrpc.php' && request.method === 'POST') {
+        return xmlrpcFault();
+      }
       return vipFrontDoor();
     }
 
