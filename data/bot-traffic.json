@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-27T22:36:36Z",
+  "updated_at": "2026-10-27T22:39:17Z",
   "launch_date": "2026-09-30",
   "daily": [
     {"date":"2026-09-24","bot_name":"Slackbot","operator":"Slack","request_count":20,"distinct_paths_crawled":5,"top_paths":["/favicon-256.png","/og-image.png","/favicon.ico","/stats/","/"],"status_summary":{"200":18,"404":2},"group":"other","reasons":"link preview"},
@@ -1328,6 +1328,7 @@
     {"date":"2026-10-25","bot_name":"Venice*","operator":"Venice AI (unconfirmed)","request_count":0,"distinct_paths_crawled":0,"top_paths":[],"status_summary":{},"group":"heuristic","visits":0},
     {"date":"2026-10-25","bot_name":"YouBot","operator":"You.com","request_count":0,"distinct_paths_crawled":0,"top_paths":[],"status_summary":{},"group":"ai"},
     {"date":"2026-10-26","bot_name":"Malicious","operator":"attack probes & scanners","request_count":245,"distinct_paths_crawled":100,"top_paths":["/.git/config","/wp-admin/install.php","/.aws/credentials","/_profiler/phpinfo","/.env","/.git/HEAD"],"status_summary":{"200":3,"301":84,"403":16,"404":142},"group":"malicious","sensitive_200":0,"reasons":"blocked 403 ×16; not found 404 ×142; served 2xx ×3; other ×84","note":"attack probes and scanner tools — kept out of crawler totals"},
+    {"date":"2026-10-26","bot_name":"Muse*","operator":"Meta (unconfirmed)","request_count":105,"distinct_paths_crawled":20,"top_paths":["/","/answers/","/answers/agency-to-get-my-brand-cited-by-chatgpt/","/answers/b2b-podcast-agency-for-ai-visibility/","/changelog/","/citation/"],"status_summary":{"200":58,"204":32,"304":15},"group":"heuristic","visits":1},
     {"date":"2026-10-26","bot_name":"GPTBot","operator":"OpenAI","request_count":61,"distinct_paths_crawled":29,"top_paths":["/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm","/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire","/","/sitemap.xml","/answers/agency-to-get-my-brand-cited-by-chatgpt/","/answers/agency-to-get-my-brand-cited-by-chatgpt/transcript.txt"],"status_summary":{"200":57,"301":2,"404":2},"group":"ai"},
     {"date":"2026-10-26","bot_name":"Meta-ExternalAgent","operator":"Meta","request_count":52,"distinct_paths_crawled":19,"top_paths":["/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm","/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire","/answers/agency-to-get-my-brand-cited-by-chatgpt/","/answers/b2b-podcast-agency-for-ai-visibility/","/citation/[answer%20URL]","/citation/[clip%20URL]"],"status_summary":{"200":46,"301":2,"404":4},"group":"ai"},
     {"date":"2026-10-26","bot_name":"Googlebot","operator":"Google","request_count":34,"distinct_paths_crawled":11,"top_paths":["/robots.txt","/","/theme-assets/theme-quasar-1792783879.css","/theme-assets/theme-quasar-1792783879.js","/faq/","/answers/"],"status_summary":{"200":29,"301":5},"group":"search"},
@@ -1366,9 +1367,9 @@
     {"date":"2026-10-26","bot_name":"Meta-ExternalAds","operator":"Meta","request_count":0,"distinct_paths_crawled":0,"top_paths":[],"status_summary":{},"group":"ai"},
     {"date":"2026-10-26","bot_name":"Meta-ExternalFetcher","operator":"Meta","request_count":0,"distinct_paths_crawled":0,"top_paths":[],"status_summary":{},"group":"ai"},
     {"date":"2026-10-26","bot_name":"Meta-WebIndexer","operator":"Meta","request_count":0,"distinct_paths_crawled":0,"top_paths":[],"status_summary":{},"group":"ai"},
-    {"date":"2026-10-26","bot_name":"Muse*","operator":"Meta (unconfirmed)","request_count":0,"distinct_paths_crawled":0,"top_paths":[],"status_summary":{},"group":"heuristic","visits":0},
     {"date":"2026-10-26","bot_name":"Perplexity-User","operator":"Perplexity AI","request_count":0,"distinct_paths_crawled":0,"top_paths":[],"status_summary":{},"group":"ai"},
     {"date":"2026-10-26","bot_name":"PerplexityBot","operator":"Perplexity AI","request_count":0,"distinct_paths_crawled":0,"top_paths":[],"status_summary":{},"group":"ai"},
+    {"date":"2026-10-26","bot_name":"Venice*","operator":"Venice AI (unconfirmed)","request_count":0,"distinct_paths_crawled":0,"top_paths":[],"status_summary":{},"group":"heuristic","visits":0},
     {"date":"2026-10-26","bot_name":"YouBot","operator":"You.com","request_count":0,"distinct_paths_crawled":0,"top_paths":[],"status_summary":{},"group":"ai"},
     {"date":"2026-10-27","bot_name":"Malicious","operator":"attack probes & scanners","request_count":469,"distinct_paths_crawled":122,"top_paths":["/wp-admin/install.php","/xmlrpc.php","/.env","/.git/config","/_profiler/phpinfo","/.amplifyrc"],"status_summary":{"200":11,"301":122,"403":113,"404":223},"group":"malicious","sensitive_200":0,"reasons":"blocked 403 ×113; not found 404 ×223; served 2xx ×11; other ×122","note":"attack probes and scanner tools — kept out of crawler totals"},
     {"date":"2026-10-27","bot_name":"Muse*","operator":"Meta (unconfirmed)","request_count":192,"distinct_paths_crawled":20,"top_paths":["/","/answers/","/answers/agency-to-get-my-brand-cited-by-chatgpt/","/answers/b2b-podcast-agency-for-ai-visibility/","/changelog/","/citation/"],"status_summary":{"200":93,"204":66,"304":33},"group":"heuristic","visits":2},
@@ -1446,7 +1447,7 @@
     {"date":"2026-10-23","verified_bot":169,"automated":1467,"human":537},
     {"date":"2026-10-24","verified_bot":167,"automated":606,"human":455},
     {"date":"2026-10-25","verified_bot":133,"automated":414,"human":206},
-    {"date":"2026-10-26","verified_bot":185,"automated":99,"human":594},
+    {"date":"2026-10-26","verified_bot":185,"automated":211,"human":482},
     {"date":"2026-10-27","verified_bot":124,"automated":1032,"human":471}
   ]
 }
