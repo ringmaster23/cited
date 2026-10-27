@@ -317,7 +317,7 @@
       border-top: 1px solid var(--border-dim);
     }
 
-    /* Grok* best-guess footnote */
+    /* starred-row key */
     .bot-footnote {
       font-size: var(--step--1);
       color: var(--text-muted);
@@ -500,9 +500,7 @@
           </tbody>
         </table>
       </div>
-      <p class="bot-footnote" id="grok-footnote" style="display:none">&#42; <strong>Grok&#42;</strong> is a best guess, not a confirmed xAI crawler. xAI publishes no crawler name or IP ranges, so this row counts bursts where several IPs in different countries open the same page within seconds without loading its styles, scripts or images &#8212; the pattern of a Grok answer fetching a page. 0 means no qualifying burst.</p>
-      <p class="bot-footnote" id="muse-footnote" style="display:none">&#42; <strong>Muse&#42;</strong> is a best guess, not a confirmed Meta crawler. It counts fetches from Meta&#8217;s Fastly network (2a04:4e41::/32) that use a script or stripped-down browser user agent and read several pages or robots.txt / llms.txt / sitemap.xml without loading page assets &#8212; the pattern of Meta&#8217;s Muse agent checking a site. Full Safari/Chrome visitors from that network (iCloud Private Relay users) are never counted. 0 means nothing qualified.</p>
-      <p class="bot-footnote" id="venice-footnote" style="display:none">&#42; <strong>Venice&#42;</strong> is a best guess, not a confirmed Venice AI crawler. Venice AI publishes no crawler name or IP ranges, so this row counts quick walks through the site where each page is fetched by a different home-internet address on a single network, all with the same browser identity and a Google-search referrer, and none of them load the page&#8217;s styles, scripts or images &#8212; the pattern seen when Venice AI was asked to review this site. 0 means nothing qualified.</p>
+      <p class="bot-footnote" id="fp-key" style="display:none">&#42; Based on a fingerprint identified by Cited Conversations, not a declared agent.</p>
     </section>
 
     <!-- 2b. Other bots + malicious (kept out of the crawler totals above) -->
@@ -848,23 +846,10 @@
       `).join('');
     }
 
-    // Show Grok* footnote when that bot is in the data
-    if (botMap['Grok*'] !== undefined) {
-      const fn = document.getElementById('grok-footnote');
-      if (fn) fn.style.display = 'block';
-    }
-
-
-    // Show Muse* footnote when that bot is in the data
-    if (botMap['Muse*'] !== undefined) {
-      const fm = document.getElementById('muse-footnote');
-      if (fm) fm.style.display = 'block';
-    }
-
-    // Show Venice* footnote when that bot is in the data
-    if (botMap['Venice*'] !== undefined) {
-      const fv = document.getElementById('venice-footnote');
-      if (fv) fv.style.display = 'block';
+    // Starred rows are best guesses from our own fingerprints: one small key, no per-agent detail.
+    if (Object.keys(botMap).some((n) => n.endsWith('*'))) {
+      const fk = document.getElementById('fp-key');
+      if (fk) fk.style.display = 'block';
     }
 
     // ── Other bots + Malicious (own section, out of crawler KPIs) ─────────────
