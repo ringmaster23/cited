@@ -502,6 +502,7 @@
       </div>
       <p class="bot-footnote" id="grok-footnote" style="display:none">&#42; <strong>Grok&#42;</strong> is a best guess, not a confirmed xAI crawler. xAI publishes no crawler name or IP ranges, so this row counts bursts where several IPs in different countries open the same page within seconds without loading its styles, scripts or images &#8212; the pattern of a Grok answer fetching a page. 0 means no qualifying burst.</p>
       <p class="bot-footnote" id="muse-footnote" style="display:none">&#42; <strong>Muse&#42;</strong> is a best guess, not a confirmed Meta crawler. It counts fetches from Meta&#8217;s Fastly network (2a04:4e41::/32) that use a script or stripped-down browser user agent and read several pages or robots.txt / llms.txt / sitemap.xml without loading page assets &#8212; the pattern of Meta&#8217;s Muse agent checking a site. Full Safari/Chrome visitors from that network (iCloud Private Relay users) are never counted. 0 means nothing qualified.</p>
+      <p class="bot-footnote" id="venice-footnote" style="display:none">&#42; <strong>Venice&#42;</strong> is a best guess, not a confirmed Venice AI crawler. Venice AI publishes no crawler name or IP ranges, so this row counts quick walks through the site where each page is fetched by a different home-internet address on a single network, all with the same browser identity and a Google-search referrer, and none of them load the page&#8217;s styles, scripts or images &#8212; the pattern seen when Venice AI was asked to review this site. 0 means nothing qualified.</p>
     </section>
 
     <!-- 2b. Other bots + malicious (kept out of the crawler totals above) -->
@@ -620,6 +621,7 @@
     'Bytespider':        '#5a3060',
     'Grok*':             '#7c3aed',
       'Muse*':             '#0891b2',
+      'Venice*':           '#b45309',
   };
   const FALLBACK_COLORS = ['#A7011F','#1f2937','#6b7280','#c8021f','#374151','#9ca3af','#6b4f2a','#4a3f35'];
   function botColor(name, idx) {
@@ -857,6 +859,12 @@
     if (botMap['Muse*'] !== undefined) {
       const fm = document.getElementById('muse-footnote');
       if (fm) fm.style.display = 'block';
+    }
+
+    // Show Venice* footnote when that bot is in the data
+    if (botMap['Venice*'] !== undefined) {
+      const fv = document.getElementById('venice-footnote');
+      if (fv) fv.style.display = 'block';
     }
 
     // ── Other bots + Malicious (own section, out of crawler KPIs) ─────────────
