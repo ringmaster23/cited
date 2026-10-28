@@ -85,11 +85,19 @@ function parseAnswerPage(html, url) {
     if (aStart === -1) break;
     const aEnd    = qaSection.indexOf('</article>', aStart) + 10;
     const article = qaSection.slice(aStart, aEnd);
+    // Rule 8 (2026-10-27): the "Ellipsis added" tag sits just before the article; host words cut from
+    // the answer are shown inside it (div.question-field--host).
+    const _pre = qaSection.slice(pos, aStart);
+    const tags = (_pre.match(/<span class="answer-tag[^"]*"[^>]*>[^<]*<\/span>/g) || []).map(t => extractText(t)).filter(Boolean);
+    const hostQs = (article.match(/<div class="question-field question-field--host"[^>]*>[\s\S]*?<\/div>/g) || []).map(d => {
+      const pick = (cls) => { const m = d.match(new RegExp('<span class="' + cls + '"[^>]*>([\\s\\S]*?)<\\/span>')); return m ? extractText(m[1]) : ''; };
+      return { speaker: pick('question-speaker'), time: pick('question-time').replace(/[\[\]]/g, ''), text: pick('question-text') };
+    });
 
     const idM  = article.match(/id="(q\d+)"/);
     const h3M  = article.match(/<h3[^>]*>([\s\S]*?)<\/h3>/);
     const blkM = article.match(/<blockquote[^>]*>([\s\S]*?)<\/blockquote>/);
-    const spkM = article.match(/class="[^"]*speaker[^"]*"[^>]*>([\s\S]*?)<\/[^>]+>/);
+    const spkM = article.match(/class="citation-speaker"[^>]*>([\s\S]*?)<\/span>/) || article.match(/class="[^"]*speaker[^"]*"[^>]*>([\s\S]*?)<\/[^>]+>/);
     const tsM  = article.match(/href="(https:\/\/podcast\.citedconversations\.com[^"]+)"/);
 
     const id       = idM  ? idM[1]  : 'q?';
@@ -110,7 +118,7 @@ function parseAnswerPage(html, url) {
     const editorNote = parseEditorNote(article);
     const sectionHeading = sectionHeadings[id] || '';
 
-    items.push({ id, question, answer, speaker, timestampUrl: tsUrl, timestamp, editorNote, sectionHeading });
+    items.push({ id, question, answer, speaker, timestampUrl: tsUrl, timestamp, editorNote, sectionHeading, tags, hostQs });
     pos = aEnd;
   }
 
@@ -164,6 +172,9 @@ function renderPageFull(page) {
       out += `Source clip: ${item.timestampUrl}${ts}\n`;
     }
     out += `\n${item.answer}\n\n`;
+    // Rule 8 (2026-10-27): tag and host words shown with the answer
+    if (item.tags && item.tags.length) out += `Tags: ${item.tags.join(', ')}\n\n`;
+    for (const h of (item.hostQs || [])) out += `Host question cut from this answer (${h.speaker}${h.time ? ', ' + h.time : ''}): ${h.text}\n\n`;
     if (item.editorNote) out += `Editor's note: ${item.editorNote}\n\n`;
   }
   return out.trim();

@@ -96,5 +96,11 @@
 /episodes/best-agency-to-get-my-brand-cited-by-chatgpt-* /answers/agency-to-get-my-brand-cited-by-chatgpt/ 301
 /best-agency-to-get-my-brand-cited-by-chatgpt-* /answers/agency-to-get-my-brand-cited-by-chatgpt/ 301
 
+# Episode 003 — What service converts podcasts into AI-optimized content? (added by cited-episode-publish)
+/episodes/service-to-convert-podcasts-into-ai-optimized-content-* /answers/service-to-convert-podcasts-into-ai-optimized-content/ 301
+/service-to-convert-podcasts-into-ai-optimized-content-* /answers/service-to-convert-podcasts-into-ai-optimized-content/ 301
+/episodes/best-service-to-convert-podcasts-into-ai-optimized-content-* /answers/service-to-convert-podcasts-into-ai-optimized-content/ 301
+/best-service-to-convert-podcasts-into-ai-optimized-content-* /answers/service-to-convert-podcasts-into-ai-optimized-content/ 301
+
 # ── Favicon ────────────────────────────────────────────────────────────────────────
 # /favicon.ico redirect removed — real favicon.ico now served as static file

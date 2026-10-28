@@ -1,247 +1,129 @@
 #!/usr/bin/env node
 /**
- * scripts/generate-sitemap-and-feed.js
- * Regenerates sitemap.xml and feed.xml from live page files.
+ * scripts/generate-sitemap-and-feed.js — writes the sitemap index, its child sitemaps and feed.xml
+ * from the page files in the repo. Rewritten 2026-10-27 (cited-episode-publish, "Update the sitemap").
  *
- * Usage (from repo root):
- *   node scripts/generate-sitemap-and-feed.js
+ * Usage (from repo root):   node scripts/generate-sitemap-and-feed.js
+ * The publish process runs this same file on every publish and commits its output.
  *
- * Run this every time a new answer page or speaker page ships, then commit
- * sitemap.xml and feed.xml alongside the new page files.
+ * Output
+ *   sitemap.xml            sitemap index (robots.txt, llms.txt and every footer point here)
+ *   sitemap-pages.xml      core pages (home, methodology, FAQ, …)
+ *   sitemap-answers.xml    the answers index and every answer page
+ *   sitemap-speakers.xml   the speakers index and every speaker page
+ *   sitemap-episodes.xml   the episodes index
+ *   feed.xml               RSS of answer pages, newest first
+ *   data/sitemap-meta.json per-URL lastmod + content fingerprint (what makes lastmod truthful)
  *
- * How lastmod is derived:
- *   - Static / infrastructure pages  → data/sitemap-meta.json (edit manually when content changes)
- *   - Answer pages                   → "dateModified" in JSON-LD if present, else "datePublished"
- *   - Speaker pages                  → <meta name="last-modified" content="YYYY-MM-DD"> if present,
- *                                       else falls back to the earliest answer-page date that names
- *                                       this speaker, else today's date
+ * What is listed: see scripts/lib-sitemap.js — canonical, indexable, non-redirected pages only.
+ * No changefreq / priority: Google ignores both and Bing documents them as unused.
  *
- * How RSS pubDate is derived:
- *   - Answer pages only → "datePublished" from JSON-LD (original publication date)
- *   - Sorted newest first
- *
- * Dependencies: none (Node.js built-ins only).
+ * lastmod = when the page's content last changed, never the build time:
+ *   - a page whose file is unchanged since the last run keeps its recorded lastmod;
+ *   - a changed (or new) page gets the time from .sitemap-dates.json (written by the publish process:
+ *     the page's last commit time, or the publish time for pages it is changing), else "now"
+ *     (when you run it by hand right after editing a page, "now" is when the change ships);
+ *   - pages with a JSON-LD dateModified always agree with it (same day).
+ * feed.xml keeps every existing item's hand-written description exactly; new items take the
+ * episode data file's description or the page's full meta description.
  */
+var fs = require('fs');
+var path = require('path');
+var S = require('./lib-sitemap');
 
-const fs   = require("fs");
-const path = require("path");
+var ROOT = path.resolve(__dirname, '..');
+var NOW = new Date().toISOString();
 
-const SITE = "https://citedconversations.com";
-const ROOT = path.resolve(__dirname, "..");
+function readJson(p, fallback) { try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch (e) { return fallback; } }
 
-// ── Helpers ────────────────────────────────────────────────────────────────
+var metaPath = path.join(ROOT, 'data', 'sitemap-meta.json');
+var oldMeta = readJson(metaPath, null);
+var metaPages = (oldMeta && !Array.isArray(oldMeta) && oldMeta.pages) ? oldMeta.pages : {};
+var dates = readJson(path.join(ROOT, '.sitemap-dates.json'), {});
 
-function isoToRFC822(iso) {
-  // Convert ISO 8601 date string to RFC 822 for RSS
-  const d = new Date(iso);
-  return d.toUTCString().replace(/GMT$/, "+0000");
-}
+var inv = S.inventory(ROOT);
+var newMeta = { schema: 2, note: 'Written by scripts/generate-sitemap-and-feed.js. lastmod = when the page content last changed; hash = fingerprint of the file at that time. Do not edit by hand.', pages: {} };
+var usedNow = [];
 
-function isoDateOnly(iso) {
-  // Return just YYYY-MM-DD portion
-  return iso ? iso.slice(0, 10) : "";
-}
-
-function todayISO() {
-  return new Date().toISOString().slice(0, 10);
-}
-
-function escapeXml(str) {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
-
-function extractJsonLdField(html, field) {
-  // Extract a scalar value from JSON-LD in the page — fast regex, not full parse
-  const re = new RegExp(`"${field}"\\s*:\\s*"([^"]+)"`, "g");
-  let m;
-  let first = null;
-  while ((m = re.exec(html)) !== null) {
-    if (!first) first = m[1];
-  }
-  return first;
-}
-
-function extractMeta(html, name) {
-  // Extract <meta name="..." content="..."> value
-  const re = new RegExp(`<meta\\s[^>]*name=["']${name}["'][^>]*content=["']([^"']+)["']`, "i");
-  const m  = html.match(re) ||
-             html.match(new RegExp(`<meta\\s[^>]*content=["']([^"']+)["'][^>]*name=["']${name}["']`, "i"));
-  return m ? m[1] : null;
-}
-
-function extractH1(html) {
-  const m = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);
-  return m ? m[1].replace(/<[^>]+>/g, "").trim() : "";
-}
-
-function extractDescription(html) {
-  // Try meta description first, then first <p class="...lead"> or similar
-  const metaDesc = extractMeta(html, "description");
-  if (metaDesc) return metaDesc;
-  const leadM = html.match(/<p[^>]*class="[^"]*(?:lead|subhead|intro)[^"]*"[^>]*>([\s\S]*?)<\/p>/);
-  if (leadM) return leadM[1].replace(/<[^>]+>/g, "").trim().slice(0, 200);
-  return "";
-}
-
-// ── Read static page metadata ──────────────────────────────────────────────
-
-const metaPath = path.join(ROOT, "data", "sitemap-meta.json");
-const staticPages = JSON.parse(fs.readFileSync(metaPath, "utf8"));
-
-// ── Scan answer pages ──────────────────────────────────────────────────────
-
-const answersDir = path.join(ROOT, "answers");
-const answerPages = fs.readdirSync(answersDir)
-  .filter(d => fs.statSync(path.join(answersDir, d)).isDirectory())
-  .map(slug => {
-    const file = path.join(answersDir, slug, "index.html");
-    if (!fs.existsSync(file)) return null;
-    const html = fs.readFileSync(file, "utf8");
-    const url  = `${SITE}/answers/${slug}/`;
-
-    const datePublished = extractJsonLdField(html, "datePublished");
-    const dateModified  = extractJsonLdField(html, "dateModified");
-    // Sitemap lastmod: prefer dateModified (set when content is corrected), else datePublished
-    const lastmod = isoDateOnly(dateModified || datePublished);
-    // RSS pubDate: always the original publication date
-    const pubDate = datePublished ? isoToRFC822(datePublished) : null;
-
-    const title       = extractH1(html);
-    const description = extractDescription(html);
-
-    return { url, slug, lastmod, pubDate, title, description, datePublished };
-  })
-  .filter(Boolean)
-  .sort((a, b) => {
-    // Newest datePublished first for RSS; fall back to alphabetical
-    const dA = a.datePublished || "";
-    const dB = b.datePublished || "";
-    return dB.localeCompare(dA);
-  });
-
-// ── Scan speaker pages ─────────────────────────────────────────────────────
-
-const speakersDir = path.join(ROOT, "speakers");
-const speakerPages = fs.readdirSync(speakersDir)
-  .filter(d => {
-    const p = path.join(speakersDir, d);
-    return fs.statSync(p).isDirectory() && fs.existsSync(path.join(p, "index.html"));
-  })
-  .map(slug => {
-    const file = path.join(speakersDir, slug, "index.html");
-    const html = fs.readFileSync(file, "utf8");
-    const url  = `${SITE}/speakers/${slug}/`;
-
-    // Read meta tag if set by page builder
-    let lastmod = extractMeta(html, "last-modified");
-
-    if (!lastmod) {
-      // Fall back: find earliest answer page that mentions this speaker slug
-      const related = answerPages.filter(a =>
-        html.includes(`/answers/${a.slug}/`) || a.url.includes(slug.replace("-", ""))
-      );
-      lastmod = related.length
-        ? related.reduce((earliest, a) =>
-            (!earliest || a.datePublished < earliest) ? a.datePublished : earliest, null
-          )?.slice(0, 10) || todayISO()
-        : todayISO();
-    }
-
-    return { url, lastmod, changefreq: "monthly", priority: "0.8" };
-  });
-
-// ── Build sitemap.xml ──────────────────────────────────────────────────────
-
-function sitemapEntry({ url, lastmod, changefreq, priority }) {
-  return [
-    `  <url>`,
-    `    <loc>${escapeXml(url)}</loc>`,
-    lastmod     ? `    <lastmod>${lastmod}</lastmod>` : null,
-    changefreq  ? `    <changefreq>${changefreq}</changefreq>` : null,
-    priority    ? `    <priority>${priority}</priority>` : null,
-    `  </url>`,
-  ].filter(Boolean).join("\n");
-}
-
-const answerSitemapEntries = answerPages
-  .slice() // sort by URL for consistent ordering in sitemap
-  .sort((a, b) => a.url.localeCompare(b.url))
-  .map(p => sitemapEntry({ url: p.url, lastmod: p.lastmod, changefreq: "monthly", priority: "0.9" }));
-
-const speakerSitemapEntries = speakerPages
-  .sort((a, b) => a.url.localeCompare(b.url))
-  .map(p => sitemapEntry(p));
-
-const staticEntries = staticPages.map(p =>
-  sitemapEntry({ url: p.url, lastmod: p.lastmod, changefreq: p.changefreq, priority: p.priority })
-);
-
-// Build final XML — static pages first, then answers, then speakers
-const sitemapXml = [
-  `<?xml version="1.0" encoding="UTF-8"?>`,
-  `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`,
-  ``,
-  `  <!-- Static / infrastructure pages — update data/sitemap-meta.json when content changes -->`,
-  ...staticEntries,
-  ``,
-  `  <!-- Answer pages — lastmod auto-derived from dateModified or datePublished in JSON-LD -->`,
-  ...answerSitemapEntries,
-  ``,
-  `  <!-- Speaker pages — lastmod from <meta name="last-modified"> or earliest related episode -->`,
-  ...speakerSitemapEntries,
-  ``,
-  `</urlset>`,
-].join("\n");
-
-fs.writeFileSync(path.join(ROOT, "sitemap.xml"), sitemapXml, "utf8");
-console.log(`Wrote sitemap.xml (${staticPages.length} static + ${answerPages.length} answer + ${speakerPages.length} speaker pages)`);
-
-// ── Build feed.xml ─────────────────────────────────────────────────────────
-
-const now = new Date().toUTCString().replace(/GMT$/, "+0000");
-const feedItems = answerPages.map(p => {
-  const desc = escapeXml(p.description || p.title);
-  return [
-    `    <item>`,
-    `      <title>${escapeXml(p.title)}</title>`,
-    `      <link>${escapeXml(p.url)}</link>`,
-    `      <description>${desc}</description>`,
-    p.pubDate ? `      <pubDate>${p.pubDate}</pubDate>` : null,
-    `      <guid isPermaLink="true">${escapeXml(p.url)}</guid>`,
-    `    </item>`,
-  ].filter(Boolean).join("\n");
+inv.included.forEach(function (p) {
+  var h = S.hash(p.html);
+  var prev = metaPages[p.path];
+  var t = (prev && prev.hash === h && prev.lastmod) ? prev.lastmod : (dates[p.file] || dates[p.path] || null);
+  if (!t) { t = NOW; usedNow.push(p.path); }
+  t = S.w3c(t);
+  if (p.dateModified && t.slice(0, 10) !== p.dateModified.slice(0, 10)) t = S.w3c(p.dateModified);
+  p.lastmod = t;
+  newMeta.pages[p.path] = { lastmod: t, hash: h, file: p.file };
 });
 
-const feedXml = [
-  `<?xml version="1.0" encoding="UTF-8"?>`,
-  `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">`,
-  `  <channel>`,
-  `    <title>Cited Conversations — New Answer Pages</title>`,
-  `    <link>${SITE}/answers/</link>`,
-  `    <description>New expert answer pages from recorded human conversations, published by Ringmaster. Every claim cites its source — attributed to a named speaker and linked to the exact moment it was said.</description>`,
-  `    <language>en-us</language>`,
-  `    <copyright>Cited Conversations / Ringmaster</copyright>`,
-  `    <atom:link href="${SITE}/feed.xml" rel="self" type="application/rss+xml"/>`,
-  `    <lastBuildDate>${now}</lastBuildDate>`,
-  `    <docs>https://www.rssboard.org/rss-specification</docs>`,
-  ``,
-  ...feedItems,
-  ``,
-  `  </channel>`,
-  `</rss>`,
-].join("\n");
+function ms(t) { return new Date(t.length === 10 ? t + 'T00:00:00Z' : t).getTime(); }
+function byLoc(a, b) { return a.path === '/' ? -1 : b.path === '/' ? 1 : a.path.localeCompare(b.path); }
 
-fs.writeFileSync(path.join(ROOT, "feed.xml"), feedXml, "utf8");
-console.log(`Wrote feed.xml (${answerPages.length} answer pages, newest first)`);
+var children = [];
+S.TYPES.forEach(function (type) {
+  var list = inv.included.filter(function (p) { return p.type === type; }).sort(byLoc);
+  if (!list.length) return;
+  var xml = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    .concat(list.map(function (p) { return '  <url>\n    <loc>' + S.escapeXml(p.url) + '</loc>\n    <lastmod>' + p.lastmod + '</lastmod>\n  </url>'; }))
+    .concat(['</urlset>', '']).join('\n');
+  var newest = list.reduce(function (a, p) { return ms(p.lastmod) > ms(a) ? p.lastmod : a; }, list[0].lastmod);
+  var file = 'sitemap-' + type + '.xml';
+  fs.writeFileSync(path.join(ROOT, file), xml, 'utf8');
+  children.push({ loc: S.SITE + '/' + file, lastmod: newest, count: list.length });
+});
 
-// ── Summary ────────────────────────────────────────────────────────────────
-console.log("\nDone. Commit sitemap.xml, feed.xml, and data/sitemap-meta.json together.");
-console.log("When you add a new answer page:");
-console.log("  1. Add answers/{slug}/index.html with datePublished in JSON-LD");
-console.log("  2. Add speakers/{slug}/index.html with <meta name=\"last-modified\" content=\"YYYY-MM-DD\">");
-console.log("  3. Run: node scripts/generate-sitemap-and-feed.js");
-console.log("  4. Commit everything together");
+var index = ['<?xml version="1.0" encoding="UTF-8"?>', '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+  .concat(children.map(function (c) { return '  <sitemap>\n    <loc>' + c.loc + '</loc>\n    <lastmod>' + c.lastmod + '</lastmod>\n  </sitemap>'; }))
+  .concat(['</sitemapindex>', '']).join('\n');
+fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), index, 'utf8');
+fs.writeFileSync(metaPath, JSON.stringify(newMeta, null, 1) + '\n', 'utf8');
+
+// ── feed.xml ────────────────────────────────────────────────────────────────
+var feedPath = path.join(ROOT, 'feed.xml');
+var oldFeed = fs.existsSync(feedPath) ? fs.readFileSync(feedPath, 'utf8') : '';
+var oldItems = {};
+(oldFeed.match(/<item>[\s\S]*?<\/item>/g) || []).forEach(function (it) {
+  var g = (it.match(/<guid[^>]*>([^<]+)<\/guid>/) || [])[1];
+  var d = (it.match(/<description>([\s\S]*?)<\/description>/) || [])[1];
+  if (g) oldItems[g.trim()] = { description: d };
+});
+function rfc822(iso) { return new Date(iso.length === 10 ? iso + 'T00:00:00Z' : iso).toUTCString().replace(/GMT$/, '+0000'); }
+
+var answers = inv.included.filter(function (p) { return p.type === 'answers' && p.path !== '/answers/'; })
+  .sort(function (a, b) { return (b.datePublished || '').localeCompare(a.datePublished || ''); });
+var items = answers.map(function (p) {
+  var h1 = (p.html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/) || [])[1] || '';
+  var title = S.escapeXml(S.decode(h1.replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim());
+  var desc = oldItems[p.url] && oldItems[p.url].description;
+  if (!desc) {
+    var slug = p.path.split('/')[2];
+    var data = readJson(path.join(ROOT, 'data', 'episodes', slug + '.json'), null);
+    var d = data && data.episode && data.episode.description ? data.episode.description : S.decode(S.metaContent(p.html, 'description') || '');
+    var num = data && data.episode && data.episode.number ? ' Source: Episode ' + ('00' + data.episode.number).slice(-3) + '.' : '';
+    desc = S.escapeXml(d + num);
+  }
+  return '    <item>\n      <title>' + title + '</title>\n      <link>' + p.url + '</link>\n      <description>' + desc + '</description>\n' +
+    (p.datePublished ? '      <pubDate>' + rfc822(p.datePublished) + '</pubDate>\n' : '') +
+    '      <guid isPermaLink="true">' + p.url + '</guid>\n    </item>';
+});
+var newestAnswer = answers.reduce(function (a, p) { return !a || ms(p.lastmod) > ms(a) ? p.lastmod : a; }, null);
+var feed = [
+  '<?xml version="1.0" encoding="UTF-8"?>',
+  '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
+  '  <channel>',
+  '    <title>Cited Conversations \u2014 New Answer Pages</title>',
+  '    <link>' + S.SITE + '/answers/</link>',
+  '    <description>New expert answer pages from recorded human conversations, published by Ringmaster. Every claim cites its source \u2014 attributed to a named speaker and linked to the exact moment it was said.</description>',
+  '    <language>en-us</language>',
+  '    <copyright>Cited Conversations / Ringmaster</copyright>',
+  '    <atom:link href="' + S.SITE + '/feed.xml" rel="self" type="application/rss+xml"/>',
+  '    <atom:link href="' + S.SITE + '/sitemap.xml" rel="related" type="application/xml" title="Sitemap index"/>',
+  newestAnswer ? '    <lastBuildDate>' + rfc822(newestAnswer) + '</lastBuildDate>' : null,
+  '    <docs>https://www.rssboard.org/rss-specification</docs>',
+  ''
+].filter(function (l) { return l !== null; }).concat(items.map(function (i) { return i + '\n'; })).concat(['  </channel>', '</rss>', '']).join('\n');
+fs.writeFileSync(feedPath, feed, 'utf8');
+
+console.log('Wrote sitemap.xml (index of ' + children.length + ') + ' + children.map(function (c) { return c.loc.split('/').pop() + ' (' + c.count + ')'; }).join(', ') +
+  '; feed.xml (' + items.length + ' items). Excluded ' + inv.excluded.length + ' page(s): ' + inv.excluded.map(function (e) { return e.path + ' — ' + e.reason; }).join('; '));
+if (usedNow.length) console.log('lastmod set to now for changed pages with no known change time: ' + usedNow.join(', '));

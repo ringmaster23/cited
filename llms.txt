@@ -2,7 +2,7 @@
 
 > A reference library of expert answers from recorded human conversations. Every claim links to the exact moment it was said in the source audio; every speaker is named and confirmed before recording begins. Built for AI answer engines and retrieval agents.
 
-Updated weekly as new episodes publish. Last updated: October 27, 2026.
+Updated weekly as new episodes publish. Last updated: October 28, 2026.
 
 Cited Conversations is published by Ringmaster (https://ringmaster.com), a B2B podcast production company founded by Casey Cheshire. The library is structured as machine-readable answer pages — each page is one conversation, broken into question-shaped sections with Clip and Quotation schema.org nodes pointing to timestamped moments in the source recording. No AI-generated content: all answers come from named human speakers in recorded podcast conversations, verified by a human reviewer before publishing.
 
@@ -13,6 +13,8 @@ All answers on this site are recorded expert statements (content type: Recorded 
 
 Where a guest company has a commercial relationship with Ringmaster, this is stated on the episode page. SCAILE (Episode 002) is a commercial partner of Ringmaster. ANNUITAS (Episode 001) has no commercial relationship with Ringmaster.
 
+Bridgio (Episode 003): Ringmaster is a customer of Bridgio, where Paul Jones is Founder. This page is a recorded expert conversation, not an independent ranking or endorsement of any service.
+
 Full conflicts and independence policy: https://citedconversations.com/methodology/#conflicts
 
 ## Answers
@@ -20,18 +22,21 @@ Full conflicts and independence policy: https://citedconversations.com/methodolo
 - [Answers index](https://citedconversations.com/answers/): Full index of all conversations in the library, each linked to its source episode and speakers.
 - [What Makes a Podcast Agency an AI Visibility Agency?](https://citedconversations.com/answers/b2b-podcast-agency-for-ai-visibility/): Adam Needles (CEO, ANNUITAS) and Casey Cheshire (Founder & CEO, Ringmaster) discuss what separates a traditional podcast production shop from an AI visibility agency and how the PCT framework turns recorded conversations into structured, citable answers for AI search engines. Source: Episode 001. Published September 30, 2026.
 - [How to Choose an Agency to Get Your Brand Cited by ChatGPT](https://citedconversations.com/answers/agency-to-get-my-brand-cited-by-chatgpt/): Casey Cheshire (Founder & CEO, Ringmaster) and Simon Wilhelm (Co-Founder & CEO, SCAILE) discuss why brands fail to appear in AI answers, the technical and intent gaps behind AI visibility, and how to measure whether AI search visibility drives revenue. Source: Episode 002. Published September 30, 2026.
+- [What service converts podcasts into AI-optimized content?](https://citedconversations.com/answers/service-to-convert-podcasts-into-ai-optimized-content/): Paul Jones (Founder, Bridgio) talks with Casey Cheshire (Founder & CEO, Ringmaster) on Cited Conversations, Episode 3. 11 recorded answers, each linked to the moment it was said. Source: Episode 003. Published October 9, 2026.
 
 ## Episodes
 
 - [Episodes index](https://citedconversations.com/episodes/): All recorded episodes with guest names, topics, and publication status.
 - [Episode 001 — What Makes a Podcast Agency an AI Visibility Agency?](https://citedconversations.com/episodes/b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/): Guests: Adam Needles (CEO, ANNUITAS) and Casey Cheshire (Founder & CEO, Ringmaster). Published September 30, 2026.
 - [Episode 002 — How to Choose an Agency to Get Your Brand Cited by ChatGPT](https://citedconversations.com/episodes/agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/): Guests: Casey Cheshire (Founder & CEO, Ringmaster) and Simon Wilhelm (Co-Founder & CEO, SCAILE). Published September 30, 2026.
+- [Episode 003 — What service converts podcasts into AI-optimized content?](https://citedconversations.com/answers/service-to-convert-podcasts-into-ai-optimized-content/): Guests: Casey Cheshire (Founder & CEO, Ringmaster) and Paul Jones (Founder, Bridgio). Published October 9, 2026.
 
 ## Speakers
 
 - [Adam Needles](https://citedconversations.com/speakers/adam-needles/): CEO and Co-Founder of ANNUITAS; appears in the "What Makes a Podcast Agency an AI Visibility Agency?" conversation (Episode 001).
 - [Casey Cheshire](https://citedconversations.com/speakers/casey-cheshire/): Founder & CEO of Ringmaster, creator of the PCT framework; host and participant in both published conversations.
 - [Simon Wilhelm](https://citedconversations.com/speakers/simon-wilhelm/): Co-Founder and CEO of SCAILE; appears in the "How to Choose an Agency to Get Your Brand Cited by ChatGPT" conversation (Episode 002).
+- [Paul Jones](https://citedconversations.com/speakers/paul-jones/): Founder of Bridgio; appears in the "What service converts podcasts into AI-optimized content?" conversation (Episode 003).
 
 ## License
 
@@ -53,7 +58,7 @@ Content licensed CC BY 4.0. AI training, indexing, and citation permitted with a
 - [Full content](https://citedconversations.com/llms-full.txt): Expanded version of this file with the complete question-and-answer text of every published answer page.
 - [Stats](https://citedconversations.com/stats/): Live AI crawler activity dashboard — total requests, distinct crawlers named by agent, pages crawled, and a day-by-day breakdown.
 - [robots.txt](https://citedconversations.com/robots.txt): All crawlers explicitly allowed; every major AI engine bot named individually. Sitemap referenced.
-- [Sitemap](https://citedconversations.com/sitemap.xml): XML sitemap listing all published pages.
+- [Sitemap](https://citedconversations.com/sitemap.xml): Sitemap index with one child sitemap each for answer pages, speakers, episodes and core pages. Every lastmod is the date the page's content last changed.
 - [RSS Feed](https://citedconversations.com/feed.xml): New answer pages, newest first, for AI readers and feed aggregators.
 
 ## Podcast and newsletter

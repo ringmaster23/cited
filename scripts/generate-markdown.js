@@ -152,7 +152,7 @@ function generateAnswerPageBody(title, desc, graph, html) {
 
   // 4. Episode metadata
   var episode = null, audio = null;
-  var persons = {}, clips = [], quotations = [];
+  var persons = {}, clips = [], quotations = [], hostQuotes = []; // Rule 8 (2026-10-27): host words are their own Quotation nodes
   for (var i = 0; i < graph.length; i++) {
     var node = graph[i];
     var t = node['@type'];
@@ -160,7 +160,7 @@ function generateAnswerPageBody(title, desc, graph, html) {
     if (t === 'AudioObject')    { audio   = node; continue; }
     if (t === 'Person')         { if (node['@id']) persons[node['@id']] = node; continue; }
     if (t === 'Clip')           { clips.push(node); continue; }
-    if (t === 'Quotation')      { quotations.push(node); continue; }
+    if (t === 'Quotation')      { if (/-host-question-\d+$/.test(String(node['@id'] || ''))) hostQuotes.push(node); else quotations.push(node); continue; }
   }
 
   if (audio && audio.embedUrl) { lines.push('**Episode:** [Listen on podcast](' + audio.embedUrl + ')', ''); }
@@ -220,6 +220,17 @@ function generateAnswerPageBody(title, desc, graph, html) {
       lines.push('[' + lbl2 + '](' + clip.url + ')', '');
     }
 
+    // Rule 8 (2026-10-27): "Ellipsis added" tag (once per answer) and the host words cut from this passage
+    if (quot && /Ellipsis added/.test(String(quot.keywords || '')) && !(ci > 0 && String(clips[ci - 1]['@id'] || '').indexOf('#' + qId + '-clip') !== -1)) {
+      lines.push('**Tag:** Ellipsis added', '');
+    }
+    if (quot) {
+      hostQuotes.filter(function (h) { return h.about && h.about['@id'] === quot['@id']; }).forEach(function (h) {
+        var hp = h.creator && persons[h.creator['@id']];
+        var ht = String(h.citation || '').match(/[?&]t=(\d+)/);
+        lines.push('*Host question cut from this answer \u2014 ' + (hp ? hp.name : 'host') + (ht ? ' (' + fmt(+ht[1]) + ')' : '') + ':* \u201C' + h.text + '\u201D', '');
+      });
+    }
     // Editor's note for this Q (from HTML)
     var note = editorNotes[qId];
     if (note) { lines.push("*Editor's note: " + note + '*', ''); }

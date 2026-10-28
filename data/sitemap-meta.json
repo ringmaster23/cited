@@ -1,62 +1,101 @@
-[
-  {
-    "url": "https://citedconversations.com/",
-    "lastmod": "2026-10-08",
-    "changefreq": "weekly",
-    "priority": "1.0"
+{
+ "schema": 2,
+ "note": "Written by scripts/generate-sitemap-and-feed.js. lastmod = when the page content last changed; hash = fingerprint of the file at that time. Do not edit by hand.",
+ "pages": {
+  "/answers/agency-to-get-my-brand-cited-by-chatgpt/": {
+   "lastmod": "2026-10-27T19:31:00+00:00",
+   "hash": "b72589b0",
+   "file": "answers/agency-to-get-my-brand-cited-by-chatgpt/index.html"
   },
-  {
-    "url": "https://citedconversations.com/methodology/",
-    "lastmod": "2026-10-08",
-    "changefreq": "monthly",
-    "priority": "0.8"
+  "/answers/b2b-podcast-agency-for-ai-visibility/": {
+   "lastmod": "2026-10-27T17:01:44+00:00",
+   "hash": "84f41ec8",
+   "file": "answers/b2b-podcast-agency-for-ai-visibility/index.html"
   },
-  {
-    "url": "https://citedconversations.com/answers/",
-    "lastmod": "2026-10-08",
-    "changefreq": "weekly",
-    "priority": "0.9"
+  "/answers/": {
+   "lastmod": "2026-10-28T04:28:34+00:00",
+   "hash": "a2cf0cd8",
+   "file": "answers/index.html"
   },
-  {
-    "url": "https://citedconversations.com/episodes/",
-    "lastmod": "2026-10-08",
-    "changefreq": "weekly",
-    "priority": "0.6"
+  "/answers/service-to-convert-podcasts-into-ai-optimized-content/": {
+   "lastmod": "2026-10-28T04:28:34+00:00",
+   "hash": "631ad955",
+   "file": "answers/service-to-convert-podcasts-into-ai-optimized-content/index.html"
   },
-  {
-    "url": "https://citedconversations.com/faq/",
-    "lastmod": "2026-10-08",
-    "changefreq": "monthly",
-    "priority": "0.8"
+  "/changelog/": {
+   "lastmod": "2026-10-09",
+   "hash": "0a9c9e1e",
+   "file": "changelog/index.html"
   },
-  {
-    "url": "https://citedconversations.com/for-humans/",
-    "lastmod": "2026-10-08",
-    "changefreq": "monthly",
-    "priority": "0.7"
+  "/citation/": {
+   "lastmod": "2026-10-10T01:59:14+00:00",
+   "hash": "266ee1f9",
+   "file": "citation/index.html"
   },
-  {
-    "url": "https://citedconversations.com/schema/",
-    "lastmod": "2026-10-08",
-    "changefreq": "monthly",
-    "priority": "0.7"
+  "/editorial/": {
+   "lastmod": "2026-10-16T12:53:41+00:00",
+   "hash": "ae39405e",
+   "file": "editorial/index.html"
   },
-  {
-    "url": "https://citedconversations.com/stats/",
-    "lastmod": "2026-10-08",
-    "changefreq": "weekly",
-    "priority": "0.7"
+  "/episodes/": {
+   "lastmod": "2026-10-28T04:28:34+00:00",
+   "hash": "e05d4c07",
+   "file": "episodes/index.html"
   },
-  {
-    "url": "https://citedconversations.com/citation/",
-    "lastmod": "2026-10-08",
-    "changefreq": "monthly",
-    "priority": "0.7"
+  "/faq/": {
+   "lastmod": "2026-10-10T01:59:30+00:00",
+   "hash": "93ec6a74",
+   "file": "faq/index.html"
   },
-  {
-    "url": "https://citedconversations.com/speakers/",
-    "lastmod": "2026-10-08",
-    "changefreq": "monthly",
-    "priority": "0.6"
+  "/for-humans/": {
+   "lastmod": "2026-10-10T01:59:39+00:00",
+   "hash": "f2f94cbb",
+   "file": "for-humans/index.html"
+  },
+  "/": {
+   "lastmod": "2026-10-28T04:28:34+00:00",
+   "hash": "952c8408",
+   "file": "index.html"
+  },
+  "/methodology/": {
+   "lastmod": "2026-10-16T13:01:20+00:00",
+   "hash": "e45ed4f9",
+   "file": "methodology/index.html"
+  },
+  "/schema/": {
+   "lastmod": "2026-10-16T13:12:03+00:00",
+   "hash": "2b96a30b",
+   "file": "schema/index.html"
+  },
+  "/speakers/adam-needles/": {
+   "lastmod": "2026-10-10T02:00:20+00:00",
+   "hash": "39c0c84e",
+   "file": "speakers/adam-needles/index.html"
+  },
+  "/speakers/casey-cheshire/": {
+   "lastmod": "2026-10-28T04:28:34+00:00",
+   "hash": "ff4d5004",
+   "file": "speakers/casey-cheshire/index.html"
+  },
+  "/speakers/": {
+   "lastmod": "2026-10-28T04:28:34+00:00",
+   "hash": "52ff13e3",
+   "file": "speakers/index.html"
+  },
+  "/speakers/paul-jones/": {
+   "lastmod": "2026-10-28T04:28:34+00:00",
+   "hash": "f877104c",
+   "file": "speakers/paul-jones/index.html"
+  },
+  "/speakers/simon-wilhelm/": {
+   "lastmod": "2026-10-10T02:00:33+00:00",
+   "hash": "d239ceef",
+   "file": "speakers/simon-wilhelm/index.html"
+  },
+  "/stats/": {
+   "lastmod": "2026-10-27T21:57:22+00:00",
+   "hash": "c0614e3d",
+   "file": "stats/index.html"
   }
-]
+ }
+}

@@ -7,8 +7,17 @@
     <language>en-us</language>
     <copyright>Cited Conversations / Ringmaster</copyright>
     <atom:link href="https://citedconversations.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Thu, 08 Oct 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://citedconversations.com/sitemap.xml" rel="related" type="application/xml" title="Sitemap index"/>
+    <lastBuildDate>Wed, 28 Oct 2026 04:28:34 +0000</lastBuildDate>
     <docs>https://www.rssboard.org/rss-specification</docs>
+
+    <item>
+      <title>What service converts podcasts into AI-optimized content?</title>
+      <link>https://citedconversations.com/answers/service-to-convert-podcasts-into-ai-optimized-content/</link>
+      <description>Paul Jones (Founder, Bridgio) talks with Casey Cheshire (Founder &amp; CEO, Ringmaster) on Cited Conversations, Episode 3. 11 recorded answers, each linked to the moment it was said. Source: Episode 003.</description>
+      <pubDate>Fri, 09 Oct 2026 15:01:19 +0000</pubDate>
+      <guid isPermaLink="true">https://citedconversations.com/answers/service-to-convert-podcasts-into-ai-optimized-content/</guid>
+    </item>
 
     <item>
       <title>How to Choose an Agency to Get Your Brand Cited by ChatGPT</title>
