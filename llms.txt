@@ -27,16 +27,16 @@ Full conflicts and independence policy: https://citedconversations.com/methodolo
 ## Episodes
 
 - [Episodes index](https://citedconversations.com/episodes/): All recorded episodes with guest names, topics, and publication status.
-- [Episode 001 — What Makes a Podcast Agency an AI Visibility Agency?](https://citedconversations.com/episodes/b2b-podcast-agency-for-ai-visibility-cited-conversations-episode-001/): Guests: Adam Needles (CEO, ANNUITAS) and Casey Cheshire (Founder & CEO, Ringmaster). Published September 30, 2026.
-- [Episode 002 — How to Choose an Agency to Get Your Brand Cited by ChatGPT](https://citedconversations.com/episodes/agency-to-get-my-brand-cited-by-chatgpt-cited-conversations-episode-002/): Guests: Casey Cheshire (Founder & CEO, Ringmaster) and Simon Wilhelm (Co-Founder & CEO, SCAILE). Published September 30, 2026.
-- [Episode 003 — What service converts podcasts into AI-optimized content?](https://citedconversations.com/answers/service-to-convert-podcasts-into-ai-optimized-content/): Guests: Casey Cheshire (Founder & CEO, Ringmaster) and Paul Jones (Founder, Bridgio). Published October 9, 2026.
+- [Episode 001 — What Makes a Podcast Agency an AI Visibility Agency?](https://citedconversations.com/answers/b2b-podcast-agency-for-ai-visibility/): Host: Adam Needles (CEO & Co-Founder, ANNUITAS). Guest expert: Casey Cheshire (Founder & CEO, Ringmaster). Published September 30, 2026.
+- [Episode 002 — How to Choose an Agency to Get Your Brand Cited by ChatGPT](https://citedconversations.com/answers/agency-to-get-my-brand-cited-by-chatgpt/): Host: Casey Cheshire (Founder & CEO, Ringmaster). Guest expert: Simon Wilhelm (Co-Founder & CEO, SCAILE). Published September 30, 2026.
+- [Episode 003 — What service converts podcasts into AI-optimized content?](https://citedconversations.com/answers/service-to-convert-podcasts-into-ai-optimized-content/): Host: Paul Jones (Founder, Bridgio). Guest expert: Casey Cheshire (Founder & CEO, Ringmaster). Published October 9, 2026.
 
 ## Speakers
 
-- [Adam Needles](https://citedconversations.com/speakers/adam-needles/): CEO and Co-Founder of ANNUITAS; appears in the "What Makes a Podcast Agency an AI Visibility Agency?" conversation (Episode 001).
-- [Casey Cheshire](https://citedconversations.com/speakers/casey-cheshire/): Founder & CEO of Ringmaster, creator of the PCT framework; host and participant in both published conversations.
-- [Simon Wilhelm](https://citedconversations.com/speakers/simon-wilhelm/): Co-Founder and CEO of SCAILE; appears in the "How to Choose an Agency to Get Your Brand Cited by ChatGPT" conversation (Episode 002).
-- [Paul Jones](https://citedconversations.com/speakers/paul-jones/): Founder of Bridgio; appears in the "What service converts podcasts into AI-optimized content?" conversation (Episode 003).
+- [Adam Needles](https://citedconversations.com/speakers/adam-needles/): CEO and Co-Founder of ANNUITAS; host of Episode 001 ("What Makes a Podcast Agency an AI Visibility Agency?").
+- [Casey Cheshire](https://citedconversations.com/speakers/casey-cheshire/): Founder & CEO of Ringmaster, creator of the PCT framework; guest expert in Episode 001 ("What Makes a Podcast Agency an AI Visibility Agency?"); host of Episode 002 ("How to Choose an Agency to Get Your Brand Cited by ChatGPT"); guest expert in Episode 003 ("What service converts podcasts into AI-optimized content?").
+- [Simon Wilhelm](https://citedconversations.com/speakers/simon-wilhelm/): Co-Founder and CEO of SCAILE; guest expert in Episode 002 ("How to Choose an Agency to Get Your Brand Cited by ChatGPT").
+- [Paul Jones](https://citedconversations.com/speakers/paul-jones/): Founder of Bridgio; host of Episode 003 ("What service converts podcasts into AI-optimized content?").
 
 ## License
 

@@ -22,6 +22,10 @@
  *      Oct 27, 2026 (rule 8): host-join and host-question gates, and the verbatim gate now sees host speech.
  *      Oct 27, 2026 (rule 8 exception, refined): crosstalk is declared per host run in the article's data-crosstalk attribute;
  *      the five-word test is gone. See the host-run notes in the Passage gates section.
+ *   2b'. (Oct 28, 2026) The stats page is rendered from data/bot-traffic.json at build time, not just its dates,
+ *      so readers that don't run JavaScript see the real numbers.
+ *   4. Consistency gates (Oct 28, 2026): answer-count, canonical-links, schema-copy, intro-time, toc-heading,
+ *      anchor-text, listing-title, llms-roles, no-js-placeholder. See the "Consistency gates" section.
  *   3. Integrity check on every answer page: fail the build if any page has
  *      a TOC anchor that has no matching body id, or if the number of rendered
  *      articles differs from the number of schema Clip nodes. A broken page
@@ -248,12 +252,13 @@ function patchHomepageCounts() {
   fs.writeFileSync(idxPath, html, 'utf8');
 }
 
-// ── Post-process: bake data-through dates into the stats page ─────────────────
-// stats/index.html fills its dates in the browser from data/bot-traffic.json, so a
-// reader that doesn't run JavaScript would otherwise see placeholders. Write the same
-// dates into the static HTML here, from the same file the daily stats run updates.
-// "Latest date" = newest day in the data rows (not build time). Never fails the build:
-// if the data or page can't be read, the page is left as-is and a warning is printed.
+// ── Post-process: render the stats page from real data at build time ──────────
+// stats/index.html draws its numbers in the browser from data/bot-traffic.json. Most AI crawlers
+// don't run JavaScript, so the build writes the same numbers (same formulas as the page script) into
+// the static HTML: dates, KPI cards, the crawler table, the non-crawler table, top pages, traffic mix
+// and the screen-reader summary. The browser script still runs and redraws the same values plus the
+// charts. If the data can't be read the page keeps its placeholders and the no-js-placeholder gate
+// fails the build, so a broken or sample page is never deployed. Demo/sample data is never used here.
 
 var STATS_MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
                     'July', 'August', 'September', 'October', 'November', 'December'];
@@ -274,17 +279,31 @@ function setElementText(html, id, inner) {
   return html.replace(re, function(m, open, tag, close) { return open + inner + close; });
 }
 
+function statsEsc(s) {
+  return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+function statsNum(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+
+var STATS_PALETTE = { 'GPTBot': '#A7011F', 'OAI-SearchBot': '#c8021f', 'ChatGPT-User': '#e05050', 'ClaudeBot': '#1f2937',
+  'Claude-SearchBot': '#374151', 'Claude-User': '#4b5563', 'PerplexityBot': '#6b7280', 'Googlebot': '#9ca3af',
+  'Google-Extended': '#d1d5db', 'Bingbot': '#6b4f2a', 'Applebot': '#4a3f35', 'Amazonbot': '#2d4a3e',
+  'Meta-ExternalAgent': '#3b3060', 'Bytespider': '#5a3060', 'Grok*': '#7c3aed', 'Muse*': '#0891b2', 'Venice*': '#b45309' };
+var STATS_FALLBACK = ['#A7011F', '#1f2937', '#6b7280', '#c8021f', '#374151', '#9ca3af', '#6b4f2a', '#4a3f35'];
+function statsColor(name, i) { return STATS_PALETTE[name] || STATS_FALLBACK[i % STATS_FALLBACK.length]; }
+
 function patchStatsDates() {
   try {
     var pagePath = path.join(OUT, 'stats', 'index.html');
     var dataPath = path.join(ROOT, 'data', 'bot-traffic.json');
     if (!fs.existsSync(pagePath) || !fs.existsSync(dataPath)) {
-      console.warn('\u26a0\ufe0f  Stats dates not baked in: stats page or data/bot-traffic.json not found.');
+      console.warn('\u26a0\ufe0f  Stats page not rendered: stats page or data/bot-traffic.json not found.');
       return;
     }
     var data  = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+    var daily = Array.isArray(data.daily) ? data.daily : [];
+    var mix   = Array.isArray(data.traffic_mix) ? data.traffic_mix : [];
     var dates = [];
-    (data.daily || []).concat(data.traffic_mix || []).forEach(function(r) {
+    daily.concat(mix).forEach(function(r) {
       if (r && typeof r.date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(r.date)) dates.push(r.date);
     });
     dates.sort();
@@ -292,21 +311,90 @@ function patchStatsDates() {
     var latest   = dates.length ? dates[dates.length - 1]
                                 : (data.updated_at ? String(data.updated_at).slice(0, 10) : earliest);
     if (!/^\d{4}-\d{2}-\d{2}$/.test(String(earliest)) || !/^\d{4}-\d{2}-\d{2}$/.test(String(latest))) {
-      console.warn('\u26a0\ufe0f  Stats dates not baked in: no usable dates in data/bot-traffic.json.');
+      console.warn('\u26a0\ufe0f  Stats page not rendered: no usable dates in data/bot-traffic.json.');
+      return;
+    }
+    if (daily.length === 0) {
+      console.warn('\u26a0\ufe0f  Stats page not rendered: data/bot-traffic.json has no daily rows.');
       return;
     }
 
+    // Same aggregation as the page script.
+    var allDates = [];
+    for (var d = new Date(earliest + 'T00:00:00Z'), end = new Date(latest + 'T00:00:00Z'); d <= end && allDates.length < 4000; d.setUTCDate(d.getUTCDate() + 1)) allDates.push(d.toISOString().slice(0, 10));
+    var isSide = function(r) { return r.group === 'other' || r.group === 'malicious'; };
+    var botMap = {}, pathMap = {}, byBotDate = {};
+    daily.filter(function(r) { return !isSide(r); }).forEach(function(r) {
+      var b = botMap[r.bot_name] || (botMap[r.bot_name] = { operator: r.operator || '\u2014', requests: 0, paths: 0 });
+      b.requests += r.request_count || 0;
+      b.paths += r.distinct_paths_crawled || 0;
+      (r.top_paths || []).forEach(function(p) {
+        var x = pathMap[p] || (pathMap[p] = { requests: 0, bots: {} });
+        x.requests += r.request_count || 0;
+        x.bots[r.bot_name] = 1;
+      });
+      var bd = byBotDate[r.bot_name] || (byBotDate[r.bot_name] = {});
+      bd[r.date] = (bd[r.date] || 0) + (r.request_count || 0);
+    });
+    var names = Object.keys(botMap);
+    var total = names.reduce(function(s, n) { return s + botMap[n].requests; }, 0);
+    var active = names.filter(function(n) { return botMap[n].requests > 0; });
     var range = statsDateShort(earliest) + ' \u2013 ' + statsDateShort(latest);
+
+    var totals = allDates.map(function(dt) { return active.reduce(function(s, n) { return s + ((byBotDate[n] || {})[dt] || 0); }, 0); });
+    var peak = totals.indexOf(Math.max.apply(null, totals));
+
+    var sorted = names.slice().sort(function(a, b) { return botMap[b].requests - botMap[a].requests || a.localeCompare(b); });
+    var maxReq = sorted.length ? (botMap[sorted[0]].requests || 1) : 1;
+    var botRows = sorted.map(function(n, i) {
+      var b = botMap[n];
+      return '\n            <tr>\n              <td class="bot-name">' + statsEsc(n) + '</td>\n              <td class="bot-op">' + statsEsc(b.operator) +
+        '</td>\n              <td class="num">' + statsNum(b.requests) + '</td>\n              <td class="num">' + statsNum(b.paths) +
+        '</td>\n              <td class="bar-cell"><div class="bar-fill" style="width:' + Math.max(2, Math.round((b.requests / maxReq) * 120)) + 'px;background:' + statsColor(n, i) + '"></div></td>\n            </tr>';
+    }).join('') + '\n          ';
+
+    var pages = Object.keys(pathMap).sort(function(a, b) { return pathMap[b].requests - pathMap[a].requests; }).slice(0, 20);
+    var pageRows = pages.map(function(p, i) {
+      return '\n            <tr>\n              <td style="color:var(--text-muted);font-variant-numeric:tabular-nums">' + (i + 1) + '</td>\n              <td class="path-cell">' + statsEsc(p) +
+        '</td>\n              <td class="num">' + statsNum(pathMap[p].requests) + '</td>\n              <td class="num">' + Object.keys(pathMap[p].bots).length + '</td>\n            </tr>';
+    }).join('') + '\n          ';
+
+    var side = {};
+    daily.filter(isSide).forEach(function(r) {
+      var s = side[r.bot_name] || (side[r.bot_name] = { group: r.group, requests: 0 });
+      s.requests += r.request_count || 0;
+    });
+    var unknown = Object.keys(side).filter(function(n) { return side[n].group === 'other' && side[n].requests > 0 && n === 'Other bots (unnamed)'; });
+    var anyOther = Object.keys(side).some(function(n) { return side[n].group === 'other' && side[n].requests > 0; });
+    var mal = Object.keys(side).filter(function(n) { return side[n].group === 'malicious'; });
+
     var edits = [
-      ['last-updated',     'Last updated: ' + statsDateLong(latest)],
-      ['stats-meta',       '<strong>' + range + '</strong><span class="sep">\u00b7</span>' +
-                           'Tracking: GPTBot, ClaudeBot, PerplexityBot, Googlebot, and more'],
-      ['kpi-since',        range],
-      ['kpi-launch-date',  range],
-      ['bot-section-note', range],
-      ['updated-note',     'Data last updated: ' + statsDateLong(latest) +
-                           ' \u00b7 Updates daily \u00b7 Source: Cloudflare Log Explorer']
+      ['last-updated',        'Last updated: ' + statsDateLong(latest)],
+      ['stats-meta',          '<strong>' + range + '</strong><span class="sep">\u00b7</span>' +
+                              'Tracking: GPTBot, ClaudeBot, PerplexityBot, Googlebot, and more'],
+      ['kpi-total',           statsNum(total)],
+      ['kpi-days',            statsNum(allDates.length)],
+      ['kpi-bots',            statsNum(active.length)],
+      ['kpi-pages',           statsNum(Object.keys(pathMap).length)],
+      ['kpi-since',           range],
+      ['kpi-launch-date',     range],
+      ['bot-section-note',    range],
+      ['chart-daily-summary', 'Peak day: ' + statsDateShort(allDates[peak]) + ' with ' + statsNum(totals[peak]) + ' requests. Total: ' + statsNum(total) + ' across ' + allDates.length + ' days.'],
+      ['bot-table-body',      botRows],
+      ['pages-table-body',    pageRows],
+      ['other-bots-body',     unknown.length ? unknown.map(function(n) { return '<tr><td class="bot-name">' + statsEsc(n) + '</td><td class="num">' + statsNum(side[n].requests) + '</td></tr>'; }).join('') : '<tr><td colspan="2" style="color:var(--text-muted)">None yet.</td></tr>'],
+      ['malicious-body',      mal.length ? mal.map(function(n) { return '<tr><td class="bot-name">' + statsEsc(n) + ' &#127988;&#8205;&#9760;&#65039;</td><td class="num">' + statsNum(side[n].requests) + '</td></tr>'; }).join('') : '<tr><td colspan="2" style="color:var(--text-muted)">None yet.</td></tr>'],
+      ['updated-note',        'Data last updated: ' + statsDateLong(latest) +
+                              ' \u00b7 Updates daily \u00b7 Source: Cloudflare Log Explorer']
     ];
+    if (mix.length) {
+      var tv = 0, ta = 0, th = 0;
+      mix.forEach(function(r) { tv += r.verified_bot || 0; ta += r.automated || 0; th += r.human || 0; });
+      var all = (tv + ta + th) || 1;
+      edits.push(['mix-legend', [['Verified bot', tv, '#A7011F'], ['Automated', ta, '#6b7280'], ['Human', th, '#2d4a3e']].map(function(x) {
+        return '\n          <div class="mix-legend-item"><div class="mix-swatch" style="background:' + x[2] + '"></div><div><strong>' + statsNum(x[1]) + '</strong> ' + x[0] + ' (' + Math.round((x[1] / all) * 100) + '%)</div></div>';
+      }).join('') + '\n        ']);
+    }
 
     var html = fs.readFileSync(pagePath, 'utf8');
     var missing = [];
@@ -314,12 +402,16 @@ function patchStatsDates() {
       var next = setElementText(html, e[0], e[1]);
       if (next === null) missing.push(e[0]); else html = next;
     });
+    var show = function(id) { html = html.replace(new RegExp('(id="' + id + '"[^>]*?) style="display:none"'), '$1'); };
+    if (names.some(function(n) { return /\*$/.test(n); })) show('fp-key');
+    if (anyOther || mal.length) show('other-bots-section');
+    if (mix.length) show('mix-section');
     fs.writeFileSync(pagePath, html, 'utf8');
 
-    if (missing.length) console.warn('\u26a0\ufe0f  Stats dates: element(s) not found: ' + missing.join(', '));
-    console.log('Stats dates baked in: ' + range + ' (last updated ' + statsDateLong(latest) + ').');
+    if (missing.length) console.warn('\u26a0\ufe0f  Stats page: element(s) not found: ' + missing.join(', '));
+    console.log('Stats page rendered from data/bot-traffic.json: ' + range + ', ' + statsNum(total) + ' requests, ' + active.length + ' crawlers (last updated ' + statsDateLong(latest) + ').');
   } catch (err) {
-    console.warn('\u26a0\ufe0f  Stats dates not baked in: ' + err.message);
+    console.warn('\u26a0\ufe0f  Stats page not rendered: ' + err.message);
   }
 }
 
@@ -1734,6 +1826,331 @@ function checkMarkdownPresence() {
   console.log('Markdown presence check passed.');
 }
 
+// ── Consistency gates (added Oct 28, 2026) ──────────────────────────────────────
+// After an outside review found the homepage saying "0 answers", links to retired "best-" addresses,
+// a hand-made schema excerpt and speaker-intro links with the wrong times, llms.txt calling a guest
+// the host, and a table of contents that disagreed with its own headings. Each class now fails the
+// build, with a plain-English message, if it ever comes back:
+//
+//   answer-count       every "N answers" / "N more answers" badge (homepage, answers index) matches the
+//                      number of answers on the page it links to; a badge never points at a missing page
+//   canonical-links    no internal link on a served page, in llms.txt or llms-full.txt hits a redirect
+//                      in _redirects; links to /answers/, /episodes/, /speakers/ resolve to a real page
+//   schema-copy        the visible "Structured data" copy on an answer page is exactly the head JSON-LD
+//   intro-time         every speaker-intro play link: ?t= = the visible time = the aria-label time, and the
+//                      quoted introduction is spoken at that time in the page's transcript.vtt (±3 s)
+//   toc-heading        every table-of-contents entry is its answer's heading, word for word; the
+//                      "slug#qN" label above each heading names the page's own address
+//   anchor-text        every link to /answers/<slug>/#qN goes to an answer that exists and shows its heading
+//   listing-title      in the homepage, answers, episodes and speakers indexes a link to an answer page
+//                      shows that page's title (H1)
+//   llms-roles         llms.txt names each episode's host(s) and guest(s) exactly as the page's credits do
+//   no-js-placeholder  no served page shows "Loading…", sample-data or empty-state text to a reader
+//                      that does not run JavaScript
+//
+// The Cited Episode Publish routine runs this same build.js before it pushes, and its site-wide
+// consistency pass (lib/consistency.ts) writes the values these gates expect.
+
+var CG_SITE = 'https://citedconversations.com';
+
+function cgDecode(s) {
+  var named = { hellip: '\u2026', rsquo: '\u2019', lsquo: '\u2018', rdquo: '\u201d', ldquo: '\u201c', amp: '&',
+                lt: '<', gt: '>', quot: '"', apos: "'", mdash: '\u2014', ndash: '\u2013', nbsp: ' ', middot: '\u00b7' };
+  return String(s)
+    .replace(/&#x([0-9a-f]+);/gi, function(m, h) { return String.fromCodePoint(parseInt(h, 16)); })
+    .replace(/&#(\d+);/g, function(m, n) { return String.fromCodePoint(parseInt(n, 10)); })
+    .replace(/&([a-z]+);/gi, function(m, n) { return named[n.toLowerCase()] !== undefined ? named[n.toLowerCase()] : m; });
+}
+function cgText(html) { return cgDecode(String(html).replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim(); }
+function cgClock(sec) { return Math.floor(sec / 60) + ':' + ('0' + (sec % 60)).slice(-2); }
+
+function cgFail(check, page, qId, msg) {
+  console.error('\u2717 ' + check.toUpperCase() + (page ? ' (' + page + ')' : '') + (qId ? ' ' + qId.toUpperCase() : '') + ': ' + msg);
+  reportError(check, page, qId, null, msg);
+}
+
+function cgRules() {
+  var p = path.join(ROOT, '_redirects');
+  if (!fs.existsSync(p)) return [];
+  return fs.readFileSync(p, 'utf8').split('\n').map(function(l) { return l.trim(); })
+    .filter(function(l) { return l && l.charAt(0) !== '#'; })
+    .map(function(l) { var x = l.split(/\s+/); return { from: x[0], to: x[1] }; })
+    .filter(function(r) { return r.from && r.to && r.from.charAt(0) === '/'; });
+}
+function cgRedirect(rules, p) {
+  for (var i = 0; i < rules.length; i++) {
+    var f = rules[i].from;
+    if (f.indexOf('*') === -1) { if (f === p) return rules[i].to; continue; }
+    var re = new RegExp('^' + f.split('*').map(function(s) { return s.replace(/[.+?^${}()|[\]\\]/g, '\\$&'); }).join('.*') + '$');
+    if (re.test(p)) return rules[i].to;
+  }
+  return null;
+}
+function cgWalk(dir, out) {
+  fs.readdirSync(dir).forEach(function(n) {
+    var p = path.join(dir, n);
+    if (fs.statSync(p).isDirectory()) cgWalk(p, out); else out.push(p);
+  });
+  return out;
+}
+function cgRel(abs) { return path.relative(OUT, abs).split(path.sep).join('/'); }
+function cgServed(rules, rel) {
+  var url = '/' + rel.replace(/index\.html$/, '');
+  return cgRedirect(rules, url) === null && cgRedirect(rules, '/' + rel) === null;
+}
+function cgExists(p) {
+  var clean = p.split('#')[0].split('?')[0];
+  var f = path.join(OUT, clean);
+  if (clean.slice(-1) === '/') return fs.existsSync(path.join(f, 'index.html'));
+  return fs.existsSync(f) || fs.existsSync(path.join(f, 'index.html'));
+}
+
+function cgAnswerPages() {
+  var dir = path.join(OUT, 'answers');
+  var pages = {};
+  if (!fs.existsSync(dir)) return pages;
+  fs.readdirSync(dir).forEach(function(slug) {
+    var f = path.join(dir, slug, 'index.html');
+    if (!fs.existsSync(f)) return;
+    var html = fs.readFileSync(f, 'utf8');
+    if (html.indexOf('class="qa-item"') === -1) return;
+    var heads = {}, ids = [], m, re = /<article class="qa-item" id="(q\d+)"[^>]*>([\s\S]*?)<\/article>/g;
+    while ((m = re.exec(html)) !== null) {
+      ids.push(m[1]);
+      var h3 = m[2].match(/<h3[^>]*>([\s\S]*?)<\/h3>/);
+      heads[m[1]] = h3 ? cgText(h3[1]) : '';
+    }
+    var h1 = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);
+    var num = html.match(/"episodeNumber"\s*:\s*(\d+)/);
+    pages[slug] = { slug: slug, html: html, heads: heads, ids: ids, count: (html.match(/class="qa-item"/g) || []).length,
+                    title: h1 ? cgText(h1[1]) : '', number: num ? parseInt(num[1], 10) : null };
+  });
+  return pages;
+}
+
+// Credits line on an answer page -> { hosts: [names], guests: [names] }
+function cgCredits(html) {
+  var sec = html.match(/<section id="credits"[\s\S]*?<p[^>]*>([\s\S]*?)<\/p>/);
+  var out = { hosts: [], guests: [] };
+  if (!sec) return out;
+  var parts = sec[1].split(/<strong>/).slice(1);
+  parts.forEach(function(part) {
+    var lab = part.match(/^([^<]*)<\/strong>([\s\S]*)$/);
+    if (!lab) return;
+    var label = lab[1], body = cgText(lab[2]);
+    var names = body.split(/;\s*/).map(function(x) { return x.split(',')[0].trim(); }).filter(Boolean);
+    if (/host/i.test(label)) out.hosts = out.hosts.concat(names);
+    else if (/guest/i.test(label)) out.guests = out.guests.concat(names);
+  });
+  return out;
+}
+
+function consistencyGates() {
+  var rules = cgRules();
+  var pages = cgAnswerPages();
+  var all = cgWalk(OUT, []);
+  var htmlFiles = all.filter(function(f) { return /\.html$/.test(f); }).map(cgRel)
+    .filter(function(r) { return cgServed(rules, r) && !/(^|\/)_template\.html$/.test(r); });
+  var before = REPORT.errors.length;
+
+  // answer-count
+  ['index.html', 'answers/index.html'].forEach(function(rel) {
+    var f = path.join(OUT, rel);
+    if (!fs.existsSync(f)) return;
+    var html = fs.readFileSync(f, 'utf8');
+    var m, re = /<span[^>]*data-answer-slug="([^"]*)"[^>]*>(\d+) answers<\/span>/g;
+    while ((m = re.exec(html)) !== null) {
+      var pg = pages[m[1]];
+      if (!pg) cgFail('answer-count', rel, null, 'an answer-count badge names "' + m[1] + '", which is not an answer page in answers/, so it would show the wrong number. Use the page\'s current address.');
+      else if (parseInt(m[2], 10) !== pg.count) cgFail('answer-count', rel, null, 'the badge for ' + m[1] + ' says ' + m[2] + ' answers but the page has ' + pg.count + '.');
+    }
+    html.split(/(?=<div class="conversation-row")/).forEach(function(row) {
+      if (row.indexOf('<div class="conversation-row"') !== 0) return;
+      var s = (row.match(/href="\/answers\/([a-z0-9-]+)\/"/) || [])[1];
+      var pg = s ? pages[s] : null;
+      if (!s) { cgFail('answer-count', rel, null, 'a conversation row does not link to an answer page at its current address.'); return; }
+      if (!pg) { cgFail('answer-count', rel, null, 'a conversation row links to /answers/' + s + '/, which is not an answer page.'); return; }
+      var more = row.match(/>(\d+) more answers<\/span>/), tot = row.match(/>(\d+) answers<\/span>/);
+      if (more && parseInt(more[1], 10) !== pg.count - 1) cgFail('answer-count', rel, null, 'the row for ' + s + ' says "' + more[1] + ' more answers" but the page has ' + pg.count + ' answers (so ' + (pg.count - 1) + ' more).');
+      if (tot && parseInt(tot[1], 10) !== pg.count) cgFail('answer-count', rel, null, 'the row for ' + s + ' says ' + tot[1] + ' answers but the page has ' + pg.count + '.');
+    });
+  });
+
+  // canonical-links
+  function checkLink(rel, p) {
+    var clean = p.split('#')[0].split('?')[0];
+    var t = cgRedirect(rules, clean);
+    if (t !== null) { cgFail('canonical-links', rel, null, 'links to ' + clean + ', which redirects to ' + t + '. Link straight to ' + t + '.'); return; }
+    if (/^\/(answers|episodes|speakers)\//.test(clean) && !cgExists(clean)) cgFail('canonical-links', rel, null, 'links to ' + clean + ', which is not a page on the site.');
+  }
+  htmlFiles.forEach(function(rel) {
+    var html = fs.readFileSync(path.join(OUT, rel), 'utf8');
+    var m, re = /(?:href|src)="(?:https:\/\/citedconversations\.com)?(\/[^"\s]*)"/g, seen = {};
+    while ((m = re.exec(html)) !== null) { var k = m[1].split('#')[0].split('?')[0]; if (!seen[k]) { seen[k] = 1; checkLink(rel, m[1]); } }
+  });
+  ['llms.txt', 'llms-full.txt'].forEach(function(rel) {
+    var f = path.join(OUT, rel);
+    if (!fs.existsSync(f)) return;
+    var txt = fs.readFileSync(f, 'utf8'), m, re = /https:\/\/citedconversations\.com(\/[^\s)\]"'>]*)/g, seen = {};
+    while ((m = re.exec(txt)) !== null) { if (!seen[m[1]]) { seen[m[1]] = 1; checkLink(rel, m[1]); } }
+  });
+
+  Object.keys(pages).forEach(function(slug) {
+    var pg = pages[slug], html = pg.html, rel = 'answers/' + slug + '/index.html';
+
+    // schema-copy
+    var d = html.search(/(<summary[^>]*>|class="section-label">|aria-label=")Structured data/);
+    if (d >= 0) {
+      var ps = html.indexOf('<pre', d), pe = html.indexOf('</pre>', d);
+      var head = null, shown = null;
+      try { head = JSON.parse(getJsonLdBlock(html)); } catch (e) { head = null; }
+      if (ps >= 0 && pe > ps) {
+        var inner = html.slice(html.indexOf('>', ps) + 1, pe).replace(/^<code>/, '').replace(/<\/code>$/, '');
+        try { shown = JSON.parse(cgDecode(inner)); } catch (e) { shown = null; }
+      }
+      if (!head) cgFail('schema-copy', slug, null, 'the head JSON-LD does not parse.');
+      else if (!shown) cgFail('schema-copy', slug, null, 'the visible "Structured data" copy is not valid JSON-LD (a hand-made excerpt?). It must be the head JSON-LD itself.');
+      else if (JSON.stringify(shown) !== JSON.stringify(head)) {
+        var clipsShown = (shown['@graph'] || []).filter(function(n) { return n['@type'] === 'Clip'; });
+        var firstBad = clipsShown.filter(function(c) {
+          var h = (head['@graph'] || []).filter(function(n) { return n['@id'] === c['@id']; })[0];
+          return !h || h.startOffset !== c.startOffset || h.endOffset !== c.endOffset || h.url !== c.url;
+        })[0];
+        cgFail('schema-copy', slug, null, 'the visible "Structured data" copy differs from the head JSON-LD' +
+          (firstBad ? ' (e.g. Clip ' + (firstBad['@id'] || firstBad.name) + ' shows ' + firstBad.startOffset + '\u2013' + firstBad.endOffset + ' ' + firstBad.url + ')' : '') + '. It must be the head JSON-LD itself.');
+      }
+    }
+
+    // intro-time
+    var prov = html.match(/<section[^>]*id="provenance"[\s\S]*?<\/section>/);
+    if (prov) {
+      var vttF = path.join(OUT, 'answers', slug, 'transcript.vtt');
+      var cues = fs.existsSync(vttF) ? pgParseVtt(fs.readFileSync(vttF, 'utf8')) : [];
+      var flat = [];
+      cues.forEach(function(c) {
+        var t = c.t.replace(/^[A-Z][A-Za-z.'-]*(?: [A-Z][A-Za-z.'-]*){0,3}:\s/, '');
+        pgNorm(t.replace(/[\u2018\u2019']/g, '')).forEach(function(w) { flat.push({ w: w, s: c.s, e: c.e }); });
+      });
+      var cards = prov[0].split(/(?=<blockquote)/).slice(1);
+      cards.forEach(function(card) {
+        var bq = card.match(/<blockquote[^>]*>([\s\S]*?)<\/blockquote>/);
+        var ln = card.match(/<a href="([^"]*)"[^>]*class="citation-ts"[^>]*aria-label="([^"]*)"[^>]*>([^<]*)<\/a>/);
+        if (!bq || !ln) return;
+        var who = cgText(ln[2]).replace(/^Hear\s+/, '').replace(/\s+at\s+.*$/, '');
+        var tq = ln[1].match(/[?&]t=(\d+)/);
+        var vis = cgText(ln[3]).match(/(\d+):(\d\d)/), aria = cgText(ln[2]).match(/(\d+):(\d\d)/);
+        if (!tq) { cgFail('intro-time', slug, null, who + ': the intro play link has no ?t= time.'); return; }
+        var t = parseInt(tq[1], 10);
+        var vs = vis ? parseInt(vis[1], 10) * 60 + parseInt(vis[2], 10) : null, as = aria ? parseInt(aria[1], 10) * 60 + parseInt(aria[2], 10) : null;
+        if (vs !== t || as !== t) cgFail('intro-time', slug, null, who + ': the intro link goes to ?t=' + t + ' (' + cgClock(t) + ') but shows ' + (vis ? vis[0] : 'no time') + ' and its label says ' + (aria ? aria[0] : 'no time') + '. All three must be the same moment.');
+        var q = pgNorm(cgText(bq[1]).replace(/[\u201c\u201d"]/g, ' ').replace(/[\u2018\u2019']/g, '')).slice(0, 5);
+        var at = null;
+        for (var i = 0; q.length >= 3 && i + q.length <= flat.length; i++) {
+          var ok = true;
+          for (var k = 0; k < q.length; k++) if (flat[i + k].w !== q[k]) { ok = false; break; }
+          if (ok) { at = flat[i]; break; }
+        }
+        if (!at) cgFail('intro-time', slug, null, who + ': the quoted introduction ("' + q.join(' ') + ' \u2026") is not in transcript.vtt, so its time cannot be checked.');
+        else if (t < Math.floor(at.s) - 3 || t > Math.ceil(at.e) + 3) cgFail('intro-time', slug, null, who + ': the intro link goes to ' + cgClock(t) + ' but the quoted introduction is spoken at ' + cgClock(Math.floor(at.s)) + ' in transcript.vtt.');
+      });
+    }
+
+    // toc-heading
+    var toc = html.match(/<section id="toc"[\s\S]*?<\/section>/);
+    if (toc) {
+      var m, re = /<a href="#(q\d+)"[^>]*>([\s\S]*?)<\/a>/g;
+      while ((m = re.exec(toc[0])) !== null) {
+        var txt = cgText(m[2]).replace(/^#q\d+\s*\u2014\s*/, '');
+        if (pg.heads[m[1]] === undefined) continue; // integrity gate reports a missing anchor
+        if (txt !== pg.heads[m[1]]) cgFail('toc-heading', slug, m[1], 'the table of contents says "' + txt + '" but the answer\'s heading is "' + pg.heads[m[1]] + '". They must be the same words.');
+      }
+    }
+    var lm, lre = /<article class="qa-item" id="(q\d+)"[^>]*>\s*<p style="font-family: var\(--font-mono\);[^"]*">([^<]*)<\/p>/g;
+    while ((lm = lre.exec(html)) !== null) {
+      if (lm[2] !== slug + '#' + lm[1]) cgFail('toc-heading', slug, lm[1], 'the label above the heading says "' + lm[2] + '" but this answer\'s address is ' + slug + '#' + lm[1] + '.');
+    }
+  });
+
+  // anchor-text + listing-title
+  var LISTINGS = { 'index.html': 1, 'answers/index.html': 1, 'episodes/index.html': 1, 'speakers/index.html': 1 };
+  htmlFiles.forEach(function(rel) {
+    if (/^answers\/[^/]+\/index\.html$/.test(rel) && pages[rel.split('/')[1]]) return;
+    var html = fs.readFileSync(path.join(OUT, rel), 'utf8');
+    var m, re = /<a href="(?:https:\/\/citedconversations\.com)?\/answers\/([a-z0-9-]+)\/#(q\d+)"[^>]*>([\s\S]*?)<\/a>/g;
+    while ((m = re.exec(html)) !== null) {
+      var pg = pages[m[1]];
+      if (!pg) continue; // canonical-links reports it
+      var txt = cgText(m[3]);
+      if (pg.heads[m[2]] === undefined) { cgFail('anchor-text', rel, m[2], 'links to /answers/' + m[1] + '/#' + m[2] + ', but that page has no answer ' + m[2] + '.'); continue; }
+      if (/^(#?q\d+|\u25b6.*|listen.*|view.*)$/i.test(txt)) continue;
+      if (txt !== pg.heads[m[2]]) cgFail('anchor-text', rel, m[2], 'the link to ' + m[1] + '#' + m[2] + ' says "' + txt + '" but that answer\'s heading is "' + pg.heads[m[2]] + '".');
+    }
+    if (!LISTINGS[rel]) return;
+    var tm, tre = /<a href="\/answers\/([a-z0-9-]+)\/"[^>]*>([\s\S]*?)<\/a>/g;
+    while ((tm = tre.exec(html)) !== null) {
+      var p2 = pages[tm[1]];
+      if (!p2 || /<[a-z]/i.test(tm[2])) continue;
+      if (cgText(tm[2]) !== p2.title) cgFail('listing-title', rel, null, 'the link to /answers/' + tm[1] + '/ says "' + cgText(tm[2]) + '" but that page\'s title is "' + p2.title + '".');
+    }
+  });
+
+  // llms-roles
+  var llmsF = path.join(OUT, 'llms.txt');
+  if (fs.existsSync(llmsF)) {
+    var llms = fs.readFileSync(llmsF, 'utf8');
+    var pad = function(n) { return ('00' + n).slice(-3); };
+    Object.keys(pages).forEach(function(slug) {
+      var pg = pages[slug], cr = cgCredits(pg.html), url = CG_SITE + '/answers/' + slug + '/';
+      if (!cr.hosts.length && !cr.guests.length) return;
+      var ep = pg.number !== null ? 'Episode ' + pad(pg.number) : null;
+      var line = (llms.split('\n').filter(function(l) { return ep && l.indexOf('[' + ep + ' ') !== -1; })[0]) || '';
+      if (!line) { cgFail('llms-roles', 'llms.txt', null, (ep || slug) + ' has no line in the Episodes section of llms.txt.'); return; }
+      if (line.indexOf('](' + url + ')') === -1) cgFail('llms-roles', 'llms.txt', null, ep + ' should link to ' + url + '.');
+      if (/Guests?:/.test(line) && !/Guest expert/.test(line)) cgFail('llms-roles', 'llms.txt', null, ep + ' lists everyone as "Guests"; the page credits ' + cr.hosts.join(', ') + ' as host.');
+      var gi = line.search(/Guest experts?: /), hi = line.search(/Hosts?: /);
+      var hostPart = hi >= 0 ? line.slice(hi, gi > hi ? gi : line.length) : '';
+      var guestPart = gi >= 0 ? line.slice(gi, hi > gi ? hi : line.length) : '';
+      cr.hosts.forEach(function(h) {
+        if (hostPart.indexOf(h) === -1 || guestPart.indexOf(h) !== -1) cgFail('llms-roles', 'llms.txt', null, ep + ': the page credits ' + h + ' as host, but llms.txt does not say so.');
+      });
+      cr.guests.forEach(function(g) {
+        if (guestPart.indexOf(g) === -1 || hostPart.indexOf(g) !== -1) cgFail('llms-roles', 'llms.txt', null, ep + ': the page credits ' + g + ' as the guest expert, but llms.txt does not say so.');
+      });
+      var spkLines = llms.split('\n').filter(function(l) { return /^- \[[^\]]+\]\(https:\/\/citedconversations\.com\/speakers\//.test(l); });
+      spkLines.forEach(function(l) {
+        var name = l.match(/^- \[([^\]]+)\]/)[1];
+        var isHost = cr.hosts.indexOf(name) !== -1, isGuest = cr.guests.indexOf(name) !== -1;
+        if (!ep || (!isHost && !isGuest)) return;
+        var want = isHost ? 'host of ' + ep : 'guest expert in ' + ep;
+        var wrong = isHost ? 'guest expert in ' + ep : 'host of ' + ep;
+        if (l.toLowerCase().indexOf(want.toLowerCase()) === -1 || l.toLowerCase().indexOf(wrong.toLowerCase()) !== -1 || /host[^;.]*both/i.test(l))
+          cgFail('llms-roles', 'llms.txt', null, name + '\'s line must say "' + want + '" (from the page credits).');
+      });
+    });
+  }
+
+  // no-js-placeholder
+  htmlFiles.forEach(function(rel) {
+    var html = fs.readFileSync(path.join(OUT, rel), 'utf8');
+    var body = html.replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<!--[\s\S]*?-->/g, ' ');
+    var hits = [];
+    if (/Loading(\u2026|\.\.\.|&hellip;|&#8230;)/.test(body)) hits.push('"Loading\u2026"');
+    if (/Sample data/i.test(body)) hits.push('"Sample data"');
+    if (/No crawler activity (recorded )?yet/i.test(body)) hits.push('"No crawler activity yet"');
+    if (/id="kpi-[a-z-]+"[^>]*>\s*(\u2014|&mdash;|&#8212;)\s*</.test(body)) hits.push('an empty "\u2014" statistic');
+    if (/Last updated: (\u2014|&mdash;)/.test(body)) hits.push('"Last updated: \u2014"');
+    if (hits.length) cgFail('no-js-placeholder', rel, null, 'without JavaScript the page shows ' + hits.join(', ') + '. Most AI crawlers don\'t run JavaScript, so the static HTML must carry the real content.');
+  });
+
+  var found = REPORT.errors.length - before;
+  if (found > 0) {
+    console.error('\n\u2717 CONSISTENCY GATES \u2014 ' + found + ' problem' + (found === 1 ? '' : 's') + ' (see above). Nothing was deployed; the live site stays on the last good build.');
+    writeReport();
+    process.exit(1);
+  }
+  console.log('Consistency gates passed (' + Object.keys(pages).length + ' answer pages, ' + htmlFiles.length + ' served pages).');
+}
+
 // ── Main ──────────────────────────────────────────────────────────────────────
 
 console.log('Building dist/ ...');
@@ -1745,7 +2162,7 @@ patchAboutLinks(OUT);
 console.log('Post-processing: injecting answer counts ...');
 patchHomepageCounts();
 
-console.log('Post-processing: baking dates into stats page ...');
+console.log('Post-processing: rendering the stats page from data/bot-traffic.json ...');
 patchStatsDates();
 
 console.log('Integrity check: validating answer pages ...');
@@ -1768,6 +2185,9 @@ checkMarkdownPresence();
 
 console.log('Encoding check: scanning served text files for garbled characters ...');
 encodingCheck();
+
+console.log('Consistency gates: counts, canonical links, schema copy, intro times, TOC, link texts, llms roles, no-JS placeholders ...');
+consistencyGates();
 
 console.log('Sitemap gate: checking the sitemap index, child sitemaps and feed ...');
 if (require('./scripts/sitemap-gate').run(ROOT, OUT, reportError, reportWarning, console) > 0) {

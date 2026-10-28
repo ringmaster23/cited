@@ -3,18 +3,18 @@
  "note": "Written by scripts/generate-sitemap-and-feed.js. lastmod = when the page content last changed; hash = fingerprint of the file at that time. Do not edit by hand.",
  "pages": {
   "/answers/agency-to-get-my-brand-cited-by-chatgpt/": {
-   "lastmod": "2026-10-27T19:31:00+00:00",
-   "hash": "b72589b0",
+   "lastmod": "2026-10-28T05:16:52+00:00",
+   "hash": "1b0cd36b",
    "file": "answers/agency-to-get-my-brand-cited-by-chatgpt/index.html"
   },
   "/answers/b2b-podcast-agency-for-ai-visibility/": {
-   "lastmod": "2026-10-27T17:01:44+00:00",
-   "hash": "84f41ec8",
+   "lastmod": "2026-10-28T05:16:52+00:00",
+   "hash": "f3ed4a04",
    "file": "answers/b2b-podcast-agency-for-ai-visibility/index.html"
   },
   "/answers/": {
-   "lastmod": "2026-10-28T04:28:34+00:00",
-   "hash": "a2cf0cd8",
+   "lastmod": "2026-10-28T05:16:52+00:00",
+   "hash": "8a050d79",
    "file": "answers/index.html"
   },
   "/answers/service-to-convert-podcasts-into-ai-optimized-content/": {
@@ -24,12 +24,12 @@
   },
   "/changelog/": {
    "lastmod": "2026-10-09",
-   "hash": "0a9c9e1e",
+   "hash": "2da1ca30",
    "file": "changelog/index.html"
   },
   "/citation/": {
-   "lastmod": "2026-10-10T01:59:14+00:00",
-   "hash": "266ee1f9",
+   "lastmod": "2026-10-28T05:16:52+00:00",
+   "hash": "93ba29cf",
    "file": "citation/index.html"
   },
   "/editorial/": {
@@ -38,8 +38,8 @@
    "file": "editorial/index.html"
   },
   "/episodes/": {
-   "lastmod": "2026-10-28T04:28:34+00:00",
-   "hash": "e05d4c07",
+   "lastmod": "2026-10-28T05:16:52+00:00",
+   "hash": "b8284f96",
    "file": "episodes/index.html"
   },
   "/faq/": {
@@ -53,8 +53,8 @@
    "file": "for-humans/index.html"
   },
   "/": {
-   "lastmod": "2026-10-28T04:28:34+00:00",
-   "hash": "952c8408",
+   "lastmod": "2026-10-28T05:16:52+00:00",
+   "hash": "eef05bd7",
    "file": "index.html"
   },
   "/methodology/": {
@@ -63,38 +63,38 @@
    "file": "methodology/index.html"
   },
   "/schema/": {
-   "lastmod": "2026-10-16T13:12:03+00:00",
-   "hash": "2b96a30b",
+   "lastmod": "2026-10-28T05:16:52+00:00",
+   "hash": "1084231f",
    "file": "schema/index.html"
   },
   "/speakers/adam-needles/": {
-   "lastmod": "2026-10-10T02:00:20+00:00",
-   "hash": "39c0c84e",
+   "lastmod": "2026-10-28T05:16:52+00:00",
+   "hash": "69492455",
    "file": "speakers/adam-needles/index.html"
   },
   "/speakers/casey-cheshire/": {
-   "lastmod": "2026-10-28T04:28:34+00:00",
-   "hash": "ff4d5004",
+   "lastmod": "2026-10-28T05:16:52+00:00",
+   "hash": "05c97eed",
    "file": "speakers/casey-cheshire/index.html"
   },
   "/speakers/": {
-   "lastmod": "2026-10-28T04:28:34+00:00",
-   "hash": "52ff13e3",
+   "lastmod": "2026-10-28T05:16:52+00:00",
+   "hash": "43563e75",
    "file": "speakers/index.html"
   },
   "/speakers/paul-jones/": {
-   "lastmod": "2026-10-28T04:28:34+00:00",
-   "hash": "f877104c",
+   "lastmod": "2026-10-28T05:16:52+00:00",
+   "hash": "4e51f58c",
    "file": "speakers/paul-jones/index.html"
   },
   "/speakers/simon-wilhelm/": {
-   "lastmod": "2026-10-10T02:00:33+00:00",
-   "hash": "d239ceef",
+   "lastmod": "2026-10-28T05:16:52+00:00",
+   "hash": "a59f2de8",
    "file": "speakers/simon-wilhelm/index.html"
   },
   "/stats/": {
-   "lastmod": "2026-10-27T21:57:22+00:00",
-   "hash": "c0614e3d",
+   "lastmod": "2026-10-28T05:16:52+00:00",
+   "hash": "e685e2da",
    "file": "stats/index.html"
   }
  }

@@ -388,9 +388,7 @@
 <body>
 
   <!-- Demo banner (shown only in ?demo=1 mode) -->
-  <div class="demo-banner" id="demo-banner" style="display:none" role="status" aria-live="polite">
-    ⚠ Sample data — not live traffic <span>Add ?demo=1 to any URL to preview. Remove it to see real data.</span>
-  </div>
+  <div class="demo-banner" id="demo-banner" style="display:none" role="status" aria-live="polite"></div>
 
   <nav class="site-nav" aria-label="Site navigation">
     <div class="container nav-inner">
@@ -400,7 +398,7 @@
       </a>
       <ul class="nav-links" role="list">
         <li><a href="/answers/">Answers</a></li>
-        <li><a href="/about/">Methodology</a></li>
+        <li><a href="/methodology/">Methodology</a></li>
         <li><a href="/faq/">FAQ</a></li>
         <li><a href="/schema/">Schema</a></li>
         <li><a href="/robots.txt">robots.txt</a></li>
@@ -462,9 +460,7 @@
     </div>
 
     <!-- Zero state (shown when no data yet) -->
-    <div class="zero-state" id="zero-state" style="display:none">
-      <p><strong>No crawler activity recorded yet.</strong> Check back after a few days — AI crawlers typically index a new site within one to two weeks of launch.</p>
-    </div>
+    <div class="zero-state" id="zero-state" style="display:none"></div>
 
     <!-- 1. Requests by day -->
     <section class="stats-section" aria-labelledby="chart-daily-title">
@@ -577,7 +573,7 @@
         <span class="footer-byline">A <a href="https://ringmaster.com" rel="noopener">Ringmaster</a> reference library</span>
       </div>
       <nav class="footer-nav-row" aria-label="Footer navigation">
-        <a href="/about/">Methodology</a><span class="footer-sep">&middot;</span>
+        <a href="/methodology/">Methodology</a><span class="footer-sep">&middot;</span>
         <a href="/answers/">Answers</a><span class="footer-sep">&middot;</span>
         <a href="/faq/">FAQ</a><span class="footer-sep">&middot;</span>
         <a href="/citation/">Citation</a><span class="footer-sep">&middot;</span>
@@ -675,7 +671,9 @@
   async function main() {
     // Show demo banner
     if (IS_DEMO) {
-      document.getElementById('demo-banner').style.display = 'block';
+      const db = document.getElementById('demo-banner');
+      db.innerHTML = '\u26a0 Sample data \u2014 not live traffic <span>Add ?demo=1 to any URL to preview. Remove it to see real data.</span>';
+      db.style.display = 'block';
     }
 
     let data;
@@ -772,7 +770,9 @@
 
     // Zero state
     if (daily.length === 0) {
-      document.getElementById('zero-state').style.display = 'block';
+      const zs = document.getElementById('zero-state');
+      zs.innerHTML = '<p><strong>No crawler activity recorded yet.</strong> Check back after a few days \u2014 AI crawlers typically index a new site within one to two weeks of launch.</p>';
+      zs.style.display = 'block';
     }
 
     // ── Chart 1: Daily stacked bar ─────────────────────────────────────────────

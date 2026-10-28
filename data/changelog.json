@@ -4,6 +4,15 @@
   {
    "date": "2026-10-28",
    "dateHuman": "October 28, 2026",
+   "description": "Site consistency fixes after an outside review (no answer wording changed): homepage answer counts now read the live pages (they showed 0 because the cards pointed at the retired best- addresses); every internal link points straight at the page's current address instead of a redirect; the table of contents, the slug#qN label and every link to an answer show that answer's heading exactly; the visible structured-data copy on each answer page is the head JSON-LD itself (the old excerpt carried wrong Clip times); speaker-introduction play links on Ep 001 go to the moment each introduction is spoken (0:59 and 1:09; they pointed at 22:40); llms.txt names each episode's host and guest from the page credits (Adam Needles hosts Ep 001, Casey Cheshire is its guest); the stats page shows the real crawler numbers without JavaScript. New build gates fail the build if any of these drift again.",
+   "pages": [
+    "agency-to-get-my-brand-cited-by-chatgpt",
+    "b2b-podcast-agency-for-ai-visibility"
+   ]
+  },
+  {
+   "date": "2026-10-28",
+   "dateHuman": "October 28, 2026",
    "description": "Published the answer page for Episode 3: \"What service converts podcasts into AI-optimized content?\" (11 answers), built from the Cited Conversations database after approval by Casey Cheshire. Initial publication. Every answer was checked word for word against the transcript and approved in #cited-dev.",
    "pages": [
     "service-to-convert-podcasts-into-ai-optimized-content"

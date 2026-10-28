@@ -200,5 +200,97 @@ console.log(`Wrote llms-full.txt (${pages.reduce((n,p)=>n+p.items.length,0)} Q&A
 const llmsTxtPath = path.join(repoRoot,'llms.txt');
 let llmsTxt = fs.readFileSync(llmsTxtPath,'utf8');
 llmsTxt = llmsTxt.replace(/Last updated: .+/, `Last updated: ${lastUpdatedHuman}.`);
+
+// ── Episodes and Speakers sections of llms.txt, rebuilt from the answer pages (Oct 28, 2026) ──
+// Who hosted and who was the guest comes from each page's credits line (written from the Sheet by
+// Cited Episode Publish), never from a hand-kept list, so llms.txt can't call a guest the host.
+// build.js's llms-roles gate checks the result against the pages.
+function parseCredits(html) {
+  const sec = html.match(/<section id="credits"[\s\S]*?<p[^>]*>([\s\S]*?)<\/p>/);
+  const people = [];
+  if (!sec) return people;
+  sec[1].split(/<strong>/).slice(1).forEach((part) => {
+    const lab = part.match(/^([^<]*)<\/strong>([\s\S]*)$/);
+    if (!lab) return;
+    const role = /host/i.test(lab[1]) ? 'host' : /guest/i.test(lab[1]) ? 'guest' : null;
+    if (!role) return;
+    extractText(lab[2]).replace(/\s*Conflicts policy.*$/, '').split(/;\s*/).forEach((p) => {
+      const i = p.indexOf(',');
+      if (i < 0) return;
+      const name = p.slice(0, i).trim();
+      const rest = p.slice(i + 1);
+      const cut = rest.search(/\s+\(|\s+\u2014|\.\s|\.$/);
+      const desc = (cut >= 0 ? rest.slice(0, cut) : rest).trim();
+      if (name) people.push({ name, role, desc });
+    });
+  });
+  return people;
+}
+
+const pad3 = (n) => String(n).padStart(3, '0');
+const slugName = (n) => n.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const joinAnd = (xs) => xs.length <= 1 ? xs.join('') : xs.slice(0, -1).join(', ') + ' and ' + xs[xs.length - 1];
+
+const episodes = fs.readdirSync(answersDir)
+  .filter(d => fs.existsSync(path.join(answersDir, d, 'index.html')))
+  .map((slug) => {
+    const html = fs.readFileSync(path.join(answersDir, slug, 'index.html'), 'utf8');
+    const num = html.match(/"episodeNumber"\s*:\s*(\d+)/);
+    const h1 = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);
+    const pub = html.match(/"datePublished"\s*:\s*"([^"]+)"/);
+    return { slug, number: num ? parseInt(num[1], 10) : null, title: h1 ? extractText(h1[1]) : slug, published: pub ? pub[1] : null, people: parseCredits(html) };
+  })
+  .filter((e) => e.number !== null && e.people.length)
+  .sort((a, b) => a.number - b.number);
+
+function rebuildSection(text, heading, isOwned, lines) {
+  const h = text.indexOf('\n' + heading + '\n');
+  if (h < 0 || !lines.length) return text;
+  const start = h + heading.length + 2;
+  const next = text.indexOf('\n## ', start);
+  const end = next < 0 ? text.length : next;
+  const body = text.slice(start, end).split('\n');
+  const kept = body.filter((l) => !isOwned(l));
+  let lastBullet = -1;
+  kept.forEach((l, i) => { if (/^- /.test(l)) lastBullet = i; });
+  const at = lastBullet >= 0 ? lastBullet + 1 : (kept[0] === '' ? 1 : 0);
+  const out = kept.slice(0, at).concat(lines, kept.slice(at));
+  return text.slice(0, start) + out.join('\n') + text.slice(end);
+}
+
+if (episodes.length) {
+  const epLines = episodes.map((e) => {
+    const who = (role) => e.people.filter((p) => p.role === role).map((p) => p.name + (p.desc ? ' (' + p.desc + ')' : ''));
+    const hosts = who('host'), guests = who('guest');
+    const parts = [];
+    if (hosts.length) parts.push((hosts.length > 1 ? 'Hosts: ' : 'Host: ') + joinAnd(hosts) + '.');
+    if (guests.length) parts.push((guests.length > 1 ? 'Guest experts: ' : 'Guest expert: ') + joinAnd(guests) + '.');
+    return '- [Episode ' + pad3(e.number) + ' \u2014 ' + e.title + '](https://citedconversations.com/answers/' + e.slug + '/): ' + parts.join(' ') + (e.published ? ' Published ' + formatDate(e.published) + '.' : '');
+  });
+  llmsTxt = rebuildSection(llmsTxt, '## Episodes', (l) => /^- \[Episode \d+ /.test(l), epLines);
+
+  const order = [];
+  const roles = {};
+  const descs = {};
+  episodes.forEach((e) => e.people.forEach((p) => {
+    if (!roles[p.name]) { roles[p.name] = []; order.push(p.name); descs[p.name] = p.desc; }
+    roles[p.name].push((p.role === 'host' ? 'host of Episode ' : 'guest expert in Episode ') + pad3(e.number) + ' ("' + e.title + '")');
+  }));
+  const existing = {};
+  llmsTxt.split('\n').forEach((l) => {
+    const m = l.match(/^- \[([^\]]+)\]\(https:\/\/citedconversations\.com\/speakers\/[^)]+\):\s*([^;]*)/);
+    if (m) existing[m[1]] = m[2].trim().replace(/\.$/, '');
+  });
+  const named = Object.keys(existing);
+  const ordered = named.filter((n) => roles[n]).concat(order.filter((n) => !named.includes(n)));
+  const spLines = ordered.filter((n) => fs.existsSync(path.join(repoRoot, 'speakers', slugName(n), 'index.html'))).map((n) => {
+    const d = descs[n] || '';
+    const k = d.lastIndexOf(', ');
+    const prefix = existing[n] || (k > 0 ? d.slice(0, k) + ' of ' + d.slice(k + 2) : d);
+    return '- [' + n + '](https://citedconversations.com/speakers/' + slugName(n) + '/): ' + prefix + '; ' + roles[n].join('; ') + '.';
+  });
+  llmsTxt = rebuildSection(llmsTxt, '## Speakers', (l) => /^- \[[^\]]+\]\(https:\/\/citedconversations\.com\/speakers\//.test(l) && !!roles[(l.match(/^- \[([^\]]+)\]/) || [])[1]], spLines);
+}
+
 fs.writeFileSync(llmsTxtPath, llmsTxt, 'utf8');
-console.log('Updated llms.txt Last updated line.');
+console.log('Updated llms.txt: Last updated line, Episodes and Speakers sections (roles from each page\'s credits).');
