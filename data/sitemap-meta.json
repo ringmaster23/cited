@@ -3,8 +3,8 @@
  "note": "Written by scripts/generate-sitemap-and-feed.js. lastmod = when the page content last changed; hash = fingerprint of the file at that time. Do not edit by hand.",
  "pages": {
   "/answers/agency-to-get-my-brand-cited-by-chatgpt/": {
-   "lastmod": "2026-10-28T05:16:52+00:00",
-   "hash": "1b0cd36b",
+   "lastmod": "2026-10-30T23:38:00+00:00",
+   "hash": "23d0c3e1",
    "file": "answers/agency-to-get-my-brand-cited-by-chatgpt/index.html"
   },
   "/answers/b2b-podcast-agency-for-ai-visibility/": {
@@ -13,8 +13,8 @@
    "file": "answers/b2b-podcast-agency-for-ai-visibility/index.html"
   },
   "/answers/": {
-   "lastmod": "2026-10-30T22:39:00+00:00",
-   "hash": "dd062539",
+   "lastmod": "2026-10-30T23:38:00+00:00",
+   "hash": "f3014772",
    "file": "answers/index.html"
   },
   "/answers/service-to-convert-podcasts-into-ai-optimized-content/": {
@@ -53,8 +53,8 @@
    "file": "for-humans/index.html"
   },
   "/": {
-   "lastmod": "2026-10-30T22:39:00+00:00",
-   "hash": "61c19aa5",
+   "lastmod": "2026-10-30T23:38:00+00:00",
+   "hash": "9c90a4c6",
    "file": "index.html"
   },
   "/methodology/": {
@@ -88,8 +88,8 @@
    "file": "speakers/paul-jones/index.html"
   },
   "/speakers/simon-wilhelm/": {
-   "lastmod": "2026-10-28T05:16:52+00:00",
-   "hash": "a59f2de8",
+   "lastmod": "2026-10-30T23:38:00+00:00",
+   "hash": "68d9ff31",
    "file": "speakers/simon-wilhelm/index.html"
   },
   "/stats/": {

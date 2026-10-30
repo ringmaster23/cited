@@ -1,0 +1,848 @@
+{
+  "schema_version": 1,
+  "generated_by": "cited-episode-publish",
+  "generated_at": "2026-10-30T23:38:00.000Z",
+  "source": "Cited Conversations — Database (Google Sheet)",
+  "episode": {
+    "episode_id": "cited-conversations/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm",
+    "number": 2,
+    "title": "How to Choose an Agency to Get Your Brand Cited by ChatGPT",
+    "page_slug": "agency-to-get-my-brand-cited-by-chatgpt",
+    "page_url": "https://citedconversations.com/answers/agency-to-get-my-brand-cited-by-chatgpt/",
+    "episode_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm",
+    "audio_url": "https://media.transistor.fm/b7db32b8/dac964c3.mp3",
+    "published_at": "2026-09-30T12:30:00.000Z",
+    "duration_seconds": 2712,
+    "description": "Casey Cheshire (Founder & CEO, Ringmaster) talks with Simon Wilhelm (Co-Founder and CEO, SCAILE) on Cited Conversations, Episode 2. 31 recorded answers, each linked to the moment it was said.",
+    "disclosure": "Cited Conversations is published by Ringmaster. Casey Cheshire, Ringmaster’s Founder & CEO, hosts this conversation. SCAILE is a commercial partner of Ringmaster. This page is a recorded expert interview, not an independent ranking or endorsement of SCAILE or any other agency. The answers below are Simon Wilhelm’s recorded statements, each linked to its source timestamp."
+  },
+  "approval": {
+    "reviewer": "Casey Cheshire",
+    "decided_at": "2026-10-30T23:38:00.000Z"
+  },
+  "speakers": [
+    {
+      "speaker_id": "casey-cheshire",
+      "name": "Casey Cheshire",
+      "title": "Founder & CEO",
+      "company": "Ringmaster",
+      "role": "host",
+      "relationship_to_ringmaster": "Founder & CEO of Ringmaster, the publisher of Cited Conversations",
+      "disclosure_wording": "Ep 1 page: \"Cited Conversations is published by Ringmaster. Casey Cheshire, Ringmaster’s Founder & CEO, is the guest expert in this conversation.\" Ep 2 page: \"Cited Conversations is published by Ringmaster. Casey Cheshire, Ringmaster’s Founder & CEO, hosts this conversation.\"",
+      "same_as": [
+        "https://linkedin.com/in/caseycheshire",
+        "https://ringmaster.com"
+      ],
+      "page_url": "https://citedconversations.com/speakers/casey-cheshire/"
+    },
+    {
+      "speaker_id": "simon-wilhelm",
+      "name": "Simon Wilhelm",
+      "title": "Co-Founder and CEO",
+      "company": "SCAILE",
+      "role": "guest expert",
+      "relationship_to_ringmaster": "Commercial partner (SCAILE is a commercial partner of Ringmaster)",
+      "disclosure_wording": "SCAILE is a commercial partner of Ringmaster. This page is a recorded expert interview, not an independent ranking or endorsement of SCAILE or any other agency.",
+      "same_as": [
+        "https://www.linkedin.com/in/simon-leander-wilhelm",
+        "https://scaile.tech/about/simon"
+      ],
+      "page_url": "https://citedconversations.com/speakers/simon-wilhelm/"
+    }
+  ],
+  "answers": [
+    {
+      "anchor": "q1",
+      "question": "When a marketing leader asks, \"What is the best agency to get my brand cited by ChatGPT?\" What's actually broken here? Why isn't their brand showing up in AI answers today?",
+      "question_group": "Technical Access & Buying Persona",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Edited",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 112,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Yeah. So multiple reasons. We normally run a 29-step health check to see why you're not being cited. But very high level, you always want to start with, is your website actually technical … accessible for the AI crawlers? For example, if you have a lot of JavaScript, that's not good because, for example, ChatGPT does not read JavaScript, so it can only read the meta description and meta, … title of your website, but nothing else. Exactly, it's blind, so that's why you want to have server-side HTML-rendered websites. For that, we recommend you to, for example, build your, rebuild your website, … with a framework called Astro. … you can host it on Cloudflare or Vercel, whatever.",
+          "start_ms": 122406,
+          "end_ms": 176521,
+          "start_seconds": 122,
+          "end_seconds": 177,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=122"
+        },
+        {
+          "passage": 2,
+          "text": "Then the second major thing you want to do is understand the intent of your buying persona very often companies, also large enterprises, don't really know who their buying persona is, so they first have to define it. And then you want to find out what is their intent. In b2C you normally have-- or D2C, you normally have a lot more data about that than … in B2B. Let me give you an example. Three steps how you can find out the buying intent or like, the whole intent across the customer journey. Social listening. You go on Reddit, Quora, YouTube comments, TikTok, Instagram, so on, and scrape these platforms for the questions that people ask there around your topic along the customer journey. And then you find the seed keywords and find more and more long-tail keywords. Group them to content clusters where you then want to go ahead and publish content for ones that are not cannibalizing each other but showing topical authority. Second one is go and ask your customer success and sales team, \"What are the most frequently asked questions that we … g- getting?\" You can, for example, if you have Intercom chatbot on your website or a chatbot on your website where customers … can ask questions or a help bot, you can also extract these questions. And then the third one is that you extract your Google Search Console, … gA4, and bing Webmaster tool data. That will also already give you quite a good overview of where you're currently standing, for what are you being found and for what not. And also with a very special regex search, you can actually see for what kind of prompts ChatGPT is visiting your website for… it's a very, very difficult regex formula. I can maybe, if there is a chat window somewhere, I give it to you later. … that you type into your Google Search Console and then you see very long tail full prompts for which your website is being found that's the second thing that you want to check. So first, technical accessibility, visibility. Then what's the intent that we actually want to show up for?… So so … here you notice already the difference to SEO and SEO. You wanted to show up for a keyword, now you want to show up for an intent. And then the next step is who is now already showing up for this buying intent when … I ask all of the different LLMs questions, and that will very often be your competitors. So let's say in your case, what's the best b2B podcast recording service? I'm just making stuff up. And then there are, … listed … a bunch of, … competitors of yours. And then you want to look at what content are the models actually citing, so what are they preferring, so that you can then go ahead and build out your content strategy. Okay. Content strategy is the core piece that you want to then build out after assessing AI visibility and assessing who's visible for what prompts along the whole customer journey again.",
+          "start_ms": 245377,
+          "end_ms": 458591,
+          "start_seconds": 245,
+          "end_seconds": 459,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=245"
+        }
+      ]
+    },
+    {
+      "anchor": "q3",
+      "question": "Cloudflare, which you mentioned, can put its own robots.txt in there, but oftentimes it ends up blocking bots. Do a lot of people end up cutting off their nose? They do all this other work, but then their robots actually just blocks agents and bots?",
+      "question_group": "Technical Access & Buying Persona",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Edited",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 192,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Exactly, yeah. Very often, … for example, when you host a website on Cloudflare, it per default, … blocks, … GPT bot, Perplexity bot, Claude bot, and so on. Okay so you have to proactively enable it in your robots.txt file and put allow so that the bots can actually go and read your content on your website. So that's something to check, yeah. … so technical ac- accessibility.",
+          "start_ms": 215129,
+          "end_ms": 244237,
+          "start_seconds": 215,
+          "end_seconds": 245,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=215"
+        }
+      ]
+    },
+    {
+      "anchor": "q4",
+      "question": "Why does the intent of the buying persona matter for showing up in AI?",
+      "question_group": "Technical Access & Buying Persona",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Verbatim",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 503,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Because LLMs search context-based. Every one of us has their own context in their LLM. So you use ChatGPT, it saves the context about you, about your work, who you are, where you lived, where you live, what you have, what kind of preferences you have, and matches this when doing a search for you, what matches you best. So when you look for a product, we both look for a TV, will both of us give us different answers, and that has to do with the intent because the intent for you to buy a TV is different than for me when I buy a TV",
+          "start_ms": 509090,
+          "end_ms": 547550,
+          "start_seconds": 509,
+          "end_seconds": 548,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=509"
+        }
+      ]
+    },
+    {
+      "anchor": "q5",
+      "question": "Why does it matter if a brand describes itself differently across its website, Reddit, and YouTube profiles?",
+      "question_group": "Technical Access & Buying Persona",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Edited",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "editor",
+      "asked_at_seconds": null,
+      "asked_by": null,
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "And … that's why it's so important that across all available sources on the internet, you represent yourself as one entity. Big mistake that a lot of companies do is that they have a Reddit profile, they have a different description about … themselves, on like on their YouTube profile. And on their website again, they're … someone completely different",
+          "start_ms": 671442,
+          "end_ms": 692512,
+          "start_seconds": 671,
+          "end_seconds": 693,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=671"
+        }
+      ]
+    },
+    {
+      "anchor": "q6",
+      "question": "What is the difference between SEO and AEO in plain terms? Where does traditional optimization stop working?",
+      "question_group": "SEO vs AEO",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Edited",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 694,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "SEO is optimizing for also technical readability of your website and optimizing to rank high for certain keywords. And AEO is really understanding the intent of your customer that can be super different and based on the persona and the location and the context within the LLM and all the search engines work differently. ChatGPT has its own index. Perplexity searches on the web. Claude is searching through Brave. And in traditional SEO, you were mostly targeting only Google and only focusing on one algorithm. Now you're focusing a lot of different algorithms and a lot of different, … personas",
+          "start_ms": 703700,
+          "end_ms": 753430,
+          "start_seconds": 703,
+          "end_seconds": 754,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=703"
+        }
+      ]
+    },
+    {
+      "anchor": "q7",
+      "question": "I've heard that good SEO makes for good AEO. Is that true? And where does it stop? Where does it become you gotta take a step further and do AEO now?",
+      "question_group": "SEO vs AEO",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Edited",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 768,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "That's absolutely correct.… That's… Yes, you can.… doing good SEO is already 70% of it. I'd say so, yeah. I'd say so.… and AEO then is, if you now again look at larger enterprises, is something that is cross-functional. It goes across different divisions. Earlier when I was talking about how do you find the intent of your customer, you have to start talking to customer success, to sales. And you have then to talk to product to understand how to answer these questions. With SEO, it was a lot easier because you were … mostly focused on, … the technical optimization, and then maybe you had a copy content writer, who would write a content piece, stuff a lot of keywords, and you would rank very high and buy a lot of backlinks. Now, you have to talk to everyone in the organization to actually understand and orchestrate the efforts to become visible for a lot of different intents",
+          "start_ms": 778594,
+          "end_ms": 841856,
+          "start_seconds": 778,
+          "end_seconds": 842,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=778"
+        }
+      ]
+    },
+    {
+      "anchor": "q8",
+      "question": "When you say AI engines can't cite what they can't parse, what does that mean concretely? What content do they ignore?",
+      "question_group": "Content Formatting for AI",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Edited",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 842,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "yeah, th- that's, … that's in regards to the technical visibility. So JavaScript, they can't parse, … read JavaScript, so they just won't ignore it. They will ignore it",
+          "start_ms": 852573,
+          "end_ms": 863563,
+          "start_seconds": 852,
+          "end_seconds": 864,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=852"
+        }
+      ]
+    },
+    {
+      "anchor": "q9",
+      "question": "Is there anything else that it can't see?",
+      "question_group": "Content Formatting for AI",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Edited",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 924,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Funny thing, YouTube is now, according to a lot of, … researchers, one of the most cited sources in AI overviews on Google. But the LLMs can't watch the YouTube videos. So what people now do is they publish a YouTube video with the title, \"How Does AI Search Work?\" Have a 30-minute-long conversation about whatever, and the video description is very well optimized to answer the initial … question or title, the question in the title of the YouTube video, which is then being pulled into the AI, title of the overview… Exactly, because the AI models can look at the… Like the, of course, there are models that can watch the videos, but, … ChatGPT and like, say, they don't look at the videos for now, no",
+          "start_ms": 926410,
+          "end_ms": 988696,
+          "start_seconds": 926,
+          "end_seconds": 989,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=926"
+        }
+      ]
+    },
+    {
+      "anchor": "q10",
+      "question": "What should a YouTube video description include to be optimized for AI search?",
+      "question_group": "Content Formatting for AI",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Edited",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "editor",
+      "asked_at_seconds": null,
+      "asked_by": null,
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Exactly. Exactly. So have a very crisp, … and … question, answer structure of the YouTube video description. Have a very good, … title, and of course, … have a very appealing still thumbnail also matters. And then make sure that you also have the timestamps in the video and they're linked within the description. And then you should already have optimized for human, finding you, but for AI more for AI search.",
+          "start_ms": 1017008,
+          "end_ms": 1054308,
+          "start_seconds": 1017,
+          "end_seconds": 1055,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=1017"
+        }
+      ]
+    },
+    {
+      "anchor": "q11",
+      "question": "You mentioned the thumbnail. Does AI care about what something looks like?",
+      "question_group": "Content Formatting for AI",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Edited",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 1054,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "So I think it was Opus 4.8, … where it started taking screenshots from websites to look at the, look at the page to actually see what … what is on there. Because for example, we, when we produce content, we try to make it like very value. And with some companies, like for example, pharma … companies, then we then had these, diagrams … of their research, … with the different axes and whatever distribution in there for their chemical tests that they ran, whatever. AI could never see it, but now if they take screenshots, they see that there's this image of this … sophisticated looking chart, whatever.… Yes, you always want to have the subline describing what is In the picture. … You always want to keep the effort for the LLM as low as possible because they don't want to spend a lot of tokens. That's why it's so important that also everything is in clean HTML because they don't have to spend a lot of tokens. That's why you also used to do a lot of chunking. So you would chunk a lot of information into sentences. They would sound horrible to humans, but for AI, they were perfect because they just stuffed so much information in the sentence. So the AI would have to spend very little amount of tokens",
+          "start_ms": 1058432,
+          "end_ms": 1150391,
+          "start_seconds": 1058,
+          "end_seconds": 1151,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=1058"
+        }
+      ]
+    },
+    {
+      "anchor": "q12",
+      "question": "You would have to spend very little amount of tokens. Tell me more about that. What did you say we wanna reduce? The word count?",
+      "question_group": "Content Formatting for AI",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Edited",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 1150,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Yeah. So for example, there's this rule that you, … that, that's a rule from SEO, how long should your meta title, meta description be so that it's being shown in the SERP results, so in the normal, … blue link results, and that it's fully readable. Now with AI also, … you want to have a H1 that has a length of 60, … capitals. Then you want to have a subheading with like 150 characters that summarizes what … the … article is answering. And then you want to have a chunk with key takeaways, which is summaring, summarizing important points of the whole article so that no one has to actually read the article The human reader not. Because no, … the readability for when you are, … chunking too much into context, we get very, we got very bad feedback that was when that was done too much because it's just not readable anymore… Yes. Yes… If you really only want to have, for example, … ChatGPT to cite you, yes, because ChatGPT doesn't care about your Google ranking. If you were to transcribe this podcast and chunk the hell out of it, … it will be, it will be penalized in a way that the read time, the actual read time that you can see through Google Analytics when people go on the article and read it will be relatively low, which is seen as a indicator … of bad quality content, and google … wants-- will penalize it and maybe de- index it. But at the same time, maybe the value that I'm giving here is so unique that google says, \"Hey, this is something that no one has ever said and is so new and unique that we will still index because it fulfills EAT criteria.\"",
+          "start_ms": 1160324,
+          "end_ms": 1296257,
+          "start_seconds": 1160,
+          "end_seconds": 1297,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=1160"
+        }
+      ]
+    },
+    {
+      "anchor": "q13",
+      "question": "For ChatGPT, ranking in Google does not matter. You can rank super high in ChatGPT and have zero traffic on Google. Is the solution to dance in the middle then and not go too extreme on either sides?",
+      "question_group": "Content Formatting for AI",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Edited",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 1296,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Yes. So I think it's very important that you always commit to the highest content quality that you can output, which means fulfilling EAT criteria, having unique content, answering real buying intent, making … it very easy to read for the AI, provides unique value that is not on the web yet Build topical authority.",
+          "start_ms": 1317688,
+          "end_ms": 1340205,
+          "start_seconds": 1317,
+          "end_seconds": 1341,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=1317"
+        }
+      ]
+    },
+    {
+      "anchor": "q14",
+      "question": "What does AI-ready content actually look like?",
+      "question_group": "Knowledge as the Scarce Asset",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Edited",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 1341,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Yeah, that's what we answered earlier with like the whole health check. But what's even more interesting is what does AI-ready context look like to be turned into content? Because the big question or … the-- like for example now here in Germany, these, … called Mittelstand … companies, so larger, smaller they make up, … ninety-five percent of our GDP. Over thirty-two million people in Germany are employed at these companies. It's not the big Siemens, Bosch, Mercedes, VW, and so on. It's these companies, and these companies have a tremendous amount of unique knowledge that made them compete on a global level for a long time, and they're these hidden champions. Now, for them to become a global company and they want to expand and Scaile, Geo would be the perfect vehicle because they can now expand to Indonesia because, … content creation became a commodity, and they can start selling empty shells, for example, in Indonesia and test the market, whatever. How would they actually become the answer in AI search? It would be super easy for them because they have all of this unique value and knowledge … that they accumulated over decades no other company in the world has. The problem is this is stored in some… either it's implicit, or if it's explicit knowledge, it's stored in spreadsheets, old books, databases … that are inaccessible. So how do you retrieve all of this implicit knowledge and the explicit knowledge that is so hard and scattered to retrieve to then actually turn it into great content? So the question should not be is your content AI ready, but is your knowledge … or context aI ready?",
+          "start_ms": 1350250,
+          "end_ms": 1480533,
+          "start_seconds": 1350,
+          "end_seconds": 1481,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=1350"
+        }
+      ]
+    },
+    {
+      "anchor": "q15",
+      "question": "Why does named expert attribution matter so much for AI citation?",
+      "question_group": "Expert Attribution",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Edited",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 1484,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Because we surpassed the point where there is more AI-written content on the web than human-written content. And at the same time, the foundational model companies have crawled the whole web and have trained their models on the whole web, and they are licking their fingers for this implicit expert knowledge that hasn't been written down yet. So if you're an expert in a field that is writing down his or her knowledge, and the AI knows and can verify that it's actually you, for example, because you link your LinkedIn profile, you have an author page that is well-structured, aI will be … way more likely to actually cite you",
+          "start_ms": 1490332,
+          "end_ms": 1533842,
+          "start_seconds": 1490,
+          "end_seconds": 1534,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=1490"
+        }
+      ]
+    },
+    {
+      "anchor": "q16",
+      "question": "When we did your introduction earlier, we said a whole bunch of things about you. Is that sufficient to establish the expertise, or should we give it more credentials? What really helps define what an expert is?",
+      "question_group": "Expert Attribution",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Edited",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 1534,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Have I published any academic papers? Do I hold a master's degree in that or a bachelor's degree in that, … area? Have I done great work with great companies where I actually showed that my expertise is worth what I'm doing? … is-- Are there other sources or people, press or Wikipedia, reporting that i'm good at what I'm doing? Do I have a lot of followers on LinkedIn? Do I get a lot of likes and engagements on my thought leadership posts? Yeah, in the end it's all about, … can you validate with external sources what you've done?",
+          "start_ms": 1549118,
+          "end_ms": 1600906,
+          "start_seconds": 1549,
+          "end_seconds": 1601,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=1549"
+        }
+      ]
+    },
+    {
+      "anchor": "q17",
+      "question": "Would you clean up any of the ways that we've answered these questions? Because we're human and we haven't perfectly written out our answers. Would you clean that up or would you have it stay exactly the way it was?",
+      "question_group": "Podcast-to-Content Process (PCT)",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Verbatim",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 1601,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Keep it as raw as possible because that will make it unique. Yeah",
+          "start_ms": 1631029,
+          "end_ms": 1634149,
+          "start_seconds": 1631,
+          "end_seconds": 1635,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=1631"
+        }
+      ]
+    },
+    {
+      "anchor": "q18",
+      "question": "How can a brand use quotes from a raw transcript without turning them into AI-rewritten content?",
+      "question_group": "Podcast-to-Content Process (PCT)",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Edited",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "editor",
+      "asked_at_seconds": null,
+      "asked_by": null,
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "if … let's take the example. So you and Ringmaster, you build a content cluster that is called, … what AI needs to know about B2B marketing, and then you have the sub-cluster GEO And then you have and then you have a blog article interview … with Simon. This is the main cornerstone piece, and then you can have a lot of blog posts which all only go around this one question that you gave me. And there you can do a lot of research around it and then use a quote, like a real quote from this transcript in the blog article from me citing me. Okay. This will make … the value of the content even better than just like purely writing down my answer, but using it in the contextual better just like right way.",
+          "start_ms": 1644380,
+          "end_ms": 1701749,
+          "start_seconds": 1644,
+          "end_seconds": 1702,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=1644"
+        }
+      ]
+    },
+    {
+      "anchor": "q19",
+      "question": "Walk us through what you actually do at Scaile. If a brand comes to you saying, \"We're invisible in ChatGPT,\" what happens next?",
+      "question_group": "Working with Scaile / Capture Partner",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Edited",
+      "editors_note": "A client anecdote naming a specific brand (and the BMW/Audi example used to introduce this answer) has been left out of this quote: the guest asked on tape for it to be deleted since Scaile was in talks with that company, and it was not marked for removal in the production scrub.",
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 1764,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "First of all, I want to understand what do you mean by we're invisible on ChatGPT? Problem is people…",
+          "start_ms": 1774498,
+          "end_ms": 1781488,
+          "start_seconds": 1774,
+          "end_seconds": 1782,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=1774"
+        },
+        {
+          "passage": 2,
+          "text": "So that's the first thing. I want to really understand why do you want to present for this prompt? How did you test it? And then we test it and assess if you're really absent. We then we assess is your page actually technically optimized so that if we start publishing content that it actually works. If not, we will have to start with technical optimization. If technical visibility, we call it technical visibility, is given, readability is given, then we go ahead and have, … a catalog of questions that you have to go through where you provide us you what you do, how do you define your focus, which market, which product do you focus on. We normally always start with one market, one product set up the knowledge base around it. So who's the buying persona for this electric vehicle, for example now? … and how do you differentiate to your competitors and … who are your competitors? In what kind of tonality and style do you want to write? And what are the product details of your offering? And are there any regulatory pages that we should monitor are relevant for you within your industry that when information changes, we need to change the information on the content that we will publish in the future? Once all of this is set up, we then define the 30 to 50 prompts, super transactional bottom of the funnel based on the three pillars that I talked earlier about social listening, internal data, customer success, sales, and all the data that we can get through your Google Search Console, Bing Webmaster Tools, and GA4. Then we track are you visible, are you not visible, who is visible, and why are they visible? Lay out the color clusters, subclusters, produce the first three articles. They get these articles. They have to human review first the outline and then the article itself and give feedback. This is important because we don't publish a fully AI-generated content. There's always a human in the loop, but the human in the loop needs to be at the best point in time so that it's very time efficient for them because no one at these large enterprises has time. And then we publish the content. There are multiple ways to publish the content. Either we connect through an API to your CMS, you get the HTML or the Word or whatever format, pasted into your content management system, or clone your site, do a so called reverse proxy, and connect it with the content delivery network of yours. Sounds super complex, it's super easy, takes five minutes, and connect it to our platform. And then we can very easily always refresh the content whenever any information in regards to your product, your buying persona, the regulatory information changes",
+          "start_ms": 1833952,
+          "end_ms": 2022834,
+          "start_seconds": 1833,
+          "end_seconds": 2023,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=1833"
+        }
+      ]
+    },
+    {
+      "anchor": "q20",
+      "question": "How do you split the work with a capture partner like RingMaster? Where does one end and the other begin, or how does that fit?",
+      "question_group": "Working with Scaile / Capture Partner",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Verbatim",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 2052,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Yeah the whole setup of the brand kit, the knowledge base is the most manual and time-consuming part on our side because it's super hard or it's nearly impossible to collect all of this knowledge and context without having a human going to them, talking to them. Or you just do a podcast and you have all of these questions that they have to go through either way and ask them these questions on the spot. And then in the end you give them, \"Hey, these were the answers. Are they correct? Can we use them for the content creation?\"",
+          "start_ms": 2063740,
+          "end_ms": 2101290,
+          "start_seconds": 2063,
+          "end_seconds": 2102,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=2063"
+        }
+      ]
+    },
+    {
+      "anchor": "q21",
+      "question": "How do you measure whether a brand's AI visibility is actually improving? What should a CMO ask for on a dashboard?",
+      "question_group": "Measuring AI Visibility",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Edited",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 2155,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Yeah, super good question. Prompt tracking is a scam. So prompt tracking, as I told you, like how do I measure am I visible for do I have the best electric car, yes or no? No one from all the big players, Profound, PKI, RankScaile, whatever, have found out the exact way to do it that they can literally like academically prove and tell … \"You are now the answer.\" Because AI is not deterministic. LLMs are not deterministic, sorry. … so how do you actually assess if it's working what you're doing, how much more revenue have I made by people finding me in AI? That's the only valid metric. how do I check this? … or how do I actually understand … if I d- drive top-line growth through being visible in AI search? A, you can in Google Analytics look at the clicks that are coming directly through the AI chatbots or AI overviews, and can then follow them to have they booked a meeting or have they bought the product. Second one is self-attribution. In B2B, you can in your book a meeting form, just ask them, \"Where did you find us?\" Also very easy. Or in the first sales call, you ask them, \"Where did you find us?\" B2C, D2C, include … in your email … to the customer where you're informing them, \"Hey, your package is on the way. Track where it is.\" Include a short form, where did you find us? Because this email has a very, very high open rate because everyone wants to know when their package is arriving, when they ordered something. And if the first thing they see is this form, this will also give you some more self-attributed tracking",
+          "start_ms": 2166771,
+          "end_ms": 2288439,
+          "start_seconds": 2166,
+          "end_seconds": 2289,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=2166"
+        }
+      ]
+    },
+    {
+      "anchor": "q22",
+      "question": "What is share of answer and why does it matter more than traffic?",
+      "question_group": "Measuring AI Visibility",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Edited",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 2319,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "I mean, traffic will become a vanity metric. Human traffic will become a vanity metric because we're moving towards that all search is happening in LLMs so it's more important how many times when someone asks a question, am I the answer? So out of these 30 prompts, how many times is Audi being mentioned as having the best electric vehicle? If out of one hundred of these or 30 prompts I'm being visible in 29. … very good That can be more important than being visible or having a thousand clicks that are not intent-based. Because if I have the intent to buy an electric vehicle and I ask which electric vehicle is the best, i'm very much bottom of the funnel, and I know I already have decided that I want to buy this car, but I'm not 100% sure which one. And if I'm the number one answer, the sentiment towards my car is good, and I'm this answer in 100 prompts in 100 different ChatGPT sessions, then it's good.",
+          "start_ms": 2328639,
+          "end_ms": 2399602,
+          "start_seconds": 2328,
+          "end_seconds": 2400,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=2328"
+        }
+      ]
+    },
+    {
+      "anchor": "q23",
+      "question": "How does a marketing leader tell a real AI visibility agency from a prepackaged SEO shop or a repackaged SEO shop?",
+      "question_group": "Choosing an AEO Agency",
+      "is_lead": true,
+      "speaker_id": "simon-wilhelm",
+      "label": "Verbatim",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 2401,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Have they driven revenue through AI search visibility?",
+          "start_ms": 2412954,
+          "end_ms": 2416434,
+          "start_seconds": 2412,
+          "end_seconds": 2417,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=2412"
+        }
+      ]
+    },
+    {
+      "anchor": "q24",
+      "question": "What's the most common thing fake AEO agencies get wrong?",
+      "question_group": "Choosing an AEO Agency",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Verbatim",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 2419,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "producing a lot of AI slop content",
+          "start_ms": 2424051,
+          "end_ms": 2427141,
+          "start_seconds": 2424,
+          "end_seconds": 2428,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=2424"
+        }
+      ]
+    },
+    {
+      "anchor": "q25",
+      "question": "If a CMO only has one question to ask in a pitch meeting with an AEO agency or a GEO agency, what should it be?",
+      "question_group": "Choosing an AEO Agency",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Verbatim",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 2440,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "How do you measure success?",
+          "start_ms": 2451197,
+          "end_ms": 2452567,
+          "start_seconds": 2451,
+          "end_seconds": 2453,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=2451"
+        }
+      ]
+    },
+    {
+      "anchor": "q26",
+      "question": "If a CMO only has one question to ask in a pitch meeting with an AEO agency or a GEO agency, what answer do you want to hear them give?",
+      "question_group": "Choosing an AEO Agency",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Verbatim",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 2454,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "How much more revenue are we making for being visible in AI search?",
+          "start_ms": 2457341,
+          "end_ms": 2462951,
+          "start_seconds": 2457,
+          "end_seconds": 2463,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=2457"
+        }
+      ]
+    },
+    {
+      "anchor": "q27",
+      "question": "If a marketing leader listening wants to pitch this to their CEO board, how do they make the case for investing in AI visibility now?",
+      "question_group": "Making the Business Case",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Verbatim",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 2466,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "60% of the searches already end without a click because of an AI summary If we're not investing into this channel, we're going to be invisible or absent even though we might have great brand reputation, but the next generation of people who are going to buy us will not even know that we exist even though we poured millions into brand campaigns",
+          "start_ms": 2475888,
+          "end_ms": 2499723,
+          "start_seconds": 2475,
+          "end_seconds": 2500,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=2475"
+        }
+      ]
+    },
+    {
+      "anchor": "q28",
+      "question": "What's the most common pushback you hear from leadership, and how do you address it?",
+      "question_group": "Making the Business Case",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Verbatim",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 2500,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "we don't have the resources, the capacity to do GEO because GEO is cross-functional and to actually become visible, you don't have to only measure who's visible for prompts, but you actually have to execute and publish great content. And to do this in large organizations is a pain. But that's why we consolidate all of this in one platform and have a dedicated account manager taking care",
+          "start_ms": 2504510,
+          "end_ms": 2536950,
+          "start_seconds": 2504,
+          "end_seconds": 2537,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=2504"
+        }
+      ]
+    },
+    {
+      "anchor": "q29",
+      "question": "What if they say we already have an SEO agency?",
+      "question_group": "Making the Business Case",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Edited",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 2537,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "That's great. Then introduce me to them. I will help them to become a GEO, … agency",
+          "start_ms": 2541183,
+          "end_ms": 2547523,
+          "start_seconds": 2541,
+          "end_seconds": 2548,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=2541"
+        }
+      ]
+    },
+    {
+      "anchor": "q30",
+      "question": "What's the best demo to run in a boardroom to convince everyone how important this is?",
+      "question_group": "Making the Business Case",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Verbatim",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 2549,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Where are you currently standing with your revenue targets? Are you hitting them or are you missing them? What's your goal? Like what's, or what's your plan to close this gap? It will be a number of measures and one that will most definitely work and has provenly the best conversion rates is when an AI gives a purchasing recommendation So this should be part of your strategy, yeah",
+          "start_ms": 2557637,
+          "end_ms": 2590955,
+          "start_seconds": 2557,
+          "end_seconds": 2591,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=2557"
+        }
+      ]
+    },
+    {
+      "anchor": "q31",
+      "question": "What is the difference between AEO and GEO?",
+      "question_group": "AEO vs GEO",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Verbatim",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 2591,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "AEO, answer engine optimization for me is be visible in the AI overview and then when it goes into, you click on the AI overview, you come into the Google AI mode. And GEO is the cross-functional capability of understanding who your ideal customers are and then answering or becoming the answer in ChatGPT, Claude, Perplexity, and Gemini. So conversational chatbots from the beginning on.",
+          "start_ms": 2595382,
+          "end_ms": 2625432,
+          "start_seconds": 2595,
+          "end_seconds": 2626,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=2595"
+        }
+      ]
+    },
+    {
+      "anchor": "q32",
+      "question": "If someone listening wants to learn more about getting their brand cited by AI engines or wants to explore working with you, where should they go?",
+      "question_group": "Connect",
+      "is_lead": false,
+      "speaker_id": "simon-wilhelm",
+      "label": "Verbatim",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 2635,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Scaile.tech/contact",
+          "start_ms": 2644982,
+          "end_ms": 2645582,
+          "start_seconds": 2644,
+          "end_seconds": 2646,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm?t=2644"
+        }
+      ]
+    }
+  ]
+}
