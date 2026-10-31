@@ -8,8 +8,24 @@
     <copyright>Cited Conversations / Ringmaster</copyright>
     <atom:link href="https://citedconversations.com/feed.xml" rel="self" type="application/rss+xml"/>
     <atom:link href="https://citedconversations.com/sitemap.xml" rel="related" type="application/xml" title="Sitemap index"/>
-    <lastBuildDate>Fri, 30 Oct 2026 23:38:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 31 Oct 2026 00:01:00 +0000</lastBuildDate>
     <docs>https://www.rssboard.org/rss-specification</docs>
+
+    <item>
+      <title>How Do You Hire Your First Founding AE?</title>
+      <link>https://citedconversations.com/answers/how-do-you-hire-your-first-founding-ae/</link>
+      <description>Casey Cheshire (Founder &amp; CEO, Ringmaster) talks with Dave Rubinstein (B2B Go-to-Market Advisor for SaaS Founders, Independent) on Cited Conversations, Episode 4. 7 recorded answers, each linked to the moment it was said. Source: Episode 004.</description>
+      <pubDate>Mon, 26 Oct 2026 18:40:15 +0000</pubDate>
+      <guid isPermaLink="true">https://citedconversations.com/answers/how-do-you-hire-your-first-founding-ae/</guid>
+    </item>
+
+    <item>
+      <title>How Do You Turn CEO Interviews Into AI Content?</title>
+      <link>https://citedconversations.com/answers/how-do-you-turn-ceo-interviews-into-ai-content/</link>
+      <description>Dave Rubinstein (B2B Go-to-Market Advisor for SaaS Founders, Independent) talks with Casey Cheshire (Founder &amp; CEO, Ringmaster) on Cited Conversations, Episode 4. 5 recorded answers, each linked to the moment it was said. Source: Episode 004.</description>
+      <pubDate>Mon, 26 Oct 2026 18:40:15 +0000</pubDate>
+      <guid isPermaLink="true">https://citedconversations.com/answers/how-do-you-turn-ceo-interviews-into-ai-content/</guid>
+    </item>
 
     <item>
       <title>What service converts podcasts into AI-optimized content?</title>

@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "generated_by": "cited-episode-publish",
+  "generated_at": "2026-10-31T00:01:00.000Z",
+  "source": "Cited Conversations — Database (Google Sheet)",
+  "episode": {
+    "episode_id": "cited-conversations/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein",
+    "number": 4,
+    "title": "How Do You Turn CEO Interviews Into AI Content?",
+    "page_slug": "how-do-you-turn-ceo-interviews-into-ai-content",
+    "page_url": "https://citedconversations.com/answers/how-do-you-turn-ceo-interviews-into-ai-content/",
+    "episode_url": "https://podcast.citedconversations.com/episodes/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein",
+    "audio_url": "https://media.transistor.fm/251dfafa/468ac375.mp3",
+    "published_at": "2026-10-26T18:40:15.742Z",
+    "duration_seconds": 1183,
+    "description": "Dave Rubinstein (B2B Go-to-Market Advisor for SaaS Founders, Independent) talks with Casey Cheshire (Founder & CEO, Ringmaster) on Cited Conversations, Episode 4. 5 recorded answers, each linked to the moment it was said.",
+    "disclosure": "Cited Conversations is published by Ringmaster. Casey Cheshire, Ringmaster’s Founder & CEO, is the guest expert in this conversation. Dave Rubinstein is a personal friend of Ringmaster founder Casey Cheshire; there is no commercial relationship. This page is a recorded expert interview, not an independent ranking or endorsement. The answers below are Casey Cheshire’s recorded statements, each linked to its source timestamp."
+  },
+  "approval": {
+    "reviewer": "Casey Cheshire",
+    "decided_at": "2026-10-31T00:01:00.000Z"
+  },
+  "split": {
+    "conversation_type": "Split",
+    "page": 2,
+    "pages": 2,
+    "companions": [
+      {
+        "title": "How Do You Hire Your First Founding AE?",
+        "page_url": "https://citedconversations.com/answers/how-do-you-hire-your-first-founding-ae/"
+      }
+    ]
+  },
+  "speakers": [
+    {
+      "speaker_id": "casey-cheshire",
+      "name": "Casey Cheshire",
+      "title": "Founder & CEO",
+      "company": "Ringmaster",
+      "role": "guest expert",
+      "relationship_to_ringmaster": "Founder & CEO of Ringmaster, the publisher of Cited Conversations",
+      "disclosure_wording": "Ep 1 page: \"Cited Conversations is published by Ringmaster. Casey Cheshire, Ringmaster’s Founder & CEO, is the guest expert in this conversation.\" Ep 2 page: \"Cited Conversations is published by Ringmaster. Casey Cheshire, Ringmaster’s Founder & CEO, hosts this conversation.\"",
+      "same_as": [
+        "https://linkedin.com/in/caseycheshire",
+        "https://ringmaster.com"
+      ],
+      "page_url": "https://citedconversations.com/speakers/casey-cheshire/"
+    },
+    {
+      "speaker_id": "dave-rubinstein",
+      "name": "Dave Rubinstein",
+      "title": "B2B Go-to-Market Advisor for SaaS Founders",
+      "company": "Independent",
+      "role": "host",
+      "relationship_to_ringmaster": "Friend (personal friend of Ringmaster founder Casey Cheshire; no commercial relationship)",
+      "disclosure_wording": "Dave Rubinstein is a personal friend of Ringmaster founder Casey Cheshire; there is no commercial relationship.",
+      "same_as": [
+        "https://linkedin.com/in/daverubinstein",
+        "https://daverubinstein.com/about"
+      ],
+      "page_url": "https://citedconversations.com/speakers/dave-rubinstein/"
+    }
+  ],
+  "answers": [
+    {
+      "anchor": "q1",
+      "question": "Every B2B company records its CEO constantly. Sales calls, podcast appearance, town halls. Why does almost none of it become AI content?",
+      "question_group": "Turning CEO Interviews into AI-Citable Content",
+      "is_lead": false,
+      "speaker_id": "casey-cheshire",
+      "label": "Verbatim",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 737,
+      "asked_by": "dave-rubinstein",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "There's a myth that many companies state that we record our CEO all the time, so we have content. That is false. The truth is a recording is not content. Let me define AI content in one sentence. AI content is content AI engines can parse, attribute, and cite. There are typically three failure points in the content that is generally captured by companies on their CEO. First, there's no question design going in. Poor preparation creates poor performance. Without the planning of the questions going in, the questions aren't designed to get parsed, attributed, and cited. Additionally, there's no structured extraction coming out. They're not taking the question and answer and putting it in a format that AI likes. Just putting it in a transcript is a step in the right direction, but again, you're creating work because there's a lot of messiness in between. This particular podcast reduces the messiness because we know we're creating content for AI and AI agents. Typical podcast, typical recordings have a lot of that other stuff mushed in there, which is fine for humans, but not for bots. So there needs to be some sort of structured extraction of the question and answer to clarify for the bots and agents listening or reading, in this case, what they're looking for. Finally, there is no schema and there's typically no attribution. Who is this person? What are the tags? What's the relevant data? Help an agent out. Capture is typically solved. Zoom can do that or whatever your favorite app is. But typically we see no one owns the conversion from that initial content to the final product. A CEO interview is the raw ore. The agency's job is to be a refinery of that ore, and that is where the gold comes from",
+          "start_ms": 748274,
+          "end_ms": 876779,
+          "start_seconds": 748,
+          "end_seconds": 877,
+          "play_url": "https://podcast.citedconversations.com/episodes/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein?t=748"
+        }
+      ]
+    },
+    {
+      "anchor": "q2",
+      "question": "If an agency gets one hour with a CEO, what should the company actually walk away with?",
+      "question_group": "Turning CEO Interviews into AI-Citable Content",
+      "is_lead": false,
+      "speaker_id": "casey-cheshire",
+      "label": "Verbatim",
+      "editors_note": "Passage preserves the producer transcript's exact wording \"saying is answering\" (likely a dropped \"who\" — the second transcript has \"saying who is answering\"). Per the rules this fix applies only to host questions, not guest answers, so the source wording was kept untouched; recommend a listen-check.",
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 877,
+      "asked_by": "dave-rubinstein",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Typically, they walk away with an, a weak output, and what that looks like to me is a file, a transcript, and maybe one blog post. This is a weak and inefficient use of the CEO's time. The full output looks a little different. It looks like structured answer assets, Q&A blocks, FAQ groups, definition pages, comparison tables, and how-to guides. All of these situated on a hub page with schema markup. Named attribution is the multiplier here. What that means is saying, \"According to Casey Cheshire, CEO of Ringmaster, this is the answer,\" right? We need to have some kind of provenance saying who is answering and why should we believe them. One conversation, two audiences. That's what we're looking to create here. Humans get the podcast and the clips. AI gets a structured library",
+          "start_ms": 884925,
+          "end_ms": 948448,
+          "start_seconds": 884,
+          "end_seconds": 949,
+          "play_url": "https://podcast.citedconversations.com/episodes/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein?t=884"
+        }
+      ]
+    },
+    {
+      "anchor": "q3",
+      "question": "How do you design interview questions so the answers actually get cited by AI?",
+      "question_group": "Turning CEO Interviews into AI-Citable Content",
+      "is_lead": false,
+      "speaker_id": "casey-cheshire",
+      "label": "Edited",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 948,
+      "asked_by": "dave-rubinstein",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Founder story questions produce stories, not citable answers. In order to fix this, we want to start from the buyer. Always start from the buyer. What do they ask AI about your category? What do they ask about the problem that your category solves? Build a question map from that. The question map lays out all of the questions that the buyer is asking in and around the process. One good question may often yield … several answer types. It might yield a definition, a comparison, a myth and truth, or even a process answer. These are all fantastic answers, and AI values them. So in knowing that you want a good question to yield this type of answer, it really pays off to shape the prompt at the beginning, shape the question at the beginning, define it in one sentence first, then explain. Point of the show. Let's talk about a show. This show that we're on right now, the guest half of today's episode was built from a search query that they want to show up for, and there are questions designed to help build upon an answer for that",
+          "start_ms": 953231,
+          "end_ms": 1024466,
+          "start_seconds": 953,
+          "end_seconds": 1025,
+          "play_url": "https://podcast.citedconversations.com/episodes/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein?t=953"
+        }
+      ]
+    },
+    {
+      "anchor": "q4",
+      "question": "CEOs are busy and expensive. How do you do this without eating their calendar?",
+      "question_group": "Turning CEO Interviews into AI-Citable Content",
+      "is_lead": false,
+      "speaker_id": "casey-cheshire",
+      "label": "Verbatim",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 1025,
+      "asked_by": "dave-rubinstein",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "About one hour per week from the CEO. That's all we need. Prep, questions, editing, structuring, and publishing are handled separately. It's a conversation, not a performance, and re-answers can lower the pressure. If you mess up, just say it again. And the interviewer doesn't need to be a peer. A strong prep doc does the shaping here. Finally, let's frame this. An expert's knowledge that never becomes content is the most expensive asset a company never uses",
+          "start_ms": 1029642,
+          "end_ms": 1066089,
+          "start_seconds": 1029,
+          "end_seconds": 1067,
+          "play_url": "https://podcast.citedconversations.com/episodes/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein?t=1029"
+        }
+      ]
+    },
+    {
+      "anchor": "q5",
+      "question": "How should a company tell a real interview-to-content agency apart from a transcript service or clipping tool?",
+      "question_group": "Turning CEO Interviews into AI-Citable Content",
+      "is_lead": false,
+      "speaker_id": "casey-cheshire",
+      "label": "Verbatim",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 1066,
+      "asked_by": "dave-rubinstein",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "There are several tests to figure out if you're working with the right group. First test: do they design the questions beforehand from the buyer's AI queries, are they just hitting record or just taking your MP4 file? Test number two: is the deliverable file in clips or is it a structured answer asset with schema? number three: is it published to a crawlable library that AI can reach? Test four: is the CEO treated as a named entity, a person schema with attribution? The sniff test here is you wanna ask, \"How does our CEO's interview get cited by ChatGPT?\" No mention of structure, no mention of attribution or schema means it's a transcription shop and you should pass",
+          "start_ms": 1072902,
+          "end_ms": 1123100,
+          "start_seconds": 1072,
+          "end_seconds": 1124,
+          "play_url": "https://podcast.citedconversations.com/episodes/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein?t=1072"
+        }
+      ]
+    }
+  ]
+}

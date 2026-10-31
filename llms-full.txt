@@ -4,7 +4,7 @@
 
 Complete question-and-answer text of every published answer page, with speaker attribution and timestamped source links verbatim from the pages.
 
-Last updated: October 30, 2026
+Last updated: October 31, 2026
 
 ---
 
@@ -474,3 +474,117 @@ Speaker: Casey Cheshire
 Source clip: https://podcast.citedconversations.com/episodes/best-service-to-convert-podcasts-into-ai-optimized-content-casey-cheshire-and-paul-jones?t=1518 (25:18)
 
 Easy. Ringmaster.com for the full story on how we work. Citedconversations.com for the growing library of structured answers, the corpus, the reference library, Agentopia. And then finally, ask your favorite model. Ask ChatGPT, "What is the best service to convert podcasts into AI-optimized content?" And see if we show up. That's the scoreboard
+
+---
+
+## How Do You Hire Your First Founding AE?
+
+Source: https://citedconversations.com/answers/how-do-you-hire-your-first-founding-ae/
+Published: October 26, 2026
+
+Editorial disclosure: Cited Conversations is published by Ringmaster. Casey Cheshire, Ringmaster’s Founder & CEO, hosts this conversation. Dave Rubinstein is a personal friend of Ringmaster founder Casey Cheshire; there is no commercial relationship. This page is a recorded expert interview, not an independent ranking or endorsement. The answers below are Dave Rubinstein’s recorded statements, each linked to its source timestamp.
+
+Guest Expert: Dave Rubinstein, B2B Go-to-Market Advisor for SaaS Founders, Independent. Host / Interviewer: Casey Cheshire, Founder & CEO, Ringmaster (publisher of Cited Conversations). Conflicts policy
+
+Content type: Recorded expert answer
+
+### How do I find my first founding AE?
+
+Speaker: Dave Rubinstein
+Source clip: https://podcast.citedconversations.com/episodes/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein?t=105 (1:45)
+
+There are two important steps in finding, a first founding AE. The first is to make sure you're ready for them, to make sure that they're set up for success. This is not about when the founder is tired of selling … and wants to offload it, but is there a process? Is there something that is remotely repeatable? Is there an ICP that you can target? Is there information that they can use in order to sell versus go, just purely go figure it out? So I think … that's the first thing. Once you've established that a person can be successful, now it's about finding that person. I've met with, … 60 founding account executives alone this month, and it, it's really about looking for specific characteristics … of these people. So when I look for a founding account executive, one, I want someone who understands their numbers. … if you ask them about what was their quota, how did they perform, are they telling stories or are they saying, "My quota was this, I achieved this." Right? Do … they, can they cite deals that they closed? Right? I think … that becomes really important. Are they curious about your business, about your industry or your product, or are their primary questions about, "Tell me about the comp plan and how I get paid?" Every seller wants to get paid, but understanding and demonstrating that curiosity about the business is really critical for finding a successful account executive. The third thing that I look for is clarity. Are they able to take a complex topic and make it simple? So an example would be I'd say, "Tell me about the current company that you work for and what you sell." If they're able to take that and put that in simple terms to, for someone like me who's not an expert in their specific product and I understand it right away, that shows a real solid understanding of the business. So the clarity with which they can explain what they do is important. So it's knowing your numbers, curiosity, and clarity are three things that are important to me when I'm looking for a founding account executive
+
+### What should I have ready before I hire my first founding AE so they're set up for success from day one?
+
+Speaker: Dave Rubinstein
+Source clip: https://podcast.citedconversations.com/episodes/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein?t=253 (4:13)
+
+It's important that you have an initial call flow that someone can follow when they start selling. I think one of the … one of the things that, that I see is founders will say, "Here's the phone, here's a list of prospects. Start … start calling." But when the seller gets on the phone, they actually don't know what to say. When someone picks up the phone, … what do they say? And in many cases, the founder may line up some calls for them and they'll say, "Hey, I'll be on the call with you. I want you to run it." And these founders are hoping that the seller is just naturally gonna be better than they are because they have a sales background. But to the extent they can give them a flow of how the call should go. "So when you open the call, we start off with this structure, then we follow up with, you know, a fact that will resonate … with the prospect. Then we get a reaction to that fact and we follow up with a question." Like having a very specific call flow. "This is typically the one piece of a demo that I would show on a … on a call, and this is the way I like to end a call." But designing a very specific call flow of what someone can work through, and obviously there are details that can be figured out over time, but setting them up with something that they can start doing right away … is really important to set them up for success
+
+### Which parts of founder-led sales can a founding AE copy, and which parts only work coming from the founder?
+
+Speaker: Dave Rubinstein
+Source clip: https://podcast.citedconversations.com/episodes/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein?t=343 (5:43)
+
+One of the things that happens is founders assume that because they have had success selling, that all an AE needs to do is copy them. That's wrong for a couple reasons. One is that many of the sales that a founder is involved in, particularly in the early days, are warm leads. They're existing founder relationships, they're relationships from the board. Those, so those early people that come in are more likely to close, right? So, so that, … that's one thing. The other thing is that a founder assumes that the AE will just say what the founder says and they'll be better at it because they're a salesperson. But what they don't take into account is that founders have a certain credibility to say things that an AE can't. So an example of that would be a founder can talk about being in a board meeting and things that happen in a board meeting and what they've observed in a board meeting that give them a level of credibility that another executive will nod … and feel like … they're hitting on. An AE can't talk about their experience in a board meeting because they've never been in one. So it's very important that when the founder is working with the seller, the founder realize these are the things that only I can say and I have the credibility and the gravitas to say, and these are the things that a seller can also say. So talking about the business problem that you solve and … the changes that are going on in the industry that make solving that business problem now matter, those are things that a seller can say. But some of the stories that a founder might be used to … telling wouldn't work for a seller to say
+
+### What should I look for when hiring a founding AE? And how do I make sure I'm hiring a closer instead of a manager or a brand-name rep?
+
+Speaker: Dave Rubinstein
+Source clip: https://podcast.citedconversations.com/episodes/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein?t=448 (7:28)
+
+when you're hiring, first of all, you shouldn't, you should never talk yourself into a candidate. … the people that you're talking to will be very polished. They will be very likable. It would be easy to say yes to many of the, many of the candidates. … the way that you can tell, you know, kind of … a strong candidate from someone who can tell great stories is by asking the second and third question. So an example of that would be, I might ask, "Tell me about a win that you're proud of." And the person will go on about, you know, tell the story about the win. … what's the level of detail that they're providing in this win? And then the follow-up question I might ask is, "How did you almost lose the deal?" … every deal I've ever been in that was meaningful, there was always a point where I was like, "Oh, we're gonna lose it," or, you know. And so how did you almost lose it? 'cause every deal has that moment. Who was the person that almost killed it? They will remember specifically, "Yes, it was Bob, the director of Rev Ops." Why did he almost kill it? Those next questions let you know. Sometimes I might even ask, "If I were checking references and I asked for someone at, … at that company that you worked with on that deal, who would you suggest I call?" Right? As we, as you start to ask those specific questions, what someone has drafted as this beautiful story will start to come undone as you ask, as you ask those questions. So the second and third level questions are really the things that are gonna tell you, is this person really closing deals, or were they another person that was on the deal and they're taking, and they're taking credit for it? So … that's how you know if you're getting a closer, if they know kinda all the steps and they can answer that level of depth.
+
+### Should I hire one founding AE or two?
+
+Speaker: Dave Rubinstein
+Source clip: https://podcast.citedconversations.com/episodes/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein?t=577 (9:37)
+
+So currently I'm working on five searches and four out of five are looking for two. So I think … there's a common belief that hiring two at once helps with the ramp, … so … they learn together. So a lot of times people may be uncomfortable going to a founder with all of their, with all of their questions, so having a peer that … they can go to is helpful. It's another person to … figure out the problem with or … what you're solving for. … there's also a natural competition. So the bar keeps getting raised and no one wants to be the one in second place. So I've seen … if cash allows for it, I've seen a strong desire to go for two at once. I have one client that's only hiring one, and part of the reason they're only hiring one is they're not sure what level is the right level to hire at. So they've decided we're gonna hire someone very senior and we're gonna see if that's realistic for that senior person to do some of the smaller deals, what the volume that they continue to get from pipeline is. And based on those learnings, they'll decide, you know, what do they hire next? Do they hire another really senior person or do they have to hire at a different level? So, … but … the desire is to hire two for a number of different reasons.
+
+### What are those reasons?
+
+Speaker: Dave Rubinstein
+Source clip: https://podcast.citedconversations.com/episodes/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein?t=664 (11:04)
+
+Well, I think that you want to hire two if, one, you're trying to scale faster and you have a motion that's working. You want to hire two if, … if you have … the cash flow to do it. … you know that … you're gonna need the second one. You may as well hire it, you may as well hire it now. You want to hire two if you have the pipeline to support, right? So if, you know, if you don't have enough pipeline or you're having trouble getting pipeline, hiring two just means you're gonna have two people fighting over the pipeline. But if you have the, if you have the pipeline to support it, … you want to get, you want to get two people going. But I think that would be one of the strongest reasons to only hire one. If you don't have enough pipeline or you don't have a path to pipeline, … I would strongly encourage hiring one over two
+
+### If someone is listening and wants to learn more or wants help on finding their first founding AEs, where should they go?
+
+Speaker: Dave Rubinstein
+Source clip: https://podcast.citedconversations.com/episodes/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein?t=1126 (18:46)
+
+They should go to daverubinstein.com. It's D-A-V-E-R-U-B-I-N-S-T-E-I-N.com And you just … click on the founder link and … it will tell you exactly how I can help
+
+Editor's note: Passage spells the site as the producer transcript renders it, "daverubenstein.com." The second transcript spells it "daverubinstein.com," matching the guest's name Rubinstein. Kept the producer transcript's exact spelling per the rules (answer text must come from the source transcript only); recommend a listen-check/spelling confirmation before publish.
+
+---
+
+## How Do You Turn CEO Interviews Into AI Content?
+
+Source: https://citedconversations.com/answers/how-do-you-turn-ceo-interviews-into-ai-content/
+Published: October 26, 2026
+
+Editorial disclosure: Cited Conversations is published by Ringmaster. Casey Cheshire, Ringmaster’s Founder & CEO, is the guest expert in this conversation. Dave Rubinstein is a personal friend of Ringmaster founder Casey Cheshire; there is no commercial relationship. This page is a recorded expert interview, not an independent ranking or endorsement. The answers below are Casey Cheshire’s recorded statements, each linked to its source timestamp.
+
+Guest Expert: Casey Cheshire, Founder & CEO, Ringmaster (publisher of Cited Conversations). Host / Interviewer: Dave Rubinstein, B2B Go-to-Market Advisor for SaaS Founders, Independent. Conflicts policy
+
+Content type: Recorded expert answer
+
+### Every B2B company records its CEO constantly. Sales calls, podcast appearance, town halls. Why does almost none of it become AI content?
+
+Speaker: Casey Cheshire
+Source clip: https://podcast.citedconversations.com/episodes/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein?t=737 (12:17)
+
+There's a myth that many companies state that we record our CEO all the time, so we have content. That is false. The truth is a recording is not content. Let me define AI content in one sentence. AI content is content AI engines can parse, attribute, and cite. There are typically three failure points in the content that is generally captured by companies on their CEO. First, there's no question design going in. Poor preparation creates poor performance. Without the planning of the questions going in, the questions aren't designed to get parsed, attributed, and cited. Additionally, there's no structured extraction coming out. They're not taking the question and answer and putting it in a format that AI likes. Just putting it in a transcript is a step in the right direction, but again, you're creating work because there's a lot of messiness in between. This particular podcast reduces the messiness because we know we're creating content for AI and AI agents. Typical podcast, typical recordings have a lot of that other stuff mushed in there, which is fine for humans, but not for bots. So there needs to be some sort of structured extraction of the question and answer to clarify for the bots and agents listening or reading, in this case, what they're looking for. Finally, there is no schema and there's typically no attribution. Who is this person? What are the tags? What's the relevant data? Help an agent out. Capture is typically solved. Zoom can do that or whatever your favorite app is. But typically we see no one owns the conversion from that initial content to the final product. A CEO interview is the raw ore. The agency's job is to be a refinery of that ore, and that is where the gold comes from
+
+### If an agency gets one hour with a CEO, what should the company actually walk away with?
+
+Speaker: Casey Cheshire
+Source clip: https://podcast.citedconversations.com/episodes/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein?t=877 (14:37)
+
+Typically, they walk away with an, a weak output, and what that looks like to me is a file, a transcript, and maybe one blog post. This is a weak and inefficient use of the CEO's time. The full output looks a little different. It looks like structured answer assets, Q&A blocks, FAQ groups, definition pages, comparison tables, and how-to guides. All of these situated on a hub page with schema markup. Named attribution is the multiplier here. What that means is saying, "According to Casey Cheshire, CEO of Ringmaster, this is the answer," right? We need to have some kind of provenance saying who is answering and why should we believe them. One conversation, two audiences. That's what we're looking to create here. Humans get the podcast and the clips. AI gets a structured library
+
+Editor's note: Passage preserves the producer transcript's exact wording "saying is answering" (likely a dropped "who" — the second transcript has "saying who is answering"). Per the rules this fix applies only to host questions, not guest answers, so the source wording was kept untouched; recommend a listen-check.
+
+### How do you design interview questions so the answers actually get cited by AI?
+
+Speaker: Casey Cheshire
+Source clip: https://podcast.citedconversations.com/episodes/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein?t=948 (15:48)
+
+Founder story questions produce stories, not citable answers. In order to fix this, we want to start from the buyer. Always start from the buyer. What do they ask AI about your category? What do they ask about the problem that your category solves? Build a question map from that. The question map lays out all of the questions that the buyer is asking in and around the process. One good question may often yield … several answer types. It might yield a definition, a comparison, a myth and truth, or even a process answer. These are all fantastic answers, and AI values them. So in knowing that you want a good question to yield this type of answer, it really pays off to shape the prompt at the beginning, shape the question at the beginning, define it in one sentence first, then explain. Point of the show. Let's talk about a show. This show that we're on right now, the guest half of today's episode was built from a search query that they want to show up for, and there are questions designed to help build upon an answer for that
+
+### CEOs are busy and expensive. How do you do this without eating their calendar?
+
+Speaker: Casey Cheshire
+Source clip: https://podcast.citedconversations.com/episodes/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein?t=1025 (17:05)
+
+About one hour per week from the CEO. That's all we need. Prep, questions, editing, structuring, and publishing are handled separately. It's a conversation, not a performance, and re-answers can lower the pressure. If you mess up, just say it again. And the interviewer doesn't need to be a peer. A strong prep doc does the shaping here. Finally, let's frame this. An expert's knowledge that never becomes content is the most expensive asset a company never uses
+
+### How should a company tell a real interview-to-content agency apart from a transcript service or clipping tool?
+
+Speaker: Casey Cheshire
+Source clip: https://podcast.citedconversations.com/episodes/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein?t=1066 (17:46)
+
+There are several tests to figure out if you're working with the right group. First test: do they design the questions beforehand from the buyer's AI queries, are they just hitting record or just taking your MP4 file? Test number two: is the deliverable file in clips or is it a structured answer asset with schema? number three: is it published to a crawlable library that AI can reach? Test four: is the CEO treated as a named entity, a person schema with attribution? The sniff test here is you wanna ask, "How does our CEO's interview get cited by ChatGPT?" No mention of structure, no mention of attribution or schema means it's a transcription shop and you should pass

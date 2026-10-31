@@ -632,7 +632,7 @@ function integrityCheckAnswerPages() {
 // rounds up from the exact millisecond cue times kept in data-vtt-start / -end.
 
 var PG_VTT_TOLERANCE_MS = 3000;
-var PG_SPEAKERS = ['Casey Cheshire', 'Adam Needles', 'Simon Wilhelm', 'Paul Jones'];
+var PG_SPEAKERS = ['Casey Cheshire', 'Adam Needles', 'Simon Wilhelm', 'Paul Jones', 'Dave Rubinstein'];
 // The Descript export sometimes leaves a raw track id ("casey_3_09-24-2026_111155:") inside a cue instead of the name.
 var PG_SPEAKER_ALIASES = { casey: 'Casey Cheshire', adam: 'Adam Needles', simon: 'Simon Wilhelm' };
 // Longest host stretch (in words) the cut checks will look across when following a quote through the transcript.
@@ -2103,7 +2103,8 @@ function consistencyGates() {
       var pg = pages[slug], cr = cgCredits(pg.html), url = CG_SITE + '/answers/' + slug + '/';
       if (!cr.hosts.length && !cr.guests.length) return;
       var ep = pg.number !== null ? 'Episode ' + pad(pg.number) : null;
-      var line = (llms.split('\n').filter(function(l) { return ep && l.indexOf('[' + ep + ' ') !== -1; })[0]) || '';
+      var epLines = llms.split('\n').filter(function(l) { return ep && l.indexOf('[' + ep + ' ') !== -1; }); // split-aware (cited-episode-publish)
+      var line = (epLines.filter(function(l) { return l.indexOf('](' + url + ')') !== -1; })[0]) || epLines[0] || '';
       if (!line) { cgFail('llms-roles', 'llms.txt', null, (ep || slug) + ' has no line in the Episodes section of llms.txt.'); return; }
       if (line.indexOf('](' + url + ')') === -1) cgFail('llms-roles', 'llms.txt', null, ep + ' should link to ' + url + '.');
       if (/Guests?:/.test(line) && !/Guest expert/.test(line)) cgFail('llms-roles', 'llms.txt', null, ep + ' lists everyone as "Guests"; the page credits ' + cr.hosts.join(', ') + ' as host.');
@@ -2121,8 +2122,9 @@ function consistencyGates() {
         var name = l.match(/^- \[([^\]]+)\]/)[1];
         var isHost = cr.hosts.indexOf(name) !== -1, isGuest = cr.guests.indexOf(name) !== -1;
         if (!ep || (!isHost && !isGuest)) return;
-        var want = isHost ? 'host of ' + ep : 'guest expert in ' + ep;
-        var wrong = isHost ? 'guest expert in ' + ep : 'host of ' + ep;
+        var epT = Object.keys(pages).filter(function(s) { return pages[s].number === pg.number; }).length > 1 ? ep + ' ("' + pg.title + '")' : ep; // split episode: role per page (cited-episode-publish)
+        var want = isHost ? 'host of ' + epT : 'guest expert in ' + epT;
+        var wrong = isHost ? 'guest expert in ' + epT : 'host of ' + epT;
         if (l.toLowerCase().indexOf(want.toLowerCase()) === -1 || l.toLowerCase().indexOf(wrong.toLowerCase()) !== -1 || /host[^;.]*both/i.test(l))
           cgFail('llms-roles', 'llms.txt', null, name + '\'s line must say "' + want + '" (from the page credits).');
       });

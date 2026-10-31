@@ -12,9 +12,19 @@
    "hash": "afcdcecb",
    "file": "answers/b2b-podcast-agency-for-ai-visibility/index.html"
   },
+  "/answers/how-do-you-hire-your-first-founding-ae/": {
+   "lastmod": "2026-10-31T00:01:00+00:00",
+   "hash": "e0406000",
+   "file": "answers/how-do-you-hire-your-first-founding-ae/index.html"
+  },
+  "/answers/how-do-you-turn-ceo-interviews-into-ai-content/": {
+   "lastmod": "2026-10-31T00:01:00+00:00",
+   "hash": "d9be35df",
+   "file": "answers/how-do-you-turn-ceo-interviews-into-ai-content/index.html"
+  },
   "/answers/": {
-   "lastmod": "2026-10-30T23:38:00+00:00",
-   "hash": "f3014772",
+   "lastmod": "2026-10-31T00:01:00+00:00",
+   "hash": "0d7c22d6",
    "file": "answers/index.html"
   },
   "/answers/service-to-convert-podcasts-into-ai-optimized-content/": {
@@ -38,8 +48,8 @@
    "file": "editorial/index.html"
   },
   "/episodes/": {
-   "lastmod": "2026-10-28T05:16:52+00:00",
-   "hash": "b8284f96",
+   "lastmod": "2026-10-31T00:01:00+00:00",
+   "hash": "e83171c7",
    "file": "episodes/index.html"
   },
   "/faq/": {
@@ -53,8 +63,8 @@
    "file": "for-humans/index.html"
   },
   "/": {
-   "lastmod": "2026-10-30T23:38:00+00:00",
-   "hash": "9c90a4c6",
+   "lastmod": "2026-10-31T00:01:00+00:00",
+   "hash": "da2262aa",
    "file": "index.html"
   },
   "/methodology/": {
@@ -73,13 +83,18 @@
    "file": "speakers/adam-needles/index.html"
   },
   "/speakers/casey-cheshire/": {
-   "lastmod": "2026-10-30T22:39:00+00:00",
-   "hash": "0ca5c744",
+   "lastmod": "2026-10-31T00:01:00+00:00",
+   "hash": "865ebc00",
    "file": "speakers/casey-cheshire/index.html"
   },
+  "/speakers/dave-rubinstein/": {
+   "lastmod": "2026-10-31T00:01:00+00:00",
+   "hash": "d10e8e9d",
+   "file": "speakers/dave-rubinstein/index.html"
+  },
   "/speakers/": {
-   "lastmod": "2026-10-28T05:16:52+00:00",
-   "hash": "43563e75",
+   "lastmod": "2026-10-31T00:01:00+00:00",
+   "hash": "9eadc47e",
    "file": "speakers/index.html"
   },
   "/speakers/paul-jones/": {
