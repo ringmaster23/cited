@@ -328,6 +328,29 @@
       padding-left: var(--sp-2);
     }
 
+    /* Plain-English key to the headline numbers */
+    .stats-explainer {
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--red);
+      padding: var(--sp-3) var(--sp-4);
+      margin-block: var(--sp-4);
+    }
+    .stats-explainer h2 {
+      font-size: var(--step-0);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: var(--sp-2);
+    }
+    .stats-explainer p {
+      font-size: var(--step--1);
+      color: var(--text-dim);
+      max-width: 72ch;
+      line-height: 1.6;
+    }
+    .stats-explainer p + p { margin-top: var(--sp-2); }
+    .stats-explainer strong { color: var(--text); font-weight: 600; }
+
     /* Loading / error state */
     .loading-msg {
       color: var(--text-muted);
@@ -459,6 +482,14 @@
       </div>
     </div>
 
+    <!-- What the headline numbers count (static text; not touched by the daily data update or the build) -->
+    <section class="stats-explainer" aria-labelledby="explainer-title">
+      <h2 id="explainer-title">What these numbers count</h2>
+      <p><strong>Total AI requests</strong> counts every request in the &#8220;Breakdown by crawler&#8221; table below: crawlers that name themselves (AI crawlers such as GPTBot and ClaudeBot, plus the search-engine crawlers listed there) and the agents marked &#42;, which do not name themselves and which we recognise by fingerprint. Unnamed bots and malicious traffic are not included.</p>
+      <p><strong>Verified bot</strong>, in the traffic-type mix further down, counts only requests from crawlers that name themselves in the user-agent, match one we track, and were not flagged as impersonators. Where the operator publishes its IP ranges, we check that the request came from them. Agents marked &#42; do not name themselves, so they are never counted as Verified bot.</p>
+      <p>That is why the two figures differ: Total AI requests includes the &#42; agents and Verified bot does not. Both are counted by Cited Conversations from Cloudflare&#8217;s request logs.</p>
+    </section>
+
     <!-- Zero state (shown when no data yet) -->
     <div class="zero-state" id="zero-state" style="display:none"></div>
 
@@ -548,7 +579,7 @@
     <section class="stats-section" id="mix-section" aria-labelledby="mix-title" style="display:none">
       <div class="stats-section-header">
         <h2 class="stats-section-title" id="mix-title">Traffic-type mix</h2>
-        <span class="stats-section-note">Verified bot · Automated · Human — Cloudflare classification</span>
+        <span class="stats-section-note">Verified bot · Automated · Human — classified by Cited Conversations from Cloudflare logs</span>
       </div>
       <div class="mix-grid">
         <div class="mix-chart-wrap">
@@ -558,6 +589,7 @@
           <!-- filled by JS -->
         </div>
       </div>
+      <p class="bot-footnote">Verified bot counts only crawlers that name themselves. It is not the same count as Total AI requests at the top of this page, which also includes the agents marked &#42;. See &#8220;What these numbers count&#8221; above.</p>
     </section>
 
     <!-- Updated timestamp -->
