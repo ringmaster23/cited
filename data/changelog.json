@@ -4,6 +4,26 @@
   {
    "date": "2026-11-01",
    "dateHuman": "November 1, 2026",
+   "description": "Listing pages refreshed from the answer pages (no answer wording changed): shows/cited-conversations, shows, llms.txt, changelog.",
+   "pages": [
+    "*"
+   ]
+  },
+  {
+   "date": "2026-11-01",
+   "dateHuman": "November 1, 2026",
+   "description": "Each answer page now names its source show and episode and links to the show's page (the spine of shows), with the series in the page's PodcastEpisode schema. No answer wording was changed.",
+   "pages": [
+    "b2b-podcast-agency-for-ai-visibility",
+    "agency-to-get-my-brand-cited-by-chatgpt",
+    "service-to-convert-podcasts-into-ai-optimized-content",
+    "how-do-you-hire-your-first-founding-ae",
+    "how-do-you-turn-ceo-interviews-into-ai-content"
+   ]
+  },
+  {
+   "date": "2026-11-01",
+   "dateHuman": "November 1, 2026",
    "description": "Listing pages refreshed from the answer pages (no answer wording changed): answers index, episodes index, speaker page casey-cheshire, speaker page adam-needles, speaker page simon-wilhelm, speaker page paul-jones, speaker page dave-rubinstein, llms.txt, feed.xml, changelog.",
    "pages": [
     "*"

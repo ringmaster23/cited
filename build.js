@@ -1981,7 +1981,7 @@ function consistencyGates() {
     var clean = p.split('#')[0].split('?')[0];
     var t = cgRedirect(rules, clean);
     if (t !== null) { cgFail('canonical-links', rel, null, 'links to ' + clean + ', which redirects to ' + t + '. Link straight to ' + t + '.'); return; }
-    if (/^\/(answers|episodes|speakers)\//.test(clean) && !cgExists(clean)) cgFail('canonical-links', rel, null, 'links to ' + clean + ', which is not a page on the site.');
+    if (/^\/(answers|episodes|speakers|shows)\//.test(clean) && !cgExists(clean)) cgFail('canonical-links', rel, null, 'links to ' + clean + ', which is not a page on the site.');
   }
   htmlFiles.forEach(function(rel) {
     var html = fs.readFileSync(path.join(OUT, rel), 'utf8');
@@ -2130,6 +2130,40 @@ function consistencyGates() {
       });
     });
   }
+
+  // show-pages (cited-episode-publish, 2026-11-01): the spine of shows. Every answer page names its source show
+  // ("Source: Episode N of <show>") and links to /shows/<show>/; its PodcastEpisode partOfSeries is that page's
+  // series; every show page lists exactly the answer pages that name it, by title, with the right answer count.
+  var showNamedBy = {};
+  Object.keys(pages).forEach(function(slug) {
+    var pg = pages[slug], rel = 'answers/' + slug + '/index.html';
+    var src = pg.html.match(/<p class="source-show"[^>]*>([\s\S]*?)<\/p>/);
+    if (!src) { cgFail('show-pages', rel, null, 'the page does not name its source show (the "Source: Episode N of <show>" line under the title). Every answer page must link to the page of the show it was recorded on.'); return; }
+    var sl = src[1].match(/href="\/shows\/([a-z0-9-]+)\/"/);
+    if (!sl) { cgFail('show-pages', rel, null, 'the source line does not link to a show page (/shows/<show>/).'); return; }
+    if (!cgExists('/shows/' + sl[1] + '/')) { cgFail('show-pages', rel, null, 'names its source show as /shows/' + sl[1] + '/, which is not a page on the site.'); return; }
+    var ser = pg.html.match(/"partOfSeries":\s*\{[^{}]*"@id":\s*"([^"]+)"/);
+    var want = CG_SITE + '/shows/' + sl[1] + '/#series';
+    if (!ser || ser[1] !== want) cgFail('show-pages', rel, null, 'the PodcastEpisode schema says the episode is part of ' + (ser ? ser[1] : 'no series') + '; it must be ' + want + ', the show the source line links to.');
+    (showNamedBy[sl[1]] = showNamedBy[sl[1]] || []).push(slug);
+  });
+  var showsOut = path.join(OUT, 'shows');
+  if (fs.existsSync(showsOut)) fs.readdirSync(showsOut).forEach(function(show) {
+    var f = path.join(showsOut, show, 'index.html');
+    if (!fs.existsSync(f)) return;
+    var rel = 'shows/' + show + '/index.html', html = fs.readFileSync(f, 'utf8'), named = showNamedBy[show] || [], listed = {};
+    var m, re = /<a href="\/answers\/([a-z0-9-]+)\/">([\s\S]*?)<\/a>(?:\s*<span class="show-answer-count"[^>]*>(\d+) answers?<\/span>)?/g;
+    while ((m = re.exec(html)) !== null) {
+      var s = m[1], pg = pages[s];
+      listed[s] = 1;
+      if (!pg) { cgFail('show-pages', rel, null, 'lists /answers/' + s + '/, which is not an answer page.'); continue; }
+      if (named.indexOf(s) === -1) cgFail('show-pages', rel, null, 'lists "' + pg.title + '", but that page does not name this show as its source.');
+      if (cgText(m[2]) !== pg.title) cgFail('show-pages', rel, null, 'the link to /answers/' + s + '/ reads "' + cgText(m[2]) + '"; it must be the page title "' + pg.title + '".');
+      if (m[3] === undefined) cgFail('show-pages', rel, null, 'the entry for "' + pg.title + '" has no answer count.');
+      else if (parseInt(m[3], 10) !== pg.count) cgFail('show-pages', rel, null, 'says "' + pg.title + '" has ' + m[3] + ' answers; the page has ' + pg.count + '.');
+    }
+    named.forEach(function(s) { if (!listed[s]) cgFail('show-pages', rel, null, '"' + pages[s].title + '" names this show as its source but is not listed on the show page.'); });
+  });
 
   // no-js-placeholder
   htmlFiles.forEach(function(rel) {

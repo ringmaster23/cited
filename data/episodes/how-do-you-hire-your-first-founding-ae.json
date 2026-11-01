@@ -237,5 +237,11 @@
         }
       ]
     }
-  ]
+  ],
+  "show": {
+    "feed_id": "cited-conversations",
+    "slug": "cited-conversations",
+    "name": "Cited Conversations",
+    "page_url": "https://citedconversations.com/shows/cited-conversations/"
+  }
 }

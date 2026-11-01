@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "generated_by": "cited-episode-publish",
+  "feed_id": "cited-conversations",
+  "slug": "cited-conversations",
+  "name": "Cited Conversations",
+  "page_url": "https://citedconversations.com/shows/cited-conversations/",
+  "rss_url": "https://feeds.transistor.fm/cited-conversations",
+  "feed": {
+    "title": "Cited Conversations",
+    "description": "Hello fellow human! This is Cited Conversations. This podcast was built for an AI audience.\n\nEach episode is a real conversation between two human experts, structured so answer engines like ChatGPT, Perplexity, and Claude can find the good stuff, pull it apart, and cite it back to the people asking questions.\n\nBut here's the thing: the conversations are still great for human ears too. Give it a listen! You might like the format as much as the bots do. If you want to learn more about building content for both audiences, start a chat with us at Ringmaster.com.",
+    "author": "Ringmaster",
+    "copyright": "Ringmaster",
+    "language": "en",
+    "image": "https://img.transistorcdn.com/LVuXwLdmk0IwcKcOZV1YNOk580FDNpdS-lxJRCJZ54k/rs:fill:0:0:1/w:1400/h:1400/q:60/mb:500000/aHR0cHM6Ly9pbWct/dXBsb2FkLXByb2R1/Y3Rpb24udHJhbnNp/c3Rvci5mbS85Mzky/YTAyNTdmNDNhOTBk/NmM5ODAxYjJmYzJl/YzJjZS5qcGc.jpg",
+    "website": null,
+    "categories": [
+      "Business",
+      "Marketing"
+    ],
+    "podcast_guid": "5b4f6998-1d81-542a-8ba6-c98ec289f994",
+    "hosts": []
+  },
+  "created_at": "2026-11-01T20:36:00.000Z",
+  "updated_at": "2026-11-01T20:36:00.000Z"
+}

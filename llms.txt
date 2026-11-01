@@ -37,6 +37,13 @@ Full conflicts and independence policy: https://citedconversations.com/methodolo
 - [Episode 004 — How Do You Hire Your First Founding AE?](https://citedconversations.com/answers/how-do-you-hire-your-first-founding-ae/): Host: Casey Cheshire (Founder & CEO, Ringmaster). Guest expert: Dave Rubinstein (B2B Go-to-Market Advisor for SaaS Founders, Independent). Published October 26, 2026.
 - [Episode 004 — How Do You Turn CEO Interviews Into AI Content?](https://citedconversations.com/answers/how-do-you-turn-ceo-interviews-into-ai-content/): Host: Dave Rubinstein (B2B Go-to-Market Advisor for SaaS Founders, Independent). Guest expert: Casey Cheshire (Founder & CEO, Ringmaster). Published October 26, 2026.
 
+## Shows
+
+Source record: one page per podcast whose episodes are in the library, listing every ingested episode with the answer pages built from it and a link to the original recording.
+
+- [Shows index](https://citedconversations.com/shows/): Every podcast the library's answers were recorded on.
+- [Cited Conversations](https://citedconversations.com/shows/cited-conversations/): Podcast published by Ringmaster (per its feed). 4 episodes ingested, 5 answer pages. RSS: https://feeds.transistor.fm/cited-conversations
+
 ## Speakers
 
 - [Adam Needles](https://citedconversations.com/speakers/adam-needles/): CEO and Co-Founder of ANNUITAS; host of Episode 001 ("What Makes a Podcast Agency an AI Visibility Agency?").
