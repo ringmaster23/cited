@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "generated_by": "cited-episode-publish",
-  "generated_at": "2026-10-31T00:01:00.000Z",
+  "generated_at": "2026-11-01T21:12:00.000Z",
   "source": "Cited Conversations — Database (Google Sheet)",
   "episode": {
     "episode_id": "cited-conversations/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein",
@@ -219,7 +219,7 @@
       "is_lead": false,
       "speaker_id": "dave-rubinstein",
       "label": "Edited",
-      "editors_note": "Passage spells the site as the producer transcript renders it, \"daverubenstein.com.\" The second transcript spells it \"daverubinstein.com,\" matching the guest's name Rubinstein. Kept the producer transcript's exact spelling per the rules (answer text must come from the source transcript only); recommend a listen-check/spelling confirmation before publish.",
+      "editors_note": "Spelling confirmed: Dave spells the site out letter by letter immediately after saying it, 'D-A-V-E-R-U-B-I-N-S-T-E-I-N.com' — daverubinstein.com, matching his name Rubinstein. The producer transcript originally misheard this as 'daverubenstein.com' and was corrected against the guest's own spelled-out letters before this answer was drafted; the text above already reflects the correct spelling.",
       "heading_note": null,
       "heading_source": "asked",
       "asked_at_seconds": 1126,

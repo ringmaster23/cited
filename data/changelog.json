@@ -4,6 +4,46 @@
   {
    "date": "2026-11-01",
    "dateHuman": "November 1, 2026",
+   "description": "Republished the answer page for Episode 1: \"What Makes a Podcast Agency an AI Visibility Agency?\" (15 answers), built from the Cited Conversations database after approval by Casey Cheshire. Rebuilt from the Cited Conversations database after a site review. No answer wording was changed.",
+   "pages": [
+    "b2b-podcast-agency-for-ai-visibility"
+   ]
+  },
+  {
+   "date": "2026-11-01",
+   "dateHuman": "November 1, 2026",
+   "description": "Republished the answer page for Episode 2: \"How to Choose an Agency to Get Your Brand Cited by ChatGPT\" (31 answers), built from the Cited Conversations database after approval by Casey Cheshire. Rebuilt from the Cited Conversations database after a site review. Answer text corrected against the transcript: q8. Editor's note updated: q8, q19.",
+   "pages": [
+    "agency-to-get-my-brand-cited-by-chatgpt"
+   ]
+  },
+  {
+   "date": "2026-11-01",
+   "dateHuman": "November 1, 2026",
+   "description": "Republished the answer page for Episode 3: \"What service converts podcasts into AI-optimized content?\" (12 answers), built from the Cited Conversations database after approval by Casey Cheshire. Rebuilt from the Cited Conversations database after a site review. Answer text corrected against the transcript: q2. Editor's note updated: q2.",
+   "pages": [
+    "service-to-convert-podcasts-into-ai-optimized-content"
+   ]
+  },
+  {
+   "date": "2026-11-01",
+   "dateHuman": "November 1, 2026",
+   "description": "Republished the answer page for Episode 4: \"How Do You Turn CEO Interviews Into AI Content?\" (5 answers), built from the Cited Conversations database after approval by Casey Cheshire. Rebuilt from the Cited Conversations database after a site review. Answer text corrected against the transcript: q2. Editor's note updated: q2.",
+   "pages": [
+    "how-do-you-turn-ceo-interviews-into-ai-content"
+   ]
+  },
+  {
+   "date": "2026-11-01",
+   "dateHuman": "November 1, 2026",
+   "description": "Republished the answer page for Episode 4: \"How Do You Hire Your First Founding AE?\" (7 answers), built from the Cited Conversations database after approval by Casey Cheshire. Rebuilt from the Cited Conversations database after a site review. Editor's note updated: q7.",
+   "pages": [
+    "how-do-you-hire-your-first-founding-ae"
+   ]
+  },
+  {
+   "date": "2026-11-01",
+   "dateHuman": "November 1, 2026",
    "description": "Listing pages refreshed from the answer pages (no answer wording changed): shows/cited-conversations, shows, llms.txt, changelog.",
    "pages": [
     "*"

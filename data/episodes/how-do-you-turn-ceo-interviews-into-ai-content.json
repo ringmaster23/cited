@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "generated_by": "cited-episode-publish",
-  "generated_at": "2026-10-31T00:01:00.000Z",
+  "generated_at": "2026-11-01T21:12:00.000Z",
   "source": "Cited Conversations — Database (Google Sheet)",
   "episode": {
     "episode_id": "cited-conversations/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein",
@@ -94,7 +94,7 @@
       "is_lead": false,
       "speaker_id": "casey-cheshire",
       "label": "Verbatim",
-      "editors_note": "Passage preserves the producer transcript's exact wording \"saying is answering\" (likely a dropped \"who\" — the second transcript has \"saying who is answering\"). Per the rules this fix applies only to host questions, not guest answers, so the source wording was kept untouched; recommend a listen-check.",
+      "editors_note": "Corrected 2026-11-01: answer_text had picked up the word \"who\" that Casey did not say (producer transcript has \"saying is answering\"). The second transcript shows the fuller phrasing (\"saying who is answering\"), but per the rules a dropped word is restored only in headings, never in guest answer text, so the inserted word was removed to match the producer transcript exactly as spoken.",
       "heading_note": null,
       "heading_source": "asked",
       "asked_at_seconds": 877,
@@ -103,7 +103,7 @@
       "passages": [
         {
           "passage": 1,
-          "text": "Typically, they walk away with an, a weak output, and what that looks like to me is a file, a transcript, and maybe one blog post. This is a weak and inefficient use of the CEO's time. The full output looks a little different. It looks like structured answer assets, Q&A blocks, FAQ groups, definition pages, comparison tables, and how-to guides. All of these situated on a hub page with schema markup. Named attribution is the multiplier here. What that means is saying, \"According to Casey Cheshire, CEO of Ringmaster, this is the answer,\" right? We need to have some kind of provenance saying who is answering and why should we believe them. One conversation, two audiences. That's what we're looking to create here. Humans get the podcast and the clips. AI gets a structured library",
+          "text": "Typically, they walk away with an, a weak output, and what that looks like to me is a file, a transcript, and maybe one blog post. This is a weak and inefficient use of the CEO's time. The full output looks a little different. It looks like structured answer assets, Q&A blocks, FAQ groups, definition pages, comparison tables, and how-to guides. All of these situated on a hub page with schema markup. Named attribution is the multiplier here. What that means is saying, \"According to Casey Cheshire, CEO of Ringmaster, this is the answer,\" right? We need to have some kind of provenance saying is answering and why should we believe them. One conversation, two audiences. That's what we're looking to create here. Humans get the podcast and the clips. AI gets a structured library",
           "start_ms": 884925,
           "end_ms": 948448,
           "start_seconds": 884,

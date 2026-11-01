@@ -3,23 +3,23 @@
  "note": "Written by scripts/generate-sitemap-and-feed.js. lastmod = when the page content last changed; hash = fingerprint of the file at that time. Do not edit by hand.",
  "pages": {
   "/answers/agency-to-get-my-brand-cited-by-chatgpt/": {
-   "lastmod": "2026-11-01T20:36:00+00:00",
-   "hash": "f916d0af",
+   "lastmod": "2026-11-01T21:12:00+00:00",
+   "hash": "7bf3c237",
    "file": "answers/agency-to-get-my-brand-cited-by-chatgpt/index.html"
   },
   "/answers/b2b-podcast-agency-for-ai-visibility/": {
-   "lastmod": "2026-11-01T20:36:00+00:00",
-   "hash": "070c9026",
+   "lastmod": "2026-11-01T21:12:00+00:00",
+   "hash": "00ba6c42",
    "file": "answers/b2b-podcast-agency-for-ai-visibility/index.html"
   },
   "/answers/how-do-you-hire-your-first-founding-ae/": {
-   "lastmod": "2026-11-01T20:36:00+00:00",
-   "hash": "76a6c364",
+   "lastmod": "2026-11-01T21:12:00+00:00",
+   "hash": "a5d791d6",
    "file": "answers/how-do-you-hire-your-first-founding-ae/index.html"
   },
   "/answers/how-do-you-turn-ceo-interviews-into-ai-content/": {
-   "lastmod": "2026-11-01T20:36:00+00:00",
-   "hash": "87ecaad1",
+   "lastmod": "2026-11-01T21:12:00+00:00",
+   "hash": "712c45e5",
    "file": "answers/how-do-you-turn-ceo-interviews-into-ai-content/index.html"
   },
   "/answers/": {
@@ -28,13 +28,13 @@
    "file": "answers/index.html"
   },
   "/answers/service-to-convert-podcasts-into-ai-optimized-content/": {
-   "lastmod": "2026-11-01T20:36:00+00:00",
-   "hash": "8c4bc04c",
+   "lastmod": "2026-11-01T21:12:00+00:00",
+   "hash": "12a68f22",
    "file": "answers/service-to-convert-podcasts-into-ai-optimized-content/index.html"
   },
   "/changelog/": {
    "lastmod": "2026-10-09",
-   "hash": "bb333436",
+   "hash": "9dc23735",
    "file": "changelog/index.html"
   },
   "/citation/": {
