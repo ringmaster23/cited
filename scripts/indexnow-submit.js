@@ -1,72 +1,43 @@
 #!/usr/bin/env node
 /**
- * scripts/indexnow-submit.js
- * Submits all URLs from sitemap.xml to every IndexNow-compatible engine
- * that has accepted submissions from citedconversations.com.
+ * scripts/indexnow-submit.js — MANUAL USE ONLY. Not part of the build.
  *
- * Runs automatically as part of `wrangler deploy` (via wrangler.toml [build] command).
- * Safe to run standalone:  node scripts/indexnow-submit.js
+ * Usage:  node scripts/indexnow-submit.js https://citedconversations.com/some/page/ [more URLs ...]
  *
- * IndexNow key       : e8f1a43c97b25d06f4c8a1e3b7d92c05
- * Key file URL       : https://citedconversations.com/e8f1a43c97b25d06f4c8a1e3b7d92c05.txt
- * (Rotated 2026-11-01: Bing answered 403 UserForbiddedToAccessSite for the old
- *  key c7d4e2f8..., whose file Bing first fetched before it was deployed.)
+ * Submits only the page URLs you pass, to api.indexnow.org (shared with Bing, Yandex, Seznam,
+ * Naver, Yep). Run it after the change is live, for a page edited outside the publish process.
  *
- * Engines targeted (all returned 200/202 on 2026-10-14):
- *   Bing       https://www.bing.com/indexnow          (also powers DuckDuckGo)
- *   Seznam     https://search.seznam.cz/indexnow
- *   Naver      https://searchadvisor.naver.com/indexnow
- *   Yep        https://indexnow.yep.com/indexnow
+ * Why it is no longer in the build (changed 2026-11-01):
+ *  - The build ran before the new version was live, so engines could fetch files that did not
+ *    exist yet. On 2026-10-14 Bing fetched the old key file this way, got a 404, and refused the
+ *    key (403 UserForbiddedToAccessSite) until the key was rotated.
+ *  - It resubmitted every URL in sitemap.xml on every build, and since sitemap.xml became a
+ *    sitemap index those were child-sitemap URLs, not pages.
+ *  - The cited-episode-publish process already notifies IndexNow after each publish, sending only
+ *    the pages whose content changed (plus new pages), once the page is confirmed live.
  *
- * Engines skipped:
- *   api.indexnow.org — consistent 403 from consortium endpoint; direct engine
- *                      submissions above cover all members that actually respond.
- *   Yandex           — endpoint drops the connection (socket hang up) from
- *                      automated environments; submit manually if needed.
- *
- * Docs: https://www.indexnow.org/
+ * IndexNow key : e8f1a43c97b25d06f4c8a1e3b7d92c05 (keep in sync with the publish routine's INDEXNOW_KEY)
+ * Key file     : https://citedconversations.com/e8f1a43c97b25d06f4c8a1e3b7d92c05.txt
+ * Key rotation : deploy the new key file first, confirm it serves, then switch the key here.
  */
 
 'use strict';
 
-const fs    = require('fs');
-const path  = require('path');
 const https = require('https');
 
 const INDEXNOW_KEY          = 'e8f1a43c97b25d06f4c8a1e3b7d92c05';
 const INDEXNOW_HOST         = 'citedconversations.com';
 const INDEXNOW_KEY_LOCATION = `https://${INDEXNOW_HOST}/${INDEXNOW_KEY}.txt`;
 
-// Engines that reliably accept submissions (HTTP 200 or 202).
-const ENGINES = [
-  { name: 'Bing',   hostname: 'www.bing.com',                   path: '/indexnow' },
-  { name: 'Seznam', hostname: 'search.seznam.cz',               path: '/indexnow' },
-  { name: 'Naver',  hostname: 'searchadvisor.naver.com',        path: '/indexnow' },
-  { name: 'Yep',    hostname: 'indexnow.yep.com',               path: '/indexnow' },
-];
-
-function extractUrls(xml) {
-  const urls = [];
-  const re   = /<loc>([^<]+)<\/loc>/g;
-  let m;
-  while ((m = re.exec(xml)) !== null) {
-    urls.push(m[1].trim());
-  }
-  return urls;
-}
-
-function post(hostname, urlPath, payload) {
+function post(payload) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify(payload);
     const req  = https.request(
       {
-        hostname,
-        path     : urlPath,
+        hostname : 'api.indexnow.org',
+        path     : '/indexnow',
         method   : 'POST',
-        headers  : {
-          'Content-Type'   : 'application/json; charset=utf-8',
-          'Content-Length' : Buffer.byteLength(body),
-        },
+        headers  : { 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': Buffer.byteLength(body) },
         timeout  : 15000,
       },
       (res) => {
@@ -83,50 +54,14 @@ function post(hostname, urlPath, payload) {
 }
 
 async function main() {
-  const sitemapPath = path.resolve(__dirname, '..', 'sitemap.xml');
-
-  if (!fs.existsSync(sitemapPath)) {
-    console.warn('[indexnow] sitemap.xml not found — skipping submission.');
-    return;
-  }
-
-  const xml  = fs.readFileSync(sitemapPath, 'utf8');
-  const urls = extractUrls(xml);
-
+  const urls = process.argv.slice(2).filter((u) => u.startsWith(`https://${INDEXNOW_HOST}/`));
   if (!urls.length) {
-    console.warn('[indexnow] No <loc> URLs found in sitemap.xml — skipping.');
+    console.log('Usage: node scripts/indexnow-submit.js https://citedconversations.com/<page>/ [...]');
+    console.log('Nothing submitted. Pass the page URLs that changed, after they are live.');
     return;
   }
-
-  console.log(`[indexnow] Submitting ${urls.length} URLs to ${ENGINES.length} engines…`);
-  urls.forEach((u) => console.log(`  ${u}`));
-
-  const payload = {
-    host        : INDEXNOW_HOST,
-    key         : INDEXNOW_KEY,
-    keyLocation : INDEXNOW_KEY_LOCATION,
-    urlList     : urls,
-  };
-
-  for (const engine of ENGINES) {
-    try {
-      const result = await post(engine.hostname, engine.path, payload);
-
-      if (result.statusCode === 200 || result.statusCode === 202) {
-        console.log(`[indexnow] ✓ ${engine.name} — HTTP ${result.statusCode} Accepted`);
-      } else if (result.statusCode === 422) {
-        console.warn(`[indexnow] ⚠ ${engine.name} — HTTP 422 key file not yet verified.`);
-        console.warn(`[indexnow]   Expected at: ${INDEXNOW_KEY_LOCATION}`);
-      } else if (result.statusCode === 429) {
-        console.warn(`[indexnow] ⚠ ${engine.name} — HTTP 429 rate limited. URLs already queued.`);
-      } else {
-        console.warn(`[indexnow] ⚠ ${engine.name} — Unexpected HTTP ${result.statusCode}`);
-        if (result.body) console.warn(`[indexnow]   ${result.body.slice(0, 300)}`);
-      }
-    } catch (err) {
-      console.warn(`[indexnow] ⚠ ${engine.name} — Network error (build continues): ${err.message}`);
-    }
-  }
+  const res = await post({ host: INDEXNOW_HOST, key: INDEXNOW_KEY, keyLocation: INDEXNOW_KEY_LOCATION, urlList: urls });
+  console.log(`[indexnow] ${urls.length} URL(s) -> HTTP ${res.statusCode}${res.body ? ' ' + res.body.slice(0, 300) : ''}`);
 }
 
-main();
+main().catch((err) => { console.error(`[indexnow] ${err.message}`); process.exitCode = 1; });

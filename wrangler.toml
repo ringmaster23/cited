@@ -14,6 +14,9 @@ binding = "ASSETS"
 run_worker_first = true
 
 [build]
-# build.js copies repo → dist/, then indexnow-submit.js pushes the sitemap
-# URL list to Bing via IndexNow so every deploy auto-notifies the search index.
-command = "node build.js && node scripts/indexnow-submit.js"
+# build.js copies repo → dist/. IndexNow is NOT called here: the build runs before
+# the new version is live, so engines could be sent to files that don't exist yet.
+# The cited-episode-publish process notifies IndexNow after a publish is confirmed
+# live (changed and new pages only). For other edits, run scripts/indexnow-submit.js
+# by hand with the changed page URLs once they are live.
+command = "node build.js"
