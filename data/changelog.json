@@ -2,6 +2,14 @@
  "generated": "2026-10-14",
  "entries": [
   {
+   "date": "2026-11-01",
+   "dateHuman": "November 1, 2026",
+   "description": "Listing pages refreshed from the answer pages (no answer wording changed): answers index, episodes index, speaker page casey-cheshire, speaker page adam-needles, speaker page simon-wilhelm, speaker page paul-jones, speaker page dave-rubinstein, llms.txt, feed.xml, changelog.",
+   "pages": [
+    "*"
+   ]
+  },
+  {
    "date": "2026-10-31",
    "dateHuman": "October 31, 2026",
    "description": "Published the answer page for Episode 4: \"How Do You Turn CEO Interviews Into AI Content?\" (5 answers), built from the Cited Conversations database after approval by Casey Cheshire. Initial publication. Every answer was checked word for word against the transcript and approved in #cited-dev.",

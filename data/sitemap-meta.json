@@ -23,8 +23,8 @@
    "file": "answers/how-do-you-turn-ceo-interviews-into-ai-content/index.html"
   },
   "/answers/": {
-   "lastmod": "2026-10-31T00:01:00+00:00",
-   "hash": "0d7c22d6",
+   "lastmod": "2026-11-01T19:28:00+00:00",
+   "hash": "3decee7f",
    "file": "answers/index.html"
   },
   "/answers/service-to-convert-podcasts-into-ai-optimized-content/": {
@@ -34,7 +34,7 @@
   },
   "/changelog/": {
    "lastmod": "2026-10-09",
-   "hash": "2da1ca30",
+   "hash": "9f82599c",
    "file": "changelog/index.html"
   },
   "/citation/": {
@@ -48,18 +48,18 @@
    "file": "editorial/index.html"
   },
   "/episodes/": {
-   "lastmod": "2026-10-31T00:01:00+00:00",
-   "hash": "e83171c7",
+   "lastmod": "2026-11-01T19:28:00+00:00",
+   "hash": "1569afee",
    "file": "episodes/index.html"
   },
   "/faq/": {
-   "lastmod": "2026-10-10T01:59:30+00:00",
-   "hash": "93ec6a74",
+   "lastmod": "2026-10-16T21:37:42+00:00",
+   "hash": "344d9d8c",
    "file": "faq/index.html"
   },
   "/for-humans/": {
-   "lastmod": "2026-10-10T01:59:39+00:00",
-   "hash": "f2f94cbb",
+   "lastmod": "2026-11-01T18:38:39+00:00",
+   "hash": "69aa9888",
    "file": "for-humans/index.html"
   },
   "/": {
@@ -68,28 +68,28 @@
    "file": "index.html"
   },
   "/methodology/": {
-   "lastmod": "2026-10-16T13:01:20+00:00",
-   "hash": "e45ed4f9",
+   "lastmod": "2026-10-31T00:14:37+00:00",
+   "hash": "a2004484",
    "file": "methodology/index.html"
   },
   "/schema/": {
-   "lastmod": "2026-10-28T05:16:52+00:00",
-   "hash": "1084231f",
+   "lastmod": "2026-11-01T18:38:39+00:00",
+   "hash": "b85ced3e",
    "file": "schema/index.html"
   },
   "/speakers/adam-needles/": {
-   "lastmod": "2026-10-30T22:39:00+00:00",
-   "hash": "6aac4986",
+   "lastmod": "2026-11-01T19:28:00+00:00",
+   "hash": "d55cb421",
    "file": "speakers/adam-needles/index.html"
   },
   "/speakers/casey-cheshire/": {
-   "lastmod": "2026-10-31T00:01:00+00:00",
-   "hash": "865ebc00",
+   "lastmod": "2026-11-01T19:28:00+00:00",
+   "hash": "2e85c25f",
    "file": "speakers/casey-cheshire/index.html"
   },
   "/speakers/dave-rubinstein/": {
-   "lastmod": "2026-10-31T00:01:00+00:00",
-   "hash": "d10e8e9d",
+   "lastmod": "2026-11-01T19:28:00+00:00",
+   "hash": "748ecba5",
    "file": "speakers/dave-rubinstein/index.html"
   },
   "/speakers/": {
@@ -98,18 +98,18 @@
    "file": "speakers/index.html"
   },
   "/speakers/paul-jones/": {
-   "lastmod": "2026-10-30T20:20:00+00:00",
-   "hash": "7b7cc0a3",
+   "lastmod": "2026-11-01T19:28:00+00:00",
+   "hash": "f59180c0",
    "file": "speakers/paul-jones/index.html"
   },
   "/speakers/simon-wilhelm/": {
-   "lastmod": "2026-10-30T23:38:00+00:00",
-   "hash": "68d9ff31",
+   "lastmod": "2026-11-01T19:28:00+00:00",
+   "hash": "05d40e25",
    "file": "speakers/simon-wilhelm/index.html"
   },
   "/stats/": {
-   "lastmod": "2026-10-28T05:16:52+00:00",
-   "hash": "e685e2da",
+   "lastmod": "2026-11-01T18:38:39+00:00",
+   "hash": "fc714ef7",
    "file": "stats/index.html"
   }
  }
