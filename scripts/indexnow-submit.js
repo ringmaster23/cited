@@ -7,8 +7,10 @@
  * Runs automatically as part of `wrangler deploy` (via wrangler.toml [build] command).
  * Safe to run standalone:  node scripts/indexnow-submit.js
  *
- * IndexNow key       : c7d4e2f8a1b9c3d6e0f5a8b2c4d7e1f3
- * Key file URL       : https://citedconversations.com/c7d4e2f8a1b9c3d6e0f5a8b2c4d7e1f3.txt
+ * IndexNow key       : e8f1a43c97b25d06f4c8a1e3b7d92c05
+ * Key file URL       : https://citedconversations.com/e8f1a43c97b25d06f4c8a1e3b7d92c05.txt
+ * (Rotated 2026-11-01: Bing answered 403 UserForbiddedToAccessSite for the old
+ *  key c7d4e2f8..., whose file Bing first fetched before it was deployed.)
  *
  * Engines targeted (all returned 200/202 on 2026-10-14):
  *   Bing       https://www.bing.com/indexnow          (also powers DuckDuckGo)
@@ -31,7 +33,7 @@ const fs    = require('fs');
 const path  = require('path');
 const https = require('https');
 
-const INDEXNOW_KEY          = 'c7d4e2f8a1b9c3d6e0f5a8b2c4d7e1f3';
+const INDEXNOW_KEY          = 'e8f1a43c97b25d06f4c8a1e3b7d92c05';
 const INDEXNOW_HOST         = 'citedconversations.com';
 const INDEXNOW_KEY_LOCATION = `https://${INDEXNOW_HOST}/${INDEXNOW_KEY}.txt`;
 
