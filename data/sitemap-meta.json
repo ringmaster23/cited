@@ -3,23 +3,23 @@
  "note": "Written by scripts/generate-sitemap-and-feed.js. lastmod = when the page content last changed; hash = fingerprint of the file at that time. Do not edit by hand.",
  "pages": {
   "/answers/agency-to-get-my-brand-cited-by-chatgpt/": {
-   "lastmod": "2026-11-01T21:12:00+00:00",
-   "hash": "7bf3c237",
+   "lastmod": "2026-11-01T22:29:00+00:00",
+   "hash": "b4dab83e",
    "file": "answers/agency-to-get-my-brand-cited-by-chatgpt/index.html"
   },
   "/answers/b2b-podcast-agency-for-ai-visibility/": {
-   "lastmod": "2026-11-01T21:12:00+00:00",
-   "hash": "00ba6c42",
+   "lastmod": "2026-11-01T22:29:00+00:00",
+   "hash": "c9fec601",
    "file": "answers/b2b-podcast-agency-for-ai-visibility/index.html"
   },
   "/answers/how-do-you-hire-your-first-founding-ae/": {
-   "lastmod": "2026-11-01T21:12:00+00:00",
-   "hash": "a5d791d6",
+   "lastmod": "2026-11-01T22:29:00+00:00",
+   "hash": "55b8ffd0",
    "file": "answers/how-do-you-hire-your-first-founding-ae/index.html"
   },
   "/answers/how-do-you-turn-ceo-interviews-into-ai-content/": {
-   "lastmod": "2026-11-01T21:12:00+00:00",
-   "hash": "712c45e5",
+   "lastmod": "2026-11-01T22:29:00+00:00",
+   "hash": "665ac829",
    "file": "answers/how-do-you-turn-ceo-interviews-into-ai-content/index.html"
   },
   "/answers/": {
@@ -28,13 +28,13 @@
    "file": "answers/index.html"
   },
   "/answers/service-to-convert-podcasts-into-ai-optimized-content/": {
-   "lastmod": "2026-11-01T21:12:00+00:00",
-   "hash": "12a68f22",
+   "lastmod": "2026-11-01T22:29:00+00:00",
+   "hash": "4caa5f83",
    "file": "answers/service-to-convert-podcasts-into-ai-optimized-content/index.html"
   },
   "/changelog/": {
    "lastmod": "2026-10-09",
-   "hash": "9dc23735",
+   "hash": "96239ef7",
    "file": "changelog/index.html"
   },
   "/citation/": {
@@ -73,8 +73,8 @@
    "file": "methodology/index.html"
   },
   "/schema/": {
-   "lastmod": "2026-11-01T18:38:39+00:00",
-   "hash": "b85ced3e",
+   "lastmod": "2026-11-01T21:54:52+00:00",
+   "hash": "459eab89",
    "file": "schema/index.html"
   },
   "/shows/cited-conversations/": {

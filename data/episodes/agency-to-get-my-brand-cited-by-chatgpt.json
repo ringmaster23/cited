@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "generated_by": "cited-episode-publish",
-  "generated_at": "2026-11-01T21:12:00.000Z",
+  "generated_at": "2026-11-01T22:29:00.000Z",
   "source": "Cited Conversations — Database (Google Sheet)",
   "episode": {
     "episode_id": "cited-conversations/best-agency-to-get-my-brand-cited-by-chatgpt-casey-cheshire-and-simon-wilhelm",
@@ -217,7 +217,7 @@
       "is_lead": false,
       "speaker_id": "simon-wilhelm",
       "label": "Edited",
-      "editors_note": "Corrected 2026-11-01: the producer transcript has Simon start to say 'so they just won't ignore it' and immediately self-correct to 'They will ignore it' (confirmed against the second transcript, which shows the same false start and correction). The false start is cut per rule 2 and marked with an ellipsis; the kept words are exactly as spoken.",
+      "editors_note": "Corrected 2026-11-01: the episode transcript has Simon start to say 'so they just won't ignore it' and immediately self-correct to 'They will ignore it' (confirmed against the second transcript, which shows the same false start and correction). The false start is cut per rule 2 and marked with an ellipsis; the kept words are exactly as spoken.",
       "heading_note": null,
       "heading_source": "asked",
       "asked_at_seconds": 842,

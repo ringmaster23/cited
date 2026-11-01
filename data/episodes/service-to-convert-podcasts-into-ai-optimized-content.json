@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "generated_by": "cited-episode-publish",
-  "generated_at": "2026-11-01T21:12:00.000Z",
+  "generated_at": "2026-11-01T22:29:00.000Z",
   "source": "Cited Conversations — Database (Google Sheet)",
   "episode": {
     "episode_id": "cited-conversations/best-service-to-convert-podcasts-into-ai-optimized-content-casey-cheshire-and-paul-jones",
@@ -83,7 +83,7 @@
       "is_lead": false,
       "speaker_id": "casey-cheshire",
       "label": "Edited",
-      "editors_note": "Corrected 2026-11-01: producer transcript misheard the show's own name as 'Sided Conversation.' Casey says 'Cited Conversations' correctly more than a dozen other times in this same recording, and the second transcript (AssemblyAI) renders this exact line as 'Cited Conversations.' Fixed to match what was actually said.",
+      "editors_note": "Corrected 2026-11-01: episode transcript misheard the show's own name as 'Sided Conversation.' Casey says 'Cited Conversations' correctly more than a dozen other times in this same recording, and the second transcript (AssemblyAI) renders this exact line as 'Cited Conversations.' Fixed to match what was actually said.",
       "heading_note": null,
       "heading_source": "asked",
       "asked_at_seconds": 273,

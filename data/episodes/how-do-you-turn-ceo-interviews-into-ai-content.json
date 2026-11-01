@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "generated_by": "cited-episode-publish",
-  "generated_at": "2026-11-01T21:12:00.000Z",
+  "generated_at": "2026-11-01T22:29:00.000Z",
   "source": "Cited Conversations — Database (Google Sheet)",
   "episode": {
     "episode_id": "cited-conversations/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein",
@@ -94,7 +94,7 @@
       "is_lead": false,
       "speaker_id": "casey-cheshire",
       "label": "Verbatim",
-      "editors_note": "Corrected 2026-11-01: answer_text had picked up the word \"who\" that Casey did not say (producer transcript has \"saying is answering\"). The second transcript shows the fuller phrasing (\"saying who is answering\"), but per the rules a dropped word is restored only in headings, never in guest answer text, so the inserted word was removed to match the producer transcript exactly as spoken.",
+      "editors_note": "Corrected 2026-11-01: answer_text had picked up the word \"who\" that Casey did not say (episode transcript has \"saying is answering\"). The second transcript shows the fuller phrasing (\"saying who is answering\"), but per the rules a dropped word is restored only in headings, never in guest answer text, so the inserted word was removed to match the episode transcript exactly as spoken.",
       "heading_note": null,
       "heading_source": "asked",
       "asked_at_seconds": 877,
