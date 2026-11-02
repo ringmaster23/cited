@@ -3,38 +3,38 @@
  "note": "Written by scripts/generate-sitemap-and-feed.js. lastmod = when the page content last changed; hash = fingerprint of the file at that time. Do not edit by hand.",
  "pages": {
   "/answers/agency-to-get-my-brand-cited-by-chatgpt/": {
-   "lastmod": "2026-11-01T22:29:00+00:00",
-   "hash": "b4dab83e",
+   "lastmod": "2026-11-02T03:41:00+00:00",
+   "hash": "2b33605c",
    "file": "answers/agency-to-get-my-brand-cited-by-chatgpt/index.html"
   },
   "/answers/b2b-podcast-agency-for-ai-visibility/": {
-   "lastmod": "2026-11-01T22:29:00+00:00",
-   "hash": "c9fec601",
+   "lastmod": "2026-11-02T03:41:00+00:00",
+   "hash": "150eec51",
    "file": "answers/b2b-podcast-agency-for-ai-visibility/index.html"
   },
   "/answers/how-do-you-hire-your-first-founding-ae/": {
-   "lastmod": "2026-11-01T22:29:00+00:00",
-   "hash": "55b8ffd0",
+   "lastmod": "2026-11-02T03:41:00+00:00",
+   "hash": "c1b0f34e",
    "file": "answers/how-do-you-hire-your-first-founding-ae/index.html"
   },
   "/answers/how-do-you-turn-ceo-interviews-into-ai-content/": {
-   "lastmod": "2026-11-01T22:29:00+00:00",
-   "hash": "665ac829",
+   "lastmod": "2026-11-02T03:41:00+00:00",
+   "hash": "bc176151",
    "file": "answers/how-do-you-turn-ceo-interviews-into-ai-content/index.html"
   },
   "/answers/": {
-   "lastmod": "2026-11-01T19:28:00+00:00",
-   "hash": "3decee7f",
+   "lastmod": "2026-11-02T03:41:00+00:00",
+   "hash": "c69016d4",
    "file": "answers/index.html"
   },
   "/answers/service-to-convert-podcasts-into-ai-optimized-content/": {
-   "lastmod": "2026-11-01T22:29:00+00:00",
-   "hash": "4caa5f83",
+   "lastmod": "2026-11-02T03:41:00+00:00",
+   "hash": "5b8c9293",
    "file": "answers/service-to-convert-podcasts-into-ai-optimized-content/index.html"
   },
   "/changelog/": {
    "lastmod": "2026-10-09",
-   "hash": "96239ef7",
+   "hash": "039a846e",
    "file": "changelog/index.html"
   },
   "/citation/": {
@@ -48,8 +48,8 @@
    "file": "editorial/index.html"
   },
   "/episodes/": {
-   "lastmod": "2026-11-01T19:28:00+00:00",
-   "hash": "1569afee",
+   "lastmod": "2026-11-02T03:41:00+00:00",
+   "hash": "904cba09",
    "file": "episodes/index.html"
   },
   "/faq/": {
@@ -88,18 +88,18 @@
    "file": "shows/index.html"
   },
   "/speakers/adam-needles/": {
-   "lastmod": "2026-11-01T19:28:00+00:00",
-   "hash": "d55cb421",
+   "lastmod": "2026-11-02T03:41:00+00:00",
+   "hash": "c61e3d4c",
    "file": "speakers/adam-needles/index.html"
   },
   "/speakers/casey-cheshire/": {
-   "lastmod": "2026-11-01T19:28:00+00:00",
-   "hash": "2e85c25f",
+   "lastmod": "2026-11-02T03:41:00+00:00",
+   "hash": "349e941e",
    "file": "speakers/casey-cheshire/index.html"
   },
   "/speakers/dave-rubinstein/": {
-   "lastmod": "2026-11-01T19:28:00+00:00",
-   "hash": "748ecba5",
+   "lastmod": "2026-11-02T03:41:00+00:00",
+   "hash": "3de3f60c",
    "file": "speakers/dave-rubinstein/index.html"
   },
   "/speakers/": {
@@ -108,13 +108,13 @@
    "file": "speakers/index.html"
   },
   "/speakers/paul-jones/": {
-   "lastmod": "2026-11-01T19:28:00+00:00",
-   "hash": "f59180c0",
+   "lastmod": "2026-11-02T03:41:00+00:00",
+   "hash": "1ab831be",
    "file": "speakers/paul-jones/index.html"
   },
   "/speakers/simon-wilhelm/": {
-   "lastmod": "2026-11-01T19:28:00+00:00",
-   "hash": "05d40e25",
+   "lastmod": "2026-11-02T03:41:00+00:00",
+   "hash": "d3930e98",
    "file": "speakers/simon-wilhelm/index.html"
   },
   "/stats/": {
