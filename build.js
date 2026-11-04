@@ -1039,7 +1039,7 @@ function passageGates() {
       var qid = art.id;
 
       // label
-      var want = art.hasEllipsis ? 'edited' : 'verbatim';
+      var want = art.hasEllipsis || (art.labels.length === 1 && /^edited/i.test(art.labels[0].text)) ? 'edited' : 'verbatim'; // Casey 2026-11-04: filler is cut silently, so Edited no longer needs a …; a … still always means Edited
       if (art.labels.length !== 1) {
         fail('label', slug, art, art.labels.length === 0
           ? 'has no Verbatim/Edited label. Every answer needs exactly one.'
