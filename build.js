@@ -1039,18 +1039,16 @@ function passageGates() {
       var qid = art.id;
 
       // label
-      var want = art.hasEllipsis || (art.labels.length === 1 && /^edited/i.test(art.labels[0].text)) ? 'edited' : 'verbatim'; // Casey 2026-11-04: filler is cut silently, so Edited no longer needs a …; a … still always means Edited
+      var want = art.labels.length === 1 && /^(filler removed|edited)/i.test(art.labels[0].text) ? 'edited' : 'verbatim'; // Casey 2026-11-04 (rule 3): the label describes only the guest's words — Verbatim or Filler Removed ("Edited" on pages not yet refreshed); a cut host question is shown by the "Ellipsis added" tag, not the label
       if (art.labels.length !== 1) {
         fail('label', slug, art, art.labels.length === 0
           ? 'has no Verbatim/Edited label. Every answer needs exactly one.'
           : 'has ' + art.labels.length + ' labels (' + art.labels.map(function(l) { return l.text; }).join(' + ') + '). Every answer needs exactly one.');
       } else {
         var lab = art.labels[0];
-        var okText = /^(Verbatim|Edited)( quote)?$/.test(lab.text);
-        if (lab.cls.indexOf(want) !== 0 || !okText || lab.text.toLowerCase().indexOf(want) !== 0) {
-          fail('label', slug, art, 'is labelled "' + lab.text + '" but ' + (art.hasEllipsis
-            ? 'the answer contains "\u2026" (a marked cut), so it must be Edited.'
-            : 'the answer has no "\u2026", so it must be Verbatim.') + ' (Rule: Edited if any passage contains "\u2026", otherwise Verbatim.)');
+        var okText = /^(Verbatim|Filler Removed|Edited)( quote)?$/.test(lab.text);
+        if (lab.cls.indexOf(want) !== 0 || !okText) {
+          fail('label', slug, art, 'is labelled "' + lab.text + '" (class ' + lab.cls + '). Every answer is labelled Verbatim (the guest\u2019s words exactly as spoken) or Filler Removed (filler, false starts, repeats or crosstalk cut), with the matching class (editorial rule 3).');
         }
       }
 
