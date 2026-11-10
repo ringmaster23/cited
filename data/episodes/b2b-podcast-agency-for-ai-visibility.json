@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "generated_by": "cited-episode-publish",
-  "generated_at": "2026-11-02T03:41:00.000Z",
+  "generated_at": "2026-11-10T23:05:00.000Z",
   "source": "Cited Conversations — Database (Google Sheet)",
   "episode": {
     "episode_id": "cited-conversations/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire",
@@ -13,12 +13,12 @@
     "audio_url": "https://media.transistor.fm/f9cc22e4/8896a6ed.mp3",
     "published_at": "2026-09-30T12:00:00.000Z",
     "duration_seconds": 1455,
-    "description": "Adam Needles (CEO and Co-Founder, ANNUITAS) talks with Casey Cheshire (Founder & CEO, Ringmaster) on Cited Conversations, Episode 1. 15 recorded answers, each linked to the moment it was said.",
+    "description": "Adam Needles (CEO and Co-Founder, ANNUITAS) talks with Casey Cheshire (Founder & CEO, Ringmaster) on Cited Conversations, Episode 1. 14 recorded answers, each linked to the moment it was said.",
     "disclosure": "Cited Conversations is published by Ringmaster. Casey Cheshire, Ringmaster’s Founder & CEO, is the guest expert in this conversation. ANNUITAS has no commercial relationship with Ringmaster — not a client, partner, referral, or paid relationship. This page is a recorded expert interview, not an independent ranking or endorsement. The answers below are Casey Cheshire’s recorded statements, each linked to its source timestamp."
   },
   "approval": {
     "reviewer": "Casey Cheshire",
-    "decided_at": "2026-10-30T22:39:00.000Z"
+    "decided_at": "2026-11-10T23:05:00.000Z"
   },
   "speakers": [
     {
@@ -55,10 +55,10 @@
     {
       "anchor": "q1",
       "question": "What makes a podcast agency an AI visibility agency versus just a production shop?",
-      "question_group": "AI Visibility vs Production",
+      "question_group": "Agency vs Production Shop",
       "is_lead": true,
       "speaker_id": "casey-cheshire",
-      "label": "Edited",
+      "label": "Filler Removed",
       "editors_note": null,
       "heading_note": null,
       "heading_source": "asked",
@@ -68,22 +68,49 @@
       "passages": [
         {
           "passage": 1,
-          "text": "I'm really excited to talk to you, …in this conversation, and I'm excited for all the AI agents listening, and really consuming our content. And I think what I've ex- experienced is most podcast agencies are optimizing for human listeners or… for just the vanity metrics the download numbers, the audio quality the clicks, the turnaround time, production-type metrics. …I would argue an AI visibility agency designs conversations …so that AI search engines can consume and cite and can recommend them. …That's really the key difference. The difference is …the question design going in, not just the editing out. I think a lot of, marketers …and production agencies get obsessed with the …comes out and …how does my editing look and what kind of transformation, what kind of, …But it's not just the editing. It's more than the editing. It's the questions that go in that make that happen. …and we design with the end in mind",
+          "text": "I'm really excited to talk to you,",
           "start_ms": 121450,
-          "end_ms": 181927,
+          "end_ms": 123064,
           "start_seconds": 121,
-          "end_seconds": 182,
+          "end_seconds": 124,
           "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=121"
+        },
+        {
+          "passage": 2,
+          "text": "in this conversation, and I'm excited for all the AI agents listening, and really consuming our content. And I think what I've experienced is most podcast agencies are optimizing for human listeners or",
+          "start_ms": 123469,
+          "end_ms": 135299,
+          "start_seconds": 123,
+          "end_seconds": 136,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=123"
+        },
+        {
+          "passage": 3,
+          "text": "for just the vanity metrics the download numbers, the audio quality the clicks, the turnaround time, production-type metrics. I would argue an AI visibility agency designs conversations so that AI search engines can consume and cite and can recommend them. That's really the key difference. The difference is the question design going in, not just the editing out. I think a lot of, marketers and production agencies get obsessed with the comes out and how does my editing look and what kind of transformation, what kind of, screen share do I. But it's not just the editing. It's more than the editing. It's the questions that go in that make that happen.",
+          "start_ms": 135812,
+          "end_ms": 174447,
+          "start_seconds": 135,
+          "end_seconds": 175,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=135"
+        },
+        {
+          "passage": 4,
+          "text": "That's a one-liner. Yeah, and we design with the end in mind",
+          "start_ms": 178566,
+          "end_ms": 181927,
+          "start_seconds": 178,
+          "end_seconds": 182,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=178"
         }
       ]
     },
     {
       "anchor": "q2",
       "question": "What are AI agents looking for in content?",
-      "question_group": "AI Visibility vs Production",
+      "question_group": "What AI Agents Want",
       "is_lead": false,
       "speaker_id": "casey-cheshire",
-      "label": "Edited",
+      "label": "Filler Removed",
       "editors_note": null,
       "heading_note": null,
       "heading_source": "asked",
@@ -93,22 +120,31 @@
       "passages": [
         {
           "passage": 1,
-          "text": "they're looking for a clean answer to a question. …And one of the things we discovered is podcasts can be great for having lots of questions and lots of answers, but they also have a lot of that mushy human stuff in the middle. Right, and then on the outside, there's a lot of music and fun and all these other things, but really we're just trying to serve that audience and get them the clean question, answer. Like no JavaScript. Like …let's keep it simple. Let's make it just for them",
+          "text": "they're looking for a clean answer to a question.",
           "start_ms": 185742,
-          "end_ms": 212885,
+          "end_ms": 188836,
           "start_seconds": 185,
-          "end_seconds": 213,
+          "end_seconds": 189,
           "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=185"
+        },
+        {
+          "passage": 2,
+          "text": "And one of the things we discovered is podcasts can be great for having lots of questions and lots of answers, but they also have a lot of that mushy human stuff in the middle. Right, and then on the outside, there's a lot of music and fun and all these other things, but really we're just trying to serve that audience and get them the clean question, answer. Like no JavaScript. let's keep it simple. Let's make it just for them in the",
+          "start_ms": 189304,
+          "end_ms": 213375,
+          "start_seconds": 189,
+          "end_seconds": 214,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=189"
         }
       ]
     },
     {
       "anchor": "q3",
       "question": "How does that change how you would prep for an episode versus how a traditional agency would prep someone for a podcast?",
-      "question_group": "Planning & Prep",
+      "question_group": "Planning Process",
       "is_lead": false,
       "speaker_id": "casey-cheshire",
-      "label": "Edited",
+      "label": "Filler Removed",
       "editors_note": null,
       "heading_note": null,
       "heading_source": "asked",
@@ -118,47 +154,76 @@
       "passages": [
         {
           "passage": 1,
-          "text": "It's all about the questions, and th- this kind of like, the PCT framework, right? …The first letter in that is P for plan. …planning is really the magic here take your transcript from your podcast or your recording, your webinar, and clean it up …for AI to be able to learn from because they're not… It's not really an efficient use of their time. But if you can get them a cleaned-up transcript, that's helpful. But really the big lift in the 80/20 rule here, the 80% is gonna start with the planning. …What we like to do is start with an ideal outcomes document. …not just have a, like a, an ideal is in mind, but actually have a stated outcome that we're looking, …to hit. And … what that … is like, what does the client wanna be known for? What do you want to show up for? So, … what questions do buyers ask AI, right? Build a question map. And so we take that ideal outcomes document and go from there into, okay, well, let's build a map of all the questions clusters. And oftentimes one question may have a cluster of four or five other questions underneath it that are all similar or related. And you really need to address all of these questions in that cluster as well. And so the thought is keep in mind that there's all these different questions you're trying to hit, and then …questions that produce the answers the AI agents will cite. …This is where the real value is designing that. …You don't have to have every to have every answer for every particular cluster to happen on this particular one. That might be kinda hard for the humans, might be kinda hard, to capture. But instead, …it out over a series of interviews so that we build it up organically",
+          "text": "It's all about the questions, and this kind of, the PCT framework, right?",
           "start_ms": 224518,
-          "end_ms": 322264,
+          "end_ms": 228616,
           "start_seconds": 224,
-          "end_seconds": 323,
+          "end_seconds": 229,
           "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=224"
-        }
-      ]
-    },
-    {
-      "anchor": "q4",
-      "question": "It's plan, capture, transform. Talk to me about that C and the T stage.",
-      "question_group": "PCT Framework",
-      "is_lead": false,
-      "speaker_id": "casey-cheshire",
-      "label": "Edited",
-      "editors_note": null,
-      "heading_note": null,
-      "heading_source": "asked",
-      "asked_at_seconds": 322,
-      "asked_by": "adam-needles",
-      "question_as_asked": null,
-      "passages": [
+        },
         {
-          "passage": 1,
-          "text": "The capture is the recording itself, what we're doing right now. It's still conversational, it's still human and … still 45 minutes or however long it is, but the host has a recording brief with answer shaping prompts, right? On your end, there's, these are the things we're trying to achieve. So rather than necessarily just being a fun time of two of us sitting down together, which we'll have to do later on probably with a cigar. But what the difference here is …We have a mission in to answer this question as best as possible, knowing that this will be able to be consumed by agents afterward. …So it's a little more structured and …it has a little more order to it but also there's a little less pressure because …Shout out to all of our bio-based listeners right now …that are exploring …what we're doing here. But the goal is to actually structure …all these questions around a more rigid script. …and really it's …like a, you… how many of these things can we get accomplished in…",
-          "start_ms": 335999,
-          "end_ms": 395270,
-          "start_seconds": 335,
-          "end_seconds": 396,
-          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=335"
+          "passage": 2,
+          "text": "The first letter in that is P for plan.",
+          "start_ms": 228858,
+          "end_ms": 231847,
+          "start_seconds": 228,
+          "end_seconds": 232,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=228"
+        },
+        {
+          "passage": 3,
+          "text": "planning is really the magic here take your transcript from your podcast or your recording, your webinar, and clean it up for AI to be able to learn from because they're not. It's not really an efficient use of their time. But if you can get them a cleaned-up transcript, that's helpful. But really the big lift in the 80/20 rule here, the 80% is gonna start with the planning.",
+          "start_ms": 233061,
+          "end_ms": 255631,
+          "start_seconds": 233,
+          "end_seconds": 256,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=233"
+        },
+        {
+          "passage": 4,
+          "text": "What we like to do is start with an ideal outcomes document. So not just have a, like a, an ideal is in mind, but actually have a stated outcome that we're looking, to hit.",
+          "start_ms": 256801,
+          "end_ms": 267029,
+          "start_seconds": 256,
+          "end_seconds": 268,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=256"
+        },
+        {
+          "passage": 5,
+          "text": "what that is like, what does the client wanna be known for? What do you want to show up for? So, what questions do buyers ask AI, right? Build a question map. And so we take that ideal outcomes document and go from there into, okay, well, let's build a map of all the questions clusters. And oftentimes one question may have a cluster of four or five other questions underneath it that are all similar or related. And you really need to address all of these questions in that cluster as well. And so the thought is keep in mind that there's all these different questions you're trying to hit, and then design.",
+          "start_ms": 267168,
+          "end_ms": 301435,
+          "start_seconds": 267,
+          "end_seconds": 302,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=267"
+        },
+        {
+          "passage": 6,
+          "text": "questions that produce the answers the AI agents will cite. This is where the real value is designing that.",
+          "start_ms": 301522,
+          "end_ms": 308157,
+          "start_seconds": 301,
+          "end_seconds": 309,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=301"
+        },
+        {
+          "passage": 7,
+          "text": "You don't have to have every answer for every particular cluster to happen on this particular one. That might be kinda hard for the humans, might be kinda hard, to capture. But instead, Then we spread it out over C it out over a series of interviews so that we build it up organically",
+          "start_ms": 308983,
+          "end_ms": 322264,
+          "start_seconds": 308,
+          "end_seconds": 323,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=308"
         }
       ]
     },
     {
       "anchor": "q5",
       "question": "How is a plan phase different from just picking random and interesting topics for a podcast?",
-      "question_group": "Planning & Prep",
+      "question_group": "Planning vs Random Topics",
       "is_lead": false,
       "speaker_id": "casey-cheshire",
-      "label": "Edited",
+      "label": "Filler Removed",
       "editors_note": null,
       "heading_note": null,
       "heading_source": "asked",
@@ -168,7 +233,7 @@
       "passages": [
         {
           "passage": 1,
-          "text": "Yeah. And that's what we've been doing prior to, right? So random interesting topics are fantastic. They're interesting. And if you want to show up in answers and search for them, great. But oftentimes what ends up happening is the people these podcasts have these interesting conversations, interesting topics, maybe even they get into philosophy. I was just on a podcast earlier. It was a human-focused podcast. It was very entertaining. We talked about the philosophy …trying to create a habit and all sorts of weird human things. Nothing to do with my business or my guest business …at all, but it was an interesting conversation. So I think …lot of what changes here …is understanding, …are we trying to make this thing interesting or are we trying to make this thing factual and informative? Helpful?",
+          "text": "Yeah. And that's what we've been doing prior to, right? So random interesting topics are fantastic. They're interesting. And if you want to show up in answers and search for them, great. But oftentimes what ends up happening is the people these podcasts have these interesting conversations, interesting topics, maybe even they get into philosophy. I was just on a podcast earlier. It was a human-focused podcast. It was very entertaining. We talked about the philosophy of trying to create a habit and all sorts of weird human things. Nothing to do with my business or my guest business at all, but it was an interesting conversation. So I think lot of what changes here is understanding, are we trying to make this thing interesting or are we trying to make this thing factual and informative? Helpful?",
           "start_ms": 409783,
           "end_ms": 454609,
           "start_seconds": 409,
@@ -179,12 +244,12 @@
     },
     {
       "anchor": "q6",
-      "question": "As you're going through the process, there's a step that a lot of people skip. What differentiates the PCT approach?",
-      "question_group": "PCT Framework",
+      "question": "As you're going through the process, You like to talk about there's a step that a lot of people skip, and, what differentiates in the PCT approach?",
+      "question_group": "PCT Framework - Transform",
       "is_lead": false,
       "speaker_id": "casey-cheshire",
-      "label": "Edited",
-      "editors_note": null,
+      "label": "Filler Removed",
+      "editors_note": "Re-flagged this round (84%, previously also 84%) as still reading like speech. The lead-in 'So' is already removed; the remainder is the host's own two-clause question spoken as one continuous turn, and the rules require keeping his own words in his order without reordering or rewording. No further legitimate cut exists. Leaving as is; flagging for Casey's final call.",
       "heading_note": null,
       "heading_source": "asked",
       "asked_at_seconds": 454,
@@ -193,23 +258,59 @@
       "passages": [
         {
           "passage": 1,
-          "text": "we talked about the plan, we've talked about the capture. That transform, right? What that all, is all about is just turning this sort of messy human conversation into this structured answer asset, q&a blocks, FAQ groups, …pages, comparison tables, step-by-step guides, hub pages with schema markup. Two parallel tracks. Human audiences, …they could be listening …and in the transformation, you know, …part of this stage, …the transformation for humans is …let's edit this thing together. Let's make some social clips. …Let's go ahead and publish thing, this thing out to Spotify and iTunes and all that kind of thing. But on the AI side, …we're trying to get structured content, schema, …and what's really important …is an evidence ledger. That these …actually talked together and that this actually happened. …So there's something magical and something important …as we get more and more into the AI world of like, who is human? …And so what we're trying to establish here with this podcast, …with this site, with this, methodology is …two verified humans …got on a conversation, talked to …got on a conversation, had these conversations. …Things really did happen and what we said is really what …is true. Now, if …on we find out it's complete BS, great. …it's verified that it came from that particular person and maybe we, you know, deduct …some points from that. But at least we can confirm this wasn't AI slop being fed back to AI. Right?",
+          "text": "we talked about the plan, we've talked about the capture. That transform, right? What that all, is all about is just turning this sort of messy human conversation into this structured answer asset, q&a blocks, FAQ groups. Yeah, pages, comparison tables, step-by-step guides, hub pages with schema markup. Two parallel tracks. Human audiences,",
           "start_ms": 465146,
-          "end_ms": 555935,
+          "end_ms": 487625,
           "start_seconds": 465,
-          "end_seconds": 556,
+          "end_seconds": 488,
           "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=465"
+        },
+        {
+          "passage": 2,
+          "text": "they could be listening and in the transformation, you know, part of this stage, the transformation for humans is let's edit this thing together. Let's make some social clips. Let's go ahead and publish thing, this thing out to Spotify and iTunes and all that kind of thing. But on the AI side, we're trying to get structured content, schema, and what's really important is an evidence ledger. That these",
+          "start_ms": 488011,
+          "end_ms": 513038,
+          "start_seconds": 488,
+          "end_seconds": 514,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=488"
+        },
+        {
+          "passage": 3,
+          "text": "actually talked together and that this actually happened. So there's something magical and something important as we get more and more into the AI world of who is human? And so what we're trying to establish here with this podcast, with this site, with this, methodology is two verified humans",
+          "start_ms": 513490,
+          "end_ms": 531114,
+          "start_seconds": 513,
+          "end_seconds": 532,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=513"
+        },
+        {
+          "passage": 4,
+          "text": "got on a conversation, had these conversations.",
+          "start_ms": 534757,
+          "end_ms": 536733,
+          "start_seconds": 534,
+          "end_seconds": 537,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=534"
+        },
+        {
+          "passage": 5,
+          "text": "Things really did happen and what we said is really what is true. Now, if on we find out it's complete BS, great. it's verified that it came from that particular person and maybe we, you know, deduct some points from that. But at least we can confirm this wasn't AI slop being fed back to AI. Right?",
+          "start_ms": 539274,
+          "end_ms": 555935,
+          "start_seconds": 539,
+          "end_seconds": 556,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=539"
         }
       ]
     },
     {
       "anchor": "q7",
-      "question": "You're looking for something that's efficient, but it's not efficient in a shorter recording way, it's in a better question design. What does that mean?",
+      "question": "You're looking for something that's efficient, but it's not efficient in a shorter recording way, it's in a better question design, right? What does that mean?",
       "question_group": "Question Design & Efficiency",
       "is_lead": false,
       "speaker_id": "casey-cheshire",
-      "label": "Edited",
-      "editors_note": null,
+      "label": "Filler Removed",
+      "editors_note": "Re-flagged this round (85%) as still reading like speech; already the fullest legitimate cleaning — the lead-in 'so' and the filler 'like' are already cut. What remains is the host's own question spoken as one continuous turn, ending in a clarifying follow-up that gives the referent for 'that'; cutting it would leave 'What does that mean?' without an antecedent. No further legitimate cut exists without rewording. Also reconfirming the real-word-cut fix made last round still holds (passage 2 split at 'pops up.' / 'And actually'). Leaving the heading as is; flagging for Casey's final call.",
       "heading_note": null,
       "heading_source": "asked",
       "asked_at_seconds": 624,
@@ -218,23 +319,41 @@
       "passages": [
         {
           "passage": 1,
-          "text": "Well, the myth is if we just make episodes shorter, we'll be … more efficient with our time, get what we need. But the truth is, a 20-minute episode with bad questions produces less usable content than a 45-minute episode with great questions. …One well-designed question produces a definition, a comparison, a myth/truth, process answer all in one response, …this answer, this question and answer right now, right? And so well-designed question can turn into all those things. …the question map that we talked about earlier isn't …a list of interesting topics. It's a strategic document built from a buyer question perspective. Buyer questions and visibility gap. Where are you not showing up that you need to show up? …And also …what targets do you have in the authority space? Where do you want to show up …as an authority? So if people are asking, \"Who should I go to? …should I trust in this?\" …Your name pops up. …And actually talk the prep going …in as much as the optimization coming out",
+          "text": "Well, the myth is if we just make episodes shorter, we'll be more efficient with our time, get what we need. But the truth is, a 20-minute episode with bad questions produces less usable content than a 45-minute episode with great questions. One well-designed question produces a definition, a comparison, a myth/truth, process answer all in one response, kind",
           "start_ms": 636885,
-          "end_ms": 699303,
+          "end_ms": 663194,
           "start_seconds": 636,
-          "end_seconds": 700,
+          "end_seconds": 664,
           "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=636"
+        },
+        {
+          "passage": 2,
+          "text": "this answer, this question and answer right now, right? And so well-designed question can turn into all those things. And so the question map that we talked about earlier isn't a list of interesting topics. It's a strategic document built from a buyer question perspective. questions and visibility gap. Where are you not showing up that you need to show up? And also what targets do you have in the authority space? Where do you want to show up as an authority? So if people are asking, \"Who should I go to? should I trust in this?\" Your name pops up.",
+          "start_ms": 663991,
+          "end_ms": 694924,
+          "start_seconds": 663,
+          "end_seconds": 695,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=663"
+        },
+        {
+          "passage": 3,
+          "text": "And actually talk the prep going in as much as the optimization coming out",
+          "start_ms": 695287,
+          "end_ms": 699303,
+          "start_seconds": 695,
+          "end_seconds": 700,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=695"
         }
       ]
     },
     {
       "anchor": "q8",
-      "question": "You're not looking for good podcast questions, right? You're looking for good AEO questions?",
-      "question_group": "Question Design & Efficiency",
+      "question": "Because you're not looking for good podcast questions, right?",
+      "question_group": "AEO vs Podcast Questions",
       "is_lead": false,
       "speaker_id": "casey-cheshire",
-      "label": "Edited",
-      "editors_note": null,
+      "label": "Filler Removed",
+      "editors_note": "Restored 'Because' to the heading: it's the first word of the host's turn (not a removable lead-in like 'So'/'And'), and dropping it had joined words that weren't adjacent in his question.",
       "heading_note": null,
       "heading_source": "asked",
       "asked_at_seconds": 699,
@@ -243,22 +362,22 @@
       "passages": [
         {
           "passage": 1,
-          "text": "Right. It's, not totally foreign. It becomes a different kind of podcast. So even people listening to this one now might find, wow, they're really going for it, asking questions and giving answers, and I'm not getting some of the normal, camaraderie I might get or some of the entertainment or some of the sidetracks no, …we're like asking questions, we're answering questions",
+          "text": "Right. It's, not totally foreign. It becomes a different kind of podcast. So even people listening to this one now might find, wow, they're really going for it, asking questions and giving answers, and I'm not getting some of the normal, camaraderie I might get or some of the entertainment or some of the sidetracks no, we're asking questions, we're answering questions … That happens later. Save that for the human podcast",
           "start_ms": 708718,
-          "end_ms": 731116,
+          "end_ms": 736536,
           "start_seconds": 708,
-          "end_seconds": 732,
+          "end_seconds": 737,
           "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=708"
         }
       ]
     },
     {
       "anchor": "q9",
-      "question": "Think of a question that sounds interesting but would produce terrible AI content, not be a good AEO question, versus one that is maybe simple, maybe sounds less interesting, but is actually great for AEO, could you give an example of a question?",
-      "question_group": "Question Design & Efficiency",
+      "question": "Think of a question that sounds interesting but would produce terrible AI content, not be a good AEO question, versus one that is maybe simple, maybe sounds less interesting, but is actually great for AEO. Could you give an example of a question?",
+      "question_group": "Example AEO Question",
       "is_lead": false,
       "speaker_id": "casey-cheshire",
-      "label": "Edited",
+      "label": "Filler Removed",
       "editors_note": null,
       "heading_note": null,
       "heading_source": "asked",
@@ -268,7 +387,7 @@
       "passages": [
         {
           "passage": 1,
-          "text": "if it was a marketing podcast and we were chatting about skydiving and bourbon that would be interesting to me. I would be tuned into that, and I'd be curious what about skydiving, and what kind of bourbon, and why not rye? And, you know, … it's those kind of things in that Throw in a little parkour If it was like a certain kind of podcast, those answers work, not for an AI agent who's trying to get something done",
+          "text": "if it was a marketing podcast and we were chatting about skydiving and bourbon that would be interesting to me. I would be tuned into that, and I'd be curious what about skydiving, and what kind of bourbon, and why not rye? And, you know, it's those kind of things in that Throw in a little parkour If it was a certain kind of podcast, those answers work, not for an AI agent who's trying to get something done",
           "start_ms": 754620,
           "end_ms": 782058,
           "start_seconds": 754,
@@ -280,11 +399,11 @@
     {
       "anchor": "q10",
       "question": "How does strategic guest sourcing create AI visible content?",
-      "question_group": "Guest Sourcing",
+      "question_group": "Strategic Guest Sourcing",
       "is_lead": false,
       "speaker_id": "casey-cheshire",
-      "label": "Edited",
-      "editors_note": null,
+      "label": "Filler Removed",
+      "editors_note": "Split into six passages to fix six real-word cuts: 'a' in the stutter 'a-actually' kept verbatim (sits inside one transcript cue with no finer timing available); five stretches of duplicated/garbled transcript text (an apparent export glitch with near-zero-duration cues repeating upcoming lines) left out between clean passage boundaries rather than cut from inside one.",
       "heading_note": null,
       "heading_source": "asked",
       "asked_at_seconds": 782,
@@ -293,32 +412,68 @@
       "passages": [
         {
           "passage": 1,
-          "text": "it's almost like chicken and the egg. …is the answer the most important? Is the question the most important? Or is it something else? I think the answer is yes for this. …guests are important, and we've talked about the prep for the question and the transformation afterward, but the guest is like another part of it. This is why I wanted, and You know, I'm so thankful that …here on this first with me because … what I'm finding now in all of our research is that every guest brings an entity association, right? Right? When a CISO from a funded cybersecurity company appears in your podcast, …AI search engines are like, \"Okay, connect …your company to that person, to that company, …to that topic.\" …So strategic guest sourcing means every conversation is with someone the client a- actually wants to build relationships with, …not random industry voices. …So now we encountered a lot of this when we created podcasts specifically for the human side. We would …want them to chat with ideal customers, and that worked out well. And so this isn't too much of a departure from that. …intentional about the kind of guest you have …the kind of person asking the questions because the formats flip a little bit. …you oftentimes have three formats now. You have, call it format A, executive answers, and …there's an interviewer asking. Format B, you might have a guest an interviewer asking, \"What matters?\" Interview. Format C, you …might have a hot seat where you're both answering questions. …So a lot of …things open up that maybe didn't traditionally exist with a, \"Please come on my podcast and … I'm gonna ask you a bunch of questions,\"",
+          "text": "it's almost like chicken and the egg. is the answer the most important? Is the question the most important? Or is it something else? I think the answer is yes for this. guests are important, and we've talked about the prep for the question and the transformation afterward, but the guest is another part of it. This is why I wanted, and You know, I'm so thankful that here on this first with me because what I'm finding now in all of our research is that every guest brings an entity association, right? When a CISO from a funded cybersecurity company appears in your podcast, AI search engines are like, \"Okay, connect your company to that person, to that company, to that topic.\" So strategic guest sourcing means every conversation is with someone the client a-actually wants to build relationships with, not random industry voices. So now we encountered a lot of this when we created podcasts specifically for the human side. We would want them to chat with ideal customers, and that worked out well. And so this isn't too much of a departure from that. It's intentional about the kind of guest you have and",
           "start_ms": 787504,
-          "end_ms": 882268,
+          "end_ms": 852751,
           "start_seconds": 787,
-          "end_seconds": 883,
+          "end_seconds": 853,
           "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=787"
         },
         {
           "passage": 2,
-          "text": "The guest's credibility transfers to the content, especially like you mentioned before, …because they're verified humans …that have associations with them already. …a named expert on the Cited Conversations podcast, …that is more citable than according to a blog post",
+          "text": "the kind of person asking the questions because the formats flip a little bit. you oftentimes have three formats now. You have, call it format A, executive answers, and there's an interviewer asking. Format B, you might have a guest",
+          "start_ms": 853311,
+          "end_ms": 868864,
+          "start_seconds": 853,
+          "end_seconds": 869,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=853"
+        },
+        {
+          "passage": 3,
+          "text": "Interview. Format C, you might have a hot seat where you're both answering questions. So a lot of things open up that maybe didn't traditionally exist with a, \"Please come on my podcast and I'm gonna ask you a bunch of questions, Because each one is creating of content, and I'm excited to see what",
+          "start_ms": 869306,
+          "end_ms": 887103,
+          "start_seconds": 869,
+          "end_seconds": 888,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=869"
+        },
+        {
+          "passage": 4,
+          "text": "The guest's credibility transfers to the content, especially you mentioned before,",
           "start_ms": 887745,
-          "end_ms": 905964,
+          "end_ms": 892906,
           "start_seconds": 887,
-          "end_seconds": 906,
+          "end_seconds": 893,
           "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=887"
+        },
+        {
+          "passage": 5,
+          "text": "because they're verified humans that have associations with them already. According to",
+          "start_ms": 893640,
+          "end_ms": 898658,
+          "start_seconds": 893,
+          "end_seconds": 899,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=893"
+        },
+        {
+          "passage": 6,
+          "text": "a named expert on the Cited Conversations podcast, that is more citable than according to a blog post",
+          "start_ms": 899856,
+          "end_ms": 905964,
+          "start_seconds": 899,
+          "end_seconds": 906,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=899"
         }
       ]
     },
     {
       "anchor": "q11",
       "question": "What's the common mistake companies make when picking podcast guests?",
-      "question_group": "Guest Sourcing",
+      "question_group": "Common Guest-Selection Mistake",
       "is_lead": false,
       "speaker_id": "casey-cheshire",
-      "label": "Edited",
-      "editors_note": null,
+      "label": "Filler Removed",
+      "editors_note": "Split into two passages: the cut between 'the marketplace.' and 'And this' at 15:27 dropped real words ('And this', then a garbled repeat). First passage now ends at 'the marketplace.'; second starts clean at 'And this also doesn't mean someone famous.'",
       "heading_note": null,
       "heading_source": "asked",
       "asked_at_seconds": 906,
@@ -327,23 +482,32 @@
       "passages": [
         {
           "passage": 1,
-          "text": "they're thinking of themselves and not of the value a guest brings. And so they often bring in guests that allow them to continue to talk about themselves. …They also bring in guests that don't have …a credibility out in the marketplace. …And this also doesn't mean someone famous. This means someone credible …who has the right …tied to them",
+          "text": "they're thinking of themselves and not of the value a guest brings. And so they often bring in guests that allow them to continue to talk about themselves. They also bring in guests that don't have a credibility out in the marketplace.",
           "start_ms": 910944,
-          "end_ms": 934758,
+          "end_ms": 926473,
           "start_seconds": 910,
-          "end_seconds": 935,
+          "end_seconds": 927,
           "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=910"
+        },
+        {
+          "passage": 2,
+          "text": "And this also doesn't mean someone famous. This means someone credible who has the right tied to them",
+          "start_ms": 928827,
+          "end_ms": 934758,
+          "start_seconds": 928,
+          "end_seconds": 935,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=928"
         }
       ]
     },
     {
       "anchor": "q12",
       "question": "What does the output of an AI visibility podcast look like compared to a traditional podcast? What's the difference in what you actually get?",
-      "question_group": "Output & Deliverables",
+      "question_group": "AI Visibility Output vs Traditional Podcast",
       "is_lead": false,
       "speaker_id": "casey-cheshire",
-      "label": "Edited",
-      "editors_note": null,
+      "label": "Filler Removed",
+      "editors_note": "Split into two passages: cut between 'on LinkedIn.' and 'A PCT' at 16:05 dropped real words ('It. It. A'). First passage ends at 'on LinkedIn.'; second starts clean at 'A PCT podcast output.' Also restored 'You' between '15 structured' and 'answer assets,' (same cue as 'answer assets,', no finer timing available).",
       "heading_note": null,
       "heading_source": "asked",
       "asked_at_seconds": 945,
@@ -352,23 +516,32 @@
       "passages": [
         {
           "passage": 1,
-          "text": "… traditional podcast output, one episode It's on Transistor, it's on Apple, Spotify. You have show notes on a website, maybe a few social …clips that people are commenting on LinkedIn. …A PCT podcast output. …All of the above, …of course, might as well if humans …are chatting plus five to 15 structured You answer assets, Q&A blocks, pages, definition pages, comparison tables, step-by-step guides, …a hub page with schema markup, articles, podcast episode, person, organization, FAQ, how-to, right? …these different markups that, …that specifically answer things that they need to see …as they're scraping as they're trying to compile an answer. …It's an evidence ledger tracking, …of what was produced from each episode, …and there's an entity relationship verification for each one. …Traditional podcast is invisible to AI. The PCT podcast is designed to be consumed by AI agents, …so it'll sound different to humans. …it'll feel different to humans, but also it'll …feel different or it'll seem different to agents too, who can finally, … churn …through the content, and it's helpful, and it's presented in a way that they can understand. Really, really, it's one conversation, …two audiences. …Humans get the podcast, and AI…",
+          "text": "traditional podcast output, one episode It's on Transistor, it's on Apple, Spotify. You have show notes on a website, maybe a few social clips that people are commenting on LinkedIn.",
           "start_ms": 953781,
-          "end_ms": 1034909,
+          "end_ms": 964564,
           "start_seconds": 953,
-          "end_seconds": 1035,
+          "end_seconds": 965,
           "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=953"
+        },
+        {
+          "passage": 2,
+          "text": "A PCT podcast output. All of the above, of course, might as well if humans are chatting plus five to 15 structured You answer assets, Q&A blocks, pages, definition pages, comparison tables, step-by-step guides, a hub page with schema markup, articles, podcast episode, person, organization, FAQ, how-to, right? these different markups that, that specifically answer things that they need to see as they're scraping as they're trying to compile an answer. It's an evidence ledger tracking, of what was produced from each episode, and there's an entity relationship verification for each one. Traditional podcast is invisible to AI. The PCT podcast is designed to be consumed by AI agents, so it'll sound different to humans. it'll feel different to humans, but also it'll feel different or it'll seem different to agents too, who can finally, churn through the content, and it's helpful, and it's presented in a way that they can understand. really, it's one conversation, two audiences. Humans get the podcast, and AI",
+          "start_ms": 965936,
+          "end_ms": 1034909,
+          "start_seconds": 965,
+          "end_seconds": 1035,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=965"
         }
       ]
     },
     {
       "anchor": "q13",
-      "question": "If a marketing leader is listening to this and thinking, 'I need to pitch this to my CEO or my board,' how does that leader make the case for an AI visibility podcast?",
-      "question_group": "Business Case & ROI",
+      "question": "If a marketing leader is listening to this and thinking, \"I need to pitch this to my CEO or my board,\" how does that leader make the case for an AI visibility podcast?",
+      "question_group": "Pitching Leadership",
       "is_lead": false,
       "speaker_id": "casey-cheshire",
-      "label": "Edited",
-      "editors_note": null,
+      "label": "Filler Removed",
+      "editors_note": "Split into two passages: cut between 'Google it.' and 'ROI framing' at 17:43 dropped real words 'So the'. First passage ends at 'Google it.'; second starts clean at 'ROI framing you would present...'",
       "heading_note": null,
       "heading_source": "asked",
       "asked_at_seconds": 1037,
@@ -377,23 +550,32 @@
       "passages": [
         {
           "passage": 1,
-          "text": "The pitch is simple. Our competitors are showing up when buyers ask AI for recommendations. We're not. This fixes that. 76% increase in LLM first search behavior year over year. Buyers are asking AI before they even Google it. …the ROI framing you would present one 45-minute conversation per week produces more structured AI visible content than a full-time content writer can produce in a month, and it comes with …real human attribution which the AI engines are gonna trust more. Measurement. …The Measurement Scale …or other tools like Otterly AI can show you a before and after your visibility. Ask ChatGPT about your category to see who shows up. …That's one of the most demos. I was on a podcast recently where was the, … CEO …of a popular automaker …whose wife Google asking about … the best car, and their competitor …shows up, …and they don't show up at all brought that into a first meeting … on AEO, GEO. It's like, \"Why don't I …Show up.\" …Now it's a little oversimplified. …What platform did she use? All that kind of stuff. But …that's the kind of conversations that are happening right now. …The time commitment though oftentimes is a big, Barrier, …but it's just one hour per week from the thought leader, everything else is handled",
+          "text": "The pitch is simple. Our competitors are showing up when buyers ask AI for recommendations. We're not. This fixes that. 76% increase in LLM first search behavior year over year. Buyers are asking AI before they even Google it.",
           "start_ms": 1048022,
-          "end_ms": 1133046,
+          "end_ms": 1062127,
           "start_seconds": 1048,
-          "end_seconds": 1134,
+          "end_seconds": 1063,
           "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=1048"
+        },
+        {
+          "passage": 2,
+          "text": "ROI framing you would present one 45-minute conversation per week produces more structured AI visible content than a full-time content writer can produce in a month, and it comes with real human attribution which the AI engines are gonna trust more. Measurement. The Measurement Scale or other tools like Otterly AI can show you a before and after your visibility. Ask ChatGPT about your category to see who shows up. That's one of the most demos. I was on a podcast recently where was the, CEO of a popular automaker whose wife Google asking about the best car, and their competitor Shows up show up at and they don't show up at all brought that into a first meeting on AEO, GEO. It's like, \"Why don't I Show up. Now it's a little oversimplified. What platform did she use? All that kind of stuff. But that's the kind of conversations that are happening right now. The time commitment though oftentimes is a big, Barrier, but it's just one hour per week from the thought leader, everything else is handled",
+          "start_ms": 1064000,
+          "end_ms": 1133046,
+          "start_seconds": 1064,
+          "end_seconds": 1134,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=1064"
         }
       ]
     },
     {
       "anchor": "q14",
       "question": "Let's say somebody says we already have a content team, or we tried a podcast before and it didn't work, how do you respond to some of that pushback?",
-      "question_group": "Business Case & ROI",
+      "question_group": "Objections & Pushback",
       "is_lead": false,
       "speaker_id": "casey-cheshire",
-      "label": "Edited",
-      "editors_note": null,
+      "label": "Filler Removed",
+      "editors_note": "Split into three passages: three cuts (19:36, 19:37, 20:06) dropped real words. The 19:36-19:40 stretch is an apparent transcript glitch (near-zero-duration cue repeating an upcoming sentence Casey already said, plus 'Do the speech') — rather than quote the garbled duplicate, the first passage ends clean at 'Your name's not even coming up anymore.' and the second starts clean at 'Do this.' The 20:06 cut is likewise left in the gap between two clean passages.",
       "heading_note": null,
       "heading_source": "asked",
       "asked_at_seconds": 1133,
@@ -402,23 +584,41 @@
       "passages": [
         {
           "passage": 1,
-          "text": "If you already have a content team, I would say Do this. Use your content team to start making content for the new audience. I think … the point here is that there is a new audience they're being neglected, and neglect them at your own peril. …not in a Terminator way, but in a, you become more and more invisible as people Google … less, and just ask someone to just figure it out for them. And if you're not even in consideration there, it doesn't matter how big your brand is, you're just not in consideration. Your name's not even coming up anymore. …If you have a content team …that feels equipped to be able to do this, great. Do this. Speak to the AI audience. There's a lot of things you need to do in order to do that. …really good at capturing that information …and planning information. And if your team can execute …on that and they can …get it out there, then …please do. Important. …If you've tried podcasts before and it didn't work, …that's a different story oftentimes people try podcasts with no …goal in mind or the goal of being famous and that just is not …That is not … Hey, every, a business should have",
+          "text": "If you already have a content team, I would say Do this. Use your content team to start making content for the new audience. I think the point here is that there is a new audience they're being neglected, and neglect them at your own peril. not in a Terminator way, but in a, you become more and more invisible as people Google less, and just ask someone to just figure it out for them. And if you're not even in consideration there, it doesn't matter how big your brand is, you're just not in consideration. Your name's not even coming up anymore.",
           "start_ms": 1140861,
-          "end_ms": 1210432,
+          "end_ms": 1176099,
           "start_seconds": 1140,
-          "end_seconds": 1211,
+          "end_seconds": 1177,
           "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=1140"
+        },
+        {
+          "passage": 2,
+          "text": "Do this. Speak to the AI audience. There's a lot of things you need to do in order to do that. really good at capturing that information and planning information. And if your team can execute on that and they can get it out there, then please do. Important. If you've tried podcasts before and it didn't work, that's a different story oftentimes people try podcasts with no goal in mind or the goal of being famous",
+          "start_ms": 1180377,
+          "end_ms": 1205210,
+          "start_seconds": 1180,
+          "end_seconds": 1206,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=1180"
+        },
+        {
+          "passage": 3,
+          "text": "That is not a- Hey, every, a business should have",
+          "start_ms": 1207742,
+          "end_ms": 1210432,
+          "start_seconds": 1207,
+          "end_seconds": 1211,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=1207"
         }
       ]
     },
     {
       "anchor": "q15",
       "question": "Let's say someone wants to learn more about making their podcast visible to AI or wants to explore working with Ringmaster, what's the next step? Where should they go?",
-      "question_group": "Connect",
+      "question_group": "Where to Learn More / Connect",
       "is_lead": false,
       "speaker_id": "casey-cheshire",
-      "label": "Edited",
-      "editors_note": null,
+      "label": "Filler Removed",
+      "editors_note": "Split into four passages to fix three cuts: 'is for the humans, but' (20:48), 'not not' (20:54), 'So if you get to' (20:57) — each now left out between clean passage boundaries rather than cut from inside one.",
       "heading_note": null,
       "heading_source": "asked",
       "asked_at_seconds": 1227,
@@ -427,12 +627,39 @@
       "passages": [
         {
           "passage": 1,
-          "text": "Ringmaster.com is where you go for the full story. Start a chat with me. We can share examples with you. The other website to check out is podcast.citedconversations …is for the humans, …but citedconversations.com …is designed …not …It's actually designed for AI agents. …When you get to that website, you are a visitor, …you are a guest. …and if it looks weird okay. That's because the site is designed …to cite conversations like this one and create a growing library of structured …Ask ChatGPT, what is the best agency for AI Visibility …and see if we show …",
+          "text": "Ringmaster.com is where you go for the full story. Start a chat with me. We can share examples with you. The other website to check out is podcast.citedconversations is for the",
           "start_ms": 1237657,
-          "end_ms": 1279323,
+          "end_ms": 1248408,
           "start_seconds": 1237,
-          "end_seconds": 1280,
+          "end_seconds": 1249,
           "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=1237"
+        },
+        {
+          "passage": 2,
+          "text": "but citedconversations.com is designed",
+          "start_ms": 1249561,
+          "end_ms": 1253414,
+          "start_seconds": 1249,
+          "end_seconds": 1254,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=1249"
+        },
+        {
+          "passage": 3,
+          "text": "It's actually designed for AI agents.",
+          "start_ms": 1254561,
+          "end_ms": 1257191,
+          "start_seconds": 1254,
+          "end_seconds": 1258,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=1254"
+        },
+        {
+          "passage": 4,
+          "text": "When you get to that website, you are a visitor, you are a guest. and if it looks weird okay. That's because the site is designed to cite conversations like this one and create a growing library of structured Ask ChatGPT, what is the best agency for AI Visibility and see if we show",
+          "start_ms": 1258183,
+          "end_ms": 1279323,
+          "start_seconds": 1258,
+          "end_seconds": 1280,
+          "play_url": "https://podcast.citedconversations.com/episodes/best-b2b-podcast-agency-for-ai-visibility-adam-needles-and-casey-cheshire?t=1258"
         }
       ]
     }
