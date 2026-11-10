@@ -1471,9 +1471,12 @@ function normalizeSegment(text) {
   // Em-dashes (—) and en-dashes (–) become spaces BEFORE normalization so that
   // "word—word" in a page answer doesn't collapse into the single token "wordword",
   // which would never match the VTT where those words are space-separated.
+  // A stutter written as one word (“a-actually”) is split the way buildVttWordStream splits the transcript
+  // (“a-” + “actually”), so the same words match whichever way they were written (Ep 1 q10, 2026-11-10).
   return text
     .replace(/\[[^\]]*\]/g, ' ')
     .replace(/[\u2014\u2013]/g, ' ')
+    .replace(/(^|\s)([a-z]{1,2}-)(?=[a-z])/g, '$1$2 ')
     .split(/\s+/)
     .map(normVttWord)
     .filter(function(w) { return w.length > 0; });
