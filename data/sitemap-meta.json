@@ -23,18 +23,18 @@
    "file": "answers/how-do-you-turn-ceo-interviews-into-ai-content/index.html"
   },
   "/answers/": {
-   "lastmod": "2026-11-02T03:41:00+00:00",
-   "hash": "c69016d4",
+   "lastmod": "2026-11-10T06:42:00+00:00",
+   "hash": "e3fdb1f0",
    "file": "answers/index.html"
   },
   "/answers/service-to-convert-podcasts-into-ai-optimized-content/": {
-   "lastmod": "2026-11-02T03:41:00+00:00",
-   "hash": "5b8c9293",
+   "lastmod": "2026-11-10T06:42:00+00:00",
+   "hash": "73c4d4bd",
    "file": "answers/service-to-convert-podcasts-into-ai-optimized-content/index.html"
   },
   "/changelog/": {
    "lastmod": "2026-10-09",
-   "hash": "039a846e",
+   "hash": "dc40bf93",
    "file": "changelog/index.html"
   },
   "/citation/": {
@@ -63,8 +63,8 @@
    "file": "for-humans/index.html"
   },
   "/": {
-   "lastmod": "2026-10-31T00:01:00+00:00",
-   "hash": "da2262aa",
+   "lastmod": "2026-11-10T06:42:00+00:00",
+   "hash": "2414aded",
    "file": "index.html"
   },
   "/methodology/": {
@@ -78,8 +78,8 @@
    "file": "schema/index.html"
   },
   "/shows/cited-conversations/": {
-   "lastmod": "2026-11-01T20:36:00+00:00",
-   "hash": "42bf6f24",
+   "lastmod": "2026-11-10T06:42:00+00:00",
+   "hash": "59cec54b",
    "file": "shows/cited-conversations/index.html"
   },
   "/shows/": {
@@ -88,13 +88,13 @@
    "file": "shows/index.html"
   },
   "/speakers/adam-needles/": {
-   "lastmod": "2026-11-02T03:41:00+00:00",
-   "hash": "c61e3d4c",
+   "lastmod": "2026-11-10T06:42:00+00:00",
+   "hash": "61bcd2e6",
    "file": "speakers/adam-needles/index.html"
   },
   "/speakers/casey-cheshire/": {
-   "lastmod": "2026-11-02T03:41:00+00:00",
-   "hash": "349e941e",
+   "lastmod": "2026-11-10T06:42:00+00:00",
+   "hash": "d91bdb6b",
    "file": "speakers/casey-cheshire/index.html"
   },
   "/speakers/dave-rubinstein/": {
@@ -108,8 +108,8 @@
    "file": "speakers/index.html"
   },
   "/speakers/paul-jones/": {
-   "lastmod": "2026-11-02T03:41:00+00:00",
-   "hash": "1ab831be",
+   "lastmod": "2026-11-10T06:42:00+00:00",
+   "hash": "ea4e39e2",
    "file": "speakers/paul-jones/index.html"
   },
   "/speakers/simon-wilhelm/": {
@@ -118,8 +118,8 @@
    "file": "speakers/simon-wilhelm/index.html"
   },
   "/stats/": {
-   "lastmod": "2026-11-01T18:38:39+00:00",
-   "hash": "fc714ef7",
+   "lastmod": "2026-11-04T20:27:01+00:00",
+   "hash": "71f1b45b",
    "file": "stats/index.html"
   }
  }
