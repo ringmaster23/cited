@@ -110,5 +110,9 @@
 /episodes/how-do-you-turn-ceo-interviews-into-ai-content-* /answers/how-do-you-turn-ceo-interviews-into-ai-content/ 301
 /how-do-you-turn-ceo-interviews-into-ai-content-* /answers/how-do-you-turn-ceo-interviews-into-ai-content/ 301
 
+# Episode 005 — How Do You Find a Good Recruiter for a Founding AE Role? (added by cited-episode-publish)
+/episodes/finding-a-founding-ae-role-* /answers/finding-a-founding-ae-role/ 301
+/finding-a-founding-ae-role-* /answers/finding-a-founding-ae-role/ 301
+
 # ── Favicon ────────────────────────────────────────────────────────────────────────
 # /favicon.ico redirect removed — real favicon.ico now served as static file

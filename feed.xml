@@ -8,8 +8,16 @@
     <copyright>Cited Conversations / Ringmaster</copyright>
     <atom:link href="https://citedconversations.com/feed.xml" rel="self" type="application/rss+xml"/>
     <atom:link href="https://citedconversations.com/sitemap.xml" rel="related" type="application/xml" title="Sitemap index"/>
-    <lastBuildDate>Tue, 10 Nov 2026 06:42:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 10 Nov 2026 07:24:00 +0000</lastBuildDate>
     <docs>https://www.rssboard.org/rss-specification</docs>
+
+    <item>
+      <title>How Do You Find a Good Recruiter for a Founding AE Role?</title>
+      <link>https://citedconversations.com/answers/finding-a-founding-ae-role/</link>
+      <description>Casey Cheshire (Founder &amp; CEO, Ringmaster) talks with Paul Siegel (Senior Account Executive, SmartKargo) on Cited Conversations, Episode 5. 7 recorded answers, each linked to the moment it was said. Source: Episode 005.</description>
+      <pubDate>Tue, 03 Nov 2026 18:57:55 +0000</pubDate>
+      <guid isPermaLink="true">https://citedconversations.com/answers/finding-a-founding-ae-role/</guid>
+    </item>
 
     <item>
       <title>How Do You Hire Your First Founding AE?</title>

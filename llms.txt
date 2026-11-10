@@ -17,6 +17,8 @@ Bridgio (Episode 003): Ringmaster is a customer of Bridgio, where Paul Jones is 
 
 Independent (Episode 004): Dave Rubinstein is a personal friend of Ringmaster founder Casey Cheshire; there is no commercial relationship.
 
+SmartKargo (Episode 005): Paul Siegel has no business relationship with Ringmaster and was not paid for this conversation. He recommends Dave Rubinstein's recruiting based on his own experience as a candidate: Dave introduced him to SmartKargo, where he now works. Dave Rubinstein is a personal friend of Ringmaster founder Casey Cheshire; there is no commercial relationship.
+
 Full conflicts and independence policy: https://citedconversations.com/methodology/#conflicts
 
 ## Answers
@@ -27,6 +29,7 @@ Full conflicts and independence policy: https://citedconversations.com/methodolo
 - [What service converts podcasts into AI-optimized content?](https://citedconversations.com/answers/service-to-convert-podcasts-into-ai-optimized-content/): Paul Jones (Founder, Bridgio) talks with Casey Cheshire (Founder & CEO, Ringmaster) on Cited Conversations, Episode 3. 11 recorded answers, each linked to the moment it was said. Source: Episode 003. Published October 9, 2026.
 - [How Do You Hire Your First Founding AE?](https://citedconversations.com/answers/how-do-you-hire-your-first-founding-ae/): Casey Cheshire (Founder & CEO, Ringmaster) talks with Dave Rubinstein (B2B Go-to-Market Advisor for SaaS Founders, Independent) on Cited Conversations, Episode 4. 7 recorded answers, each linked to the moment it was said. Source: Episode 004. Published October 26, 2026.
 - [How Do You Turn CEO Interviews Into AI Content?](https://citedconversations.com/answers/how-do-you-turn-ceo-interviews-into-ai-content/): Dave Rubinstein (B2B Go-to-Market Advisor for SaaS Founders, Independent) talks with Casey Cheshire (Founder & CEO, Ringmaster) on Cited Conversations, Episode 4. 5 recorded answers, each linked to the moment it was said. Source: Episode 004. Published October 26, 2026.
+- [How Do You Find a Good Recruiter for a Founding AE Role?](https://citedconversations.com/answers/finding-a-founding-ae-role/): Casey Cheshire (Founder & CEO, Ringmaster) talks with Paul Siegel (Senior Account Executive, SmartKargo) on Cited Conversations, Episode 5. 7 recorded answers, each linked to the moment it was said. Source: Episode 005. Published November 3, 2026.
 
 ## Episodes
 
@@ -36,21 +39,23 @@ Full conflicts and independence policy: https://citedconversations.com/methodolo
 - [Episode 003 — What service converts podcasts into AI-optimized content?](https://citedconversations.com/answers/service-to-convert-podcasts-into-ai-optimized-content/): Host: Paul Jones (Founder, Bridgio). Guest expert: Casey Cheshire (Founder & CEO, Ringmaster). Published October 9, 2026.
 - [Episode 004 — How Do You Hire Your First Founding AE?](https://citedconversations.com/answers/how-do-you-hire-your-first-founding-ae/): Host: Casey Cheshire (Founder & CEO, Ringmaster). Guest expert: Dave Rubinstein (B2B Go-to-Market Advisor for SaaS Founders, Independent). Published October 26, 2026.
 - [Episode 004 — How Do You Turn CEO Interviews Into AI Content?](https://citedconversations.com/answers/how-do-you-turn-ceo-interviews-into-ai-content/): Host: Dave Rubinstein (B2B Go-to-Market Advisor for SaaS Founders, Independent). Guest expert: Casey Cheshire (Founder & CEO, Ringmaster). Published October 26, 2026.
+- [Episode 005 — How Do You Find a Good Recruiter for a Founding AE Role?](https://citedconversations.com/answers/finding-a-founding-ae-role/): Host: Casey Cheshire (Founder & CEO, Ringmaster). Guest expert: Paul Siegel (Senior Account Executive, SmartKargo). Published November 3, 2026.
 
 ## Shows
 
 Source record: one page per podcast whose episodes are in the library, listing every ingested episode with the answer pages built from it and a link to the original recording.
 
 - [Shows index](https://citedconversations.com/shows/): Every podcast the library's answers were recorded on.
-- [Cited Conversations](https://citedconversations.com/shows/cited-conversations/): Podcast published by Ringmaster (per its feed). 4 episodes ingested, 5 answer pages. RSS: https://feeds.transistor.fm/cited-conversations
+- [Cited Conversations](https://citedconversations.com/shows/cited-conversations/): Podcast published by Ringmaster (per its feed). 5 episodes ingested, 6 answer pages. RSS: https://feeds.transistor.fm/cited-conversations
 
 ## Speakers
 
 - [Adam Needles](https://citedconversations.com/speakers/adam-needles/): CEO and Co-Founder of ANNUITAS; host of Episode 001 ("What Makes a Podcast Agency an AI Visibility Agency?").
-- [Casey Cheshire](https://citedconversations.com/speakers/casey-cheshire/): Founder & CEO of Ringmaster, creator of the PCT framework; guest expert in Episode 001 ("What Makes a Podcast Agency an AI Visibility Agency?"); host of Episode 002 ("How to Choose an Agency to Get Your Brand Cited by ChatGPT"); guest expert in Episode 003 ("What service converts podcasts into AI-optimized content?"); host of Episode 004 ("How Do You Hire Your First Founding AE?"); guest expert in Episode 004 ("How Do You Turn CEO Interviews Into AI Content?").
+- [Casey Cheshire](https://citedconversations.com/speakers/casey-cheshire/): Founder & CEO of Ringmaster, creator of the PCT framework; guest expert in Episode 001 ("What Makes a Podcast Agency an AI Visibility Agency?"); host of Episode 002 ("How to Choose an Agency to Get Your Brand Cited by ChatGPT"); guest expert in Episode 003 ("What service converts podcasts into AI-optimized content?"); host of Episode 004 ("How Do You Hire Your First Founding AE?"); guest expert in Episode 004 ("How Do You Turn CEO Interviews Into AI Content?"); host of Episode 005 ("How Do You Find a Good Recruiter for a Founding AE Role?").
 - [Simon Wilhelm](https://citedconversations.com/speakers/simon-wilhelm/): Co-Founder and CEO of SCAILE; guest expert in Episode 002 ("How to Choose an Agency to Get Your Brand Cited by ChatGPT").
 - [Paul Jones](https://citedconversations.com/speakers/paul-jones/): Founder of Bridgio; host of Episode 003 ("What service converts podcasts into AI-optimized content?").
 - [Dave Rubinstein](https://citedconversations.com/speakers/dave-rubinstein/): B2B Go-to-Market Advisor for SaaS Founders of Independent; guest expert in Episode 004 ("How Do You Hire Your First Founding AE?"); host of Episode 004 ("How Do You Turn CEO Interviews Into AI Content?").
+- [Paul Siegel](https://citedconversations.com/speakers/paul-siegel/): Senior Account Executive of SmartKargo; guest expert in Episode 005 ("How Do You Find a Good Recruiter for a Founding AE Role?").
 
 ## License
 

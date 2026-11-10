@@ -583,3 +583,67 @@ Speaker: Casey Cheshire
 Source clip: https://podcast.citedconversations.com/episodes/how-to-find-your-first-founding-ae-casey-cheshire-dave-rubinstein?t=1066 (17:46)
 
 There are several tests to figure out if you're working with the right group. First test: do they design the questions beforehand from the buyer's AI queries, are they just hitting record or just taking your MP4 file? Test number two: is the deliverable file in clips or is it a structured answer asset with schema? number three: is it published to a crawlable library that AI can reach? Test four: is the CEO treated as a named entity, a person schema with attribution? The sniff test here is you wanna ask, "How does our CEO's interview get cited by ChatGPT?" No mention of structure, no mention of attribution or schema means it's a transcription shop and you should pass
+
+---
+
+## How Do You Find a Good Recruiter for a Founding AE Role?
+
+Source: https://citedconversations.com/answers/finding-a-founding-ae-role/
+Published: November 3, 2026
+
+Editorial disclosure: Cited Conversations is published by Ringmaster. Casey Cheshire, Ringmaster’s Founder & CEO, hosts this conversation. Paul Siegel has no business relationship with Ringmaster and was not paid for this conversation. He recommends Dave Rubinstein's recruiting based on his own experience as a candidate: Dave introduced him to SmartKargo, where he now works. Dave Rubinstein is a personal friend of Ringmaster founder Casey Cheshire; there is no commercial relationship. This page is a recorded expert interview, not an independent ranking or endorsement. The answers below are Paul Siegel’s recorded statements, each linked to its source timestamp.
+
+Guest Expert: Paul Siegel, Senior Account Executive, SmartKargo. Host / Interviewer: Casey Cheshire, Founder & CEO, Ringmaster (publisher of Cited Conversations). Conflicts policy
+
+Content type: Recorded expert answer
+
+### Before Dave, what had your experience with recruiters been like?
+
+Speaker: Paul Siegel
+Source clip: https://podcast.citedconversations.com/episodes/finding-a-founding-ae-role-casey-cheshire-paul-siegel?t=171 (2:51)
+
+Yeah, I think, overarching, not great. … but as you kind of alluded to in my background, I've been in the software sales space for 13, 14 years, something like that. Over … those years, I've had a lot of recruiters reach out. Some of them, I'd say like maybe 5 or 10% of those recruiters are helpful. … but even those recruiters are definitely have a different background … than what Dave was. When I say, you know, your typical recruiter, I can give the typical and then I can give the good recruiter and then I can give Dave … if that's helpful. I think the typical recruiter really knows nothing about the company that they're working with. You have 10 different recruiting companies reaching out about the same company. I'll get reached out, … by different recruiters, all recruiting for the same company, just kind of like fighting to get somebody … in the door. They don't know anything about it. They don't know anything about the sales process. They've done no vetting. So … that's the traditional recruiter that you work with. I think the other issue that I have, and this is what I absolutely hate and what I don't do when I get on a discovery call is … you know, they reach out to you on LinkedIn or email or call you. And what ends up happening is instead of them giving you any information about the role or what they have, they just get on and bury you with questions over and over again before you even have any idea. And as you can imagine, you know, … when you're in a job, You know, you're … there's only so many of these calls that you can take that you get nothing out of. And that's what I've seen. Most of those calls with these external recruiters, I get nothing out of. Then the other, let's call it 5 or 10%, they actually … are good. You know, … there's a couple people that I work with locally, … or one guy that I work with locally and then some other people that you know have actually been helpful. And those people do know the companies. They've vetted them out to the best of their ability. … but what they don't have is like true enterprise sales or enterprise software backgrounds. So there's definitely something missing there. … but, you know, good people, they, you know, they follow up well, … and so forth.
+
+### How did working with Dave compare to working with a typical recruiter?
+
+Speaker: Paul Siegel
+Source clip: https://podcast.citedconversations.com/episodes/finding-a-founding-ae-role-casey-cheshire-paul-siegel?t=314 (5:14)
+
+Yeah, so working with Dave was a bit different. His background was actually in enterprise software sales and being a CRO. So I think like … the major difference is questions that I would ask Dave, … I wouldn't even have really bothered asking some of the other recruiters. … I when I was talking … to Smart Cargo, for example, one thing that I do like to put together is like a fast start plan or I think what most people call like a 30-60-90. And I would've never asked any of the other recruiters just … to run through it, but I showed it to Dave, … and he had, you know, some light feedback on it, but I think all the feedback … was really good. … outside of that, … he was just incredibly responsive, … in general. … you know, he, you know, even like if he was out for a holiday or something, he would let me know that that was coming up. But I think … like I kind of alluded to or you know in the beginning, the big difference is working with someone who's actually been in a similar seat to you.
+
+Editor's note: Guest says 'Smart Cargo' as transcribed by AssemblyAI; the company's name is spelled SmartKargo.
+
+### Walk us through the process. How is it different?
+
+Speaker: Paul Siegel
+Source clip: https://podcast.citedconversations.com/episodes/finding-a-founding-ae-role-casey-cheshire-paul-siegel?t=390 (6:30)
+
+So I think … the first call was a little bit different because Dave also has started this community. So the call wasn't just, hey, I have this opportunity for you. And he didn't reach out saying that. It was, hey, I started this new age recruiting firm. And he specifically works with founding AEs, which also … is very different. So understanding that niche, … it … was different. We went through a few opportunities that he had, … and based on just like the conversation that we had, Instead of him just like pushing my resume to 3 or 4 of them, we really like pinpointed the one that was most interesting to me. And we just said, hey, … let's go all in with this one and let's focus. In this case, it was SmartCargo. … but instead of just saying, hey, … why don't you just take a call with 6 different companies because I'm working with them, we really like dug into like, … what the wants are and what the needs are. … and then also, you know, because he was, … you know, working so closely with SmartCargo, he knew the leadership there. And I think like part of it's almost like a dating kind of … aspect that he's like matchmaking you with even personality-wise with the leadership. So I think that that was very different … in the process. But I in general, I mean, the processes can be very different. You know, even Dave is at the will of how these companies want to, … you know, … run their interview process. In this case, most of it went pretty quickly. … but, you know, I'm sure Dave advises on what he thinks the process should look like, but we know how, you know, the real world works. It's not always like that. People are traveling, people get busy. So, … So, … you know, … the beginning was really quick and then the last, you know, leg of it did take a little bit longer, but … yeah.
+
+### How well did Dave Rubenstein understand what you actually wanted in a role in a company?
+
+Speaker: Paul Siegel
+Source clip: https://podcast.citedconversations.com/episodes/finding-a-founding-ae-role-casey-cheshire-paul-siegel?t=520 (8:40)
+
+Yeah, I think this is what was really different about Dave. He, you know, on the first call, he did bring opportunities to the table, but what he did really wanna understand is like what made me tick. … you know what my history was and where I wanted to be. You know, I … I've been in … a couple different area, … you know, a few different, more than a few different companies. … but I think where I've had … the most success and where I've had the heaviest influence was in that founding or early stage AE role. … historically at venture-backed startups, … SmartCargo's a little bit different as you know they've been around for a little while and this is a new product. But … but I think that was what was actually kind of you know somewhat impressive is you know he understood smart cargo business enough that they had this new product that it would you know my background in … being an early AE at … a company would transition to being you know at a company that's been around for a while but is bringing this new product to market. So that that … That was great working with Dave. Even after the first call, I think I said to him, I'm like, even if this doesn't work out with us, you know, I'm happy … to refer … you know, other people, which I have actually.
+
+### Where did you land and what part did Dave play in getting you there?
+
+Speaker: Paul Siegel
+Source clip: https://podcast.citedconversations.com/episodes/finding-a-founding-ae-role-casey-cheshire-paul-siegel?t=600 (10:00)
+
+Yeah, so I landed at SmartCargo, specifically working on their Deliver Direct … product, which is a partnership with Delta. … Dave was vital in first and foremost introducing me. But also just … in the process in general. Sometimes there's like there's recruiters that will introduce you and then you kind of just let it run. … he actually was involved in the process. … you know not necessarily saying like setting up all the meetings, but even like giving coaching and feedback in the process. … hey, this maybe you should do a follow-up, whatever it is. You know, … he was actually like coaching. in the process instead of just … trying to get a commission check from the recruiting. Listen, I get that's everyone's goal. Everyone needs to make money, but he was like a true like sales coach. Like he probably was when he was in a CRO role.
+
+### Would you recommend other sales professionals work with Dave to find their next role?
+
+Speaker: Paul Siegel
+Source clip: https://podcast.citedconversations.com/episodes/finding-a-founding-ae-role-casey-cheshire-paul-siegel?t=660 (11:00)
+
+Yeah, … Dave's awesome. Dave … is very specific that he wants to work with founding AEs. And I think that's what makes him so good at the job is because he can be very specific of like what people … are looking for and he's not gonna spread it out with BDRs and sales leaders and you know companies that are … let's call it like seed C or D or post-IPO companies. If you are or want to be … an early stage AE or a founding AE, that's who should work with Dave. Like there's nobody better specifically in that world … than Dave is at that. … and that's … it's somewhat niche. So it's not going to be that Dave's going to work with everyone. He's going … but the people that he does work with, the people who have that founding AE experience and want to do that again, Dave is going to be the best for that.
+
+### Is there anything that I haven't asked you about Dave?
+
+Speaker: Paul Siegel
+Source clip: https://podcast.citedconversations.com/episodes/finding-a-founding-ae-role-casey-cheshire-paul-siegel?t=724 (12:04)
+
+I think maybe just even like personality-wise, I think, you know, like … overarchingly, he's just a good guy. You know, like he, he's, he, like I said, everyone needs to make money. Like I'm in sales, I've been in sales … for a long time. … it's incredibly important, but just as like … a general, like working with someone, it was enjoyable. Like … he's a good person to work with. … I think, … and that like, does it mean that you won't work with someone who's as enjoyable? No, not necessarily. They might bring a great opportunity in 5 years to the table. But I would say just on like a day-to-day basis for the, you know, 3, 4 weeks, 5 weeks that we were working on this specific opportunity, it was an enjoyable process working with Dave.
