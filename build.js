@@ -1194,7 +1194,7 @@ function passageGates() {
           for (var qi = 0; qi < hostNeeded.length; qi++) {
             var need = hostNeeded[qi], shownQ = art.hostQs[qi];
             var qprob = [];
-            if (shownQ.text !== need.text) qprob.push('shows \u201C' + shownQ.text + '\u201D but the transcript has \u201C' + need.text + '\u201D');
+            if (!pgHostWordsMatch(shownQ.text, need.text)) qprob.push('shows \u201C' + shownQ.text + '\u201D but the transcript has \u201C' + need.text + '\u201D');
             if (shownQ.speaker !== need.spk || shownQ.shownSpeaker !== need.spk) qprob.push('is not attributed to ' + need.spk);
             if (shownQ.startMs !== need.startMs || shownQ.endMs !== need.endMs) qprob.push('has times ' + shownQ.startMs + '\u2013' + shownQ.endMs + 'ms but the cues are ' + need.startMs + '\u2013' + need.endMs + 'ms');
             var wantR = [Math.floor(need.startMs / 1000), Math.ceil(need.endMs / 1000)];
@@ -1366,6 +1366,21 @@ function normVttWord(w) {
   return w.toLowerCase().replace(/[^a-z0-9]/g, '');
 }
 
+// Editorial rule 2 (Casey, 2026-11-04): filler, false starts and repeats are cut SILENTLY (no “…”). These are the
+// same words cited-episode-prepare's word check (lib/check.ts fillerOnly) lets go unmarked: the filler list, a word
+// ending in “-”, a fragment of 1–2 letters that is not a real short word, and a word the answer itself says within
+// 3 words of the cut (a repeat). Anything else the speaker said still has to be in the quote (2026-11-10).
+var VTT_RULE2_FILLER = new Set(['umm','uhh','uhm','erm','hm','mhm','uhhuh','like']);
+var VTT_SHORT_WORDS  = new Set(['i','a','an','to','of','in','on','is','it','we','be','so','no','or','do','if','my','me','us','at','as','by','up','he','go']);
+function isRule2Filler(w, nearby) {
+  var n = normVttWord(w);
+  if (!n) return true;
+  if (VTT_STRICT_FILLER.has(n) || VTT_RULE2_FILLER.has(n)) return true;
+  if (/-$/.test(w)) return true;
+  if (n.length <= 2 && !VTT_SHORT_WORDS.has(n)) return true;
+  return !!(nearby && nearby.indexOf(n) !== -1);
+}
+
 function isFiller(w, p1, p2, p3, p4, midSeg) {
   var n = normVttWord(w);
   if (VTT_STRICT_FILLER.has(n)) return true;
@@ -1479,6 +1494,8 @@ function matchSegment(segWords, vWords, from) {
       var p4 = vi2 > 3 ? vWords[vi2-4] : undefined;
       if (nv === segWords[si]) { si++; vi2++; }
       else if (isFiller(vWords[vi2], p1, p2, p3, p4, si > 0)) { vi2++; }
+      // rule 2: a silent cut of filler / a false start / a repeat of a word the answer says within 3 words (never host speech)
+      else if (si > 0 && vWords[vi2].charAt(0) !== VTT_HOST_MARK && isRule2Filler(vWords[vi2], segWords.slice(Math.max(0, si - 3), si + 3))) { vi2++; }
       else { ok = false; break; }
     }
     if (ok) return { ok: true, start: vi, end: vi2 };
@@ -1554,6 +1571,23 @@ function diagnoseHostJoin(segWords, vttWordStream) {
     '      Answer has:   \u201C' + segWords.slice(0, 9).join(' ') + (segWords.length > 9 ? ' \u2026' : '') + '\u201D\n' +
     '      In between:   ' + said.map(function(s) { return '\u201C' + s + '\u201D'; }).join(' then ') + '\n' +
     '      Mark the join with \u201C\u2026\u201D, show the host\u2019s words with the answer and add the \u201CEllipsis added\u201D tag.';
+}
+
+// Rule 8: the host's words are shown word for word; only filler, false starts and repeats may be left out
+// (the same rule-2 words as above), so “And so, let’s say” matches a transcript “And so, so let’s say”
+// (Ep 2 q20, 2026-11-10). Every shown word must be the host’s, in order; punctuation is ignored.
+function pgHostWordsMatch(shown, said) {
+  if (shown === said) return true;
+  var s = normalizeSegment(shown), t = normalizeSegment(said);
+  var raw = said.replace(/[\u2014\u2013]/g, ' ').split(/\s+/).filter(function(w) { return normVttWord(w).length > 0; });
+  var si = 0;
+  for (var ti = 0; ti < t.length; ti++) {
+    if (si < s.length && t[ti] === s[si]) { si++; continue; }
+    var near = s.slice(Math.max(0, si - 3), si + 3).concat(t.slice(Math.max(0, ti - 4), ti));
+    if (isRule2Filler(raw[ti] || t[ti], near)) continue;
+    return false;
+  }
+  return si === s.length;
 }
 
 function strictVerbatimCheck(pageTexts, vttWordStream) {
