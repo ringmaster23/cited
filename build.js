@@ -1381,6 +1381,40 @@ function isRule2Filler(w, nearby) {
   return !!(nearby && nearby.indexOf(n) !== -1);
 }
 
+// Widened 2026-11-12 (Casey: "let's be more loose about filler, jeez"): verbal tics and discourse fillers also go
+// unmarked — the same list as cited-episode-prepare lib/text.ts softFillerMask: basically, literally, actually,
+// yeah/okay/oh/alright/anyway; so/well/now/and/right/see/look/listen as a lead-in (followed by a comma or after a
+// sentence end); right?/yeah?/okay? tags; "you know", "I mean", "you see", hedging "kind of"/"sort of", "and stuff",
+// "or whatever", "or something (like that)". Real content words still have to be in the quote.
+var VTT_SOFT_WORDS   = new Set(['basically','literally','actually','yeah','okay','ok','oh','alright','anyway','anyways','like','kinda','sorta']);
+var VTT_SOFT_LEADINS = new Set(['so','well','now','and','right','see','look','listen']);
+var VTT_SOFT_TAGS    = new Set(['right','yeah','okay','ok','huh']);
+var VTT_SOFT_PHRASES = [['you','know','what','i','mean'],['and','stuff','like','that'],['or','something','like','that'],['you','know'],['i','mean'],['you','see'],['kind','of'],['sort','of'],['and','stuff'],['or','whatever'],['or','something']];
+var VTT_HEDGE_BLOCK  = new Set(['what','whats','which','this','that','these','those','the','a','an','any','some','every','each','one','same','different','no','other','another','their','our','my','your','his','her']);
+// How many transcript words starting at words[i] are rule-2 filler that the quote may leave out silently (0 = none).
+// `seg` is the quote's word list and `si` where the quote is; host turns (VTT_HOST_MARK) are never filler.
+function rule2SkipLen(words, i, seg, si) {
+  var w = words[i];
+  if (!w || w.charAt(0) === VTT_HOST_MARK) return 0;
+  var n = normVttWord(w);
+  var prev = i > 0 ? words[i - 1] : '';
+  for (var p = 0; p < VTT_SOFT_PHRASES.length; p++) {
+    var ph = VTT_SOFT_PHRASES[p], ok = true;
+    for (var k = 0; k < ph.length; k++) { var x = words[i + k]; if (!x || x.charAt(0) === VTT_HOST_MARK || normVttWord(x) !== ph[k]) { ok = false; break; } }
+    if (!ok) continue;
+    if ((ph[0] === 'kind' || ph[0] === 'sort') && ph.length === 2 && prev && VTT_HEDGE_BLOCK.has(normVttWord(prev))) continue;
+    // the quote keeps these words here: not a cut
+    var same = true;
+    for (var k2 = 0; k2 < ph.length; k2++) if (seg[si + k2] !== ph[k2]) { same = false; break; }
+    if (same) continue;
+    return ph.length;
+  }
+  if (VTT_SOFT_WORDS.has(n)) return 1;
+  if (VTT_SOFT_TAGS.has(n) && /\?$/.test(w)) return 1;
+  if (VTT_SOFT_LEADINS.has(n) && (/,$/.test(w) || !prev || /[.?!:\u2014\u2026]$/.test(prev))) return 1;
+  return isRule2Filler(w, seg.slice(Math.max(0, si - 3), si + 3)) ? 1 : 0;
+}
+
 function isFiller(w, p1, p2, p3, p4, midSeg) {
   var n = normVttWord(w);
   if (VTT_STRICT_FILLER.has(n)) return true;
@@ -1498,7 +1532,7 @@ function matchSegment(segWords, vWords, from) {
       if (nv === segWords[si]) { si++; vi2++; }
       else if (isFiller(vWords[vi2], p1, p2, p3, p4, si > 0)) { vi2++; }
       // rule 2: a silent cut of filler / a false start / a repeat of a word the answer says within 3 words (never host speech)
-      else if (si > 0 && vWords[vi2].charAt(0) !== VTT_HOST_MARK && isRule2Filler(vWords[vi2], segWords.slice(Math.max(0, si - 3), si + 3))) { vi2++; }
+      else if (si > 0 && rule2SkipLen(vWords, vi2, segWords, si) > 0) { vi2 += rule2SkipLen(vWords, vi2, segWords, si); }
       else { ok = false; break; }
     }
     if (ok) return { ok: true, start: vi, end: vi2 };
@@ -1588,6 +1622,9 @@ function pgHostWordsMatch(shown, said) {
     if (si < s.length && t[ti] === s[si]) { si++; continue; }
     var near = s.slice(Math.max(0, si - 3), si + 3).concat(t.slice(Math.max(0, ti - 4), ti));
     if (isRule2Filler(raw[ti] || t[ti], near)) continue;
+    // widened filler (2026-11-12): phrases, tics, lead-ins, tags
+    var skip = raw.length === t.length ? rule2SkipLen(raw, ti, s, si) : 0;
+    if (skip > 0) { ti += skip - 1; continue; }
     return false;
   }
   return si === s.length;
