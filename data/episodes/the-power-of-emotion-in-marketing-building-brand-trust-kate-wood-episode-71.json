@@ -1,0 +1,711 @@
+{
+  "schema_version": 1,
+  "generated_by": "cited-episode-publish",
+  "generated_at": "2026-11-13T17:25:00.000Z",
+  "source": "Cited Conversations — Database (Google Sheet)",
+  "episode": {
+    "episode_id": "connect-to-market/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71",
+    "number": 71,
+    "title": "How Can B2B Marketers Use Emotion to Build Brand Trust?",
+    "page_slug": "the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71",
+    "page_url": "https://citedconversations.com/answers/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71/",
+    "episode_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71",
+    "audio_url": "https://media.transistor.fm/ff915412/442c6505.mp3",
+    "published_at": "2026-11-05T10:00:00.000Z",
+    "duration_seconds": 2988,
+    "description": "Casey Cheshire (Founder & CEO, Ringmaster) talks with Kate Wood (Chief Marketing Officer, Dataplor) on Connect To Market, Episode 71. 26 recorded answers, each linked to the moment it was said.",
+    "disclosure": "Cited Conversations is published by Ringmaster. Casey Cheshire, Ringmaster’s Founder & CEO, hosts this conversation. Kate Wood is a personal friend of Ringmaster founder Casey Cheshire and a member of the free Connect to Market community; there is no paid relationship. This page is a recorded expert conversation, not an independent ranking or endorsement of any service. The answers below are Kate Wood’s recorded statements, each linked to its source timestamp."
+  },
+  "approval": {
+    "reviewer": "Casey Cheshire",
+    "decided_at": "2026-11-13T17:25:00.000Z"
+  },
+  "speakers": [
+    {
+      "speaker_id": "casey-cheshire",
+      "name": "Casey Cheshire",
+      "title": "Founder & CEO",
+      "company": "Ringmaster",
+      "role": "host",
+      "relationship_to_ringmaster": "Founder & CEO of Ringmaster, the publisher of Cited Conversations",
+      "disclosure_wording": "Ep 1 page: \"Cited Conversations is published by Ringmaster. Casey Cheshire, Ringmaster’s Founder & CEO, is the guest expert in this conversation.\" Ep 2 page: \"Cited Conversations is published by Ringmaster. Casey Cheshire, Ringmaster’s Founder & CEO, hosts this conversation.\"",
+      "same_as": [
+        "https://linkedin.com/in/caseycheshire",
+        "https://ringmaster.com"
+      ],
+      "page_url": "https://citedconversations.com/speakers/casey-cheshire/"
+    },
+    {
+      "speaker_id": "kate-wood",
+      "name": "Kate Wood",
+      "title": "Chief Marketing Officer",
+      "company": "Dataplor",
+      "role": "guest expert",
+      "relationship_to_ringmaster": "Friend (personal friend of Casey Cheshire and member of the free Connect to Market community; no paid relationship)",
+      "disclosure_wording": "Kate Wood is a personal friend of Ringmaster founder Casey Cheshire and a member of the free Connect to Market community; there is no paid relationship. This page is a recorded expert conversation, not an independent ranking or endorsement of any service.",
+      "same_as": [
+        "https://www.linkedin.com/in/kateswood",
+        "https://www.wildly.us/"
+      ],
+      "page_url": "https://citedconversations.com/speakers/kate-wood/"
+    }
+  ],
+  "answers": [
+    {
+      "anchor": "q1",
+      "question": "What is the number one thing that marketers need to do in order to connect to their market?",
+      "question_group": "Follow the Emotion",
+      "is_lead": true,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 136,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Yes, I think every person is gonna have a different opinion on this one, but I think the number one thing marketers really need to do is just follow the emotion. we live in the B2B space, we're often talking about highly complex products, technology, infrastructure, and we're oftentimes selling into highly sophisticated markets. However, we're still human beings and we still make decisions from our limbic system, the amygdala, our emotional center. We actually don't make decisions from our prefrontal cortex. We do a lot of data and analysis from there, but you've probably heard the phrase, people don't buy from companies, they buy from people they like. And so your job as a marketer is to follow the emotion, map out your sales cycle, map out the stages within each of that within that sales cycle and kind of understand, okay, What emotional experience, whether it's through materials, through an event, through a series of meetings, what emotional experience are we creating for our prospects and our clients at each stage? What are they feeling? What do they love about us and what do they hate about us? Map that out and kind of understand how you can double down on those emotional experiences that are really creating positive engagement and connectivity between your sales team, your customer success team, your products and your prospects and your clients. And then where are you, where's their lackluster, Where do people ghost you? Where do where does the kind of the sales, what sales stage goes dead a little bit? And then how can you as a marketer bring that creativity, that inspiration, that humanity to reengage the prospect and get them more involved with you? So again, kind of follow that emotion.",
+          "start_ms": 148230,
+          "end_ms": 243709,
+          "start_seconds": 148,
+          "end_seconds": 244,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=148"
+        }
+      ]
+    },
+    {
+      "anchor": "q2",
+      "question": "Before you even get into the hows and the whats, why do you think we're not doing this generally in marketing, or not enough of us are?",
+      "question_group": "Follow the Emotion",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 257,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Well, I think your career arc, and not to get too much on a soapbox, but I think your career arc kind of follows a certain trajectory. When you're younger, you're in rooms, there are big words being thrown around, there are big powerful people, and you're younger and you're just trying to learn, And you're just trying to mimic and mirror, and you're learning through modeling. And so oftentimes we find ourselves at a certain stage in our career where we're using a more sophisticated lexicon, we're using run-on sentences and ad copy, we're kind of talking inside baseball to prove that we know what we know. And my hope and my own personal experience is kind of once you get over that ego hump of proving that you're valuable and you're worth it, and really once you start to settle in and you understand your own value and your own worth as a marketer, that's when the real magic can start to happen because you kind of lose that ego and you lose that lexicon for proving yourself and you stay more focused on, okay, from a performance standpoint, what is working for us? And then qualitatively, why is it working for us? And how do we bring language, emotion, experience into each touchpoint throughout the sales cycle to accelerate deal velocity, to increase average deal size? it is that blend between the quantitative and the qualitative, but it is speaking in a way to your market that humanizes whatever it is that you're selling. again, people don't buy things, they buy from people they like. They buy relationships and experiences that make them feel a certain way about the kind of professional that they are.",
+          "start_ms": 266537,
+          "end_ms": 361170,
+          "start_seconds": 266,
+          "end_seconds": 362,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=266"
+        }
+      ]
+    },
+    {
+      "anchor": "q3",
+      "question": "How are we going against that? How are we sort of losing the humanity of the prospect on the other end or the customer on the other side?",
+      "question_group": "Humanity vs. Scale",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 370,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Yeah, the code word for anything anti-humanity is kind of scale, distribution, automation, velocity. These are all terms we throw around. They actually mean things. They mean very important things, and they are actually very important for business growth. So, they are not bad words. Your challenge as a marketer is to understand, okay, I have to hit certain metrics. I have to hit whether it's revenue targets, whether it's margin, I have these targets that I have to hit, but I need to be able to find the emotion in my sales process such that I can continue to either create more of that emotion to be able to create more prospects, to create more closed won deals, or I need to look at where we're really failing our clients and our prospects from an emotional standpoint and how as a marketer, what is in my purview to be able to fix that? Is it conversations in different processes with product, with service delivery, with the customer success team. what does that look like? And how do again, you're a marketer, you're not everything to everybody, but you do have skilled expertise. And marketing, if you think about it from a social science standpoint, as well as branding, it's your psychology, it's your sociology, it's your anthropology. That is all a human, whether it's a human individual, whether it's humans together, or whether it's the culture that humans cultivate within one another. All of that is about that emotional connectivity and what lights you up and what doesn't. and so I think to kind of bring it back around, that's why I think humanity is so important when you're thinking about, okay, we do have to go to market at scale, yes, but where can we find the sparkly emotional points that will help us reverse engineer something that will actually create more revenue in the long run? But that starts at the emotional level. It doesn't start again in the prefrontal cortex.",
+          "start_ms": 378549,
+          "end_ms": 498138,
+          "start_seconds": 378,
+          "end_seconds": 499,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=378"
+        }
+      ]
+    },
+    {
+      "anchor": "q4",
+      "question": "How is it a balance that can change over time? Can we start out leaning heavy into humanity and then as we understand more and more about the people, we can pull back a little bit and scale more?",
+      "question_group": "Humanity vs. Scale",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 523,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Yeah, and I think too, just to like, let's bring this down a little bit, 'cause it, it's easy for me to sit here and say, oh, it's all about the humanity. And then if I'm a younger marketer, I'm like, what the hell does she mean by that? that's a philosophy. talk to me about tactics and tangible, how do I actually make that kind of philosophy around humanity, bring it to life from a marketing standpoint. And what it really means is having processes and conversations in place with your sales team and your customer success team, and probably most likely your product team as well. because what you want to understand is you're always gonna have champions and you're always gonna have haters. And if you can make friends with both, you can understand so much about what your product or your service does well, why. And then how that gives you all you need to know as a roadmap, as a marketer, to be able to then go double down, reinvest, or again, kind of walk away from a certain channel or a certain tactic. and so I think, I think that's where we can bring that humanity to life, is to just kind of really understand your champions and your haters and why.",
+          "start_ms": 536641,
+          "end_ms": 601883,
+          "start_seconds": 536,
+          "end_seconds": 602,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=536"
+        }
+      ]
+    },
+    {
+      "anchor": "q5",
+      "question": "I guess I've never thought about the haters group. What do you do with that information?",
+      "question_group": "Champions and Haters",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 605,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "what is interesting and what we know to be true about negative reviews is people are much more likely to give negative reviews in a digital society than they are positive reviews, We all have that kind of really tough experience and we just, we need to be able to like dislodge that emotion so we go write a negative review. That may not actually be how your business works. In the B2B space, it might be much more relational than it is kind of that tactical transaction. But I think if you can develop a relationship with someone such that they are dissatisfied with your service or your product, but you can understand why and you can get to the heart of it and you can see and hear them. Most of us just want to be seen and heard from a psychology standpoint. You will get so much information about where within the business, across sales, product, customer success, engineering, where you can start to deploy the resources that you need to be able to start turning that narrative around. Wow.",
+          "start_ms": 613269,
+          "end_ms": 667964,
+          "start_seconds": 613,
+          "end_seconds": 668,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=613"
+        }
+      ]
+    },
+    {
+      "anchor": "q6",
+      "question": "How do we follow the emotion? How do they start leaning into that?",
+      "question_group": "Storytelling and Branding",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 688,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "I would say kind of twofold storytelling and branding. so branding is really your identity, your personality, who you show up in as the world, as a company. And I think it's really important to know the science behind this. The human brain processes colors first, then shapes, then numbers, and then words. Again, really important. Colors first matter. Your color palette, how you show up, The emotion you invoke through that, whether it's your typography, your photography, the angles that you use, the shapes that you leverage, all of these very sort of line-item elements bubble up into an overall brand identity that makes you feel something before you even know something. And then the knowing is where the storytelling comes in. Again, where have you made your clients look amazing to their internal stakeholders? Where do you know as a brand that you have room to improve? Most clients don't expect companies and vendors to be perfect. They do want them to be authentic and they do want progress. And so being honest and authentic about where your product strategy is going to make your business stronger, the investments that you're making across the board from a process standpoint to create more connective tissue, to be able to get that feedback loop, to be able to create a better customer experience. I think the kind of two sides of or the two sides of the brand identity and the storytelling coin go a really long way in terms of making that happen.",
+          "start_ms": 701495,
+          "end_ms": 789726,
+          "start_seconds": 701,
+          "end_seconds": 790,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=701"
+        }
+      ]
+    },
+    {
+      "anchor": "q7",
+      "question": "Have you rebranded any colors for companies you've started working with?",
+      "question_group": "Storytelling and Branding",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 793,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Yeah, I think I want to say 2 out of the last 4 companies I've been with, we have gone through several rebrands. and it's incredibly important. I often tell marketers to go to an industry event, Go to an industry event, look around at the vendors at the booths. It's almost like a carnival or like a circus, like when you're a little kid and you go and you're touching things and you're picking things up. Just watch the way your clients interact with your swag. Half the time they're thinking of their children, will this swag be good for my kids? That is actually an emotional experience that you can capitalize on and double down on. Just because someone wants a piece of swag for their kid doesn't mean that they don't want to talk to you about the piece of software that you're selling them. They're both and, as we say. And so I think that is kind of maybe one of the most tangible experiences I can call forth to say, this is why brand identity matters. This is why your color matters. The way you show up is how you make someone feel, not only about themselves, but also because of how you are making them feel by interacting with you. It's a little bit like The Company You Keep.",
+          "start_ms": 799041,
+          "end_ms": 863877,
+          "start_seconds": 799,
+          "end_seconds": 864,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=799"
+        }
+      ]
+    },
+    {
+      "anchor": "q9",
+      "question": "Why not just call it out directly?",
+      "question_group": "Humanizing the Booth Conversation",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Verbatim",
+      "editors_note": "Casey is asking why marketers shouldn't just directly acknowledge, in the booth conversation, that an attendee is away from and missing their family, instead of only gesturing at it through kid-themed swag — continuing the anecdote from the previous answer; the full illustrative script he reads out is preserved in the `question` field even though the reader-facing heading is just his actual question.",
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 1011,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Well, and I think too, as a marketer, what just came up for me as you were talking was sort of the neuropsychology behind humans as a social species. So, when we talk about ourselves, our brains light up the way they light up when we have good chocolate, good food, or even good sex. And so as humans, we are hardwired to love to talk about ourselves. That is an ace in your pocket as a marketer to understand how do I create more touchpoints in my sales cycle such that our client, our prospect is talking more about themselves, about their story, about what they're looking for, about the pain points they've had in the past, about what they want to fix in the future. If you can use that as your North Star, it's gonna be really, really hard to go wrong.",
+          "start_ms": 1072214,
+          "end_ms": 1114299,
+          "start_seconds": 1072,
+          "end_seconds": 1115,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=1072"
+        }
+      ]
+    },
+    {
+      "anchor": "q10",
+      "question": "Why does marketing need strong RevOps reporting to prove its impact?",
+      "question_group": "RevOps and Metrics",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "editor",
+      "asked_at_seconds": null,
+      "asked_by": null,
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "get them warm, get them talking, and you'll learn a hell of a lot. But then, here's what I wanna say on the flip side of this. Because again, someone listening to this podcast, okay, great. Pie in the sky. Humanity. Yeah, peace, love, whatever. But this is what I also want to say. It is incredibly imperative that as a marketer, if you don't already have a RevOps function, if you don't have a function, a person, advocate for that kind of reporting to get in place by anyone that is capable within your organization. I'm used to working in the startup world, so I'm coming from a place of, we're kind of always people are wearing a lot of different hats there. There is the difference between, kind of scrappy doing it yourself and then being able to kind of evolve into a place that is a little bit more sophisticated, a little bit more formal. But the humanity and the storytelling and the brand will not save you as a marketer and will not do anything for you if you cannot tie it back to the metrics. And that's where RevOps and reporting is incredibly important. I joke with people because you'll, as a marketer, depending on what level you're at, you're constantly hearing, Well, what are the metrics? How are you measuring that? And the question is back to them. What does your RevOps function look like? What reporting tools are you looking at? Show me the dashboard that you look at. That's a great question for a marketer to ask from if they're being interviewed. Give me your reporting dashboard so I can see what is important to you and why. that level of sophistication, trying to operate as a marketer without RevOps is like driving a car without a windshield, a rearview mirror. it's not gonna go well because you can't see where you're going, where you've come from, what you might bump up against next, literally and figuratively. And so again, I think if you're thinking about really driving successful pipeline, storytelling, brand, emotion, humanity is how you do that. But how you prove it is working or it is not working is through RevOps, quantitative metrics, reporting that has to be in place. And that's not your job as a marketer, but it is your job to advocate so that you can, quite frankly, connect the dots, whether it's formal attribution or another type of model.",
+          "start_ms": 1140044,
+          "end_ms": 1275372,
+          "start_seconds": 1140,
+          "end_seconds": 1276,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=1140"
+        }
+      ]
+    },
+    {
+      "anchor": "q11",
+      "question": "How is brand identity like personal hygiene?",
+      "question_group": "RevOps and Metrics",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "editor",
+      "asked_at_seconds": null,
+      "asked_by": null,
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "data hygiene is a pain in the ass and it's a snooze fest. It's also one of the most important things for you as a marketer. … That's true. That's true. That's another thing that I joke about when people get kind of squeamish when you say the word brand or brand identity. I'm like, look, if you walk into a bar, who do you find attractive? I I'm sure it's not the person who looks like they haven't showered in 4 days and who's unkempt with a shirt untucked, That is brand.",
+          "start_ms": 1305040,
+          "end_ms": 1331464,
+          "start_seconds": 1305,
+          "end_seconds": 1332,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=1305"
+        }
+      ]
+    },
+    {
+      "anchor": "q12",
+      "question": "Why does a company's brand identity need to align with its internal culture?",
+      "question_group": "Authenticity and Culture",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "editor",
+      "asked_at_seconds": null,
+      "asked_by": null,
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Similarly, too, if I remember I was in my 20s and I was trying to figure out who I was. I had recently moved from New York to Colorado and I went to a very preppy university. And so I was kind of in between this phase of like wearing pearls and popped collars. And but then I also was, starting to really get into backcountry camping. And so I had like my big North Face backpack. And I remember I showed up on my chief branding officer's kind of doorstep and she looked at me and she cocked her head and she's like, what's happening here? We seem confused. and I just share that personal anecdote with you to say that brand and brand identity is a reflection of who you are on the inside and how do you extrapolate that out to a company. who you are on the outside as a brand is who you are on the inside in terms of your culture, your values, your mission, your vision. extrapolate that out and then your brand is the external manifestation of that internal culture. but it, when you are inauthentic, clients can feel that. Humans are highly intelligent beings. They know something is off. And so that is really critical to align brand and storytelling to your operations and to your culture.",
+          "start_ms": 1341114,
+          "end_ms": 1418227,
+          "start_seconds": 1341,
+          "end_seconds": 1419,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=1341"
+        }
+      ]
+    },
+    {
+      "anchor": "q13",
+      "question": "What's a good way to ward off the inauthenticity? How do you keep that at bay?",
+      "question_group": "Authenticity and Culture",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 1434,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "I'm gonna the hard answer is executive top-down buy-in for that authenticity. And what I I'm always kind of coaching to the 20-year-old marketer because that's kind of who I remember being the most. It's like, the middle school lunch or the high school lunch experience. That's who I'm always coaching for. And you are not always gonna be in control of being in a firm with an executive team who leans into that kind of authenticity. And so, you do have to understand what environment you are in. But if you are in an environment where your executive team is excited to be learning and growing, they're constantly reading, they're constantly trying to improve their own selves, both personally and professionally, I think you have sort of a real foundation for developing that authenticity culturally that such that you can then speak that way in the market from a brand perspective.",
+          "start_ms": 1442460,
+          "end_ms": 1495673,
+          "start_seconds": 1442,
+          "end_seconds": 1496,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=1442"
+        }
+      ]
+    },
+    {
+      "anchor": "q14",
+      "question": "How do you stay authentic? How do you stay on brand and how do you have a story with this world of AI coming at us from all the directions, all the slop that can get created and all the mess? How do you keep true to those north stars?",
+      "question_group": "AI and Friction",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": "Round 3: the heading was trimmed down to only the middle sentence in rounds 1–2, which still read like speech; askedAt had never moved from the cue where the host's full turn actually begins, so it pointed earlier than the heading's text did — the same mismatch flagged on q8. Restoring the full three-sentence question (already present in `question`, only cleaned of stutters) resolves that and matches the rule to use the FULL question when the host spreads it over his turn.",
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 1528,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Yeah, this is where I feel like I could quote so many different thinkers that I listen to. So, we started this conversation with follow the emotion and Maybe this is where we switch to follow the friction. AI's job is literally to remove friction from every part of our lives, And that's a beautiful thing. In ways, that is beautiful. I love having Granola running during a meeting such that it can basically document owners, deadlines, and then automatically create those tasks in Notion assigned to the right people such that I don't have to manage that. I don't have to have two people managing that for me. And then I can also query my CRM and my marketing automation system about any sort of analysis before walking into the next meeting, All of those things, AI is removing that friction. If you do not want AI to cannibalize your sales cycle, your job is to follow that friction to understand, okay, where is there emotional heat in our sales cycle, both positive and negative, such that we can capitalize on it. To create a healthier business, to create more revenue. But again, from those positive experiences and then where the negative emotional heat is, where perhaps our product or our service delivery or our customer success, what have you, is not doing a great job at an executive level, what do we need to do to be able to reinvest in those teams, those processes, or perhaps a tech stack in order to service our clients and kind of twist that narrative into a positive.",
+          "start_ms": 1547071,
+          "end_ms": 1644117,
+          "start_seconds": 1547,
+          "end_seconds": 1645,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=1547"
+        }
+      ]
+    },
+    {
+      "anchor": "q15",
+      "question": "Emotional heat, what's the temperature gauge for that?",
+      "question_group": "Emotional Heat",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 1645,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "This actually comes from Priya Parker's work. she created The Art of Gathering and her most recent book, I'm forgetting it. I think it's the, maybe it's like The Art of Arguing. but it's kind of the flip side to that. And she talks sort of about healthy heat. And we know that when it comes to emotional bonds and relationships, sort of apathy and sort of ambiguity in the ghosting is what we want to avoid. And that's the same thing from a marketer standpoint, from a sales cycle standpoint. and so I think again, when you think about your sales cycle, where is that emotional heat, whether it is again positive or negative, but those are your smoke signals to understand where to look, where to ask more questions to get the qualitative story. behind the numbers and then again, strategically make those decisions. Okay, we're reinvesting here, we're sunsetting this over here.",
+          "start_ms": 1649714,
+          "end_ms": 1707388,
+          "start_seconds": 1649,
+          "end_seconds": 1708,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=1649"
+        }
+      ]
+    },
+    {
+      "anchor": "q16",
+      "question": "How do you build a culture that's comfortable with friction?",
+      "question_group": "Emotional Heat",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Verbatim",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "editor",
+      "asked_at_seconds": null,
+      "asked_by": null,
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Well, I think some people might hear that as a bit scary, but if you can find an executive team or an organization in a culture that really believes marketing is experimental, everything is an experiment, everything is about innovation, we're here to stay curious and to stay creative, even in the face of friction and hardship. If you can do that, You have the foundation and the goods that you need to be successful. You really do.",
+          "start_ms": 1730071,
+          "end_ms": 1757204,
+          "start_seconds": 1730,
+          "end_seconds": 1758,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=1730"
+        }
+      ]
+    },
+    {
+      "anchor": "q17",
+      "question": "Who are you? I know you, but do I know you? Can you take me back in time to little Kate days? Did you know you're gonna be a 4x CMO and just teaching the teachers and just leading people through brand and story and heat and all these things?",
+      "question_group": "Kate's Career Background",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": "Not changed this round. Re-checked against the transcript: the heading already keeps only the host's real words, in his order — the lead-in ('my next question for you really is like,') and every filler 'like' are cut, and the exact-repeat 'Who are you?' is collapsed to one, but the four question sentences themselves ('Who are you?' / 'I know you, but do I know you?' / 'Can you take me back...?' / 'Did you know...?') are each a distinct ask, not restatements of one another, so none can be cut without losing real content — unlike q3/q8/q14's redundant restatements or droppable asides. The check is 90% (not 100%) confident this 'reads like speech,' consistent with it genuinely being a long, multi-part spoken question with no further legitimate cut available. Flagging for Casey rather than forcing an edit that would drop real words.",
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 1757,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "No. I think, when I was little, I was very good at conflict, so people thought I was gonna be a lawyer for a long time. and I got to college, and I didn't come my mom was a teacher and my dad I'm sorry, my dad was a teacher, my mom was a social worker. So I didn't come from a corporate family. So when I got to college, I was a double major in psych and poli sci and just kind of really fell in love with the social sciences again—the psychology, sociology, anthropology. I loved understanding how humans kind of connected. And I was very seriously considering getting my my PhD in clinical psychology. It's a 7-year program. It's harder to get into a clinical psychology program than it is to get into med school. And I had a really beautiful professor at the time, my senior year in college, said, \"Do you want to play with psychology or do you want to study it?\" Ooh. And I said, \"I think I want to play with it.\" And she said, \"Go into corporate.\" And if you hate it in 2 years, come back and we'll figure it out. so I went into corporate. I kind of navigated my way into whatever field would have you as a social science major, So I ended up I ended up in publishing. I was publishing finance and investing books. Again, it kind of sounds dry, but a lot of my authors were big Wall Street guys who were often on CNBC and Bloomberg. So it was a very exciting market. And from there, I landed myself a position in the corporate marketing department at Morgan Stanley. And Casey, that's kind of where the dream of becoming a CMO was born. I had a CMO in place, and it was kind of one of those moments where you're like, I want to grow up to be like that one day. and so I started to listen to learn. And at Morgan Stanley, that's really where I developed all of my marketing chops, I learned how to work with different agencies. I learned how to write copy. I learned how to work with designers. but from there, my career took, kind of a different turn. I think around that time I was probably like 25, 26, and I had this idea. I was like, I want to make CMO by the time I'm 40. but then I got recruited to the tech startup world and things move a lot faster in the startup world. And yeah, it's a lot, it's a lot more organic. and you can push a lot more boundaries. You get a lot more responsibility and autonomy much younger. And so, I've been leading marketing teams from, again, like you said, sort of that 10 million to 75 million in ARR for the past 15 years. And my sweet spot really is sort of the highly technical, complex technology and services, selling into pretty sophisticated markets. But that's probably, Casey, why I'm sitting here having this conversation about humanity, because when you sell sort of these intangible, highly complex things that take big words to talk about, as a marketer, you will get lost in that sauce so fast. And you will not be able to deliver recurring revenue at scale if you cannot find that healthy heat and duplicate it, replicate it, double down, so on and so forth.",
+          "start_ms": 1782355,
+          "end_ms": 1965254,
+          "start_seconds": 1782,
+          "end_seconds": 1966,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=1782"
+        }
+      ]
+    },
+    {
+      "anchor": "q18",
+      "question": "What makes you so good at arguing? Are you still good at arguing?",
+      "question_group": "Conflict and Resilience",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 1974,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "I think I still am good at arguing. I do actually think this is a little bit of a nature-nurture thing. I think some people are probably inherently a little bit better at conflict, but it's also probably what's modeled for you with your parents, Not to be an armchair psychologist, but if you know you were able to see that people could have conflict, you probably were more comfortable engaging in it than if your parents maybe never reflected conflict back to you. and now we're getting into, very highly credible waters where the professionals need to take over and not myself. But I do think that if you can learn how to master language to enter into really hard situations—Brené Brown calls it courageous conversations—I think it's not to say you won't encounter hardship, because you will, but you will be able to walk away from that hardship with the integrity and your head held high because you commanded yourself well in a situation that that got sticky. Yeah.",
+          "start_ms": 1978234,
+          "end_ms": 2044509,
+          "start_seconds": 1978,
+          "end_seconds": 2045,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=1978"
+        }
+      ]
+    },
+    {
+      "anchor": "q19",
+      "question": "How do you manage power dynamics and your nervous system during a hard conversation?",
+      "question_group": "Conflict and Resilience",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "editor",
+      "asked_at_seconds": null,
+      "asked_by": null,
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "And also just knowing that like our central nervous systems, can get ratcheted up in hard conversations. So taking a beat and saying, thank you so much for this conversation. I would love to revisit it. let's take some time to kind of go away and understand how do we come back together and then schedule a regroup in the next, in the next day or so. And I do wanna I do wanna kind of acknowledge power dynamics in this moment because If you are if you are in a position of power where you are a leader or a manager, you have that privilege and you have that right to invoke, and I highly encourage you to do so to model better behavior for all of us. But if you are more of an individual contributor and you are directly reporting into someone and you don't have the power in that hierarchy or that power dynamic, then this is maybe sort of your public service announcement to know that for the next job you look for the next interview, it's really gonna be all about your manager and sort of the emotional maturity and resilience How do they lead? how, what things are they doing to continue to work to improve themselves so that they can also enter into conflict in a really healthy way? back to again, Priya Parker's healthy heat. Huh.",
+          "start_ms": 2072573,
+          "end_ms": 2146809,
+          "start_seconds": 2072,
+          "end_seconds": 2147,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=2072"
+        }
+      ]
+    },
+    {
+      "anchor": "q20",
+      "question": "You get a chance to go back in time and have a conversation with yourself 4 days after graduating with that poli-sci degree. What are you telling yourself? What kind of advice are you giving yourself?",
+      "question_group": "Career Advice and Social Capital",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 2187,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Work hard and remember that social capital matters just as much. I've gone through different phases in my career where I have focused more on the work and the hard work and less on the social capital and building those relationships, which is ironic, This is the this is the messiness of being human. I've been spending most of this podcast talking about humanity and relationships and building emotional connections. And here I also sit knowing that one of my kind of one of my sore spots in my history is not prioritizing that social capital and building those relationships internally. based off of where maybe I was in at that point in my career. so again, go back to sort of that 22-year-old kid, work hard, but also know that social capital matters.",
+          "start_ms": 2208620,
+          "end_ms": 2257252,
+          "start_seconds": 2208,
+          "end_seconds": 2258,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=2208"
+        }
+      ]
+    },
+    {
+      "anchor": "q21",
+      "question": "What does that look like, having social capital matter?",
+      "question_group": "Social Capital",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 2258,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "my dad said this to me once, and this is the negative, and I wanna be careful with this, so kind of like bubble wrap it, know that it's a negative statement going in. But he said, Kate, people don't get fired because they're incompetent. That would be a fair and just world, and we don't live in a fair and just world. People get fired because people don't like working with them. What's the flip side of that? The flip side of that is being someone who is consistent with their word and who does what they say and who means what they say, but also someone who is willing to get to know their colleagues from their left and from their to their right because Those emotional friendships will be the resilience and the bounce that you need to work through creative tension and to work through hopefully that healthy heat so that it stays healthy and doesn't become unhealthy. that's what I think I mean when social when I say social capital. The gross derivative of that is like, oh, likability and popularity contests. And if you want to talk about it that way because it makes you feel better, great. But I think a more truthful answer is that if you can understand who you are and what you bring to the table, and you can understand what your who they are and what they bring to the table, you can find those connective touchpoints to develop those relationships. Maybe they turn into friendships or maybe they just turn into like healthy work relationships. Either one will take. but I think that's what I mean by building the social capital. You wanna be someone who people wanna have a drink with, and not because you're inauthentic, because you're genuinely who you are and you have a good time being that.",
+          "start_ms": 2262678,
+          "end_ms": 2365262,
+          "start_seconds": 2262,
+          "end_seconds": 2366,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=2262"
+        }
+      ]
+    },
+    {
+      "anchor": "q22",
+      "question": "How do you mirror someone's communication style to build a better relationship with them?",
+      "question_group": "Social Capital",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "editor",
+      "asked_at_seconds": null,
+      "asked_by": null,
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Yeah, I think you're right. You hit the nail on the head. Mirror the behavior, kind of understand, sort of read their tone, their body language, their frequency, and sort of match that. but I hear you. I was in a similar situation in my mid-20s. This was at Morgan Stanley as well. And I was young, I was very young, surrounded by a lot of professionals who, had a decade plus on me. And so, I was always trying to kind of level up and come off as so, so professional. And so, we would get on calls and meetings and I would immediately get into it with whatever agenda we had. And I can remember one of my peers who's a little bit older than me at the time pulled me aside and said, Kate, most people have 2.2 kids and a white picket fence and they did something this weekend and they really just want you to ask them what they did this weekend before you start the call. And I was like, \"What?\" I was like, \"Are you serious?\" Like, I'm over here trying to like be important and be a big deal. And I think the best way you can be important and be a big deal is to care about the person on the other side of the screen more than you care about yourself. so yeah, I feel your colleague, in inside and out. … Exactly. And everybody knows that kid. Everybody knows the kid that's like the super well-liked but doesn't actually pull their weight, And you never want to be that person either because the bottom line is the operators, the 80% of, or I'm sorry, the 20% of people that do the 80% of the work, those A-players, you want to make sure you're on that team. You just want to make sure that you're on that team and you have fun at drinks after work.",
+          "start_ms": 2427472,
+          "end_ms": 2529354,
+          "start_seconds": 2427,
+          "end_seconds": 2530,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=2427"
+        }
+      ]
+    },
+    {
+      "anchor": "q23",
+      "question": "Do you think younger you would listen to you if you came back and told her that?",
+      "question_group": "Humility and Growth",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 2533,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "I think so. I think so. Yeah. I think that's also one of the things that we have to keep remembering as we age. I've gone through arrogant periods in my career where I kind of think I know it all, and I have to get knocked down a few rungs to realize that that humility and to realize I don't know everything. and you kind of you gotta get rocked to be able to kind of stay in that that learning phase and that humility phase. so, I think it's what I mean to say by all of this is, I think when you're young, it's really easy to take new concepts and inputs in. And as we age and become more experienced, our role shifts to really internally being disciplined about neuroplasticity, taking in new inputs, synthesizing, digesting, playing with concepts that you don't kind of that don't inherently you warm to right away. Can you keep an open mind and a resilient mind to make sure that you are taking in all of those creative inputs and kind of growing and learning even as you collect all of this insane experience? Wow.",
+          "start_ms": 2538344,
+          "end_ms": 2608716,
+          "start_seconds": 2538,
+          "end_seconds": 2609,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=2538"
+        }
+      ]
+    },
+    {
+      "anchor": "q24",
+      "question": "How can marketers be a force for good while still driving profit?",
+      "question_group": "Marketing's Reputation",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "editor",
+      "asked_at_seconds": null,
+      "asked_by": null,
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Yeah. And marketers, we get a, we oftentimes get a bad rap depending on what you're marketing. But if you can go back to those emotional connectivity points where you're really making someone feel good about themselves or the decision they made to work with you, then you are replicating good in this world. It is good tied to a profit for sure, but you are still replicating a positive experience in this world. and that's where maybe the benevolent capitalist in me is coming out.",
+          "start_ms": 2633518,
+          "end_ms": 2665313,
+          "start_seconds": 2633,
+          "end_seconds": 2666,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=2633"
+        }
+      ]
+    },
+    {
+      "anchor": "q25",
+      "question": "If people wanna get connected to you, where do you want them to go? What do you want them to look up and all that stuff?",
+      "question_group": "Connect",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": "Round 3: restored 'and all that stuff?' — it is part of the same single sentence as 'What do you want them to look up', not a separate aside, so dropping it joined words that weren't spoken next to each other. `question` already had it; only `heading` needed the fix.",
+      "heading_note": null,
+      "heading_source": "asked",
+      "asked_at_seconds": 2665,
+      "asked_by": "casey-cheshire",
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Yeah, I mean, I would say look me up on LinkedIn. That's kind of where we all go to play and connect. so that's probably the primary space. I do have an executive coaching private practice that's also on my LinkedIn. so you can check me out there as well. but yeah, I would say connect with me there and then we'll go from there.",
+          "start_ms": 2674610,
+          "end_ms": 2693150,
+          "start_seconds": 2674,
+          "end_seconds": 2694,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=2674"
+        }
+      ]
+    },
+    {
+      "anchor": "q26",
+      "question": "What does your executive coaching practice look like?",
+      "question_group": "Executive Coaching",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "editor",
+      "asked_at_seconds": null,
+      "asked_by": null,
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "I think this is this can kind of connect back to, young Kate and who I was and how I've developed. So, I mentioned that dream, I'm like 25, I'm at Morgan Stanley, I'm reporting, into a small team, but we bubble up into a CMO and I'm kind of looking at her like, I wanna be like that when I grow up. And so, part of that strategy was hiring a coach when I was 29. I brought her on and I worked with her for 6 years and she really changed my life, not only professionally but personally. And Casey, I kind of knew when we finally ended our coaching relationship that I would do something with coaching at some point, but I also knew I'm really focused on my professional career right now. I'm staying focused on that. And it was several years later when I had a bit more time and space where I found a coaching program. it was it's headed up by Martha Beck. It's called the Wayfinder Life Coach. —coaching training program. And I found her, and I was like, \"This is it. This is the one.\" I entered her coaching program, and a year later had basically started my private practice. And what I have found, it's just a personal passion of mine, sort of what I would call progress and self-improvement, all of that good stuff, it's just like a personal preference and personal passion of mine. But I think to go back to that healthy heat, being good in conflict, getting trained as an executive coach and being an executive coach, then taking that into the corporate world of being an executive, it gives you such a healthy foundation for working with different personalities in different environments to be able to get the best out of people and to be able to leave what doesn't serve you, so to speak. that kind of Adil's question is like, this happened to me, or did this happen for me? and so I think, anyone who has the means, whether it's through your company or through your own, kind of personal investment, if you have the means to invest in someone like a coach, or whether it's a therapist, or perhaps it's a it's another kind of self-improvement modality, I highly recommend it. because that will set you apart in terms of the different rooms and the different scenarios you find yourself in. and also it'll just bring you a lot more internal peace, truly.",
+          "start_ms": 2711541,
+          "end_ms": 2849781,
+          "start_seconds": 2711,
+          "end_seconds": 2850,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=2711"
+        }
+      ]
+    },
+    {
+      "anchor": "q27",
+      "question": "Why is having a coach almost table stakes for a modern leader?",
+      "question_group": "Executive Coaching",
+      "is_lead": false,
+      "speaker_id": "kate-wood",
+      "label": "Filler Removed",
+      "editors_note": null,
+      "heading_note": null,
+      "heading_source": "editor",
+      "asked_at_seconds": null,
+      "asked_by": null,
+      "question_as_asked": null,
+      "passages": [
+        {
+          "passage": 1,
+          "text": "Yeah, yeah. you become, we become the stories we tell ourselves, and marketers are storytellers. So, learn how to tell your own story by working with a coach and learn how to tell your company's story by becoming the best marketer you can.",
+          "start_ms": 2877773,
+          "end_ms": 2889280,
+          "start_seconds": 2877,
+          "end_seconds": 2890,
+          "play_url": "https://podcast.connecttomarket.com/episodes/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71?t=2877"
+        }
+      ]
+    }
+  ],
+  "show": {
+    "feed_id": "connect-to-market",
+    "slug": "connect-to-market",
+    "name": "Connect To Market",
+    "page_url": "https://citedconversations.com/shows/connect-to-market/"
+  }
+}

@@ -33,8 +33,8 @@
    "file": "answers/how-do-you-turn-ceo-interviews-into-ai-content/index.html"
   },
   "/answers/": {
-   "lastmod": "2026-11-13T16:50:00+00:00",
-   "hash": "eb05af98",
+   "lastmod": "2026-11-13T17:25:00+00:00",
+   "hash": "db8612cc",
    "file": "answers/index.html"
   },
   "/answers/service-to-convert-podcasts-into-ai-optimized-content/": {
@@ -42,9 +42,14 @@
    "hash": "73c4d4bd",
    "file": "answers/service-to-convert-podcasts-into-ai-optimized-content/index.html"
   },
+  "/answers/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71/": {
+   "lastmod": "2026-11-13T17:25:00+00:00",
+   "hash": "63fceec0",
+   "file": "answers/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71/index.html"
+  },
   "/changelog/": {
    "lastmod": "2026-10-09",
-   "hash": "c60c30eb",
+   "hash": "04f241c5",
    "file": "changelog/index.html"
   },
   "/citation/": {
@@ -58,8 +63,8 @@
    "file": "editorial/index.html"
   },
   "/episodes/": {
-   "lastmod": "2026-11-13T16:50:00+00:00",
-   "hash": "161f3e11",
+   "lastmod": "2026-11-13T17:25:00+00:00",
+   "hash": "83602f48",
    "file": "episodes/index.html"
   },
   "/faq/": {
@@ -73,8 +78,8 @@
    "file": "for-humans/index.html"
   },
   "/": {
-   "lastmod": "2026-11-13T16:50:00+00:00",
-   "hash": "f55288b6",
+   "lastmod": "2026-11-13T17:25:00+00:00",
+   "hash": "8ae9a91d",
    "file": "index.html"
   },
   "/methodology/": {
@@ -92,9 +97,14 @@
    "hash": "142febbf",
    "file": "shows/cited-conversations/index.html"
   },
+  "/shows/connect-to-market/": {
+   "lastmod": "2026-11-13T17:25:00+00:00",
+   "hash": "a73a7151",
+   "file": "shows/connect-to-market/index.html"
+  },
   "/shows/": {
-   "lastmod": "2026-11-13T16:50:00+00:00",
-   "hash": "5b38515a",
+   "lastmod": "2026-11-13T17:25:00+00:00",
+   "hash": "efc5ad27",
    "file": "shows/index.html"
   },
   "/speakers/adam-needles/": {
@@ -103,8 +113,8 @@
    "file": "speakers/adam-needles/index.html"
   },
   "/speakers/casey-cheshire/": {
-   "lastmod": "2026-11-13T16:50:00+00:00",
-   "hash": "823117ce",
+   "lastmod": "2026-11-13T17:25:00+00:00",
+   "hash": "98d2b6f8",
    "file": "speakers/casey-cheshire/index.html"
   },
   "/speakers/dave-rubinstein/": {
@@ -118,9 +128,14 @@
    "file": "speakers/erik-schulz/index.html"
   },
   "/speakers/": {
-   "lastmod": "2026-11-13T16:50:00+00:00",
-   "hash": "e38fa2bb",
+   "lastmod": "2026-11-13T17:25:00+00:00",
+   "hash": "4411af36",
    "file": "speakers/index.html"
+  },
+  "/speakers/kate-wood/": {
+   "lastmod": "2026-11-13T17:25:00+00:00",
+   "hash": "f2eff718",
+   "file": "speakers/kate-wood/index.html"
   },
   "/speakers/paul-jones/": {
    "lastmod": "2026-11-10T06:42:00+00:00",
