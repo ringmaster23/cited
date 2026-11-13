@@ -632,7 +632,7 @@ function integrityCheckAnswerPages() {
 // rounds up from the exact millisecond cue times kept in data-vtt-start / -end.
 
 var PG_VTT_TOLERANCE_MS = 3000;
-var PG_SPEAKERS = ['Casey Cheshire', 'Adam Needles', 'Simon Wilhelm', 'Paul Jones', 'Dave Rubinstein', 'Paul Siegel'];
+var PG_SPEAKERS = ['Casey Cheshire', 'Adam Needles', 'Simon Wilhelm', 'Paul Jones', 'Dave Rubinstein', 'Paul Siegel', 'Erik Schulz'];
 // The Descript export sometimes leaves a raw track id ("casey_3_09-24-2026_111155:") inside a cue instead of the name.
 var PG_SPEAKER_ALIASES = { casey: 'Casey Cheshire', adam: 'Adam Needles', simon: 'Simon Wilhelm' };
 // Longest host stretch (in words) the cut checks will look across when following a quote through the transcript.

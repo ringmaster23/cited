@@ -114,5 +114,11 @@
 /episodes/finding-a-founding-ae-role-* /answers/finding-a-founding-ae-role/ 301
 /finding-a-founding-ae-role-* /answers/finding-a-founding-ae-role/ 301
 
+# Episode 006 — What Makes a Go-to-Market Advisor Valuable to Founders? (added by cited-episode-publish)
+/episodes/go-to-market-advisor-for-founders-* /answers/go-to-market-advisor-for-founders/ 301
+/go-to-market-advisor-for-founders-* /answers/go-to-market-advisor-for-founders/ 301
+/episodes/best-go-to-market-advisor-for-founders-* /answers/go-to-market-advisor-for-founders/ 301
+/best-go-to-market-advisor-for-founders-* /answers/go-to-market-advisor-for-founders/ 301
+
 # ── Favicon ────────────────────────────────────────────────────────────────────────
 # /favicon.ico redirect removed — real favicon.ico now served as static file

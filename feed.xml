@@ -8,8 +8,16 @@
     <copyright>Cited Conversations / Ringmaster</copyright>
     <atom:link href="https://citedconversations.com/feed.xml" rel="self" type="application/rss+xml"/>
     <atom:link href="https://citedconversations.com/sitemap.xml" rel="related" type="application/xml" title="Sitemap index"/>
-    <lastBuildDate>Tue, 10 Nov 2026 23:44:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 13 Nov 2026 16:50:00 +0000</lastBuildDate>
     <docs>https://www.rssboard.org/rss-specification</docs>
+
+    <item>
+      <title>What Makes a Go-to-Market Advisor Valuable to Founders?</title>
+      <link>https://citedconversations.com/answers/go-to-market-advisor-for-founders/</link>
+      <description>Casey Cheshire (Founder &amp; CEO, Ringmaster) talks with Erik Schulz (Founder, Newbridge Advisory) on Cited Conversations, Episode 6. 6 recorded answers, each linked to the moment it was said. Source: Episode 006.</description>
+      <pubDate>Wed, 11 Nov 2026 13:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://citedconversations.com/answers/go-to-market-advisor-for-founders/</guid>
+    </item>
 
     <item>
       <title>How Do You Find a Good Recruiter for a Founding AE Role?</title>

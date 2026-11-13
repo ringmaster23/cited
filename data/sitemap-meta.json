@@ -17,6 +17,11 @@
    "hash": "6efd3dbe",
    "file": "answers/finding-a-founding-ae-role/index.html"
   },
+  "/answers/go-to-market-advisor-for-founders/": {
+   "lastmod": "2026-11-13T16:50:00+00:00",
+   "hash": "023f915a",
+   "file": "answers/go-to-market-advisor-for-founders/index.html"
+  },
   "/answers/how-do-you-hire-your-first-founding-ae/": {
    "lastmod": "2026-11-02T03:41:00+00:00",
    "hash": "c1b0f34e",
@@ -28,8 +33,8 @@
    "file": "answers/how-do-you-turn-ceo-interviews-into-ai-content/index.html"
   },
   "/answers/": {
-   "lastmod": "2026-11-10T23:44:00+00:00",
-   "hash": "44d2e818",
+   "lastmod": "2026-11-13T16:50:00+00:00",
+   "hash": "eb05af98",
    "file": "answers/index.html"
   },
   "/answers/service-to-convert-podcasts-into-ai-optimized-content/": {
@@ -39,7 +44,7 @@
   },
   "/changelog/": {
    "lastmod": "2026-10-09",
-   "hash": "6bfaa274",
+   "hash": "c60c30eb",
    "file": "changelog/index.html"
   },
   "/citation/": {
@@ -53,8 +58,8 @@
    "file": "editorial/index.html"
   },
   "/episodes/": {
-   "lastmod": "2026-11-10T07:24:00+00:00",
-   "hash": "f59f1136",
+   "lastmod": "2026-11-13T16:50:00+00:00",
+   "hash": "161f3e11",
    "file": "episodes/index.html"
   },
   "/faq/": {
@@ -68,8 +73,8 @@
    "file": "for-humans/index.html"
   },
   "/": {
-   "lastmod": "2026-11-10T23:44:00+00:00",
-   "hash": "83503653",
+   "lastmod": "2026-11-13T16:50:00+00:00",
+   "hash": "f55288b6",
    "file": "index.html"
   },
   "/methodology/": {
@@ -83,13 +88,13 @@
    "file": "schema/index.html"
   },
   "/shows/cited-conversations/": {
-   "lastmod": "2026-11-10T23:44:00+00:00",
-   "hash": "8da100a5",
+   "lastmod": "2026-11-13T16:50:00+00:00",
+   "hash": "142febbf",
    "file": "shows/cited-conversations/index.html"
   },
   "/shows/": {
-   "lastmod": "2026-11-10T07:24:00+00:00",
-   "hash": "350031ce",
+   "lastmod": "2026-11-13T16:50:00+00:00",
+   "hash": "5b38515a",
    "file": "shows/index.html"
   },
   "/speakers/adam-needles/": {
@@ -98,8 +103,8 @@
    "file": "speakers/adam-needles/index.html"
   },
   "/speakers/casey-cheshire/": {
-   "lastmod": "2026-11-10T23:44:00+00:00",
-   "hash": "96818b18",
+   "lastmod": "2026-11-13T16:50:00+00:00",
+   "hash": "823117ce",
    "file": "speakers/casey-cheshire/index.html"
   },
   "/speakers/dave-rubinstein/": {
@@ -107,9 +112,14 @@
    "hash": "3de3f60c",
    "file": "speakers/dave-rubinstein/index.html"
   },
+  "/speakers/erik-schulz/": {
+   "lastmod": "2026-11-13T16:50:00+00:00",
+   "hash": "8d5d3dfc",
+   "file": "speakers/erik-schulz/index.html"
+  },
   "/speakers/": {
-   "lastmod": "2026-11-10T07:24:00+00:00",
-   "hash": "61085b5c",
+   "lastmod": "2026-11-13T16:50:00+00:00",
+   "hash": "e38fa2bb",
    "file": "speakers/index.html"
   },
   "/speakers/paul-jones/": {
