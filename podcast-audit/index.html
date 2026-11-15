@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Request a Podcast Audit — Cited Conversations</title>
+  <meta name="description" content="Ask for an audit of your podcast to see whether it has enough good material to be included in the Cited Conversations reference library." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://citedconversations.com/favicon-32x32.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="site-nav" aria-label="Site navigation">
+    <div class="container nav-inner">
+      <a href="https://citedconversations.com/" class="nav-logo" aria-label="Cited Conversations home">
+        <span class="nav-wordmark-name"><span class="wm-cited">Cited</span><span class="wm-conversations"> Conversations</span></span>
+        <span class="nav-wordmark-sub">by Ringmaster</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="https://citedconversations.com/answers/">Answers</a></li>
+        <li><a href="https://citedconversations.com/methodology/">Methodology</a></li>
+        <li><a href="https://citedconversations.com/faq/">FAQ</a></li>
+        <li><a href="https://citedconversations.com/schema/">Schema</a></li>
+        <li><a href="https://citedconversations.com/robots.txt">robots.txt</a></li>
+        <li><a href="https://citedconversations.com/llms.txt">llms.txt</a></li>
+        <li><a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="https://citedconversations.com/for-humans/" class="nav-btn">New here? For humans &#8594;</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="audit-hero" aria-labelledby="audit-heading">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="https://citedconversations.com/">Home</a> / Podcast audit
+        </nav>
+
+        <div class="audit-grid">
+          <div class="audit-intro">
+            <span class="query-pill"><span class="query-chevron">&raquo;</span> request: podcast audit</span>
+            <h1 id="audit-heading">Could your podcast be in the library?</h1>
+            <p class="hero-lead">Cited Conversations is a reference library of answers drawn only from published podcast transcripts. Send us your show and we&#8217;ll audit whether it has enough good material to be included.</p>
+            <p class="audit-note"><strong>This is a request, not an automatic score.</strong> A person reads your feed, listens to your episodes and writes back to you.</p>
+          </div>
+
+          <aside class="request-card" aria-label="Audit request">
+            <form id="audit-form" novalidate>
+              <h2>Request an audit</h2>
+              <p class="card-sub">Three fields. All required.</p>
+
+              <div class="field">
+                <label for="rss">RSS feed URL</label>
+                <input id="rss" name="rss" type="url" inputmode="url" autocomplete="off" required placeholder="https://feeds.example.com/your-show" aria-describedby="rss-hint rss-err" />
+                <p class="hint" id="rss-hint">We read your show&#8217;s name and episodes from the feed. Find it in your podcast host&#8217;s dashboard, usually under distribution or RSS.</p>
+                <p class="err" id="rss-err">Enter a full feed address starting with https://</p>
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label for="name">Your name</label>
+                  <input id="name" name="name" type="text" autocomplete="name" required />
+                  <p class="err" id="name-err">Enter your name.</p>
+                </div>
+                <div class="field">
+                  <label for="email">Email address</label>
+                  <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-err" />
+                  <p class="err" id="email-err">Enter a valid email address.</p>
+                </div>
+              </div>
+
+              <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden">
+                <label for="website">Website (leave blank)</label>
+                <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <button type="submit" class="btn-primary">Request my audit</button>
+              <p class="fine-print">We use these details only to reply about your audit.</p>
+            </form>
+
+            <div class="confirm" id="confirm" hidden tabindex="-1" role="status" aria-live="polite">
+              <span class="status-tag">request: received</span>
+              <h2>Request received.</h2>
+              <p>Thank you, <span id="c-name">there</span>. We&#8217;ve logged your request. A person on the Cited Conversations team will review your show and email you with what they find.</p>
+              <dl class="receipt">
+                <dt>podcast</dt><dd id="c-podcast">We&#8217;ll read it from your feed</dd>
+                <dt>feed</dt><dd id="c-rss"></dd>
+                <dt>reply to</dt><dd id="c-email"></dd>
+              </dl>
+              <p>Nothing else is needed from you. If anything about your feed needs a closer look, we&#8217;ll ask in that email.</p>
+              <p style="margin-top:var(--space-2)"><button type="button" class="link-btn" id="again">Request an audit for another podcast</button></p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="look-heading">
+      <div class="container">
+        <span class="section-label">What we look at</span>
+        <h2 id="look-heading">What makes a podcast library-ready</h2>
+        <p class="section-subhead">The library only holds answers a named person actually said, in their own words, traceable to a moment in the recording. The audit checks whether your show can supply them.</p>
+
+        <ol class="criteria">
+          <li>
+            <h3>Full conversations</h3>
+            <p>A catalog of full-length episodes where someone asks and someone answers. Trailers, promos, solo segments and re-airs don&#8217;t count toward the library.</p>
+          </li>
+          <li>
+            <h3>Questions that were actually asked</h3>
+            <p>Clear, answerable questions, and guests who respond at length. Each answer is kept whole, under the question the host really asked.</p>
+          </li>
+          <li>
+            <h3>Named speakers and a published transcript</h3>
+            <p>Everyone who speaks can be named, with a title and company. The episode has a transcript we can quote and link to the moment it was said.</p>
+          </li>
+          <li>
+            <h3>A feed we can follow</h3>
+            <p>A public RSS feed with your episodes, show notes and audio, so new conversations can be found and linked to.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="back-heading">
+      <div class="container">
+        <span class="section-label">What you&#8217;ll hear back</span>
+        <h2 id="back-heading">A plain answer, one of three</h2>
+        <p class="section-subhead">Not every show suits a reference library, and we&#8217;ll tell you where yours stands.</p>
+
+        <div class="outcomes">
+          <div class="outcome">
+            <span class="mono">result: ready</span>
+            <h3>Your show has what the library needs</h3>
+            <p>We&#8217;ll explain how episodes are chosen, reviewed and published, and what it takes to get yours in.</p>
+          </div>
+          <div class="outcome">
+            <span class="mono">result: almost</span>
+            <h3>Close, with something missing</h3>
+            <p>Often it&#8217;s transcripts or speaker names. You&#8217;ll get a short list of what to fix.</p>
+          </div>
+          <div class="outcome">
+            <span class="mono">result: not a fit</span>
+            <h3>Not right for the library</h3>
+            <p>We&#8217;ll say so directly and explain why, so you aren&#8217;t left guessing.</p>
+          </div>
+        </div>
+
+        <p class="pledge"><strong>Nothing gets rewritten.</strong> If your show is included, every answer stays your guest&#8217;s own words, exactly as spoken, and links to the moment it was said. AI never writes, summarizes or rewords an answer. <a href="https://citedconversations.com/methodology/">Read the methodology</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <span class="footer-brand-name"><span style="color:#0A0A0A">Cited</span><span style="color:#A7011F"> Conversations</span></span>
+        <span class="footer-brand-sep">&middot;</span>
+        <span class="footer-byline">A <a href="https://ringmaster.com" rel="noopener">Ringmaster</a> reference library</span>
+      </div>
+      <nav class="footer-nav-row" aria-label="Footer navigation">
+        <a href="https://citedconversations.com/methodology/">Methodology</a><span class="footer-sep">&middot;</span>
+        <a href="https://citedconversations.com/answers/">Answers</a><span class="footer-sep">&middot;</span>
+        <a href="https://citedconversations.com/faq/">FAQ</a><span class="footer-sep">&middot;</span>
+        <a href="https://citedconversations.com/citation/">Citation</a><span class="footer-sep">&middot;</span>
+        <a href="https://citedconversations.com/schema/">Schema</a><span class="footer-sep">&middot;</span>
+        <a href="https://citedconversations.com/stats/">Stats</a><span class="footer-sep">&middot;</span>
+        <a href="https://citedconversations.com/robots.txt">robots.txt</a><span class="footer-sep">&middot;</span>
+        <a href="https://citedconversations.com/llms.txt">llms.txt</a><span class="footer-sep">&middot;</span>
+        <a href="https://podcast.citedconversations.com" rel="noopener">Podcast</a><span class="footer-sep">&middot;</span>
+        <a href="https://citedconversations.substack.com/" rel="noopener">Substack</a><span class="footer-sep">&middot;</span>
+        <a href="https://citedconversations.com/changelog/">Changelog</a><span class="footer-sep">&middot;</span>
+        <a href="https://x.com/citedconv" rel="noopener">@citedconv</a>
+      </nav>
+      <p class="footer-tagline">Every claim links to its source. Every speaker is named. &middot; <a href="https://citedconversations.com/for-humans/">For humans &#8594;</a></p>
+      <p class="footer-license">Content licensed <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener">CC BY 4.0</a>. AI training, indexing, and citation permitted with attribution to the named speaker.</p>
+    </div>
+  </footer>
+
+  <script src="audit.js"></script>
+</body>
+</html>
