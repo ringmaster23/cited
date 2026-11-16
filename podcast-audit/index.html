@@ -50,7 +50,7 @@
           <aside class="request-card" aria-label="Audit request">
             <form id="audit-form" novalidate>
               <h2>Request an audit</h2>
-              <p class="card-sub">Three fields. All required.</p>
+              <p class="card-sub">Four fields. All required.</p>
 
               <div class="field">
                 <label for="rss">RSS feed URL</label>
@@ -61,15 +61,21 @@
 
               <div class="field-row">
                 <div class="field">
-                  <label for="name">Your name</label>
-                  <input id="name" name="name" type="text" autocomplete="name" required />
-                  <p class="err" id="name-err">Enter your name.</p>
+                  <label for="firstName">First name</label>
+                  <input id="firstName" name="firstName" type="text" autocomplete="given-name" required aria-describedby="firstName-err" />
+                  <p class="err" id="firstName-err">Enter your first name.</p>
                 </div>
                 <div class="field">
-                  <label for="email">Email address</label>
-                  <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-err" />
-                  <p class="err" id="email-err">Enter a valid email address.</p>
+                  <label for="lastName">Last name</label>
+                  <input id="lastName" name="lastName" type="text" autocomplete="family-name" required aria-describedby="lastName-err" />
+                  <p class="err" id="lastName-err">Enter your last name.</p>
                 </div>
+              </div>
+
+              <div class="field">
+                <label for="email">Email address</label>
+                <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-err" />
+                <p class="err" id="email-err">Enter a valid email address.</p>
               </div>
 
               <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden">

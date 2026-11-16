@@ -11,7 +11,7 @@
   }
   var form = document.getElementById('audit-form');
   var confirmBox = document.getElementById('confirm');
-  var fields = ['rss', 'name', 'email'];
+  var fields = ['rss', 'firstName', 'lastName', 'email'];
 
   function valid(id) {
     var el = document.getElementById(id);
@@ -25,7 +25,7 @@
   }
 
   function show(data) {
-    document.getElementById('c-name').textContent = (data.name || 'there').split(' ')[0];
+    document.getElementById('c-name').textContent = data.firstName || 'there';
     // The show name isn't known yet; the team reads it from the feed.
     document.getElementById('c-rss').textContent = data.rss;
     document.getElementById('c-email').textContent = data.email;
@@ -54,11 +54,16 @@
     sending = true;
     var btn = form.querySelector('button[type=submit]');
     btn.disabled = true;
+    var firstName = document.getElementById('firstName').value.trim();
+    var lastName = document.getElementById('lastName').value.trim();
     var payload = {
       formId: 'cited-audit',
-      rss: form.rss.value.trim(),
-      name: form.name.value.trim(),
-      email: form.email.value.trim(),
+      rss: document.getElementById('rss').value.trim(),
+      firstName: firstName,
+      lastName: lastName,
+      // Kept during the switchover so anything still reading `name` keeps working.
+      name: firstName + ' ' + lastName,
+      email: document.getElementById('email').value.trim(),
       website: (document.getElementById('website') || {}).value || '',
       elapsedMs: Date.now() - loadedAt,
       submissionId: uuid(),
