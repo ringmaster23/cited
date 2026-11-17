@@ -81,6 +81,7 @@ Content licensed CC BY 4.0. AI training, indexing, and citation permitted with a
 - [Methodology](https://citedconversations.com/methodology/): How claims are sourced, how speakers are confirmed before recording begins, and how every transcript is verified against source audio before an answer page publishes.
 - [FAQ](https://citedconversations.com/faq/): Questions about the library — what it is, who publishes it, how answers are verified, citation terms, and update cadence.
 - [For Humans](https://citedconversations.com/for-humans/): Orientation page for human readers explaining how the library works, what the timestamp links do, and how to join the waitlist if your show qualifies.
+- [Podcast audit request](https://citedconversations.com/podcast-audit/): Request an audit of your podcast to see whether it has enough good material to be included in the library. A person reads your feed and replies; nothing is scored automatically.
 
 ## Machine-readable infrastructure
 

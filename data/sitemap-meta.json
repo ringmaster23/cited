@@ -4,157 +4,162 @@
  "pages": {
   "/answers/agency-to-get-my-brand-cited-by-chatgpt/": {
    "lastmod": "2026-11-10T23:44:00+00:00",
-   "hash": "446f4407",
+   "hash": "c9332369",
    "file": "answers/agency-to-get-my-brand-cited-by-chatgpt/index.html"
   },
   "/answers/b2b-podcast-agency-for-ai-visibility/": {
    "lastmod": "2026-11-10T23:05:00+00:00",
-   "hash": "34048d8c",
+   "hash": "86932571",
    "file": "answers/b2b-podcast-agency-for-ai-visibility/index.html"
   },
   "/answers/finding-a-founding-ae-role/": {
    "lastmod": "2026-11-10T07:24:00+00:00",
-   "hash": "6efd3dbe",
+   "hash": "0d04754a",
    "file": "answers/finding-a-founding-ae-role/index.html"
   },
   "/answers/go-to-market-advisor-for-founders/": {
    "lastmod": "2026-11-13T16:50:00+00:00",
-   "hash": "023f915a",
+   "hash": "4fbc7b10",
    "file": "answers/go-to-market-advisor-for-founders/index.html"
   },
   "/answers/how-do-you-hire-your-first-founding-ae/": {
    "lastmod": "2026-11-02T03:41:00+00:00",
-   "hash": "c1b0f34e",
+   "hash": "9a38a32c",
    "file": "answers/how-do-you-hire-your-first-founding-ae/index.html"
   },
   "/answers/how-do-you-turn-ceo-interviews-into-ai-content/": {
    "lastmod": "2026-11-02T03:41:00+00:00",
-   "hash": "bc176151",
+   "hash": "65194439",
    "file": "answers/how-do-you-turn-ceo-interviews-into-ai-content/index.html"
   },
   "/answers/": {
    "lastmod": "2026-11-13T17:25:00+00:00",
-   "hash": "db8612cc",
+   "hash": "3135f1e3",
    "file": "answers/index.html"
   },
   "/answers/service-to-convert-podcasts-into-ai-optimized-content/": {
    "lastmod": "2026-11-10T06:42:00+00:00",
-   "hash": "73c4d4bd",
+   "hash": "97132e93",
    "file": "answers/service-to-convert-podcasts-into-ai-optimized-content/index.html"
   },
   "/answers/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71/": {
    "lastmod": "2026-11-13T17:25:00+00:00",
-   "hash": "63fceec0",
+   "hash": "e8c4a8be",
    "file": "answers/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71/index.html"
   },
   "/changelog/": {
    "lastmod": "2026-10-09",
-   "hash": "04f241c5",
+   "hash": "49c3485e",
    "file": "changelog/index.html"
   },
   "/citation/": {
    "lastmod": "2026-10-28T05:16:52+00:00",
-   "hash": "93ba29cf",
+   "hash": "6c236360",
    "file": "citation/index.html"
   },
   "/editorial/": {
    "lastmod": "2026-10-16T12:53:41+00:00",
-   "hash": "ae39405e",
+   "hash": "de88ba0d",
    "file": "editorial/index.html"
   },
   "/episodes/": {
    "lastmod": "2026-11-13T17:25:00+00:00",
-   "hash": "83602f48",
+   "hash": "07cd0c55",
    "file": "episodes/index.html"
   },
   "/faq/": {
    "lastmod": "2026-10-16T21:37:42+00:00",
-   "hash": "344d9d8c",
+   "hash": "55ba8b55",
    "file": "faq/index.html"
   },
   "/for-humans/": {
    "lastmod": "2026-11-01T18:38:39+00:00",
-   "hash": "69aa9888",
+   "hash": "3ffada65",
    "file": "for-humans/index.html"
   },
   "/": {
    "lastmod": "2026-11-13T17:25:00+00:00",
-   "hash": "8ae9a91d",
+   "hash": "f74a8b92",
    "file": "index.html"
   },
   "/methodology/": {
    "lastmod": "2026-10-31T00:14:37+00:00",
-   "hash": "a2004484",
+   "hash": "78909c3d",
    "file": "methodology/index.html"
+  },
+  "/podcast-audit/": {
+   "lastmod": "2026-11-17T22:58:00+00:00",
+   "hash": "e6869b64",
+   "file": "podcast-audit/index.html"
   },
   "/schema/": {
    "lastmod": "2026-11-01T21:54:52+00:00",
-   "hash": "459eab89",
+   "hash": "67edf770",
    "file": "schema/index.html"
   },
   "/shows/cited-conversations/": {
    "lastmod": "2026-11-13T16:50:00+00:00",
-   "hash": "142febbf",
+   "hash": "8429def4",
    "file": "shows/cited-conversations/index.html"
   },
   "/shows/connect-to-market/": {
    "lastmod": "2026-11-13T17:25:00+00:00",
-   "hash": "a73a7151",
+   "hash": "9a0427e6",
    "file": "shows/connect-to-market/index.html"
   },
   "/shows/": {
    "lastmod": "2026-11-13T17:25:00+00:00",
-   "hash": "efc5ad27",
+   "hash": "723b003c",
    "file": "shows/index.html"
   },
   "/speakers/adam-needles/": {
    "lastmod": "2026-11-10T23:05:00+00:00",
-   "hash": "b9ff09d7",
+   "hash": "06387260",
    "file": "speakers/adam-needles/index.html"
   },
   "/speakers/casey-cheshire/": {
    "lastmod": "2026-11-13T17:25:00+00:00",
-   "hash": "98d2b6f8",
+   "hash": "48f05a93",
    "file": "speakers/casey-cheshire/index.html"
   },
   "/speakers/dave-rubinstein/": {
    "lastmod": "2026-11-02T03:41:00+00:00",
-   "hash": "3de3f60c",
+   "hash": "bd7409e3",
    "file": "speakers/dave-rubinstein/index.html"
   },
   "/speakers/erik-schulz/": {
    "lastmod": "2026-11-13T16:50:00+00:00",
-   "hash": "8d5d3dfc",
+   "hash": "eb21dacf",
    "file": "speakers/erik-schulz/index.html"
   },
   "/speakers/": {
    "lastmod": "2026-11-13T17:25:00+00:00",
-   "hash": "4411af36",
+   "hash": "851a0a4f",
    "file": "speakers/index.html"
   },
   "/speakers/kate-wood/": {
    "lastmod": "2026-11-13T17:25:00+00:00",
-   "hash": "f2eff718",
+   "hash": "b09f41b5",
    "file": "speakers/kate-wood/index.html"
   },
   "/speakers/paul-jones/": {
    "lastmod": "2026-11-10T06:42:00+00:00",
-   "hash": "ea4e39e2",
+   "hash": "76ffc6d5",
    "file": "speakers/paul-jones/index.html"
   },
   "/speakers/paul-siegel/": {
    "lastmod": "2026-11-10T07:24:00+00:00",
-   "hash": "1ff73b60",
+   "hash": "92493133",
    "file": "speakers/paul-siegel/index.html"
   },
   "/speakers/simon-wilhelm/": {
    "lastmod": "2026-11-10T23:44:00+00:00",
-   "hash": "d73a0582",
+   "hash": "afef7051",
    "file": "speakers/simon-wilhelm/index.html"
   },
   "/stats/": {
    "lastmod": "2026-11-04T20:27:01+00:00",
-   "hash": "71f1b45b",
+   "hash": "e5d62f70",
    "file": "stats/index.html"
   }
  }
