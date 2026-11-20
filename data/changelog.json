@@ -4,6 +4,22 @@
   {
    "date": "2026-11-20",
    "dateHuman": "November 20, 2026",
+   "description": "Republished the answer page for Episode 4: \"How Do You Turn CEO Interviews Into AI Content?\" (5 answers), built from the Cited Conversations database after approval by Casey Cheshire. Republished from the Cited Conversations database after an editorial adjustment. No answer wording was changed.",
+   "pages": [
+    "how-do-you-turn-ceo-interviews-into-ai-content"
+   ]
+  },
+  {
+   "date": "2026-11-20",
+   "dateHuman": "November 20, 2026",
+   "description": "Republished the answer page for Episode 4: \"How Do You Hire Your First Founding AE?\" (7 answers), built from the Cited Conversations database after approval by Casey Cheshire. Republished from the Cited Conversations database after an editorial adjustment. No answer wording was changed.",
+   "pages": [
+    "how-do-you-hire-your-first-founding-ae"
+   ]
+  },
+  {
+   "date": "2026-11-20",
+   "dateHuman": "November 20, 2026",
    "description": "Published the answer page for Episode 7: \"What Is an Omni Agent, and How Can Business Owners Use It to Adopt AI?\" (12 answers), built from the Cited Conversations database after approval by Casey Cheshire. Initial publication. Every answer was checked word for word against the transcript and approved in #cited-dev.",
    "pages": [
     "what-is-an-omni-agent-and-how-can-business-owners-use-it-to-adopt-ai"
