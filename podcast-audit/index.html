@@ -108,10 +108,10 @@
               <p class="card-sub">Four fields. All required.</p>
 
               <div class="field">
-                <label for="rss">RSS feed URL</label>
-                <input id="rss" name="rss" type="url" inputmode="url" autocomplete="off" required placeholder="https://feeds.example.com/your-show" aria-describedby="rss-hint rss-err" />
-                <p class="hint" id="rss-hint">We read your show&#8217;s name and episodes from the feed. Find it in your podcast host&#8217;s dashboard, usually under distribution or RSS.</p>
-                <p class="err" id="rss-err">Enter a full feed address starting with https://</p>
+                <label for="rss">RSS feed or YouTube channel link</label>
+                <input id="rss" name="rss" type="url" inputmode="url" autocomplete="off" required placeholder="RSS feed or YouTube channel link" aria-describedby="rss-hint rss-err" />
+                <p class="hint" id="rss-hint">Either one works. Paste your podcast&#8217;s RSS feed (usually under distribution or RSS in your podcast host&#8217;s dashboard) or the link to your YouTube channel. We read your show&#8217;s name and episodes from it.</p>
+                <p class="err" id="rss-err">Enter an RSS feed address or a YouTube channel link, such as https://www.youtube.com/@yourchannel</p>
               </div>
 
               <div class="field-row">
@@ -148,7 +148,7 @@
               <p>Thank you, <span id="c-name">there</span>. We&#8217;ve logged your request. A person on the Cited Conversations team will review your show and email you with what they find.</p>
               <dl class="receipt">
                 <dt>podcast</dt><dd id="c-podcast">We&#8217;ll read it from your feed</dd>
-                <dt>feed</dt><dd id="c-rss"></dd>
+                <dt>feed or channel</dt><dd id="c-rss"></dd>
                 <dt>reply to</dt><dd id="c-email"></dd>
               </dl>
               <p>Nothing else is needed from you. If anything about your feed needs a closer look, we&#8217;ll ask in that email.</p>

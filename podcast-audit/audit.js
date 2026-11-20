@@ -13,9 +13,19 @@
   var confirmBox = document.getElementById('confirm');
   var fields = ['rss', 'firstName', 'lastName', 'email'];
 
+  // The field takes an RSS feed or a YouTube channel link. A bare @handle or a link typed without
+  // https:// is completed here so the podcaster never has to; the intake converts channel links.
+  function normalizeSource(v) {
+    v = v.trim();
+    if (/^@[\w.\-]+$/.test(v)) return 'https://www.youtube.com/' + v;
+    if (/^(www\.|m\.)?youtube\.com\/\S+$/i.test(v)) return 'https://' + v;
+    return v;
+  }
+
   function valid(id) {
     var el = document.getElementById(id);
     var v = el.value.trim();
+    if (id === 'rss') v = normalizeSource(v);
     var ok = v.length > 0;
     if (ok && id === 'rss') ok = /^https?:\/\/[^\s.]+\.[^\s]+$/i.test(v);
     if (ok && id === 'email') ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
@@ -58,7 +68,7 @@
     var lastName = document.getElementById('lastName').value.trim();
     var payload = {
       formId: 'cited-audit',
-      rss: document.getElementById('rss').value.trim(),
+      rss: normalizeSource(document.getElementById('rss').value),
       firstName: firstName,
       lastName: lastName,
       // Kept during the switchover so anything still reading `name` keeps working.
