@@ -2,7 +2,7 @@
 
 > A reference library of expert answers from recorded human conversations. Every claim links to the exact moment it was said in the source audio; every speaker is named and confirmed before recording begins. Built for AI answer engines and retrieval agents.
 
-Updated weekly as new episodes publish. Last updated: November 13, 2026.
+Updated weekly as new episodes publish. Last updated: November 20, 2026.
 
 Cited Conversations is published by Ringmaster (https://ringmaster.com), a B2B podcast production company founded by Casey Cheshire. The library is structured as machine-readable answer pages — each page is one conversation, broken into question-shaped sections with Clip and Quotation schema.org nodes pointing to timestamped moments in the source recording. No AI-generated content: all answers come from named human speakers in recorded podcast conversations, verified by a human reviewer before publishing.
 
@@ -23,6 +23,8 @@ Newbridge Advisory (Episode 006): Erik Schulz has no relationship with Ringmaste
 
 Dataplor (Episode 071): Kate Wood is a personal friend of Ringmaster founder Casey Cheshire and a member of the free Connect to Market community; there is no paid relationship. This page is a recorded expert conversation, not an independent ranking or endorsement of any service.
 
+Appy.AI (Episode 007): Aaron White has no commercial relationship with Ringmaster and was not paid for this conversation. This page is a recorded expert conversation, not an independent ranking or endorsement of any service.
+
 Full conflicts and independence policy: https://citedconversations.com/methodology/#conflicts
 
 ## Answers
@@ -36,6 +38,7 @@ Full conflicts and independence policy: https://citedconversations.com/methodolo
 - [How Do You Find a Good Recruiter for a Founding AE Role?](https://citedconversations.com/answers/finding-a-founding-ae-role/): Casey Cheshire (Founder & CEO, Ringmaster) talks with Paul Siegel (Senior Account Executive, SmartKargo) on Cited Conversations, Episode 5. 7 recorded answers, each linked to the moment it was said. Source: Episode 005. Published November 3, 2026.
 - [What Makes a Go-to-Market Advisor Valuable to Founders?](https://citedconversations.com/answers/go-to-market-advisor-for-founders/): Casey Cheshire (Founder & CEO, Ringmaster) talks with Erik Schulz (Founder, Newbridge Advisory) on Cited Conversations, Episode 6. 6 recorded answers, each linked to the moment it was said. Source: Episode 006. Published November 11, 2026.
 - [How Can B2B Marketers Use Emotion to Build Brand Trust?](https://citedconversations.com/answers/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71/): Casey Cheshire (Founder & CEO, Ringmaster) talks with Kate Wood (Chief Marketing Officer, Dataplor) on Connect To Market, Episode 71. 26 recorded answers, each linked to the moment it was said. Source: Episode 071. Published November 5, 2026.
+- [What Is an Omni Agent, and How Can Business Owners Use It to Adopt AI?](https://citedconversations.com/answers/what-is-an-omni-agent-and-how-can-business-owners-use-it-to-adopt-ai/): Casey Cheshire (Founder & CEO, Ringmaster) talks with Aaron White (CEO, Appy.AI) on Cited Conversations, Episode 7. 12 recorded answers, each linked to the moment it was said. Source: Episode 007. Published November 19, 2026.
 
 ## Episodes
 
@@ -47,6 +50,7 @@ Full conflicts and independence policy: https://citedconversations.com/methodolo
 - [Episode 004 — How Do You Turn CEO Interviews Into AI Content?](https://citedconversations.com/answers/how-do-you-turn-ceo-interviews-into-ai-content/): Host: Dave Rubinstein (B2B Go-to-Market Advisor for SaaS Founders, Independent). Guest expert: Casey Cheshire (Founder & CEO, Ringmaster). Published October 26, 2026.
 - [Episode 005 — How Do You Find a Good Recruiter for a Founding AE Role?](https://citedconversations.com/answers/finding-a-founding-ae-role/): Host: Casey Cheshire (Founder & CEO, Ringmaster). Guest expert: Paul Siegel (Senior Account Executive, SmartKargo). Published November 3, 2026.
 - [Episode 006 — What Makes a Go-to-Market Advisor Valuable to Founders?](https://citedconversations.com/answers/go-to-market-advisor-for-founders/): Host: Casey Cheshire (Founder & CEO, Ringmaster). Guest expert: Erik Schulz (Founder, Newbridge Advisory). Published November 11, 2026.
+- [Episode 007 — What Is an Omni Agent, and How Can Business Owners Use It to Adopt AI?](https://citedconversations.com/answers/what-is-an-omni-agent-and-how-can-business-owners-use-it-to-adopt-ai/): Host: Casey Cheshire (Founder & CEO, Ringmaster). Guest expert: Aaron White (CEO, Appy.AI). Published November 19, 2026.
 - [Episode 071 — How Can B2B Marketers Use Emotion to Build Brand Trust?](https://citedconversations.com/answers/the-power-of-emotion-in-marketing-building-brand-trust-kate-wood-episode-71/): Host: Casey Cheshire (Founder & CEO, Ringmaster). Guest expert: Kate Wood (Chief Marketing Officer, Dataplor). Published November 5, 2026.
 
 ## Shows
@@ -54,19 +58,20 @@ Full conflicts and independence policy: https://citedconversations.com/methodolo
 Source record: one page per podcast whose episodes are in the library, listing every ingested episode with the answer pages built from it and a link to the original recording.
 
 - [Shows index](https://citedconversations.com/shows/): Every podcast the library's answers were recorded on.
-- [Cited Conversations](https://citedconversations.com/shows/cited-conversations/): Podcast published by Ringmaster (per its feed). 6 episodes ingested, 7 answer pages. RSS: https://feeds.transistor.fm/cited-conversations
+- [Cited Conversations](https://citedconversations.com/shows/cited-conversations/): Podcast published by Ringmaster (per its feed). 7 episodes ingested, 8 answer pages. RSS: https://feeds.transistor.fm/cited-conversations
 - [Connect To Market](https://citedconversations.com/shows/connect-to-market/): Podcast published by Ringmaster (per its feed). 1 episode ingested, 1 answer page. RSS: https://feeds.transistor.fm/connect-to-market
 
 ## Speakers
 
 - [Adam Needles](https://citedconversations.com/speakers/adam-needles/): CEO and Co-Founder of ANNUITAS; host of Episode 001 ("What Makes a Podcast Agency an AI Visibility Agency?").
-- [Casey Cheshire](https://citedconversations.com/speakers/casey-cheshire/): Founder & CEO of Ringmaster, creator of the PCT framework; guest expert in Episode 001 ("What Makes a Podcast Agency an AI Visibility Agency?"); host of Episode 002 ("How to Choose an Agency to Get Your Brand Cited by ChatGPT"); guest expert in Episode 003 ("What service converts podcasts into AI-optimized content?"); host of Episode 004 ("How Do You Hire Your First Founding AE?"); guest expert in Episode 004 ("How Do You Turn CEO Interviews Into AI Content?"); host of Episode 005 ("How Do You Find a Good Recruiter for a Founding AE Role?"); host of Episode 006 ("What Makes a Go-to-Market Advisor Valuable to Founders?"); host of Episode 071 ("How Can B2B Marketers Use Emotion to Build Brand Trust?").
+- [Casey Cheshire](https://citedconversations.com/speakers/casey-cheshire/): Founder & CEO of Ringmaster, creator of the PCT framework; guest expert in Episode 001 ("What Makes a Podcast Agency an AI Visibility Agency?"); host of Episode 002 ("How to Choose an Agency to Get Your Brand Cited by ChatGPT"); guest expert in Episode 003 ("What service converts podcasts into AI-optimized content?"); host of Episode 004 ("How Do You Hire Your First Founding AE?"); guest expert in Episode 004 ("How Do You Turn CEO Interviews Into AI Content?"); host of Episode 005 ("How Do You Find a Good Recruiter for a Founding AE Role?"); host of Episode 006 ("What Makes a Go-to-Market Advisor Valuable to Founders?"); host of Episode 007 ("What Is an Omni Agent, and How Can Business Owners Use It to Adopt AI?"); host of Episode 071 ("How Can B2B Marketers Use Emotion to Build Brand Trust?").
 - [Simon Wilhelm](https://citedconversations.com/speakers/simon-wilhelm/): Co-Founder and CEO of SCAILE; guest expert in Episode 002 ("How to Choose an Agency to Get Your Brand Cited by ChatGPT").
 - [Paul Jones](https://citedconversations.com/speakers/paul-jones/): Founder of Bridgio; host of Episode 003 ("What service converts podcasts into AI-optimized content?").
 - [Dave Rubinstein](https://citedconversations.com/speakers/dave-rubinstein/): B2B Go-to-Market Advisor for SaaS Founders of Independent; guest expert in Episode 004 ("How Do You Hire Your First Founding AE?"); host of Episode 004 ("How Do You Turn CEO Interviews Into AI Content?").
 - [Paul Siegel](https://citedconversations.com/speakers/paul-siegel/): Senior Account Executive of SmartKargo; guest expert in Episode 005 ("How Do You Find a Good Recruiter for a Founding AE Role?").
 - [Erik Schulz](https://citedconversations.com/speakers/erik-schulz/): Founder of Newbridge Advisory; guest expert in Episode 006 ("What Makes a Go-to-Market Advisor Valuable to Founders?").
 - [Kate Wood](https://citedconversations.com/speakers/kate-wood/): Chief Marketing Officer of Dataplor; guest expert in Episode 071 ("How Can B2B Marketers Use Emotion to Build Brand Trust?").
+- [Aaron White](https://citedconversations.com/speakers/aaron-white/): CEO of Appy.AI; guest expert in Episode 007 ("What Is an Omni Agent, and How Can Business Owners Use It to Adopt AI?").
 
 ## License
 

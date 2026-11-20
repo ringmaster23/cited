@@ -8,8 +8,16 @@
     <copyright>Cited Conversations / Ringmaster</copyright>
     <atom:link href="https://citedconversations.com/feed.xml" rel="self" type="application/rss+xml"/>
     <atom:link href="https://citedconversations.com/sitemap.xml" rel="related" type="application/xml" title="Sitemap index"/>
-    <lastBuildDate>Fri, 13 Nov 2026 17:25:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 20 Nov 2026 20:38:00 +0000</lastBuildDate>
     <docs>https://www.rssboard.org/rss-specification</docs>
+
+    <item>
+      <title>What Is an Omni Agent, and How Can Business Owners Use It to Adopt AI?</title>
+      <link>https://citedconversations.com/answers/what-is-an-omni-agent-and-how-can-business-owners-use-it-to-adopt-ai/</link>
+      <description>Casey Cheshire (Founder &amp; CEO, Ringmaster) talks with Aaron White (CEO, Appy.AI) on Cited Conversations, Episode 7. 12 recorded answers, each linked to the moment it was said. Source: Episode 007.</description>
+      <pubDate>Thu, 19 Nov 2026 16:22:38 +0000</pubDate>
+      <guid isPermaLink="true">https://citedconversations.com/answers/what-is-an-omni-agent-and-how-can-business-owners-use-it-to-adopt-ai/</guid>
+    </item>
 
     <item>
       <title>What Makes a Go-to-Market Advisor Valuable to Founders?</title>

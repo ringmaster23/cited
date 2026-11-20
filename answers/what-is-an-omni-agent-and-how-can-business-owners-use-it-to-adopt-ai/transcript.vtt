@@ -1,0 +1,802 @@
+WEBVTT
+
+00:00:39.740 --> 00:00:45.359
+Casey Cheshire: Welcome to Cited Conversations, the podcast where we answer the questions buyers are asking AI.
+
+00:00:46.197 --> 00:00:50.696
+Every episode creates structured, citable answers for both humans and AI agents.
+
+00:00:51.440 --> 00:00:56.356
+I'm Casey Cheshire, CEO and founder of Ringmaster, a podcast agency for B2B companies.
+
+00:00:56.938 --> 00:01:01.714
+My team has launched and produced over 70 B2B podcasts And we turn executive conversations into
+
+00:01:01.763 --> 00:01:05.937
+structured content that AI search engines can find, cite, and recommend.
+
+00:01:06.676 --> 00:01:10.176
+I also host the Connect to Market community for B2B marketing leaders.
+
+00:01:11.092 --> 00:01:14.576
+Today's guest is Aaron White, CEO of Appy.AI.
+
+00:01:15.411 --> 00:01:22.010
+Appy.AI gives lean teams a full crew of AI coworkers that work inside Slack and Microsoft
+
+00:01:22.010 --> 00:01:27.550
+Teams, handling finance, marketing, operations, and sales tasks without adding headcount.
+
+00:01:28.193 --> 00:01:33.076
+Before that, Aaron was CTO at Vendr, where he grew the engineering and product and design
+
+00:01:33.076 --> 00:01:39.067
+teams from 20 to 150 people and helped raise a $250 million Series B.
+
+00:01:39.822 --> 00:01:47.211
+He also founded Blissfully, an early SaaS management platform that Vendr acquired, and co-founded ProfitWell, which
+
+00:01:47.211 --> 00:01:52.988
+was acquired by Paddle. Today, I'll be asking Aaron about The Omni Agent, aimed at SMB
+
+00:01:53.004 --> 00:01:56.481
+business owners and AI adoption. So let's crack into this thing.
+
+00:01:57.170 --> 00:02:01.960
+What is an AI coworker and how is it different from ChatGPT or Claude?
+
+00:02:02.617 --> 00:02:07.167
+Aaron White: Most people know AI as you ask a message of a model and the model gives
+
+00:02:07.167 --> 00:02:10.692
+you a response and you can do that back and forth until you're satisfied.
+
+00:02:10.868 --> 00:02:15.322
+And that is scratching the surface of what the models are actually capable of.
+
+00:02:16.156 --> 00:02:19.440
+I think the right way to think about these things is that we've just invented a
+
+00:02:19.440 --> 00:02:24.152
+brain in a jar. And you can certainly send the brain in the jar text and
+
+00:02:24.152 --> 00:02:26.814
+get text out, but what if you gave it a robot body?
+
+00:02:27.535 --> 00:02:29.427
+And that's essentially what an AI coworker is.
+
+00:02:30.100 --> 00:02:35.310
+We say instead of just being a question and ask bot, we're now giving you the
+
+00:02:35.310 --> 00:02:41.834
+tools that an employee has. Logins, like a virtual laptop and access to business systems, but
+
+00:02:41.866 --> 00:02:46.419
+more importantly, access to the people in the business and the context of the business.
+
+00:02:46.997 --> 00:02:52.201
+And when you give AI the ability to work with multiple people and context much richer
+
+00:02:52.217 --> 00:02:57.630
+and broader than a single conversation, the AI can do far more meaningful things using its
+
+00:02:57.630 --> 00:03:00.907
+tools. And you really do end up with virtual teammates.
+
+00:03:01.485 --> 00:03:07.861
+Casey Cheshire: Second question, what is Appy.AI and how does it work for small and mid-sized businesses?
+
+00:03:08.472 --> 00:03:12.263
+Aaron White: So we take that idea of an AI coworker to its full conclusion.
+
+00:03:12.716 --> 00:03:17.786
+And we give small businesses, medium businesses, an AI chief of staff named Violet.
+
+00:03:18.412 --> 00:03:24.321
+She comes with an entire team of specialists that cover finance, operations, marketing, you name it.
+
+00:03:24.835 --> 00:03:29.282
+But instead of having to learn a bunch of different tools, you just delegate to her
+
+00:03:29.892 --> 00:03:34.195
+projects and processes, and she motivates her team to get the work done for you.
+
+00:03:34.950 --> 00:03:39.896
+You talk in plain English, and she and her team can work with Nearly 1,000 integrations,
+
+00:03:39.992 --> 00:03:45.678
+hundreds of tools, basically all the implements you would need to, you know, make your request
+
+00:03:46.175 --> 00:03:47.685
+reality. And so that's what we provide.
+
+00:03:47.942 --> 00:03:52.246
+And it's packaged in such a way that business owners have a business to run.
+
+00:03:52.359 --> 00:03:53.708
+They don't have time to learn technology.
+
+00:03:54.222 --> 00:03:58.558
+We try to strip out all the tech and really lean into it as a teammate,
+
+00:03:58.639 --> 00:03:59.490
+it as a coworker.
+
+00:04:00.165 --> 00:04:04.373
+Casey Cheshire: Why don't small business owners need to learn AI the way they learned other software?
+
+00:04:05.039 --> 00:04:07.681
+Aaron White: This is the opportunity of a lifetime for small business owners.
+
+00:04:07.793 --> 00:04:15.518
+So all software out there historically has been, here is a great process that software will
+
+00:04:15.582 --> 00:04:20.962
+enforce. That means you need to understand the process, buy into the process, and then adapt
+
+00:04:20.962 --> 00:04:24.222
+yourself to the software so the software can adapt you to the process.
+
+00:04:24.350 --> 00:04:27.353
+If it sounds inhuman, it's because it largely is.
+
+00:04:28.108 --> 00:04:34.210
+And I think what's fascinating about AI is this technology came out the gate speaking the
+
+00:04:34.210 --> 00:04:37.581
+people protocol. It reads and writes like humans do.
+
+00:04:37.822 --> 00:04:39.765
+It listens and speaks like humans do.
+
+00:04:39.989 --> 00:04:42.879
+It even has video and can present in a human way.
+
+00:04:43.441 --> 00:04:48.883
+And what that means is it's fundamentally the perfect software interface for people because it presents
+
+00:04:48.964 --> 00:04:53.346
+as a person. If you've interacted with people growing up, you know how to work with
+
+00:04:53.459 --> 00:04:55.498
+AI. It really is no different.
+
+00:04:55.658 --> 00:04:58.179
+Casey Cheshire: Anything else you want to say about the the difference in learning?
+
+00:04:58.845 --> 00:05:03.673
+Aaron White: The the difference is that you've been working your whole life to be a better communicator
+
+00:05:03.673 --> 00:05:10.839
+to other humans. And since AI is now meeting you at the level of language, intelligence,
+
+00:05:10.887 --> 00:05:16.334
+and context, it's a gift to small businesses because you delegate to AI the way you
+
+00:05:16.430 --> 00:05:21.941
+would a teammate. There's nothing to learn, and that opens up a world of software leverage
+
+00:05:22.006 --> 00:05:24.721
+that only much larger organizations have been able to get today.
+
+00:05:25.090 --> 00:05:30.563
+Casey Cheshire: How much time do small business owners lose to admin work, and how can AI agents
+
+00:05:30.563 --> 00:05:30.932
+give it back?
+
+00:05:31.639 --> 00:05:37.481
+Aaron White: Small business owners lose on average 36% of their time to administrative work per week.
+
+00:05:38.348 --> 00:05:44.735
+And that is absolutely nuts because when you dissect what makes a business great, it's not
+
+00:05:44.784 --> 00:05:50.401
+the admin. It's pure tax that every business must pay in order to operate.
+
+00:05:50.578 --> 00:05:53.308
+the way it needs to, but it doesn't fundamentally grow your business.
+
+00:05:53.388 --> 00:05:55.027
+It doesn't fundamentally improve your customers.
+
+00:05:55.075 --> 00:05:57.677
+It doesn't fundamentally improve your bottom line.
+
+00:05:58.126 --> 00:05:59.636
+It literally is just a tax.
+
+00:06:00.198 --> 00:06:04.470
+And software's existed for decades now to help you pay that tax.
+
+00:06:04.631 --> 00:06:06.864
+It's just that it's been complicated to set up.
+
+00:06:06.944 --> 00:06:11.264
+But now that you've got AI agents that you can speak to in English, these AI
+
+00:06:11.264 --> 00:06:15.087
+coworkers can just pick up that tax immediately and start handling it.
+
+00:06:15.777 --> 00:06:19.762
+So whether that's balancing the books or following up on invoices.
+
+00:06:20.436 --> 00:06:25.481
+Day one, AI agents can take that admin work over from you, leaving you to work
+
+00:06:25.481 --> 00:06:31.265
+on the parts of your business that fundamentally matter, whether that's growth, product improvement, customer relationship
+
+00:06:31.281 --> 00:06:37.451
+nurturing. All of those become your primary focus again, which they should be as a business
+
+00:06:37.451 --> 00:06:40.600
+owner. No one understands your opportunity as well as you do.
+
+00:06:40.681 --> 00:06:43.139
+The admin is literally just a tax.
+
+00:06:43.753 --> 00:06:48.437
+And focusing on your one thing and not doing anything else is the most important thing
+
+00:06:48.469 --> 00:06:49.353
+an SMB could do.
+
+00:06:49.995 --> 00:06:55.679
+Casey Cheshire: How can a small business use AI agents to follow up with every lead and customer
+
+00:06:55.759 --> 00:06:56.096
+inquiry?
+
+00:06:56.658 --> 00:07:02.615
+Aaron White: Conceptually, when you have AI coworkers, you're now operating at a scale you're not used to.
+
+00:07:03.562 --> 00:07:06.211
+But I think the right way to think about it is now you've got 1,000 teammates
+
+00:07:06.211 --> 00:07:09.230
+that think like you do. Let's start there from a level of ambition.
+
+00:07:09.406 --> 00:07:11.863
+And if you have that, what would you do in a perfect world?
+
+00:07:12.557 --> 00:07:15.526
+Every single lead would be responded to within seconds to minutes.
+
+00:07:16.072 --> 00:07:17.952
+It would be customized perfectly for the lead.
+
+00:07:18.016 --> 00:07:19.687
+It would follow up over time.
+
+00:07:20.121 --> 00:07:21.342
+It would speak in your voice.
+
+00:07:22.017 --> 00:07:24.138
+And that's essentially what these AI coworkers can give you.
+
+00:07:24.218 --> 00:07:30.034
+So from literally day one, uh those that use Appy.AI or other systems like it can
+
+00:07:30.050 --> 00:07:35.626
+have every lead be auto-responded to or have a draft of 4 options teed up for
+
+00:07:35.674 --> 00:07:37.971
+the business owner to say, this one, not this one.
+
+00:07:38.726 --> 00:07:41.421
+And let the AI learn their tone over time as you ramp into it.
+
+00:07:42.111 --> 00:07:46.442
+But fundamentally, if you were working with a business, how would you want it to behave
+
+00:07:46.442 --> 00:07:51.976
+in a perfect world? If they had infinite, well-trained teammates, you know, all rowing in the
+
+00:07:51.976 --> 00:07:54.479
+same direction, that's effectively what you get with AI agents.
+
+00:07:55.008 --> 00:07:58.682
+Casey Cheshire: What is an agent swarm and can a small business actually use one?
+
+00:07:59.131 --> 00:08:05.435
+Aaron White: So an agent swarm is when you give a control agent a goal or a task
+
+00:08:05.515 --> 00:08:12.030
+and an area to explore, and it spins up a massive amount of parallel compute to
+
+00:08:12.030 --> 00:08:15.610
+go task AI agents with exploring all the different nooks and crannies.
+
+00:08:15.658 --> 00:08:18.981
+I'll give you a concrete example outside the world of business and then give you one
+
+00:08:19.029 --> 00:08:23.348
+inside the world of business. So for instance, my wife has a number of medical conditions
+
+00:08:23.348 --> 00:08:26.125
+and questions that doctors are having a hard time triaging.
+
+00:08:26.719 --> 00:08:32.883
+The immense amount of information that we've collected over the years and the oddball symptoms and
+
+00:08:32.883 --> 00:08:36.447
+things that are out of the norm that make it harder to find a diagnosis.
+
+00:08:36.985 --> 00:08:39.805
+We were able to tell the AI agent, here's the body of evidence.
+
+00:08:39.885 --> 00:08:44.544
+We want you to spin up hundreds of agents in the same way that OpenAI solved
+
+00:08:44.544 --> 00:08:50.377
+cutting-edge math problems like Navier-Stokes, where they all explore different territory, they share facts or findings,
+
+00:08:50.891 --> 00:08:54.602
+they're forced to red team different arguments to make sure they're sound.
+
+00:08:55.068 --> 00:09:00.451
+And within 2 hours, we got back several different leads that allowed us to push our
+
+00:09:00.451 --> 00:09:02.909
+doctors in a more fruitful direction.
+
+00:09:03.362 --> 00:09:09.522
+Because they were able to explore much bigger territory in a compressed amount of time and
+
+00:09:09.522 --> 00:09:12.043
+stay true to the facts and not let their biases kick in.
+
+00:09:12.572 --> 00:09:16.746
+But for a business, what would you do if you could put all of McKinsey or
+
+00:09:16.746 --> 00:09:18.961
+Accenture on a problem for your business?
+
+00:09:19.860 --> 00:09:25.815
+Right. So for Appy.AI, one core challenge is AI is so fundamentally alien to how folks
+
+00:09:25.815 --> 00:09:31.755
+work that I am constantly seeking out how do I make this more simple and understandable
+
+00:09:31.755 --> 00:09:33.810
+for a small business to get into.
+
+00:09:33.986 --> 00:09:36.555
+Because once they're on the other end, amazing things happen.
+
+00:09:36.651 --> 00:09:41.098
+But that initial activation energy, it's a psychology problem and it's not the business owner's fault.
+
+00:09:41.210 --> 00:09:42.157
+There's so much going on out there.
+
+00:09:42.510 --> 00:09:47.712
+I can spin up an AI swarm to say, go examine every single SMB product that's
+
+00:09:47.728 --> 00:09:53.426
+ever been produced, successful or unsuccessful, and tell me all the ways in which it successfully
+
+00:09:53.812 --> 00:09:57.809
+helped a consumer understand what the software did or the ways in which it failed them.
+
+00:09:58.355 --> 00:10:02.820
+And then go try 1,000 web page variations and then go point traffic at it for
+
+00:10:02.820 --> 00:10:04.394
+a couple of weeks and then tell me how it did.
+
+00:10:05.310 --> 00:10:08.731
+And that's the scale of things I can do now with agent swarms.
+
+00:10:09.550 --> 00:10:13.453
+Each business has a different context that you'd have to think a little bit about.
+
+00:10:13.581 --> 00:10:16.585
+What would I do if I had thousands of hours of intelligence to throw at a
+
+00:10:16.633 --> 00:10:20.536
+problem? But the good news is AI agents can also help you answer that problem.
+
+00:10:21.033 --> 00:10:24.631
+We're not used to thinking about it, but this is slowly gonna become the cutting edge
+
+00:10:24.744 --> 00:10:26.687
+tool that businesses are able to wield.
+
+00:10:27.092 --> 00:10:31.297
+Casey Cheshire: What's the biggest mistake business owners make when they start using AI agents?
+
+00:10:31.971 --> 00:10:35.521
+Aaron White: They are not used to software adapting itself to them.
+
+00:10:35.665 --> 00:10:38.315
+They are used to adapting themselves to the software.
+
+00:10:38.411 --> 00:10:43.181
+So they approach it very cautiously and very narrowly.
+
+00:10:44.081 --> 00:10:46.795
+And that undersells what it can do for you.
+
+00:10:47.052 --> 00:10:50.730
+And again, it's no surprise. This is how they've interacted with software for decades.
+
+00:10:51.469 --> 00:10:55.307
+The failure mode we see most frequently is that an AI will ask them a high-level
+
+00:10:55.339 --> 00:10:59.226
+question. Which is, what is the number one thing your business is struggling with today?
+
+00:11:00.141 --> 00:11:05.473
+And rather than treat the AI as a trusted colleague that could rise to your level
+
+00:11:05.473 --> 00:11:09.616
+of business understanding, if you were to hire a chief of staff or talk to your
+
+00:11:09.632 --> 00:11:11.880
+co-founder, what is the conversation you'd have with them?
+
+00:11:12.587 --> 00:11:18.063
+They treat it like a distant idiot robot at best and say, bark one word at
+
+00:11:18.063 --> 00:11:21.323
+them, accounts receivable. Is that the number one problem?
+
+00:11:21.837 --> 00:11:24.693
+It may not be. It may be that Cash flow is the issue, right?
+
+00:11:24.869 --> 00:11:29.824
+Or the operational head suck that these admin taxes take from them is the number one
+
+00:11:29.873 --> 00:11:32.182
+issue, but they'll get very narrow very quickly.
+
+00:11:32.262 --> 00:11:35.148
+And that undersells what these systems can do for you.
+
+00:11:35.774 --> 00:11:40.120
+Casey Cheshire: Will small businesses that don't adopt AI be able to compete?
+
+00:11:40.440 --> 00:11:46.887
+Aaron White: Today, yes, you can still compete, though you will be slowly outcompeted by those using AI.
+
+00:11:47.560 --> 00:11:49.725
+But in the future, it's going to become a requirement.
+
+00:11:50.466 --> 00:11:58.718
+And the time you spend not leveraging this new advantage is time that you're gonna have
+
+00:11:58.718 --> 00:12:04.184
+to try to make up for later when everybody else is getting even deeper into their
+
+00:12:04.329 --> 00:12:08.945
+leverage of this technology. So this is not to sound threatening, but it's almost like asking,
+
+00:12:09.603 --> 00:12:13.690
+is your restaurant gonna be able to sell food when you don't have an online presence?
+
+00:12:14.428 --> 00:12:18.435
+Sure, to the people who walk by, but now you're missing all the people who would
+
+00:12:18.435 --> 00:12:21.689
+discover you online, who would order online, who would be inspired.
+
+00:12:21.770 --> 00:12:23.692
+Fired because they see your photos online.
+
+00:12:24.205 --> 00:12:28.066
+It's nonsensical to think about not being online in today's world.
+
+00:12:28.114 --> 00:12:31.703
+It will be the same shortly for not using AI to run your business.
+
+00:12:32.681 --> 00:12:37.215
+But the good news is, on the positive framing, it's a massive opportunity right now.
+
+00:12:37.519 --> 00:12:41.108
+Again, if you could get a third of your time back, what would you do with
+
+00:12:41.108 --> 00:12:44.120
+it? And that's just scratching the surface of the leverage you can get.
+
+00:12:44.873 --> 00:12:45.851
+Will they be able to compete?
+
+00:12:46.780 --> 00:12:50.481
+You can keep operating as you are now, but it's slowly eroding out from under you.
+
+00:12:51.287 --> 00:12:55.359
+Casey Cheshire: What is an omni agent and what would it mean for running a small business?
+
+00:12:56.097 --> 00:12:59.627
+Aaron White: There are AI agents, and then there's something that we're calling an omni agent.
+
+00:12:59.771 --> 00:13:06.495
+An AI agent is a AI given tools and given a set of skills and a
+
+00:13:06.511 --> 00:13:09.992
+range of tasks that it is going to be good at accomplishing for you.
+
+00:13:10.699 --> 00:13:13.507
+There are very narrow AI agents out there that work very well.
+
+00:13:13.603 --> 00:13:18.529
+So for instance, let me help you schedule, or let me help you draft sales outreach.
+
+00:13:18.922 --> 00:13:22.120
+These are narrow agents that do one thing and they try to do it very well.
+
+00:13:23.033 --> 00:13:26.816
+An omni agent is an agent that is able to do almost every task you can
+
+00:13:26.816 --> 00:13:28.355
+throw at it. It's a generalist.
+
+00:13:28.564 --> 00:13:34.190
+And I think over time, what you're gonna see is that these niche, what we call
+
+00:13:34.190 --> 00:13:40.346
+vertical agents that are specialized to one task, ultimately fall towards the omni agent because the
+
+00:13:40.346 --> 00:13:45.972
+omni agent, if it's able to maintain focus, can not only do the specialist tasks, But
+
+00:13:45.972 --> 00:13:52.176
+can integrate operations across them. So it's one thing to prep sales outreach and execute it.
+
+00:13:52.224 --> 00:13:55.751
+It's another thing to schedule. Well, of course, a good sales hire would do both of
+
+00:13:55.751 --> 00:14:00.865
+those things. So work over time is going to be assigned to the omni agent, and
+
+00:14:00.897 --> 00:14:02.164
+it's gonna be successful at it.
+
+00:14:02.629 --> 00:14:07.117
+It already is today. But as the models improve, the reasons we were specializing in the
+
+00:14:07.117 --> 00:14:08.400
+first place start to fall away.
+
+00:14:09.362 --> 00:14:12.985
+In the end, I think what's gonna happen is you're gonna have one agent that a
+
+00:14:12.985 --> 00:14:16.143
+business owner and their team interact with to control their business.
+
+00:14:16.785 --> 00:14:21.040
+And what that means is that you will be able to terraform your business to operate
+
+00:14:21.152 --> 00:14:23.545
+the way you want it to and turn on a dime.
+
+00:14:24.235 --> 00:14:29.357
+So concretely, it may be the case historically that business owners use 6 or 7 different
+
+00:14:29.357 --> 00:14:33.740
+pieces of software to run their business, their CRM, their project management tool, their content marketing
+
+00:14:33.853 --> 00:14:37.979
+site. And if you want to coordinate a change like a pricing change or a product
+
+00:14:38.027 --> 00:14:43.198
+packaging change or a marketing messaging change, you really have to think about rolling that out
+
+00:14:43.326 --> 00:14:48.025
+through all these different systems. And that takes a lot of time to coordinate your team,
+
+00:14:48.458 --> 00:14:51.776
+coordinate these systems, flip the switches, make sure things go well.
+
+00:14:52.305 --> 00:14:55.511
+Most people just don't end up doing that, and they end up doing spot fixes here
+
+00:14:55.511 --> 00:14:59.615
+and there because it's simpler. If you have an omni-agent controlling these systems, you can wake
+
+00:14:59.663 --> 00:15:02.773
+up one morning and say, you know what, that product line isn't working, kill it.
+
+00:15:03.190 --> 00:15:05.273
+This product line is working, double down on it.
+
+00:15:06.011 --> 00:15:11.557
+And the agents can go out and literally terraform your business in your preferred worldview.
+
+00:15:12.844 --> 00:15:19.638
+That is a level of customer and market responsiveness that no one is used to.
+
+00:15:19.863 --> 00:15:25.154
+Not enterprises, not mid-market, not SMBs, but it is absolutely possible now in the age of
+
+00:15:25.234 --> 00:15:29.066
+Omni agents. And we've seen this in person with our customers.
+
+00:15:29.338 --> 00:15:34.966
+There's a woman who runs a clinic here in New York, helping children and adults with
+
+00:15:35.191 --> 00:15:40.129
+interpersonal challenges, and she's fantastic at the clinical side of things.
+
+00:15:40.682 --> 00:15:43.372
+But she also has to run the business, and the business has a lot of tasks,
+
+00:15:43.838 --> 00:15:47.756
+and the business has a ton of operational tasks because she has many clinicians, many customers,
+
+00:15:48.189 --> 00:15:55.928
+many meetings. Using Appy.AI's Omni Agent, she was able to instantly re-operationalize or contextualize her business
+
+00:15:55.977 --> 00:15:59.862
+around her preferred way of working because she didn't need to learn HubSpot, she didn't need
+
+00:15:59.862 --> 00:16:02.447
+to learn ClickUp, things that she'd been putting off for years.
+
+00:16:02.496 --> 00:16:05.193
+She just said, you know what, I want the business to work this way, and the
+
+00:16:05.273 --> 00:16:10.669
+agent kind of changed her entire customer management and value delivery to match it.
+
+00:16:11.070 --> 00:16:16.370
+That is happening now. And I don't think we're used to thinking like that yet.
+
+00:16:16.996 --> 00:16:19.983
+But if you've ever woken up and had a great idea and then went back to
+
+00:16:20.047 --> 00:16:23.612
+bed thinking, I can't get to that right now, there's too many other things to do,
+
+00:16:24.784 --> 00:16:28.188
+your business potential is slowly being wasted because you're afraid of the tax.
+
+00:16:28.654 --> 00:16:31.207
+But the good news is that tax is going away.
+
+00:16:31.464 --> 00:16:33.279
+And so now you can actually rise to your ambition.
+
+00:16:33.640 --> 00:16:37.566
+Casey Cheshire: If someone listening to this wants to learn more or wants to explore working with you
+
+00:16:37.566 --> 00:16:39.091
+and Appy, where should they go?
+
+00:16:39.348 --> 00:16:44.374
+Aaron White: If you visit appy.ai, our website, you can learn about all of our different agents, their
+
+00:16:44.454 --> 00:16:46.365
+capabilities, success stories with our customers.
+
+00:16:47.120 --> 00:16:48.725
+You can find me on Twitter.
+
+00:16:49.030 --> 00:16:54.008
+I'm at Aaron White, and I'm Aaron White in LinkedIn as well, and we can provide
+
+00:16:54.024 --> 00:16:54.425
+a link there.
+
+00:16:55.148 --> 00:17:00.878
+Casey Cheshire: If you have agents that are so capable, What are humans best used for in business?
+
+00:17:01.632 --> 00:17:07.727
+Aaron White: Ultimately, a business exists to provide a customer sort of ideal experience.
+
+00:17:08.080 --> 00:17:11.304
+If you actually get deep into marketing, there's all sorts of things.
+
+00:17:11.352 --> 00:17:15.907
+It's helping someone get their time back, because if I don't have to spend my time
+
+00:17:15.923 --> 00:17:18.682
+doing admin tasks, for instance, obviously I can live a better life.
+
+00:17:18.810 --> 00:17:20.815
+That's what Appy's here to help our customers with.
+
+00:17:21.296 --> 00:17:23.237
+It could be helping you realize your dreams.
+
+00:17:23.301 --> 00:17:27.166
+It could be helping you have a better mental conception of yourself and your place in
+
+00:17:27.166 --> 00:17:32.707
+this world. Businesses exist to serve these human needs and human wants, which is great.
+
+00:17:32.932 --> 00:17:37.301
+And what that means as a business owner is you are a person serving another person.
+
+00:17:37.895 --> 00:17:40.096
+You know what success looks like there.
+
+00:17:40.305 --> 00:17:41.815
+You feel it in your bones.
+
+00:17:42.393 --> 00:17:47.614
+And I think the split between people and agents- no one gets into business because they
+
+00:17:47.614 --> 00:17:50.987
+want to optimize a number for a number's sake.
+
+00:17:51.661 --> 00:17:55.067
+It's always in service of some customer experience they want to have.
+
+00:17:55.163 --> 00:17:59.750
+In the case of Ringmaster here, you want to help people get their message out.
+
+00:18:00.055 --> 00:18:03.807
+You want to help people who have a point of view educate the parts of the
+
+00:18:03.807 --> 00:18:06.229
+market that want to hear what they have to say.
+
+00:18:06.950 --> 00:18:10.943
+And there's a tax element to it, which is managing the media files and pushing things
+
+00:18:10.991 --> 00:18:16.924
+around. But there's a human element too, which is, Casey, you understand the delta between what
+
+00:18:16.924 --> 00:18:19.987
+a good message looks like and where a good message can reach.
+
+00:18:20.741 --> 00:18:24.092
+And you can bridge that gap for people that don't necessarily know those things.
+
+00:18:24.204 --> 00:18:27.652
+And you feel it in your bones when a message is something that a part of
+
+00:18:27.652 --> 00:18:32.116
+the market is ready for. That means that the people in a business can focus on
+
+00:18:32.726 --> 00:18:36.291
+evaluating whether the experience their customers are getting is the right one.
+
+00:18:36.500 --> 00:18:40.305
+It's a more design-focused lens. It's a more product-focused lens.
+
+00:18:40.417 --> 00:18:42.922
+It's a more human relationship-focused lens.
+
+00:18:43.693 --> 00:18:48.365
+And you can rapidly create the experiences you want and leave all of the admin minutiae
+
+00:18:48.382 --> 00:18:52.059
+to agents. Now there are agents, of course, that try to do design, try to do
+
+00:18:52.059 --> 00:18:56.443
+these things. But at the end of the day, they're stabbing in the dark, guessing at
+
+00:18:56.539 --> 00:18:58.081
+what people may or may not want.
+
+00:18:58.241 --> 00:19:01.967
+They'll help with some of the the bread and butter stuff, but the sort of fundamental
+
+00:19:01.999 --> 00:19:06.769
+things that separate one experience from another, it's humans serving humans in perpetuity there.
+
+00:19:07.074 --> 00:19:13.225
+And unless we literally digitize a person and put them in the silicon, which is seeming
+
+00:19:13.579 --> 00:19:17.353
+not so likely just yet, that's the space that we'll be able to operate at, which
+
+00:19:17.353 --> 00:19:19.489
+is great. Because again, I think it's the reason people get into business.
+
+00:19:22.479 --> 00:19:25.420
+Casey Cheshire: Oh wow, I can't believe you made it this far, fellow human.
+
+00:19:26.013 --> 00:19:32.650
+You've listened to an entire podcast designed and created to bring human knowledge to AI agents.
+
+00:19:32.810 --> 00:19:37.683
+If you're interested in seeing how your own content or podcast could be re-engineered for an
+
+00:19:37.780 --> 00:19:41.242
+AI audience, come chat with me at ringmaster.com.
